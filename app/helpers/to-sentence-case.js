@@ -1,3 +1,5 @@
+var _ = require("lodash");
+
 module.exports = function(string) {
-    return string ? string.charAt(0).toUpperCase() + string.substr(1).toLowerCase() : "";
+    return _.isString(string) ? string.charAt(0).toUpperCase() + string.substr(1).toLowerCase() : "";
 };
