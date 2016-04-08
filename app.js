@@ -6,10 +6,10 @@ var routes = require("./app/routes");
 var db = require("./app/db");
 var app = express();
 
-
 app.use(bodyParser.json());
 
-app.use("/", routes);
+app.use("/api", routes);
+
 
 app.listen(3000, () => console.log("Ready"));
 
