@@ -1,50 +1,50 @@
 /**
  * Created by Tomm on 07.04.2016.
  */
+"use strict";
+
 var express = require("express");
 var router = express.Router();
 var Item = require("../models/item");
-var errorParser = require("./error-handler");
+var notFoundParser = require("../parsers/not-found-parser");
+var validationErrorsParser = require("../parsers/validation-errors-parser");
+var toSentenceCase = require("../helpers/to-sentence-case");
+
 
 router.post("/", function (request, result, next) {
     var item = new Item({
-        title: request.body.title,
+        title: toSentenceCase(request.body.title),
         category: request.body.category,
         amount: request.body.amount,
         favorite: request.body.favorite,
         listed: request.body.listed
     });
 
-    item
-        .save()
+    item.save()
         .then((data) => result.status(201).json(data))
-        .catch(console.log)
+        .catch((errors) => result.status(422).send(validationErrorsParser(errors)))
         .finally(next);
+
 });
 
 router.get("/", function (request, result, next) {
     Item.find()
-        .exec()
         .then((data) => result.json(data))
-        .catch(console.log)
         .finally(next);
 });
 
 router.get("/:item_slug", function (request, result, next) {
     Item.findBySlug(request.params.item_slug)
-        .exec()
-        .then(errorParser)
+        .then(notFoundParser)
         .then((data) => result.json(data))
-        .catch(console.log)
         .finally(next);
 });
 
 router["delete"]("/:item_slug", function (request, result, next) {
     Item.findBySlug(request.params.item_slug)
-        .then(errorParser)
+        .then(notFoundParser)
         .then((item) => item.remove())
         .then(() => result.status(204).send())
-        .catch(console.log)
         .finally(next);
 });
 
