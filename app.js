@@ -13,3 +13,4 @@ app.use("/", routes);
 
 app.listen(3000, () => console.log("Ready"));
 
+db.seed();
