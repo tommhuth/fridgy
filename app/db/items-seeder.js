@@ -59,7 +59,7 @@ var items = [
         category: 2
     }
 ];
-var categories = ["DIARY", "dDRInkables", "Meat and fish", "fruit and vegetables", "condIMents"];
+var categories = ["Diary", "drinkables", "Meat and fish", "fruit and vegetables", "condiments"];
 
 module.exports = function() {
     Item.remove({});
@@ -69,10 +69,10 @@ module.exports = function() {
             title: toSentenceCase(items[key].title),
             category: toSentenceCase(categories[items[key].category]),
             amount: Math.floor(Math.random() * 4),
-            favorite: Math.random() > .70,
-            listed: Math.random() > .85
+            favorite: Math.random() > .5,
+            listed:  Math.random() > .5
         });
 
-        item.save().then(() => console.log("seeded " + items[key].title));
+        item.save();
     }
 };
