@@ -14,7 +14,7 @@ var toSentenceCase = require("../helpers/to-sentence-case");
 router.post("/", function (request, result, next) {
     var item = new Item({
         title: toSentenceCase(request.body.title),
-        category: request.body.category,
+        category: toSentenceCase(request.body.category),
         amount: request.body.amount,
         favorite: request.body.favorite,
         listed: request.body.listed
