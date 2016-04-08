@@ -21,8 +21,7 @@ router.get("/", function (request, result, next) {
         )
         .exec()
         .then((data) => data.map((e) => ({ category: e._id, popularity: e.popularity })))
-        .then((data) => result.json(data))
-        .finally(next);
+        .then((data) => result.json(data));
 });
 
 
