@@ -10,6 +10,9 @@ app.use(bodyParser.json());
 
 app.use("/api", routes);
 
+//global error handlers
+app.use((error, request, result, next) => result.status(error.status ||  500).end());
+app.use((request, result, next) => result.status(404).end());
 
 app.listen(3000, () => console.log("Ready"));
 
