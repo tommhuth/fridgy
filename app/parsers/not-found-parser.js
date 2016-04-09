@@ -4,7 +4,6 @@
 "use strict";
 
 module.exports = function (data) {
-    console.log(data);
     if ((Array.isArray(data) && !data.length) || !data) {
         var error = new Error();
 
