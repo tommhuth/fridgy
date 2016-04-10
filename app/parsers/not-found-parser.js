@@ -3,13 +3,20 @@
  */
 "use strict";
 
-module.exports = function (data) {
-    if ((Array.isArray(data) && !data.length) || !data) {
-        var error = new Error();
+export default function (data) {
+    let error = new Error();
 
+    if ((Array.isArray(data) && !data.length) || !data) {
         error.status = 404;
+
+        throw error;
+    }
+
+    if(typeof data === Error) {
+        error.status = 500;
+
         throw error;
     }
 
     return data;
-};
+}

@@ -3,76 +3,93 @@
  */
 "use strict";
 
-var Item = require('../models/item');
-var toSentenceCase = require("../helpers/to-sentence-case");
-var items = [
+import Item from "../models/item";
+import { default as toSentenceCase } from "../helpers/to-sentence-case";
+
+let items = [
     {
         title:  "chocolate milk",
-        category: 0
+        category: 0,
+        unit: 0
     },
     {
         title:  "butter",
-        category: 0
+        category: 0,
+        unit: 2
     },
     {
         title:  "cheese",
-        category: 0
+        category: 0,
+        unit: 1
     },
     {
         title:  "potatoes",
-        category: 3
+        category: 3,
+        unit: 1
     },
     {
         title:  "carrots",
-        category: 3
+        category: 3,
+        unit: 1
     },
     {
         title:  "lemon ice tea",
-        category: 1
+        category: 1,
+        unit: 0
     },
     {
         title:  "beer",
-        category: 1
+        category: 1,
+        unit: 0
     },
     {
         title:  "pork chops",
-        category: 2
+        category: 2,
+        unit: 1
     },
     {
         title: "orange juice",
-        category: 1
+        category: 1,
+        unit: 0
     },
     {
         title: "milk",
-        category: 0
+        category: 0,
+        unit: 0
     },
     {
         title: "olive oil",
-        category: 4
+        category: 4,
+        unit: 0
     },
     {
         title: "fish fillet",
-        category: 2
+        category: 2,
+        unit: 1
     },
     {
         title: "chicken drumsticks",
-        category: 2
+        category: 2,
+        unit: 1
     }
 ];
-var categories = ["Diary", "drinkables", "Meat and fish", "fruit and vegetables", "condiments"];
+let categories = ["Diary", "drinkables", "Meat and fish", "fruit and vegetables", "condiments"];
+let units = ["l", "pcs", "kg"];
 
-module.exports = function() {
-    Item.remove({});
+export default function() {
+    Item.remove({})
+        .then(() => {
+            for (let i of items) {
+                let item = new Item({
+                    title: toSentenceCase(i.title),
+                    category: toSentenceCase(categories[i.category]),
+                    unit: units[i.unit],
+                    amount: Math.floor(Math.random() * 4),
+                    favorite: Math.random() > .5,
+                    listed:  Math.random() > .5
+                });
 
-    for (let key in items) {
-        let item = new Item({
-            title: toSentenceCase(items[key].title),
-            category: toSentenceCase(categories[items[key].category]),
-            amount: Math.floor(Math.random() * 4),
-            favorite: Math.random() > .5,
-            listed:  Math.random() > .5
+                item.save().catch(console.log);
+            }
         });
-
-        item.save();
-    }
-};
+}

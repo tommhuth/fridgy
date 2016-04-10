@@ -3,10 +3,10 @@
  */
 "use strict";
 
-var express = require("express");
-var router = express.Router();
-var Item = require("../models/item");
+import express from "express";
+import Item from "../models/item";
 
+let router = express.Router();
 
 router.get("/", function (request, result, next) {
     Item.aggregate(
@@ -21,8 +21,9 @@ router.get("/", function (request, result, next) {
         )
         .exec()
         .then((data) => data.map((e) => ({ category: e._id, popularity: e.popularity })))
-        .then((data) => result.json(data));
+        .then((data) => result.json(data))
+        .catch((error) => next(error));
 });
 
 
-module.exports = router;
+export default router;

@@ -3,18 +3,19 @@
  */
 "use strict";
 
-var express = require("express");
-var router = express.Router();
-var Item = require("../models/item");
-var notFoundParser = require("../parsers/not-found-parser");
-var validationErrorsParser = require("../parsers/validation-errors-parser");
-var toSentenceCase = require("../helpers/to-sentence-case");
-var _ = require("lodash");
+import express from "express";
+import { default as Item } from "../models/item";
+import { default as notFoundParser } from "../parsers/not-found-parser";
+import { default as validationErrorsParser } from "../parsers/validation-errors-parser";
+import { default as toSentenceCase } from "../helpers/to-sentence-case";
+
+let router = express.Router();
 
 router.post("/", function (request, result, next) {
     var item = new Item({
         title: toSentenceCase(request.body.title),
         category: toSentenceCase(request.body.category),
+        unit: (request.body.type || '').toLowerCase(),
         amount: request.body.amount,
         favorite: request.body.favorite,
         listed: request.body.listed
@@ -22,31 +23,39 @@ router.post("/", function (request, result, next) {
 
     item.save()
         .then((data) => result.status(201).json(data))
-        .catch((errors) => result.status(422).send(validationErrorsParser(errors)))
+        .catch((error) => {
+            let e = new Error();
+            e.status = error.errors ? 422 : 500;
+
+            if(error.errors) e.body = validationErrorsParser(error);
+
+            next(e);
+        })
         .done();
 });
 
 router.get("/", function (request, result, next) {
     Item.find()
         .then((data) => result.json(data))
+        .catch((error) => next(error))
         .done();
 });
 
-router.get("/:item_slug", function (request, result, next) {
-    Item.findBySlug(request.params.item_slug)
+router.get("/:slug", function (request, result,next) {
+    Item.findBySlug(request.params.slug)
         .then(notFoundParser)
         .then((data) => result.json(data))
-        .catch((error) => result.status(404).send())
+        .catch((error) => next(error))
         .done();
 });
 
-router["delete"]("/:item_slug", function (request, result, next) {
-    Item.findBySlug(request.params.item_slug)
+router["delete"]("/:slug", function (request, result, next) {
+    Item.findBySlug(request.params.slug)
         .then(notFoundParser)
         .then((item) => item.remove())
         .then(() => result.status(204).send())
-        .catch((error) => result.status(404).send())
-        .done()
+        .catch((error) => next(error))
+        .done();
 });
 
-module.exports = router;
+export default router;

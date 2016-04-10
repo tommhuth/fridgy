@@ -1,27 +1,33 @@
 "use strict";
 
-var mongoose = require("mongoose");
-var timestamps = require('mongoose-timestamp');
-var slugger = require('mongoose-url-slugs');
-var uniqueValidator = require('mongoose-unique-validator');
-var Schema = mongoose.Schema;
+import mongoose from "mongoose";
+import timestamps from 'mongoose-timestamp';
+import slugger from 'mongoose-url-slugs';
+import uniqueValidator from 'mongoose-unique-validator';
 
-var ItemSchema = new Schema({
+let Schema = mongoose.Schema;
+
+let ItemSchema = new Schema({
     title: {
         type: String,
-        required: [true, 'Attribute is required'],
+        required: true,
         trim: true,
         unique: true,
         uniqueCaseInsensitive: true
     },
     category: {
         type: String,
-        trim: true,
-        required: [true, 'Attribute is required']
+        required: true,
+        trim: true
     },
+    unit: {
+        type: String,
+        default: "",
+        trim: true
+    } ,
     amount: {
         type: Number,
-        required: [true, 'Attribute is required']
+        required: true
     },
     listed: {
         type: Boolean,
@@ -32,12 +38,11 @@ var ItemSchema = new Schema({
         default: false
     },
     slug: String
-
-});
+}, { versionKey: false });
 
 ItemSchema.plugin(timestamps);
 ItemSchema.plugin(uniqueValidator, {message: 'Attribute must be unique'});
 ItemSchema.plugin(slugger("title"));
 
 
-module.exports = mongoose.model("Item", ItemSchema);
+export default mongoose.model("Item", ItemSchema);

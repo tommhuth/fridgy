@@ -3,13 +3,14 @@
  */
 "use strict";
 
-var express = require("express");
-var router = express.Router();
-var itemRouter = require("./item-routes");
-var categoriesRouter = require("./categories-routes");
+import express from "express";
+import { default as itemRouter } from  "./item-routes" ;
+import { default as categoriesRouter } from "./categories-routes";
+
+let router = express.Router();
 
 router.use("/items", itemRouter);
 router.use("/categories", categoriesRouter);
 
 
-module.exports = router;
+export default router;

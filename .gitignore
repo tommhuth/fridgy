@@ -34,3 +34,5 @@ node_modules
 
 #ide
 .idea/
+
+build/
