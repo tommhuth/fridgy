@@ -13,10 +13,10 @@ router.get("/", function (request, result, next) {
             [
                 {
                     $group: {
-                        _id: "$category", popularity: {$sum: 1}
+                        _id: "$category", popularity: { $sum: 1 }
                     }
                 },
-                { $sort: {  "_id" : 1} }
+                { $sort: {  "_id" : 1 } }
             ]
         )
         .exec()
