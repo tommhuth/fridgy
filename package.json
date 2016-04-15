@@ -6,6 +6,7 @@
   "dependencies": {
     "babel-loader": "^6.2.4",
     "body-parser": "^1.15.0",
+    "classnames": "^2.2.3",
     "express": "^4.13.4",
     "lodash": "^4.9.0",
     "mongoose": "^4.4.11",
@@ -16,6 +17,7 @@
     "q": "^1.4.1",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
+    "react-fastclick": "^2.1.0",
     "react-router": "^2.1.1",
     "webpack": "^1.12.15"
   },
@@ -26,10 +28,10 @@
     "pretty-error": "^2.0.0"
   },
   "scripts": {
-    "start": "nodemon app/server.js --exec babel-node --presets es2015,stage-2",
+    "start": "nodemon app/server.js  --exec babel-node --presets es2015,stage-2",
     "build": "babel app -d build --presets es2015,stage-2 -x '.js'",
     "serve": "node build/app.js",
-    "build-react": "babel  app -d build/script --preset es2015,stage-2,react -x '.jsx'"
+    "build-react": "babel  app -d build/script   -x '.jsx'"
   },
   "repository": {
     "type": "git",
