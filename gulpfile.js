@@ -1,17 +1,16 @@
 /**
  * Created by tomm.huth on 11/04/16.
  */
-var gulp = require('gulp');
-var sass = require('gulp-sass');
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const autoprefix = require("gulp-autoprefixer");
 
-gulp.task('default', function () {
-    gulp.run('sass:watch');
-    gulp.run('sass');
-});
+gulp.task('default', ['sass:watch', 'sass']);
 
 gulp.task('sass', function () {
     return gulp.src('./resources/sass/app.scss')
         .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefix())
         .pipe(gulp.dest('./public/css'));
 });
 

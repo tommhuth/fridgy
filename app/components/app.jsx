@@ -1,66 +1,36 @@
 /**
  * Created by tomm.huth on 11/04/16.
- */ 
+ */
 
 import "react-fastclick";
 import React from "react";
 import { render } from 'react-dom'
-import { Router, Route, Link, browserHistory } from 'react-router'
-import cssClasses from "classnames";
+import { Router, Route, browserHistory } from 'react-router'
+import Home from "./screens/Home";
+import NotFound from "./screens/NotFound";
+import About from "./screens/About";
+import Header from "./components/Header";
 
-var Nav = React.createClass({
-    getInitialState: function() {  return { active:false }},
-    closeMenu: function(){ this.setState({ active: false })},
-    toggleActive: function(){ this.setState({ active: !this.state.active })},
-    render: function() {
-        let navClass = cssClasses( { "nav": true, "is-active": this.state.active });
-
-        return(
-            <nav className={navClass}>
-                <div className="container">
-                    <button type="button" onClick={this.toggleActive} className="nav-toggle-button">
-                        {this.state.active ? 'Hide' : 'Show'} menu
-                    </button>
-                </div>
-                <div className="nav-wrapper">
-                    <div className="container">
-
-                        <ul>
-                            <li><Link onClick={this.closeMenu} to="/">Home</Link></li>
-                            <li><Link onClick={this.closeMenu} to="/about">The Fridge</Link></li>
-                            <li><Link onClick={this.closeMenu} to="/users">Checklist</Link></li>
-                            <li><Link onClick={this.closeMenu} to="/users">About</Link></li>
-                        </ul>
-                    </div>
-                </div>
-                
-            </nav>
-        );
-    }
-});
-var Header = React.createClass({
-    render: function() {
-        return(
-            <header>
-                <Nav/>
-
-                <hr/>
-
-            </header>
-        );
-    }
-});
 var App = React.createClass({
     render: function() {
         return(
-            <Header/>
+            <div>
+                <Header/>
+                <main>
+                    {this.props.children}
+                </main>
+            </div>
         );
     }
 });
 
-
 render(
     <Router history={browserHistory}>
-        <Route path="/" component={App}>  </Route>
-    </Router>
-    , document.getElementById("main"));
+        <Route component={App}>
+            <Route path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="*" component={NotFound} />
+        </Route>
+    </Router>,
+    document.getElementById("app-root")
+);
