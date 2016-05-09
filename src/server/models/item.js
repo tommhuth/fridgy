@@ -44,5 +44,4 @@ ItemSchema.plugin(timestamps);
 ItemSchema.plugin(uniqueValidator, {message: 'Attribute must be unique'});
 ItemSchema.plugin(slugger("title"));
 
-
 export default mongoose.model("Item", ItemSchema);

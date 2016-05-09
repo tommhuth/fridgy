@@ -11,7 +11,7 @@ let app = express();
 //settings
 app.engine('mustache', mustache());
 app.use(bodyParser.json());
-app.set('views', './app/views');
+app.set('views', './src/server/views');
 app.set('view engine', 'mustache');
 
 //static files
