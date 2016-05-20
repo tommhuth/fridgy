@@ -13,7 +13,7 @@ app.engine('mustache', mustache());
 app.use(bodyParser.json());
 app.set('views', './src/server/views');
 app.set('view engine', 'mustache');
-
+  
 //static files
 app.use("/public", express.static("public"));
 

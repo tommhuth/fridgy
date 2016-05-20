@@ -3,25 +3,22 @@
  */
 import React, {Component } from "react";
 import { connect } from "react-redux";
+import Item from "./Item";
 
-class Item extends Component {
-    render(){
-        return (
-            <li>
-                <strong>{this.props.item.title}</strong>  ({this.props.item.category})
-                <button onClick={this.props.onClick}>DELETE</button>
-            </li>
-        )
-    }
-}
     
 class ItemsList extends Component {
     render() {
+        let items = [];
+
+        for(let item of this.props.items){
+            items.push(<li key={item._id}><Item item={item}  /></li>);
+        }
+
         return (
             <div>
                 <strong style={{ display: this.props.status.isLoadingItems ? "block": "none"}}>LOADING...</strong>
                 <ul>
-                    { this.props.items.map( item => <Item onClick={() => this.props.deleteItem(item._id)} item={item} key={item._id} />) }
+                    { items }
                 </ul>
             </div>
         )

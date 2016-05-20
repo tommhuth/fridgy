@@ -10,9 +10,9 @@ export default (state = [], action) => {
                     name: action.name
                 }
             ];
-        case "REMOVE_ITEM":
+        case "CLEAR_ITEM":
             return [
-                ...state.filter((i) => action._id !== i._id)
+                ...state.filter((i) => action.id !== i._id)
             ];
         default: return state;
     }

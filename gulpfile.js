@@ -4,8 +4,10 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const autoprefix = require("gulp-autoprefixer");
+const rename = require("gulp-rename");
+const minify = require("gulp-uglify");
 
-gulp.task('default', ['sass:watch', 'sass']);
+gulp.task('default', ['sass:watch', 'sass', "js:watch"]);
 
 gulp.task('sass', function () {
     return gulp.src('./resources/sass/app.scss')
@@ -16,4 +18,14 @@ gulp.task('sass', function () {
 
 gulp.task('sass:watch', function () {
     gulp.watch('./resources/sass/**/*.scss', ['sass']);
+});
+
+gulp.task('js:watch', function () {
+    gulp.watch('./public/js/bundle.js', ['minify']);
+});
+gulp.task('minify', function () {
+    return gulp.src('./public/js/bundle.js')
+        .pipe(minify())
+        .pipe(rename("bundle.min.js"))
+        .pipe(gulp.dest('./public/js/'));
 });

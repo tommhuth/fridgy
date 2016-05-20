@@ -1,13 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
-
-export function requestItems(){
-    return {
-        type: "REQUEST_ITEMS"
-    }
-}
-
-export function receiveItems(items){
+ function receiveItems(items){
     return {
         type: "RECEIVE_ITEMS",
         items
@@ -26,11 +19,50 @@ function loadedItems(){
     }
 }
 
-function loadItemsFail(){
+function loadItemsFailed(){
     return {
-        type: "LOAD_ITEMS_FAIL"
+        type: "LOAD_ITEMS_FAILED"
     }
 }
+
+function deletingItem(){
+    return {
+        type: "DELETING_ITEM"
+    }
+}
+
+function deletedItem(){
+    return {
+        type: "DELETED_ITEM"
+    }
+}
+
+function deleteItemFailed(){
+    return {
+        type: "DELETE_ITEM_FAILED"
+    }
+}
+
+function clearItem(id) {
+    return {
+        type: "CLEAR_ITEM",
+        id
+    }
+}
+
+
+export function deleteItem(item){
+    return (dispatch) => {
+        dispatch(clearItem(item._id));
+        dispatch(deletingItem());
+
+        return fetch("/api/items/" + item.slug, { method: "DELETE"  })
+            .then(() => dispatch(deletedItem()))
+            .catch(() => dispatch(deleteItemFailed()))
+
+    }
+}
+
 
 export function fetchItems() {
     return (dispatch) => {
@@ -42,5 +74,6 @@ export function fetchItems() {
                 dispatch(receiveItems(json));
                 dispatch(loadedItems());
             })
+            .catch(error => dispatch(loadItemsFailed()))
     }
 }
