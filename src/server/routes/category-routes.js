@@ -16,11 +16,11 @@ router.get("/", function (request, result, next) {
                         _id: "$category", popularity: { $sum: 1 }
                     }
                 },
-                { $sort: {  "_id" : 1 } }
+                { $sort: {  "popularity" : -1 } }
             ]
         )
         .exec()
-        .then((data) => data.map((e) => ({ category: e._id, popularity: e.popularity })))
+        .then((data) => data.map((e) => ({ name: e._id, popularity: e.popularity })))
         .then((data) => result.json(data))
         .catch((error) => next(error));
 });

@@ -22,7 +22,7 @@ class Nav extends Component {
                         <ul onClick={this.props.toggleVisibility}>
                             <li><Link to="/">Home</Link></li>
                             <li><Link to="/items">Items</Link></li>
-                            <li><Link to="/add-item">Add new item</Link></li>
+                            <li><Link to="/stock-up">Stock up</Link></li>
                         </ul>
                     </div>
                 </div>

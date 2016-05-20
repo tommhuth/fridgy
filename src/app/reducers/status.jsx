@@ -4,38 +4,80 @@ export default (state = {}, action) => {
             return {
                 ...state,
                 isLoadingItems: true,
-                loadingSuccess: null
+                loadingItemsSuccess: null
             };
         case 'LOADED_ITEMS':
             return {
                 ...state,
                 isLoadingItems: false,
-                loadingSuccess: true
+                loadingItemsSuccess: true
             };
         case 'LOAD_ITEMS_FAILED':
             return {
                 ...state,
                 isLoadingItems: false,
-                loadingSuccess: false
+                loadingItemsSuccess: false
             };
         case 'DELETING_ITEM':
             return {
                 ...state,
                 isDeletingItems: true,
-                deletingSuccess: null
+                deletingItemsSuccess: null
             };
         case 'DELETED_ITEM':
             return {
                 ...state,
                 isDeletingItems: false,
-                deletingSuccess: true
+                deletingItemsSuccess: true
             };
         case 'DELETE_ITEM_FAILED':
             return {
                 ...state,
                 isDeletingItems: false,
-                deletingSuccess: false
+                deletingItemsSuccess: false
             };
+        case 'LOADING_ITEM':
+            return {
+                ...state,
+                isLoadingItem: true,
+                loadingItemSuccess: null
+            };
+        case 'LOADED_ITEM':
+            return {
+                ...state,
+                isLoadingItem: false,
+                loadingItemSuccess: true
+            };
+        case 'LOAD_ITEM_FAILED':
+            return {
+                ...state,
+                isLoadingItem: false,
+                loadingItemSuccess: false
+            };
+
+
+        case 'LOADING_CATEGORIES':
+            return {
+                ...state,
+                isLoadingCategories: true,
+                loadingCategoriesSuccess: null
+            };
+        case 'LOADED_CATEGORIES':
+            return {
+                ...state,
+                isLoadingCategories: false,
+                loadingCategoriesSuccess: true
+            };
+        case 'LOAD_CATEGORIES_FAILED':
+            return {
+                ...state,
+                isLoadingCategories: false,
+                loadingCategoriesSuccess: false
+            };
+
+
+
         default: return state;
+
     }
 }

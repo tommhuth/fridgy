@@ -1,14 +1,12 @@
 import React from 'react';
 import { Route } from 'react-router';
-import PageWrapper from './screens/PageWrapper';
-import ItemsPage from "./screens/ItemsPage";
-import AddItemPage from "./screens/AddItemPage";
-import StartPage from "./screens/StartPage"
+import { App, Home, Items, Item, AddItem } from './containers';
 
 export default (
-    <Route component={PageWrapper}>
-        <Route path="/" component={StartPage} />
-        <Route path="/items" component={ItemsPage} />
-        <Route path="/add-item" component={AddItemPage} />
+    <Route component={App}>
+        <Route path="/" component={Home} />
+        <Route path="/items" component={Items} />
+        <Route path="/stock-up" component={AddItem} />
+        <Route path="/items/:slug" component={Item} />
     </Route>
 )
