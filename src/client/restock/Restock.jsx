@@ -1,34 +1,24 @@
-/**
- * Created by tomm.huth on 11/04/16.
- */
 import React, {Component } from "react";
 import { connect } from "react-redux";
-import { fetchCategories } from "../../actions/categories-actions";
-import { Select } from "../../components"
+import { fetchCategories } from "../app/actions/categories-actions";
+import   Select   from "../shared/Select"
 
-class AddItemForm extends Component {
+class Restock extends Component {
 
     componentDidMount(){
         this.props.getCategories();
-    }
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            selectedCategory: null
-        };
     }
 
     render() {
         return (
             <fieldset className="container">
                 <legend>Add Item</legend>
+
                 <label> Name </label>
-                <input ref={(node)=> this.node = node} placeholder="Name"/>
+                <input placeholder="Name"/>
 
                 <label>Category</label>
-                <Select items={this.props.categories}  />
+                <Select selected="Meat and fish" items={this.props.categories}  />
 
                 <button onClick={() => this.props.addItem(11, this.node.value)}>Add</button>
             </fieldset>
@@ -50,4 +40,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddItemForm)
+export default connect(mapStateToProps, mapDispatchToProps)(Restock)

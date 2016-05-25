@@ -2,9 +2,9 @@
  * Created by tomm.huth on 11/04/16.
  */
 import React, {Component } from "react"; 
-import { ItemsList } from "../../components";
+import  ItemsList from "./ItemsList";
 import { connect } from "react-redux";
-import { fetchItems } from "../../actions/item-actions";
+import { fetchItems } from "../app/actions/item-actions";
 
 
 class Items extends Component {

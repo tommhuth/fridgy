@@ -110,7 +110,6 @@ a {
 
 *:focus {
     outline: none;
-    opacity: .5;
 }
 
 input, select, button {
@@ -142,8 +141,16 @@ html {
 body {
     min-height: 100%;
     font-size: 1.2em;
+    font-family: "Helvetica", arial, sans-serif;
 }
 
+.app {
+    &.is-special {
+        background-color: blue;
+        color: #FFF;
+        min-height:100vh;
+    }
+}
 
 button, input, textarea {
 }
@@ -191,3 +198,42 @@ button, input, textarea {
         background:yellow;
     }
 }
+
+
+.select {
+    display: inline-block;
+    border: 1px solid #DDD;
+    border-radius: .2em;
+    padding: .5em   2em .5em .75em;
+    min-width: 10em;
+    position: relative;
+
+    &::after {
+        content: '+';
+        position: absolute;
+        display: block;
+        right: .5em;
+        top: 50%;
+        font-size: 1.15em;
+        margin-top: -.65em;
+        opacity: .5;
+    }
+
+    &:hover {
+        border-color: #666;
+
+        &::after {
+            opacity:1;
+        }
+    }
+
+    select {
+        position: absolute;
+        top:0;
+        left:0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+    }
+}
+

@@ -4,7 +4,7 @@
 import React, {Component } from "react";
 import { Link } from "react-router";
 import { connect } from "react-redux";
-import { deleteItem } from "../../actions/item-actions";
+import { deleteItem } from "../app/actions/item-actions";
 
 class ListItem extends Component {
     render() {

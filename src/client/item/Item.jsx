@@ -3,7 +3,7 @@
  */
 import React, {Component } from "react";
 import { connect } from "react-redux";
-import { fetchItem, clearItem } from "../../actions/item-actions";
+import { fetchItem, clearItem } from "../app/actions/item-actions";
 
 
 class Item extends Component {
@@ -17,7 +17,7 @@ class Item extends Component {
 
     render(){
         return (
-            <div className="container">
+            <div className="container is-fancy">
                 <strong style={{ display: this.props.status.isLoadingItem  ? "block": "none"}}>LOADING...</strong>
 
                 <h2>{this.props.item.title}</h2>
