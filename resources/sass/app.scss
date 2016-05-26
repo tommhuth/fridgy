@@ -138,6 +138,8 @@ html {
     height: 100%;
 }
 
+@-ms-viewport { width: device-width; }
+
 body {
     min-height: 100%;
     font-size: 1.2em;
@@ -145,10 +147,14 @@ body {
 }
 
 .app {
+    background-color: #FFF;
+    color: #000;
+   // min-height:100vh;
+    transition: background .3s, color .15s;
+
     &.is-special {
-        background-color: blue;
-        color: #FFF;
-        min-height:100vh;
+        background-color: yellow;
+        color: #000;
     }
 }
 
