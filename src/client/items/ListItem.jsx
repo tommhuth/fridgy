@@ -14,7 +14,7 @@ class ListItem extends Component {
             <div>
                 <Link to={"items/" + item.slug} ><strong>{item.title}</strong></Link>
                 <p>{item.category}</p>
-                <button onClick={() => this.props.deleteItem(item)}>DELETE</button>
+                <p>{item.amount}</p>
             </div>
         )
     }

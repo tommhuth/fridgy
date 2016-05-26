@@ -7,13 +7,15 @@ import item from './reducers/item';
 import menuVisibility from './reducers/menuVisibility';
 import status from "./reducers/status";
 import categories from "./reducers/categories";
+import filter from "./reducers/filter";
 
 const fridgeApp = combineReducers({
     items,
     item,
     categories,
     menuVisibility,
-    status
+    status,
+    filter
 });
 
 export default fridgeApp;

@@ -8,7 +8,7 @@ import { Router, browserHistory } from 'react-router'
 import routes from "./routes";  
 
 let store = createStore(fridgeApp, applyMiddleware(thunkMiddleware));
- 
+  
 ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory} routes={routes} />
