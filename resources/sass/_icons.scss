@@ -1,0 +1,13 @@
+.icon {
+    speak: none;
+    width: 2em;
+    fill: currentColor;
+
+    &.large {
+        width: 10em;
+    }
+
+    &.medium {
+        width: 4em;
+    }
+}

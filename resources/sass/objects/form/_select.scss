@@ -1,0 +1,46 @@
+
+.select {
+    display: inline-block;
+    border: 1px solid #DDD;
+    border-radius: .2em;
+    padding: .5em   2em .5em .75em;
+    min-width: 8em;
+    position: relative;
+
+    &:not(:last-child) {
+        margin-right: .75em;
+    }
+
+    &.has-focus {
+        border-color: #000;
+    }
+
+    &::after {
+        content: '+';
+        position: absolute;
+        display: block;
+        right: .5em;
+        top: 50%;
+        font-size: 1.15em;
+        margin-top: -.65em;
+        opacity: .5;
+    }
+
+    &:hover {
+        border-color: #666;
+
+        &::after {
+            opacity:1;
+        }
+    }
+
+    select {
+        position: absolute;
+        top:0;
+        left:0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+    }
+}
+

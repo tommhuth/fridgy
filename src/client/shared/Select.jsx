@@ -10,30 +10,55 @@ class Select extends Component {
         super(props);
 
         this.state = {
-            selected: this.props.selected || "Select something"
+            selected: "",
+            hasFocus: false
         }
     }
 
-    handleSelectChange(e) {
-        this.setState({ selected: e.target.value })
+    componentDidMount(){
+        this.handleSelectChange();
+    }
+    
+    handleBlur(){
+        this.setState({
+            hasFocus: false
+        })
+    }
 
+    handleFocus(){
+        this.setState({
+            hasFocus: true
+        })
+    }
+
+    handleSelectChange() {
+        this.setState({
+            selectedText:this.element.options[this.element.selectedIndex].text,
+            selected: this.element.value
+        })
+        this.props.onChange(this.element.value);
     }
 
     render() {
-        let navClass = classNames("select", { });
+        let navClass = classNames("select", { "has-focus": this.state.hasFocus });
 
         return (
             <div className={navClass}>
-                <span>{this.state.selected   }</span>
+                <span>{this.state.selectedText}</span>
 
-                <select value={this.state.selected} onChange={this.handleSelectChange.bind(this)}>
+                <select ref={(e) => this.element = e}
+                        value={this.state.selected}
+                        onFocus={this.handleFocus.bind(this)}
+                        onBlur={this.handleBlur.bind(this)}
+                        onChange={this.handleSelectChange.bind(this)}>
                     {
-                        this.props.items.map(e => <option value={e.name}>{e.name} ({e.popularity})</option>)
+                        this.props.children
                     }
                 </select>
             </div>
         )
     }
+
 }
 
 

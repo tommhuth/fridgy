@@ -4,6 +4,7 @@
 import React, {Component } from "react"; 
 import { Link } from "react-router";
 import classNames from "classnames";
+import Icon from "./../shared/Icon";
     
 class Nav extends Component {
     render() {
@@ -14,7 +15,10 @@ class Nav extends Component {
         return (
             <nav className={navClass}>
                 <div className="container">
-                    <button className="nav-toggle-button" type="button" onClick={this.props.toggleVisibility}>Toggle nav</button>
+                    <button className="nav-toggle-button" type="button" onClick={this.props.toggleVisibility}>
+                        <span className="visually-hidden">Toggle menu</span>
+                        <Icon title="menu" />
+                    </button>
                 </div>
 
                 <div className="nav-wrapper">

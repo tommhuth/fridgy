@@ -1,0 +1,184 @@
+
+
+
+.container {
+    margin: 0 auto;
+    max-width: 55em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    position: relative;
+}
+
+h1{
+    font-size: 4.25rem;
+    padding-bottom: 3.5rem;
+    margin-bottom: 3.5rem;
+    border-bottom: 2px solid;
+}
+
+a {
+    text-decoration: none;
+    border-bottom: 1px dashed currentColor;
+
+    &:hover {
+        border-bottom-style: solid;
+    }
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+    outline: none;
+    margin:0;
+    padding:0;
+    list-style: none;
+    border:none;
+    background-color: transparent;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+}
+
+*:focus {
+    outline: none;
+}
+
+input, select, button {
+    border: 1px solid #CCC;
+    padding: .5em;
+}
+
+label {
+    display: block;
+    margin: 1em 0 .25em;
+}
+
+.items-list {
+    margin: 2em 0;
+
+    > li {
+        margin-bottom: 1em;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+html {
+    height: 100%;
+}
+
+@-ms-viewport { width: device-width; }
+
+body {
+    min-height: 100%;
+    font-size: 1.2em;
+    font-family: "Helvetica", arial, sans-serif;
+}
+
+.app {
+    background-color: #FFF;
+    color: #000;
+    min-height:100vh;
+    transition: background .3s, color .15s;
+
+    &.is-special {
+        background-color: yellow;
+        color: #000;
+    }
+}
+
+button, input, textarea {
+}
+
+.skip-to-content {
+    position: absolute;
+    top:-3em;
+    left:50%;
+    display: block;
+    background: #000;
+    color:#FFF;
+    padding: .5em;
+    width: 8em;
+    text-align: center;
+    margin-left: -4em;
+    transition: all .35s;
+
+    &:focus {
+        top:0;
+    }
+
+    &.is-off {
+        display: none;
+    }
+}
+
+.spinner {
+    position: fixed;
+    top:50%;
+    left:50%;
+    border: 2px dashed;
+    padding: 1em;
+    transform: translate(-50%, -50%);
+}
+
+.main {
+    box-sizing: border-box;
+
+    &.is-off {
+        display: none;
+    }
+
+    &.is-special {
+        min-height: 100vh;
+        background:yellow;
+    }
+}
+
+
+.select {
+    display: inline-block;
+    border: 1px solid #DDD;
+    border-radius: .2em;
+    padding: .5em   2em .5em .75em;
+    min-width: 8em;
+    position: relative;
+
+    &:not(:last-child) {
+        margin-right: .75em;
+    }
+
+    &.has-focus {
+        border-color: #000;
+    }
+
+    &::after {
+        content: '+';
+        position: absolute;
+        display: block;
+        right: .5em;
+        top: 50%;
+        font-size: 1.15em;
+        margin-top: -.65em;
+        opacity: .5;
+    }
+
+    &:hover {
+        border-color: #666;
+
+        &::after {
+            opacity:1;
+        }
+    }
+
+    select {
+        position: absolute;
+        top:0;
+        left:0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+    }
+}
+

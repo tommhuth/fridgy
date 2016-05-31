@@ -11,6 +11,8 @@
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.1",
+    "gulp-svgmin": "^1.2.2",
+    "gulp-svgstore": "^6.0.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.9.0",
     "mongoose": "^4.4.11",
@@ -18,6 +20,7 @@
     "mongoose-unique-validator": "^1.0.2",
     "mongoose-url-slugs": "^0.2.1",
     "mustache-express": "^1.2.2",
+    "path": "^0.12.7",
     "q": "^1.4.1",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
@@ -25,7 +28,7 @@
     "react-redux": "latest",
     "react-router": "^2.1.1",
     "redux": "^3.5.2",
-    "redux-thunk": "latest",
+    "redux-thunk": "^2.1.0",
     "webpack": "^1.13.1"
   },
   "devDependencies": {
