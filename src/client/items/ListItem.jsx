@@ -12,7 +12,7 @@ class ListItem extends Component {
 
         return (
             <div>
-                <Link to={"items/" + item.slug} ><strong>{item.title}</strong></Link>
+                <Link to={"/items/" + item.slug} ><strong>{item.title}</strong></Link>
                 <p>{item.category}</p>
                 <p>{item.amount}</p>
             </div>

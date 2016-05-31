@@ -18,7 +18,7 @@ class Nav extends Component {
                     <button className="nav-toggle-button" type="button" onClick={this.props.toggleVisibility}>
                         <span className="visually-hidden">Toggle menu</span>
                         <Icon title="menu" />
-                    </button>
+                    </button> 
                 </div>
 
                 <div className="nav-wrapper">
