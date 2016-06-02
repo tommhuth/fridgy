@@ -1,6 +1,7 @@
-import React, {Component } from "react";
-import  ItemsList from "./ItemsList";
-import  Filter from "./Filter";
+import React, { Component } from "react";
+import ItemsList from "./ItemsList";
+import Cloak from "../shared/Cloak";
+import Filter from "./Filter";
 import { connect } from "react-redux";
 import { fetchItems } from "../app/actions/items-actions";
 import { filterItems } from "../app/actions/filter-actions";
@@ -14,11 +15,12 @@ class Items extends Component {
             <div className="container">
                 <h1 className="beta offset-small">The fridge</h1>
 
-                <strong style={{ display: this.props.status.isLoadingItems && !this.props.items.length ? "block": "none"}}>LOADING...</strong>
+                <Cloak state={this.props.status.isLoadingCategories && this.props.status.isLoadingItems && !this.props.items.length}>
+                    <Filter />
 
-                <Filter />
+                    <ItemsList items={this.props.items } state={this.props.status}/>
+                </Cloak>
 
-                <ItemsList items={this.props.items } state={this.props.status}/>
             </div>
         )
     } 

@@ -6,7 +6,7 @@ import status from "./reducers/status";
 import categories from "./reducers/categories";
 import filter from "./reducers/filter";
 
-const fridgeApp = combineReducers({
+const fridgeStore = combineReducers({
     items,
     item,
     categories,
@@ -16,4 +16,4 @@ const fridgeApp = combineReducers({
 });
  
 
-export default fridgeApp;
+export default fridgeStore;

@@ -1,0 +1,21 @@
+.cloak-spinner {
+    margin: 3em 0;
+
+    .icon {
+        font-size: 1.75em;
+        color: $blue;
+        animation: spin 1s infinite linear;
+
+        .app.is-special & {
+            color: #FFF;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin: -1em 0 0 -1em;
+        }
+    }
+}
+
+.cloak-content {
+    animation: fade-in .5s;
+}

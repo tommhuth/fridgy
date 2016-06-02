@@ -4,10 +4,6 @@
     overflow: auto;
     right: 0;
 
-    &.offset {
-        right: 5em;
-    }
-
     a:hover, a:focus, a:active {
         color: #FFF;
     }
@@ -19,7 +15,7 @@
 
     .item-details {
         margin:  1em 0 1.5em ;
-        font-size: 1.2em;
+        font-size: 1.35em;
     }
 
     .button {

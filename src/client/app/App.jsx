@@ -1,6 +1,6 @@
-import React, {Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import  Nav  from "./Nav";
+import Nav from "./Nav";
 import classNames from "classnames";
 
 class App extends Component {

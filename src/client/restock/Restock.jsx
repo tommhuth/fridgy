@@ -1,14 +1,11 @@
-import React, {Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchCategories } from "../app/actions/categories-actions";
-import   Select   from "../shared/Select"
 
 class Restock extends Component {
-
     componentDidMount(){
         this.props.getCategories();
     }
-
     render() {
         return (
             <fieldset className="container">

@@ -1,4 +1,4 @@
-import React, {Component } from "react";
+import React, { Component } from "react";
 import Icon from "./Icon";
 import classNames from "classnames";
     
@@ -32,7 +32,7 @@ class Select extends Component {
         this.setState({
             selectedText:this.element.options[this.element.selectedIndex].text,
             selected: this.element.value
-        })
+        });
         this.props.onChange(this.element.value);
     }
 

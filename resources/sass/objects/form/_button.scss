@@ -1,7 +1,7 @@
 .button {
     padding: 0;
-    line-height: 2.15em;
-    border: .125em solid #000;
+    line-height: 1.25em;
+    border: .14em solid #000;
     overflow:hidden;
     vertical-align: middle;
     position: relative;
@@ -30,16 +30,13 @@
         opacity: 0;
     }
 
-    &.is-icon-only span{
-        line-height: 2.6em;
-    }
-
-    span {
-        z-index: 1;
+    &.is-icon-only .icon {
+        font-size: .65em;
+        margin: .75em;
+        color: currentColor;
         position: relative;
+        z-index: 1;
         display: block;
-        margin: 0 1em;
-        line-height: 2.25em;
     }
 
     &:not(:disabled) {
@@ -47,10 +44,11 @@
             color: #FFF;
 
             &::before {
+                transform: translateX(-50%) translateY(-50%);
                 transition:width .25s, padding-bottom .25s ;
                 opacity: 1;
-                width: 135%;
-                padding-bottom: 135%;
+                width: 145%;
+                padding-bottom: 145%;
             }
         }
     }
@@ -70,9 +68,6 @@
         }
     }
 }
-
-
-
 
 .circle-button {
     padding: .5em;

@@ -1,7 +1,4 @@
-/**
- * Created by tomm.huth on 11/04/16.
- */
-import React, {Component } from "react";
+import React, { Component } from "react";
 import { Link } from "react-router";
 import { connect } from "react-redux";
 import Icon from "../shared/Icon";

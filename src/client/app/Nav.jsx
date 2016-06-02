@@ -1,7 +1,4 @@
-/**
- * Created by tomm.huth on 11/04/16.
- */
-import React, {Component } from "react"; 
+import React, { Component } from "react";
 import { Link } from "react-router";
 import classNames from "classnames";
 import Icon from "./../shared/Icon";
@@ -36,7 +33,5 @@ class Nav extends Component {
         )
     }
 }
-
-
 
 export default Nav;
