@@ -18,7 +18,6 @@ class Restock extends Component {
                 <input placeholder="Name"/>
 
                 <label>Category</label>
-                <Select selected="Meat and fish" items={this.props.categories}  />
 
                 <button onClick={() => this.props.addItem(11, this.node.value)}>Add</button>
             </fieldset>

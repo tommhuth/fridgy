@@ -17,10 +17,10 @@ class App extends Component {
                 <Nav menuVisibility={this.props.menuVisibility} 
                      toggleVisibility={this.props.toggleVisibility} />
 
-                <main className="main">
-                    
-                        { this.props.children }
-                     
+                <main id="main"
+                      tabindex="-1"
+                      className={"main " + (this.props.menuVisibility ? "hidden" : "")}>
+                    { this.props.children }
                 </main>
             </div>
         )

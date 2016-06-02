@@ -23,20 +23,33 @@ class Filter extends Component {
 
     render(){
         return (
-            <fieldset > 
-                <Select onChange={  this.handleStockChange.bind(this) } selected="" >
-                    <option value="">All</option>
-                    <option value="IN_STOCK">In stock</option>
-                    <option value="OUT_OF_STOCK">Out of stock</option>
-                </Select>
+            <fieldset className="filter-list">
+                <legend className="visually-hidden">Filter list</legend>
 
-                <Select onChange={this.handleCategoryChange.bind(this)} selected="" >
+                <label className="visually-hidden" for="filter-category">
+                    Category filter
+                </label>
+                <Select
+                    id="filter-category"
+                    onChange={this.handleCategoryChange.bind(this)}
+                    selected="" >
                     <option value="">Everything</option>
                     {
                         this.props.categories.map((e) => <option key={e.name}  value={e.name}>{e.name}</option>)
                     }
                 </Select>
 
+                <label className="visually-hidden" for="filter-stock">
+                    Stock filter
+                </label>
+                <Select
+                    id="filter-stock"
+                    onChange={this.handleStockChange.bind(this)}
+                    selected="" >
+                    <option value="">In and out of stock</option>
+                    <option value="IN_STOCK">In stock</option>
+                    <option value="OUT_OF_STOCK">Out of stock</option>
+                </Select> 
             </fieldset>
         )
     } 
