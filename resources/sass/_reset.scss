@@ -97,9 +97,12 @@ input {
     }
 }
 
-input, button {
+input, button, select {
     font-family: inherit;
     font-size: inherit;
+}
+
+select {
 }
 
 a:active {

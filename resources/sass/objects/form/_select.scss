@@ -9,18 +9,19 @@
     overflow: hidden;
     font-size: 1.25em;
     margin-bottom: .75em;
-    transition: color .2s;
+    transition: color .2s, background .2s;
 
-    &:hover, &.has-focus  {
+    &.has-hover {
         color: #FFF;
-
+        background-color: #000;
+/*
         &::before {
             opacity: 1;
             width: 120%;
             padding-bottom: 140%;
-        }
+        }*/
     }
-
+/*
     &::before {
         transform: translate(-50%, -50%);
         transition: width .35s, padding-bottom .35s ;
@@ -40,7 +41,7 @@
             background: #FFF;
         }
     }
-
+*/
     &:not(:last-child) {
         margin-right: .8em;
     }
@@ -58,9 +59,10 @@
         top:0;
         cursor: pointer;
         left:0;
-        height: 100%;
-        width: 100%;
-        opacity: 0;
+        right:0;
+        bottom:0;
+        z-index: 10;
+        opacity:0;
     }
 }
 
