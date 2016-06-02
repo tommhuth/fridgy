@@ -3,6 +3,6 @@ export default (state = false, action) => {
         case "SHOW_MENU": return true;
         case "HIDE_MENU": return false;
         case "TOGGLE_MENU": return !state;
-        default: return  state;
+        default: return state;
     }
 };

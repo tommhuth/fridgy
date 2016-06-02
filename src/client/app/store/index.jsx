@@ -1,6 +1,3 @@
-/**
- * Created by Tomm on 26.04.2016.
- */
 import { combineReducers } from 'redux';
 import items from './reducers/items';
 import item from './reducers/item';
@@ -17,5 +14,6 @@ const fridgeApp = combineReducers({
     status,
     filter
 });
+ 
 
 export default fridgeApp;
