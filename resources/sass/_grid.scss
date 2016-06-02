@@ -37,13 +37,12 @@
 }
 
 .offset-small{
-    padding-top: 8rem;
-    margin-top: 6rem;
-    margin-top: 8vh;
+    margin-top: 5rem;
+    margin-top: 9vh;
 
     @media (max-width: 600px) {
-        margin-top: 3rem;
-        margin-top: 4vh;
+        margin-top: 5rem;
+        margin-top: 3vh;
     }
 }
 
@@ -60,4 +59,8 @@
     padding: 0 !important;
     position: absolute !important;
     width: 1px !important;
+}
+
+.hidden {
+    display: none;
 }

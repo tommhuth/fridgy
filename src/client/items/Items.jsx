@@ -16,7 +16,7 @@ class Items extends Component {
     render(){
         return (
             <div className="container">
-                <h2>Items list</h2>
+                <h1 className="beta offset-small">The fridge</h1>
 
                 <strong style={{ display: this.props.status.isLoadingItems && !this.props.items.length ? "block": "none"}}>LOADING...</strong>
 

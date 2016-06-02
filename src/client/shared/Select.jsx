@@ -1,8 +1,5 @@
-/**
- * Created by tomm.huth on 11/04/16.
- */
-import React, {Component } from "react"; 
-import { Link } from "react-router";
+import React, {Component } from "react";
+import Icon from "./Icon";
 import classNames from "classnames";
     
 class Select extends Component {
@@ -18,7 +15,7 @@ class Select extends Component {
     componentDidMount(){
         this.handleSelectChange();
     }
-    
+
     handleBlur(){
         this.setState({
             hasFocus: false
@@ -45,6 +42,7 @@ class Select extends Component {
         return (
             <div className={navClass}>
                 <span>{this.state.selectedText}</span>
+                <Icon title="chevron-down" />
 
                 <select ref={(e) => this.element = e}
                         value={this.state.selected}

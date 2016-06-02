@@ -1,42 +1,62 @@
-
 .select {
     display: inline-block;
-    border: 1px solid #DDD;
-    border-radius: .2em;
-    padding: .5em   2em .5em .75em;
-    min-width: 8em;
+    border: .125em  solid #000;
+    padding: .5em  2.25em .5em .75em ;
+    line-height: 1.2;
+    min-width: 4em;
     position: relative;
+    text-transform: lowercase;
+    overflow: hidden;
+    font-size: 1.25em;
+    margin-bottom: .75em;
+    transition: color .2s;
+
+    &:hover, &.has-focus  {
+        color: #FFF;
+
+        &::before {
+            opacity: 1;
+            width: 120%;
+            padding-bottom: 140%;
+        }
+    }
+
+    &::before {
+        transform: translate(-50%, -50%);
+        transition: width .35s, padding-bottom .35s ;
+        content: "";
+        width:0;
+        padding-bottom: 0;
+        display: block;
+        position: absolute;
+        background: #000;
+        z-index: -1;
+        top: 50%;
+        border-radius: 50%;
+        left: 50%;
+        opacity: 0;
+
+        .hero-box & {
+            background: #FFF;
+        }
+    }
 
     &:not(:last-child) {
-        margin-right: .75em;
+        margin-right: .8em;
     }
 
-    &.has-focus {
-        border-color: #000;
-    }
-
-    &::after {
-        content: '+';
+    .icon {
         position: absolute;
         display: block;
-        right: .5em;
-        top: 50%;
-        font-size: 1.15em;
-        margin-top: -.65em;
-        opacity: .5;
-    }
-
-    &:hover {
-        border-color: #666;
-
-        &::after {
-            opacity:1;
-        }
+        right: 0;
+        top: 0;
+        font-size: 1.1em;
     }
 
     select {
         position: absolute;
         top:0;
+        cursor: pointer;
         left:0;
         height: 100%;
         width: 100%;

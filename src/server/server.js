@@ -15,7 +15,7 @@ app.set('views', './src/server/views');
 app.set('view engine', 'mustache');
   
 //static files
-app.use("/public", express.static("public"));
+app.use("/public", express.static("public", { maxAge: 86400000 }));
 
 //routes
 app.use("/api", routes);
