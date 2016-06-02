@@ -1,6 +1,5 @@
 import fetch from 'isomorphic-fetch';
 
-
 export function fetchCategories() {
     return (dispatch) => {
         dispatch(loadingCategories());
@@ -14,9 +13,6 @@ export function fetchCategories() {
             .catch(error => dispatch(loadCategoriesFailed()))
     }
 }
-
-
-
 
 function receiveCategories(categories){
     return {

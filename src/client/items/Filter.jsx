@@ -1,6 +1,3 @@
-/**
- * Created by tomm.huth on 11/04/16.
- */
 import React, {Component } from "react";
 import { connect } from "react-redux";
 import { setCategoryFilter, setStockFilter } from "../app/actions/filter-actions";

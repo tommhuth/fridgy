@@ -59,6 +59,4 @@ class Select extends Component {
 
 }
 
-
-
 export default Select;

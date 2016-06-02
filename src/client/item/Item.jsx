@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import Icon from "../shared/Icon";
 import { fetchItem, clearItem } from "../app/actions/item-actions";
 
-
 class Item extends Component {
     componentWillUnmount() {
         this.props.clearItem();

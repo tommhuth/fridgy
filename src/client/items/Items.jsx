@@ -1,13 +1,9 @@
-/**
- * Created by tomm.huth on 11/04/16.
- */
 import React, {Component } from "react";
 import  ItemsList from "./ItemsList";
 import  Filter from "./Filter";
 import { connect } from "react-redux";
 import { fetchItems } from "../app/actions/item-actions";
 import { filterItems } from "../app/actions/filter-actions";
-
 
 class Items extends Component {
     componentDidMount(){
@@ -27,9 +23,6 @@ class Items extends Component {
         )
     } 
 }
-
-
-
 
 const mapStateToProps = (state) => {
     return {

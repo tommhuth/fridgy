@@ -1,10 +1,6 @@
-/**
- * Created by tomm.huth on 11/04/16.
- */
 import React, {Component } from "react";
 import ListItem from "./ListItem";
 
-    
 class ItemsList extends Component {
     render() {
 
@@ -19,7 +15,5 @@ class ItemsList extends Component {
         )
     }
 }
-
-
 
 export default ItemsList
