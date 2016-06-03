@@ -1,6 +1,3 @@
-/**
- * Created by Tomm on 07.04.2016.
- */
 "use strict";
 
 import express from "express";

@@ -1,6 +1,3 @@
-/**
- * Created by tomm.huth on 08/04/16.
- */
 "use strict";
 
 export default function (validation) {
