@@ -7,7 +7,7 @@ import mustache from 'mustache-express';
 import { connect, seed } from './db';
 import compression from "compression";
 
-let app = express();
+const app = express();
 
 //settings
 app.engine('mustache', mustache());
@@ -17,7 +17,7 @@ app.set('views', './src/server/views');
 app.set('view engine', 'mustache');
   
 //static files
-app.use("/public", express.static("public", { maxAge: 86400000 }));
+app.use("/public", express.static("public", { maxAge: 60 * 60 * 24 }));
 
 //routes
 app.use("/api", routes);
@@ -28,9 +28,9 @@ app.use((error, request, result, next) => {
     result.status(error.status ||  500);
 
     if(error.body) result.json(error.body).end();
-    else result.send("global handler: "+ error.stack).end();
+    else result.send("global handler: " + error.stack).end();
 });
-app.use((request, result, next) => result.status(404).end("404"));
+app.use((request, result, next) => result.status(404).end());
 
 //start
 app.listen(3000, () => console.log("Ready"));

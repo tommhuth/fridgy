@@ -10,7 +10,7 @@ class Cloak extends Component {
                     <span className="visually-hidden">Loading ...</span>
                 </div>
                 <div className={"cloak-content " + (this.props.state ? "hidden" : "")}>
-                    {this.props.children}
+                    {!this.props.state ? this.props.children : null}
                 </div>
             </div>
         )

@@ -14,3 +14,5 @@ export function connect(){
 export function seed() {
     seeder();
 }
+
+process.on("exit", mongoose.disconnect);

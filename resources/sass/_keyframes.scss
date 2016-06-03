@@ -16,3 +16,12 @@
     }
 }
 
+@keyframes slide-up {
+    from {
+        transform: translateY(-10em);
+    }
+    to {
+        transform: translateY(0em);
+    }
+}
+

@@ -7,7 +7,8 @@ class Select extends Component {
         super(props);
 
         this.state = {
-            selected: "",
+            selectedText: props.selectedText,
+            selectedValue: props.selectedValue,
             hasFocus: false
         }
     }
@@ -29,23 +30,36 @@ class Select extends Component {
     }
 
     handleSelectChange() {
+        let text = this.getSelectedOptionText();
+        let value = this.element.value;
+
         this.setState({
-            selectedText:this.element.options[this.element.selectedIndex].text,
-            selected: this.element.value
+            selectedText: text,
+            selectedValue: value
         });
-        this.props.onChange(this.element.value);
+
+        if(this.props.onChange) {
+            this.props.onChange(value, text);
+        }
+    }
+
+    getSelectedOptionText(){
+        let element = this.element;
+        let options = element.options;
+
+        return (element.selectedIndex && options[element.selectedIndex]) ? options[element.selectedIndex].text : this.props.selectedText;
     }
 
     render() {
-        let navClass = classNames("select", { "has-focus": this.state.hasFocus });
+        let selectClass = classNames("select", { "has-focus": this.state.hasFocus, "is-smaller": this.props.isSmaller });
 
         return (
-            <div className={navClass}>
+            <div className={selectClass}>
                 <span>{this.state.selectedText}</span>
                 <Icon title="chevron-down" />
 
                 <select ref={(e) => this.element = e}
-                        value={this.state.selected}
+                        value={this.state.selectedValue}
                         onFocus={this.handleFocus.bind(this)}
                         onBlur={this.handleBlur.bind(this)}
                         onChange={this.handleSelectChange.bind(this)}>

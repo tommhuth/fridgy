@@ -13,7 +13,8 @@ class Nav extends Component {
             <nav className={navClass}>
                 <a className="skip-to-content" href="#main">Skip to content</a>
                 <div className="container">
-                    <button className="nav-toggle-button" type="button" onClick={this.props.toggleVisibility}>
+                    <button className="nav-toggle-button" type="button"
+                            onClick={this.props.toggleVisibility}>
                         <span className="visually-hidden">Toggle menu</span>
                         <Icon title={this.props.menuVisibility ? "x" : "menu"} />
                     </button>

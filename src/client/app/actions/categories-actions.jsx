@@ -6,8 +6,8 @@ export function fetchCategories() {
 
         return fetch("/api/categories")
             .then(response => response.json())
-            .then(items => {
-                dispatch(receiveCategories(items));
+            .then(categories => {
+                dispatch(receiveCategories(categories));
                 dispatch(loadingCategories());
             })
             .catch(error => dispatch(loadCategoriesFailed()))
