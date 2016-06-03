@@ -5,11 +5,13 @@ import bodyParser from 'body-parser';
 import routes from './routes';
 import mustache from 'mustache-express';
 import { connect, seed } from './db';
+import compression from "compression";
 
 let app = express();
 
 //settings
 app.engine('mustache', mustache());
+app.use(compression());
 app.use(bodyParser.json());
 app.set('views', './src/server/views');
 app.set('view engine', 'mustache');
