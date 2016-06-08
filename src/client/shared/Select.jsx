@@ -53,7 +53,7 @@ class Select extends Component {
     render() {
         let selectClass = classNames("select", {
                 "has-focus": this.state.hasFocus,
-                "is-subtle": this.props.isSubtile
+                "is-subtle": this.props.isSubtle
             }
         );
 
