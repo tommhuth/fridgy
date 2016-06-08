@@ -57,7 +57,7 @@ class ItemEdit extends Component {
                         <div className="question">
                             <label htmlFor="amount">Category</label>
                             <Select
-                                isSubtile={true}
+                                isSubtle={true}
                                 size="large"
                                 id="category"
                                 onChange={this.handleCategoryChange.bind(this)}

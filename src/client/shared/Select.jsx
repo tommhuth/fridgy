@@ -51,10 +51,14 @@ class Select extends Component {
     }
 
     render() {
-        let selectClass = classNames("select", { "has-focus ": this.state.hasFocus, "is-subtile ": this.props.isSubtile });
+        let selectClass = classNames("select", {
+                "has-focus": this.state.hasFocus,
+                "is-subtle": this.props.isSubtile
+            }
+        );
 
         return (
-            <div className={selectClass + (this.props.size || "")}>
+            <div className={selectClass + " " + (this.props.size || "")}>
                 <span>{this.state.selectedText}</span>
                 <Icon title="chevron-down" />
 
