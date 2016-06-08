@@ -31,7 +31,7 @@ class Select extends Component {
 
     handleSelectChange() {
         let text = this.getSelectedOptionText();
-        let value = this.element.value;
+        let value = this.element.value; 
 
         this.setState({
             selectedText: text,
@@ -47,14 +47,14 @@ class Select extends Component {
         let element = this.element;
         let options = element.options;
 
-        return (element.selectedIndex && options[element.selectedIndex]) ? options[element.selectedIndex].text : this.props.selectedText;
+        return (element.selectedIndex > -1 && options[element.selectedIndex]) ? options[element.selectedIndex].text : this.props.selectedText;
     }
 
     render() {
-        let selectClass = classNames("select", { "has-focus": this.state.hasFocus, "is-smaller": this.props.isSmaller });
+        let selectClass = classNames("select", { "has-focus ": this.state.hasFocus, "is-subtile ": this.props.isSubtile });
 
         return (
-            <div className={selectClass}>
+            <div className={selectClass + (this.props.size || "")}>
                 <span>{this.state.selectedText}</span>
                 <Icon title="chevron-down" />
 

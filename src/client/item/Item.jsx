@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router";
+import ButtonLink from "../shared/ButtonLink";
+import Button from "../shared/Button";
 import Icon from "../shared/Icon";
 import Cloak from "../shared/Cloak";
 import { fetchItem, clearItem } from "../app/actions/item-actions";
@@ -8,7 +9,6 @@ import { fetchItem, clearItem } from "../app/actions/item-actions";
 class Item extends Component {
     componentWillUnmount() {
         this.props.clearItem();
-        this.props.fetchCategories();
     }
     componentDidMount(){
         this.props.getItem(this.props.params.slug);
@@ -28,22 +28,24 @@ class Item extends Component {
                             {item.title}
                         </h1>
 
-                        <Link to={"/items/" + this.props.params.slug + "/edit"}>EDIT</Link>
-
                         <p className="item-details">
                             {item.amount ? "It’s in the fridge" : "Ooops, ain’t got that" }
                             {item.amount ? " × " + item.amount  : "" }
                         </p>
 
-                        <button className="button is-inverted is-icon-only" >
+                        <Button className="is-inverted is-icon-only" >
                             <Icon title="plus" />
                             <span className="visually-hidden">Increase amount</span>
-                        </button>
+                        </Button>
 
-                        <button className="button is-inverted is-icon-only" >
+                        <Button className="is-inverted is-icon-only" >
                             <Icon title="minus" />
                             <span className="visually-hidden">Decrease amount</span>
-                        </button>
+                        </Button>
+                        <ButtonLink to={"/items/" + this.props.params.slug + "/edit"}
+                                    className="is-inverted">
+                            EDIT
+                        </ButtonLink> 
                     </div>
 
                     {this.props.children}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Icon from "../shared/Icon";
+import ButtonLink from "../shared/ButtonLink";
+import Button from "../shared/Button";
 import Select from "../shared/Select";
 import { fetchCategories  } from "../app/actions/categories-actions";
 
@@ -30,10 +31,9 @@ class ItemEdit extends Component {
         let item = this.props.item;
         return (
             <div className="item-edit" >
-                <div className="container">
+                <div className="container-fixed">
                     <fieldset>
                         <legend className="visually-hidden">Edit {item.title}</legend>
-                        {JSON.stringify(this.state)}
 
                         <div className="question">
                             <label htmlFor="title">Title</label>
@@ -44,7 +44,7 @@ class ItemEdit extends Component {
                                    className="text-input large"/>
                         </div>
 
-                        <div className="question inline">
+                        <div className="question ">
                             <label htmlFor="amount">Amount</label>
                             <input type="number"
                                    id="amount"
@@ -53,24 +53,12 @@ class ItemEdit extends Component {
                                    className="text-input small"/>
                         </div>
 
-                        <div className="question inline">
-                            <label htmlFor="amount">Unit</label>
-                            <Select
-                                isSmaller={true}
-                                id="unit"
-                                onChange={this.handleCategoryChange.bind(this)}
-                                selectedText={item.category}
-                                selectedValue={item.category} >
-                                {
-                                    this.props.categories.map((e) => <option key={e.name}  value={e.name}>{e.name}</option>)
-                                }
-                            </Select>
-                        </div>
 
                         <div className="question">
                             <label htmlFor="amount">Category</label>
                             <Select
-                                isSmaller={true}
+                                isSubtile={true}
+                                size="large"
                                 id="category"
                                 onChange={this.handleCategoryChange.bind(this)}
                                 selectedText={item.category}
@@ -81,6 +69,11 @@ class ItemEdit extends Component {
                             </Select>
                         </div>
 
+                        <Button>Save</Button>
+                        <ButtonLink to={"/items/" + this.props.params.slug}>Back</ButtonLink>
+                        <ButtonLink to={"/items"}>items</ButtonLink>
+
+                        <p>{ JSON.stringify(this.state ) }</p>
                     </fieldset>
                 </div>
             </div>
