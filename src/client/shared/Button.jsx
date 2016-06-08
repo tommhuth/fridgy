@@ -1,23 +1,6 @@
 import React, { Component } from "react";
     
 class Button extends Component {
-    constructor(props){
-        super(props);
-
-        this.state = {
-            hasFocus: false
-        }
-    }
-    setFocus(){
-        this.setState({
-            hasFocus: true
-        })
-    }
-    removeFocus(){
-        this.setState({
-            hasFocus: false
-        })
-    }
     render() {
         return ( 
                 <button type="button" 
