@@ -1,11 +1,11 @@
 .item-edit {
     background: #FFF;
+    z-index:10;
+    position: relative;
     color: #000;
     text-align: left;
-    padding: 3.5em 0;
-    position: relative;
-    margin-top: -10em;
-    margin-bottom: -4em;
-    animation: slide-up .5s;
+    padding: 3em 0;
+    margin-top: -11em;
+    animation: slide-up .35s ;
     box-shadow: 0 15em  0 rgba(#FFF, 1), -1em 0 1em rgba(#000, .5);
 }

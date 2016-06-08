@@ -3,16 +3,19 @@
     border: .135em  solid #000;
     padding: .5em  2.25em .5em .75em ;
     line-height: 1.2;
-    min-width: 4em;
+    max-width: 100%;
     position: relative;
     text-transform: lowercase;
     overflow: hidden;
     font-size: 1.25em;
     margin-bottom: .75em;
+    box-sizing: border-box;
     transition: color .2s, background .2s, border .2s;
 
-    &.is-smaller {
+    &.is-subtile {
         font-size: 1em;
+        padding-top: .75em;
+        padding-bottom: .75em;
         border-color: #CCC;
         text-transform: none;
         margin-bottom: 0;
@@ -20,6 +23,17 @@
         &:hover {
             border-color: #000;
         }
+
+        .icon {
+            top: .25em;
+        }
+    }
+
+    &.large {
+        width: 18.5em;
+    }
+    &.medium {
+        width: 12em;
     }
 
     &:hover {
@@ -48,6 +62,7 @@
         appearance: none;
         right:0;
         bottom:0;
+        height: 100%;
         z-index: 10;
         opacity:0;
     }
