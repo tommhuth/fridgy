@@ -1,26 +1,61 @@
 .button {
-    padding: 0;
     line-height: 1.25em;
     border: .14em solid #000;
-    overflow:hidden;
-    vertical-align: middle;
-    position: relative;
-    display: inline-block;
-    box-sizing:border-box;
-    background-color: transparent;
-    margin-right: .25em;
+    display:  inline-block;
     text-transform: lowercase;
-
+    text-align: center;
+    padding: 0;
+    color: #000;
+    margin-right: .5em;
+    vertical-align: top;
+    overflow: hidden;
+    position: relative;
+    
     &:last-child {
         margin-right: 0;
     }
 
+    &.is-inverted {
+        color: #FFF;
+        border-color: #FFF;
+
+        &:focus, &:hover {
+            color: $blue;
+        }
+
+        &::before {
+            background-color: #FFF;
+        }
+    }
+
+    &.is-icon-only .icon {
+        font-size: .625em;
+        color: currentColor;
+        position: relative;
+        z-index: 1;
+        display: block;
+    }
+
+
+    &:hover, &:focus{
+        color: #FFF;
+
+        &::before {
+            opacity: 1;
+            width: 130%;
+            padding-top: 130%;
+            transition:width .35s, padding-top .35s, opacity .2s ;
+        }
+    }
+
     &::before {
+        transform: translateX(-50%) translateY(-50%);
         content: "";
         width:0;
-        padding-bottom: 0;
+        padding-top: 0;
         display: block;
         position: absolute;
+        box-sizing: content-box;
         background: #000;
         margin: 0;
         z-index: 0;
@@ -29,43 +64,11 @@
         left: 50%;
         opacity: 0;
     }
-
-    &.is-icon-only .icon {
-        font-size: .65em;
-        margin: .75em;
-        color: currentColor;
-        position: relative;
+    .inner {
         z-index: 1;
+        position: relative;
+        padding: .55em 1.25em;
         display: block;
-    }
-
-    &:not(:disabled) {
-        &:focus, &:hover, &:hover {
-            color: #FFF;
-
-            &::before {
-                transform: translateX(-50%) translateY(-50%);
-                transition:width .25s, padding-bottom .25s ;
-                opacity: 1;
-                width: 145%;
-                padding-bottom: 145%;
-            }
-        }
-    }
-
-    &.is-inverted {
-        border-color: #FFF;
-        color: #FFF;
-        
-        &:not(:disabled) {
-            &:focus, &:hover, &:hover {
-                color: $blue;
-
-                &::before {
-                    background: #FFF;
-                }
-            }
-        }
     }
 }
 
