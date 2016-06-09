@@ -49,15 +49,16 @@ a {
 
 
 a, button, [tabindex="0"]:not(input)  {
+    -ms-touch-action: none !important;
+
+    .inner, svg {
+        pointer-events: none; 
+    }
 
     &:not(:disabled) {
         cursor: pointer;
     }
 
-    &:active {
-        opacity: .5;
-    }
-    
     &:disabled {
         opacity: .5;
     }

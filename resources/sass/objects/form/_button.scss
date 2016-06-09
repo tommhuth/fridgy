@@ -1,6 +1,6 @@
 .button {
+    border:none;
     line-height: 1.25em;
-    border: .14em solid #000;
     display:  inline-block;
     text-transform: lowercase;
     text-align: center;
@@ -17,9 +17,14 @@
 
     &.is-inverted {
         color: #FFF;
-        border-color: #FFF;
 
-        &:focus, &:hover {
+        .inner {
+            border-color: #FFF;
+        }
+
+        &:focus,
+        &:hover,
+        &.has-focus {
             color: $blue;
         }
 
@@ -36,15 +41,16 @@
         display: block;
     }
 
-
-    &:hover, &:focus{
+    &:hover,
+    &:focus,
+    &.has-focus{
         color: #FFF;
 
         &::before {
             opacity: 1;
             width: 130%;
             padding-top: 130%;
-            transition:width .35s, padding-top .35s, opacity .2s ;
+            transition:width .25s, padding-top .25s, opacity .45s ;
         }
     }
 
@@ -64,7 +70,9 @@
         left: 50%;
         opacity: 0;
     }
+
     .inner {
+        border: .14em solid #000;
         z-index: 1;
         position: relative;
         padding: .55em 1.25em;
