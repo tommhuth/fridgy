@@ -52,7 +52,7 @@ a, button, [tabindex="0"]:not(input)  {
     -ms-touch-action: none !important;
 
     .inner, svg {
-        pointer-events: none; 
+        pointer-events: none;
     }
 
     &:not(:disabled) {
