@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import ButtonLink from "../shared/ButtonLink";
 import Button from "../shared/Button";
 import Select from "../shared/Select";
+import RadioButton from "../shared/RadioButton";
+import CheckBox from "../shared/CheckBox";
+import SelectionGroup from "../shared/SelectionGroup";
 import { fetchCategories  } from "../app/actions/categories-actions";
 
 class ItemEdit extends Component {
@@ -12,7 +15,11 @@ class ItemEdit extends Component {
         this.state = {
             title: props.item.title,
             category: props.item.category,
-            amount: props.item.amount
+            amount: props.item.amount,
+            food: null,
+            places: null,
+            test1: null,
+            test2: null
         }
     }
     componentDidMount(){
@@ -27,6 +34,26 @@ class ItemEdit extends Component {
     handleCategoryChange(value, label){
         this.setState({ category: value })
     }
+    handleFoodChange(value){
+        this.setState({
+            food: value
+        })
+    }
+    handlePlacesChange(value){
+        this.setState({
+            places: value
+        })
+    }
+    handleTest1Change(value){
+        this.setState({
+            test1: value
+        })
+    }
+    handleTest2Change(value){
+        this.setState({
+            test2: value
+        })
+    }
     render(){
         let item = this.props.item;
         return (
@@ -34,6 +61,39 @@ class ItemEdit extends Component {
                 <div className="container-fixed">
                     <fieldset>
                         <legend className="visually-hidden">Edit {item.title}</legend>
+
+                        <div className="question" >
+                            <SelectionGroup title="Cities been to"
+                                            selected={["oslo", "berlin"]}
+                                            onChange={this.handlePlacesChange.bind(this)}>
+                                <CheckBox value="oslo">Oslo</CheckBox>
+                                <CheckBox value="nyc">NYC</CheckBox>
+                                <CheckBox value="berlin">Berlin</CheckBox>
+                            </SelectionGroup>
+
+                            <SelectionGroup title="Food I eat"
+                                            onChange={this.handleFoodChange.bind(this)}>
+                                <CheckBox value="sushi">Sushi</CheckBox>
+                                <CheckBox value="pizza">Pizza</CheckBox>
+                                <CheckBox value="hamburger">Hamburger</CheckBox>
+                            </SelectionGroup>
+                        </div>
+
+
+                        <div className="question" >
+                            <SelectionGroup selected="a"
+                                            onChange={this.handleTest1Change.bind(this)}>
+                                <RadioButton value="a">Option A</RadioButton>
+                                <RadioButton value="b">Option B</RadioButton>
+                                <RadioButton value="c">Option C</RadioButton>
+                            </SelectionGroup>
+                            <hr />
+                            <SelectionGroup onChange={this.handleTest2Change.bind(this)}>
+                                <RadioButton value="1">Option 1</RadioButton>
+                                <RadioButton value="2">Option 2</RadioButton>
+                                <RadioButton value="3">Option 3</RadioButton>
+                            </SelectionGroup>
+                        </div>
 
                         <div className="question">
                             <label htmlFor="title">Title</label>

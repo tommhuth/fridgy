@@ -15,35 +15,33 @@ label[for] {
 
 label:not([for]) {
     position: relative;
-    display: inline-block;
-    padding: .5em;
-    margin: -.5em;
+    display:  inline-block;
     cursor: pointer;
+    padding: .25em 0;
+    transition: color .35s;
 
-    input {
-        position: absolute;
-        opacity: 0;
-    }
-
-    &:hover span::before, input:focus + span::before {
+    &:hover {
         color: $blue;
     }
 
-    input + span {
-        padding-left: 1.35em;
-        position: relative;
-
-        &::before {
-            font-size: .9em;
-            position: absolute;
-            top: 50%;
-            margin-top: -.5em;
-            left:0;
-            display: block;
-            margin-right: .25em;
-        }
+    .icon {
+        width: 1em;
+        height: 1em;
+        vertical-align: middle;
+        margin-right: .5em;
+        //margin-top: -.15em;
+        fill: currentColor;
     }
+    
+    input {
+        opacity:0;
+        display: none;
+        position: absolute;
+    }
+}
 
+legend {
+    padding: 1.5em 0 1em;
 }
 
 .text-input {
