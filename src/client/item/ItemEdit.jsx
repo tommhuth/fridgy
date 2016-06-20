@@ -55,8 +55,7 @@ class ItemEdit extends Component {
             test2: value
         })
     }
-    handleSingle(e){
-        console.log(e.target.checked)
+    handleSingle(e){ 
         this.setState({
             conditions: e.target.checked
         })
@@ -69,11 +68,13 @@ class ItemEdit extends Component {
                     <fieldset>
                         <legend className="visually-hidden">Edit {item.title}</legend>
 
-                        <CheckBox onChange={this.handleSingle.bind(this)} 
-                                  id="terms-and-cond"
-                                  selected={this.state.conditions}>
-                            I agree to terms and conditions
-                        </CheckBox>
+                        <div className="question" >
+                            <CheckBox onChange={this.handleSingle.bind(this)} 
+                                    id="terms-and-cond"
+                                    selected={this.state.conditions}>
+                                I agree to terms and conditions
+                            </CheckBox>
+                        </div>
 
                         <div className="question" >
                             <SelectionGroup title="Cities been to" 
@@ -81,8 +82,10 @@ class ItemEdit extends Component {
                                 <CheckBox value="oslo">Oslo</CheckBox>
                                 <CheckBox value="nyc">NYC</CheckBox>
                                 <CheckBox value="berlin">Berlin</CheckBox>
-                            </SelectionGroup>
+                            </SelectionGroup> 
+                        </div>
 
+                        <div className="question" >
                             <SelectionGroup title="Food I eat"
                                             selected={this.state.food}
                                             onChange={this.handleFoodChange.bind(this)}>
@@ -94,19 +97,23 @@ class ItemEdit extends Component {
 
 
                         <div className="question" >
-                            <SelectionGroup onChange={this.handleTest1Change.bind(this)}
-                                            selected={this.state.test1}>
-                                <RadioButton value="a">Option A</RadioButton>
-                                <RadioButton value="b">Option B</RadioButton>
-                                <RadioButton value="c">Option C</RadioButton>
-                            </SelectionGroup>
-                            <hr />
-                            <SelectionGroup selected={this.state.test2}
-                                            onChange={this.handleTest2Change.bind(this)}>
-                                <RadioButton value="1">Option 1</RadioButton>
-                                <RadioButton value="2">Option 2</RadioButton>
-                                <RadioButton value="3">Option 3</RadioButton>
-                            </SelectionGroup>
+                            <fieldset className="input-group">
+                                <legend>Whole buncha radios</legend>
+                                <SelectionGroup onChange={this.handleTest1Change.bind(this)}
+                                                selected={this.state.test1}>
+                                    <RadioButton value="a">Option A</RadioButton>
+                                    <RadioButton value="b">Option B</RadioButton>
+                                    <RadioButton value="c">Option C</RadioButton>
+                                </SelectionGroup>
+                                <hr />
+                                <SelectionGroup selected={this.state.test2}
+                                                onChange={this.handleTest2Change.bind(this)}>
+                                    <RadioButton value="1">Option 1</RadioButton>
+                                    <RadioButton value="2">Option 2</RadioButton>
+                                    <RadioButton value="3">Option 3</RadioButton>
+                                </SelectionGroup> 
+                            </fieldset>
+                           
                         </div>
 
                         <div className="question">

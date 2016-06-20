@@ -34,6 +34,7 @@ class SelectionGroup extends Component {
     render() {
         let items = [];
         let i = 0;
+        let legend = <legend>{this.props.title}</legend>
         
         for(let element of this.props.children){
             items.push(
@@ -48,8 +49,8 @@ class SelectionGroup extends Component {
         }
 
         return (
-            <fieldset ref={(e) => this.element = e}>
-                <legend>{this.props.title}</legend>
+            <fieldset className="input-group" ref={(e) => this.element = e}>
+                {this.props.title ? legend : null}
                 <ul>
                     {items}
                 </ul>

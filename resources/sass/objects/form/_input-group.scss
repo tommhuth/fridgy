@@ -2,4 +2,8 @@
     legend {
         @extend label[for];
     } 
+
+    .input-group:not(:last-child) {
+        margin-bottom: .5em;
+    }
 }
