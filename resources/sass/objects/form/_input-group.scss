@@ -1,17 +1,5 @@
 .input-group {
     legend {
         @extend label[for];
-    }
-
-    > ul {
-        margin-top: .1em;
-
-        > li {
-            margin-bottom: .35em;
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-    }
+    } 
 }

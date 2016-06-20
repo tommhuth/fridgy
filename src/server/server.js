@@ -6,6 +6,7 @@ import routes from './routes';
 import mustache from 'mustache-express';
 import { connect, seed } from './db';
 import compression from "compression";
+import serveStatic from "serve-static";
 
 const app = express();
 
@@ -17,7 +18,7 @@ app.set('views', './src/server/views');
 app.set('view engine', 'mustache');
   
 //static files
-app.use("/public", express.static("public", { maxAge: 60 * 60 * 24 }));
+app.use(serveStatic("public", {maxAge: "1 day"}));
 
 //routes
 app.use("/api", routes);

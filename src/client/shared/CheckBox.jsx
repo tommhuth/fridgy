@@ -2,12 +2,18 @@ import React, { Component } from "react";
 import Icon from "./Icon";
 
 class CheckBox extends Component {
-    
     render() {
-        let checked = this.props.selected && this.props.selected.find(e => e === this.props.value);
+        let selected = this.props.selected; 
+        let checked;
+
+        if(Array.isArray(selected)){
+            checked = selected.find(e => e === this.props.value)
+        } else {
+            checked = selected;
+        }
 
         return ( 
-            <label >
+            <label>
                 <input type="checkbox"
                        onChange={this.props.onChange}
                        name={this.props.id}

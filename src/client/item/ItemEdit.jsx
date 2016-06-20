@@ -16,10 +16,11 @@ class ItemEdit extends Component {
             title: props.item.title,
             category: props.item.category,
             amount: props.item.amount,
-            food: null,
+            food: ["pizza"],
             places: null,
-            test1: null,
-            test2: null
+            test1: "b",
+            test2: "3",
+            conditions: true
         }
     }
     componentDidMount(){
@@ -54,6 +55,12 @@ class ItemEdit extends Component {
             test2: value
         })
     }
+    handleSingle(e){
+        console.log(e.target.checked)
+        this.setState({
+            conditions: e.target.checked
+        })
+    }
     render(){
         let item = this.props.item;
         return (
@@ -62,9 +69,14 @@ class ItemEdit extends Component {
                     <fieldset>
                         <legend className="visually-hidden">Edit {item.title}</legend>
 
+                        <CheckBox onChange={this.handleSingle.bind(this)} 
+                                  id="terms-and-cond"
+                                  selected={this.state.conditions}>
+                            I agree to terms and conditions
+                        </CheckBox>
+
                         <div className="question" >
-                            <SelectionGroup title="Cities been to"
-                                            selected={["oslo", "berlin"]}
+                            <SelectionGroup title="Cities been to" 
                                             onChange={this.handlePlacesChange.bind(this)}>
                                 <CheckBox value="oslo">Oslo</CheckBox>
                                 <CheckBox value="nyc">NYC</CheckBox>
@@ -72,6 +84,7 @@ class ItemEdit extends Component {
                             </SelectionGroup>
 
                             <SelectionGroup title="Food I eat"
+                                            selected={this.state.food}
                                             onChange={this.handleFoodChange.bind(this)}>
                                 <CheckBox value="sushi">Sushi</CheckBox>
                                 <CheckBox value="pizza">Pizza</CheckBox>
@@ -81,14 +94,15 @@ class ItemEdit extends Component {
 
 
                         <div className="question" >
-                            <SelectionGroup selected="a"
-                                            onChange={this.handleTest1Change.bind(this)}>
+                            <SelectionGroup onChange={this.handleTest1Change.bind(this)}
+                                            selected={this.state.test1}>
                                 <RadioButton value="a">Option A</RadioButton>
                                 <RadioButton value="b">Option B</RadioButton>
                                 <RadioButton value="c">Option C</RadioButton>
                             </SelectionGroup>
                             <hr />
-                            <SelectionGroup onChange={this.handleTest2Change.bind(this)}>
+                            <SelectionGroup selected={this.state.test2}
+                                            onChange={this.handleTest2Change.bind(this)}>
                                 <RadioButton value="1">Option 1</RadioButton>
                                 <RadioButton value="2">Option 2</RadioButton>
                                 <RadioButton value="3">Option 3</RadioButton>

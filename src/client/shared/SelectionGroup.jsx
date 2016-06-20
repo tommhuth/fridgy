@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import uuid from "node-uuid";
     
 class SelectionGroup extends Component {
     constructor(props){
         super(props);
-        this.id = `sg-${Date.now()}-${Math.floor(Math.random() * 1000)}` ;
+        this.id = "selection-group-" + uuid.v1();
 
         this.state = {
             selected: props.selected
@@ -33,7 +34,7 @@ class SelectionGroup extends Component {
     render() {
         let items = [];
         let i = 0;
-
+        
         for(let element of this.props.children){
             items.push(
                 <li key={this.id + "-" + i++}>
@@ -47,9 +48,7 @@ class SelectionGroup extends Component {
         }
 
         return (
-            <fieldset
-
-                      ref={(e) => this.element = e}>
+            <fieldset ref={(e) => this.element = e}>
                 <legend>{this.props.title}</legend>
                 <ul>
                     {items}

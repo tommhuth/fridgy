@@ -1,8 +1,10 @@
 .icon {
     speak: none;
     width: 2em;
+    display:inline-block;
     height: 2em;
     fill: currentColor;
+
 
     &.large {
         width: 10em;

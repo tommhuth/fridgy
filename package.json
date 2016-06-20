@@ -22,6 +22,7 @@
     "mongoose-unique-validator": "^1.0.2",
     "mongoose-url-slugs": "^0.2.1",
     "mustache-express": "^1.2.2",
+    "node-uuid": "^1.4.7",
     "path": "^0.12.7",
     "q": "^1.4.1",
     "react": "^15.0.1",
@@ -31,6 +32,7 @@
     "react-router": "^2.1.1",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
+    "serve-static": "^1.11.1",
     "webpack": "^1.13.1"
   },
   "devDependencies": {
