@@ -9,7 +9,8 @@ let router = express.Router();
 
 router.use("/", function(req,res, next) {
     // haha
-    setTimeout(next, Math.random() * 650 + 350);
+    //setTimeout(next, Math.random() * 150);
+    next();
 })
 router.use("/items", itemRouter);
 router.use("/categories", categoriesRouter);

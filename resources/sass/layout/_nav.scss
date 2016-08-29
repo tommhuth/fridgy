@@ -5,14 +5,14 @@
         }
 
         .nav-toggle-button {
-            color: #FFF;
-        }
+            color: #FFF;   
+        } 
     }
 
     .nav-toggle-button {
-        transition: margin .2s, padding .2s, background .1s ;
+        transition: margin .2s, padding .2s , background .1s ;  
         position: relative;
-        margin: 3em 0 1em 0;
+        margin: 3em 0 1em 0; 
         padding: 0;
         border-radius: 50%;
         z-index: 2;
@@ -36,7 +36,7 @@
         }
     }
 
-    .nav-wrapper {
+    .nav-wrapper { 
         position: fixed;
         z-index: 1;
         top: 0;
@@ -54,8 +54,13 @@
 
         ul {
             position: absolute;
-            bottom: 10vh;
-            left: 0;
+            bottom: 16vh;
+            left: 0; 
+
+            @media (max-width: $breakpoint-grid-collapse) {
+                font-size: .9em;
+                bottom: 6vh;
+            }
         }
 
         li {
@@ -64,6 +69,7 @@
             text-transform: lowercase;
             letter-spacing: -.025em;
             line-height: 1.125;
+            margin-bottom: .2em;
         }
     }
 }
