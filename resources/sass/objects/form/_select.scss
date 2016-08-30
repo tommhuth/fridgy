@@ -1,27 +1,72 @@
 .select {
     display: inline-block;
-    border: .135em  solid #000;
-    padding: .5em  2.25em .5em .75em ;
-    line-height: 1.2;
     max-width: 100%;
     position: relative;
-    text-transform: lowercase;
     overflow: hidden;
     font-size: 1.25em;
-    margin-bottom: .75em;
-    box-sizing: border-box;
-    transition: color .2s, background .2s, border .2s;
+    margin-bottom: .75em; 
+    transition:   background .2s ;
 
-    &.is-subtle {
-        font-size: 1em;
-        padding-top: .75em;
-        padding-bottom: .75em;
-        border-color: #CCC;
-        text-transform: none;
+    span {
+        text-transform: lowercase;
+        display: block;
+        position: relative;
+        border: .135em  solid #000;
+        padding: .5em  2.25em .5em .75em ;
+        line-height: 1.2;
+        transition: background .2s, border .2s;
+    }
+
+    &:hover,
+    &:focus,
+    &.has-focus{
+        color: #FFF;
+        background-color: #000; 
+        transition-delay: .25s;
+
+        &::before {
+            opacity: 1;
+            width: 130%;
+            padding-top: 130%;
+            transition: width .35s, padding-top .35s, opacity .45s;
+        }
+    }
+
+    &::before {
+        transform: translateX(-50%) translateY(-50%);
+        content: "";
+        width:0;
+        padding-top: 0;
+        display: block;
+        position: absolute;
+        box-sizing: content-box;
+        background: #000;
+        margin: 0;
+        z-index: 0;
+        top: 50%;
+        border-radius: 50%;
+        left: 50%;
+        opacity: 0;
+    }
+
+    &.subtle {
+        font-size: .9em;
         margin-bottom: 0;
+ 
+        &:hover,
+        &:focus,
+        &.has-focus { 
+            span {
+                border-color: #000;
+            }
+        }
 
-        &:hover {
-            border-color: #000;
+        span {
+            padding-top: .75em;
+            padding-bottom: .75em;
+            border-color: #CCC;
+            text-transform: none; 
+
         }
 
         .icon {
@@ -32,13 +77,9 @@
     &.large {
         width: 18.5em;
     }
+
     &.medium {
         width: 12em;
-    }
-
-    &:hover {
-        color: #FFF;
-        background-color: #000;
     }
 
     &:not(:last-child) {
@@ -49,7 +90,7 @@
         position: absolute;
         display: block;
         right: 0;
-        top: 0;
+        top: .1em;
         font-size: 1.1em;
     }
 

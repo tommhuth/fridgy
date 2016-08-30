@@ -2,7 +2,7 @@
     margin: 0 15%;
     position: relative;
 
-    @media (max-width: 37.5em) {
+    @media (max-width: $breakpoint-grid-collapse) {
         margin-left: 2em;
         margin-right: 2em;
     }
