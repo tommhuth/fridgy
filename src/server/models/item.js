@@ -40,7 +40,7 @@ let ItemSchema = new Schema({
     slug: String
 }, { versionKey: false });
 
-ItemSchema.plugin(timestamps);
+ItemSchema.plugin( timestamps);
 ItemSchema.plugin(uniqueValidator, {message: 'Attribute must be unique'});
 ItemSchema.plugin(slugger("title"));
 
