@@ -5,7 +5,8 @@ export class ValidationError extends Error {
 
         for (let key in errors) {
             let error = {
-                [key]: errors[key].message
+                field: key,
+                message: errors[key].message
             };
 
             prettyErrors.push(error)
