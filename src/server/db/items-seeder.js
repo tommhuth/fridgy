@@ -1,6 +1,6 @@
 "use strict";
 
-import Item from "../repositories/models/item";
+import Item from "../repositories/models/item-model";
 import { default as toSentenceCase } from "../helpers/to-sentence-case";
 
 let items = [
@@ -74,8 +74,10 @@ let categories = ["Diary", "drinkables", "Meat and fish", "fruit and vegetables"
 let units = ["l", "pcs", "kg"];
 
 export default function() {
-    Item.remove({})
+    return Item.remove({})
         .then(() => {
+            let all = [];
+
             for (let i of items) {
                 let item = new Item({
                     title: toSentenceCase(i.title),
@@ -83,10 +85,12 @@ export default function() {
                     unit: units[i.unit],
                     amount: Math.floor(Math.random() * 4),
                     favorite: Math.random() > .5,
-                    listed:  Math.random() > .5
+                    listed:  Math.random() > .7
                 });
 
-                item.save();
+                all.push(item.save());
             }
+
+            return Promise.all(all);
         });
 }

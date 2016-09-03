@@ -1,4 +1,4 @@
-import { default as Item } from "./models/item";
+import { default as Item } from "./models/item-model";
 import { ValidationError } from "../errors/validation-error";
 import { default as notFoundParser } from "../parsers/not-found-parser";
 import { default as toSentenceCase } from "../helpers/to-sentence-case";
