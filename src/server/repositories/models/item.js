@@ -24,7 +24,7 @@ let ItemSchema = new Schema({
         type: String,
         default: "",
         trim: true
-    } ,
+    },
     amount: {
         type: Number,
         required: true
@@ -40,8 +40,8 @@ let ItemSchema = new Schema({
     slug: String
 }, { versionKey: false });
 
-ItemSchema.plugin( timestamps);
-ItemSchema.plugin(uniqueValidator, {message: 'Attribute must be unique'});
+ItemSchema.plugin(timestamps);
+ItemSchema.plugin(uniqueValidator, { message: 'Attribute must be unique' });
 ItemSchema.plugin(slugger("title"));
 
 export default mongoose.model("Item", ItemSchema);

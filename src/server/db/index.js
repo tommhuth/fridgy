@@ -2,17 +2,19 @@
 
 import mongoose from "mongoose";
 import seeder  from "./items-seeder";
-import q from 'q';
 
-mongoose.Promise = q.Promise;
+mongoose.Promise = Promise;
 
-export function connect(){
-    mongoose.connect("mongodb://localhost:27017/fridgy");
-    mongoose.connection.on("error", console.log);
+export function connect() {
+    return new Promise((resolve, reject) => {
+        mongoose.connect("mongodb://localhost:27017/fridgy");
+        mongoose.connection.on("open", resolve)
+        mongoose.connection.on("error", reject);
+    })
 }
 
 export function seed() {
     seeder();
 }
 
-process.on("exit", mongoose.disconnect);
+export const disconnect = mongoose.disconnect;

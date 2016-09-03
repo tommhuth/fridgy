@@ -1,58 +1,32 @@
 "use strict";
 
 import express from "express";
-import { default as Item } from "../models/item";
-import { default as notFoundParser } from "../parsers/not-found-parser";
-import { default as validationErrorsParser } from "../parsers/validation-errors-parser";
-import { default as toSentenceCase } from "../helpers/to-sentence-case";
+import * as ItemRepo  from "../repositories/item";
 
-let router = express.Router(); 
+let router = express.Router();
 
-router.post("/", function (request, result, next) {
-    var item = new Item({
-        title: toSentenceCase(request.body.title),
-        category: toSentenceCase(request.body.category),
-        unit: (request.body.type || '').toLowerCase(),
-        amount: request.body.amount,
-        favorite: request.body.favorite,
-        listed: request.body.listed
-    });
-
-    item.save()
-        .then((data) => result.status(201).json(data))
-        .catch((error) => {
-            let e = new Error();
-            e.status = error.errors ? 422 : 500;
-
-            if(error.errors) e.body = validationErrorsParser(error);
-
-            next(e);
-        })
-        .done();
+router.post("/", function (req, res, next) {
+    ItemRepo.insert(req.body)
+        .then(item => res.status(201).json(item))
+        .catch(error => next(error));
 });
 
-router.get("/", function (request, result, next) {
-    Item.find()
-        .then((data) => result.json(data))
-        .catch((error) => next(error))
-        .done();
+router.get("/", function (req, res, next) {
+    ItemRepo.all()
+        .then(items => res.json(items))
+        .catch(error => next(error));
 });
 
-router.get("/:slug", function (request, result,next) {
-    Item.findBySlug(request.params.slug)
-        .then(notFoundParser)
-        .then((data) => result.json(data))
-        .catch((error) => next(error))
-        .done();
+router.get("/:slug", function (req, res, next) {
+    ItemRepo.get(req.params.slug)
+        .then(item => res.json(item))
+        .catch(error => next(error));
 });
 
-router["delete"]("/:slug", function (request, result, next) {
-    Item.findBySlug(request.params.slug)
-        .then(notFoundParser)
-        .then((item) => item.remove())
-        .then(() => result.status(204).send())
-        .catch((error) => next(error))
-        .done();
+router.delete("/:slug", function (req, res, next) {
+    ItemRepo.remove(req.params.slug)
+        .then(() => res.status(204).end())
+        .catch(error => next(error));
 });
 
 export default router;

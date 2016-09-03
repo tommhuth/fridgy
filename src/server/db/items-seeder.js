@@ -1,6 +1,6 @@
 "use strict";
 
-import Item from "../models/item";
+import Item from "../repositories/models/item";
 import { default as toSentenceCase } from "../helpers/to-sentence-case";
 
 let items = [
@@ -86,7 +86,7 @@ export default function() {
                     listed:  Math.random() > .5
                 });
 
-                item.save().catch(console.log);
+                item.save();
             }
         });
 }

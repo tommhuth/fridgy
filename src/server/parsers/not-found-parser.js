@@ -1,18 +1,10 @@
 "use strict";
 
+import { NotFoundError } from "../errors/not-found-error"
+
 export default function (data) {
-    let error = new Error();
-
     if ((Array.isArray(data) && !data.length) || !data) {
-        error.status = 404;
-
-        throw error;
-    }
-
-    if(typeof data === Error) {
-        error.status = 500;
-
-        throw error;
+        throw new NotFoundError();
     }
 
     return data;

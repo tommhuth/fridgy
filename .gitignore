@@ -39,3 +39,4 @@ build/
 public/
 .vscode/tasks.json
 jsconfig.json
+.vscode/
