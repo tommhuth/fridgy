@@ -38,8 +38,8 @@ app.use(globalErrorHandlers.notFound)
 database.connect()
     .then(database.seed)
     .then(() => {
-        app.listen(3000, log.bind("Ready at :3000"))
+        app.listen(3000, log.bind(null, "Ready at :3000"))
     })
-    .catch(log.bind("Error conneting to mongodb or seeding"))
+    .catch(log.bind(null, "Error conneting to mongodb or seeding"))
 
-process.on("exit", database.disconnect)
+process.on("exit", database.disconnect) 
