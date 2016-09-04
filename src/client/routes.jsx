@@ -1,12 +1,12 @@
-import React from 'react';
-import { Route } from 'react-router';
-import App from './app/App';
-import Items from './items/Items';
-import Item from './item/Item';
-import Restock from './restock/Restock';
-import Home from './home/Home';
-import About from './about/About';
-import ItemEdit from './item/ItemEdit';
+import React from "react"
+import { Route } from "react-router"
+import App from "./app/App"
+import Items from "./items/Items"
+import Item from "./item/Item"
+import Restock from "./restock/Restock"
+import Home from "./home/Home"
+import About from "./about/About"
+import ItemEdit from "./item/ItemEdit"
 
 export default (
     <Route component={App}>

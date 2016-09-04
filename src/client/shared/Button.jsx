@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
     
 class Button extends Component {
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
             hasFocus: false
@@ -11,15 +11,15 @@ class Button extends Component {
     setFocus(){
         this.setState({
             hasFocus: true
-        });
+        })
     }
     setBlur(){
         this.setState({
             hasFocus: false
-        });
+        })
     }
     render() {
-        let className = "button " + (this.state.hasFocus ? "has-focus" : "") + (this.props.className || "");
+        let className = "button " + (this.state.hasFocus ? "has-focus" : "") + (this.props.className || "")
         return ( 
                 <button type="button"
                         onClick={this.props.onClick}
@@ -34,4 +34,4 @@ class Button extends Component {
     }
 }
 
-export default Button;
+export default Button

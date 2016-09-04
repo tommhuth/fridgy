@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import Icon from "./Icon";
+import React, { Component } from "react"
+import Icon from "./Icon"
     
 class RadioButton extends Component {
     render() { 
-        let checked = this.props.value === this.props.selected;
+        let checked = this.props.value === this.props.selected
         
         return ( 
             <label>
@@ -19,4 +19,4 @@ class RadioButton extends Component {
     }
 }
 
-export default RadioButton;
+export default RadioButton

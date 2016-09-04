@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import Icon from "./Icon";
-import classNames from "classnames";
+import React, { Component } from "react"
+import Icon from "./Icon"
+import classNames from "classnames"
     
 class Select extends Component {
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
             selectedText: props.selectedText,
@@ -14,7 +14,7 @@ class Select extends Component {
     }
 
     componentDidMount(){
-        this.handleSelectChange();
+        this.handleSelectChange()
     }
 
     handleBlur(){
@@ -30,32 +30,32 @@ class Select extends Component {
     }
 
     handleSelectChange() {
-        let text = this.getSelectedOptionText();
-        let value = this.element.value; 
+        let text = this.getSelectedOptionText()
+        let value = this.element.value 
 
         this.setState({
             selectedText: text,
             selectedValue: value
-        });
+        })
 
         if(this.props.onChange) {
-            this.props.onChange(value, text);
+            this.props.onChange(value, text)
         }
     }
 
     getSelectedOptionText(){
-        let element = this.element;
-        let options = element.options;
+        let element = this.element
+        let options = element.options
 
-        return (element.selectedIndex > -1 && options[element.selectedIndex]) ? options[element.selectedIndex].text : this.props.selectedText;
+        return (element.selectedIndex > -1 && options[element.selectedIndex]) ? options[element.selectedIndex].text : this.props.selectedText
     }
 
     render() {
         let selectClass = classNames("select", {
-                "has-focus": this.state.hasFocus,
-                "subtle": this.props.isSubtle
-            }
-        );
+            "has-focus": this.state.hasFocus,
+            "subtle": this.props.isSubtle
+        }
+        )
 
         return (
             <div className={selectClass + " " + (this.props.size || "")}>
@@ -77,4 +77,4 @@ class Select extends Component {
 
 }
 
-export default Select;
+export default Select

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import Icon from "../shared/Icon";
+import React, { Component } from "react"
+import Icon from "../shared/Icon"
     
 class Cloak extends Component {
     render() {
@@ -17,4 +17,4 @@ class Cloak extends Component {
     }
 }
 
-export default Cloak;
+export default Cloak

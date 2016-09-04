@@ -1,21 +1,21 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { setCategoryFilter, setStockFilter } from "../app/actions/filter-actions";
-import { fetchCategories } from "../app/actions/categories-actions";
-import Select from "../shared/Select";
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { setCategoryFilter, setStockFilter } from "../app/actions/filter-actions"
+import { fetchCategories } from "../app/actions/categories-actions"
+import Select from "../shared/Select"
 
 
 class Filter extends Component {
     componentDidMount(){
-        this.props.fetchCategories();
+        this.props.fetchCategories()
     }
 
-    handleCategoryChange(value, text){
-        this.props.setCategoryFilter(value);
+    handleCategoryChange(value){
+        this.props.setCategoryFilter(value)
     }
 
-    handleStockChange(value, text){
-        this.props.setStockFilter(value);
+    handleStockChange(value){
+        this.props.setStockFilter(value)
     }
 
     render(){
@@ -59,13 +59,13 @@ const mapStateToProps = (state) => {
         filter: state.filter,
         categories: state.categories
     }
-};
+}
 const mapDispatchToProps = (dispatch) => {
     return {
         setCategoryFilter: (category)=> dispatch(setCategoryFilter(category)),
         setStockFilter: (stock)=> dispatch(setStockFilter(stock)),
         fetchCategories: () => dispatch(fetchCategories())
     }
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter)

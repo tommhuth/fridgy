@@ -1,7 +1,7 @@
-"use strict";
+"use strict"
 
-import Item from "../repositories/models/item-model";
-import { default as toSentenceCase } from "../helpers/to-sentence-case";
+import Item from "../repositories/models/item-model"
+import { default as toSentenceCase } from "../helpers/to-sentence-case"
 
 let items = [
     {
@@ -69,14 +69,14 @@ let items = [
         category: 2,
         unit: 1
     }
-];
-let categories = ["Diary", "drinkables", "Meat and fish", "fruit and vegetables", "condiments"];
-let units = ["l", "pcs", "kg"];
+]
+let categories = ["Diary", "drinkables", "Meat and fish", "fruit and vegetables", "condiments"]
+let units = ["l", "pcs", "kg"]
 
 export default function() {
     return Item.remove({})
         .then(() => {
-            let all = [];
+            let all = []
 
             for (let i of items) {
                 let item = new Item({
@@ -86,11 +86,11 @@ export default function() {
                     amount: Math.floor(Math.random() * 4),
                     favorite: Math.random() > .5,
                     listed:  Math.random() > .7
-                });
+                })
 
-                all.push(item.save());
+                all.push(item.save())
             }
 
-            return Promise.all(all);
-        });
+            return Promise.all(all)
+        })
 }

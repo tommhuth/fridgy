@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { Link } from "react-router";
+import React, { Component } from "react"
+import { Link } from "react-router"
 
 class ButtonLink extends Component {
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
             hasFocus: false
@@ -12,15 +12,15 @@ class ButtonLink extends Component {
     setFocus(){
         this.setState({
             hasFocus: true
-        });
+        })
     }
     setBlur(){
         this.setState({
             hasFocus: false
-        });
+        })
     }
     render() {
-        let className = "button " + (this.props.className || "");
+        let className = "button " + (this.props.className || "")
         return (
                 <Link to={this.props.to}
                       onClick={this.props.onClick}
@@ -35,4 +35,4 @@ class ButtonLink extends Component {
     }
 }
 
-export default ButtonLink;
+export default ButtonLink

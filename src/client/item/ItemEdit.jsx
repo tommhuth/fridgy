@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import ButtonLink from "../shared/ButtonLink";
-import Button from "../shared/Button";
-import Select from "../shared/Select";
-import RadioButton from "../shared/RadioButton";
-import CheckBox from "../shared/CheckBox";
-import SelectionGroup from "../shared/SelectionGroup";
-import { fetchCategories  } from "../app/actions/categories-actions";
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import ButtonLink from "../shared/ButtonLink"
+import Button from "../shared/Button"
+import Select from "../shared/Select"
+import RadioButton from "../shared/RadioButton"
+import CheckBox from "../shared/CheckBox"
+import SelectionGroup from "../shared/SelectionGroup"
+import { fetchCategories  } from "../app/actions/categories-actions"
 
 class ItemEdit extends Component {
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
             title: props.item.title,
@@ -24,7 +24,7 @@ class ItemEdit extends Component {
         }
     }
     componentDidMount(){
-        this.props.fetchCategories();
+        this.props.fetchCategories()
     }
     handleTitleChange(e) {
         this.setState({ title: e.target.value })
@@ -32,7 +32,7 @@ class ItemEdit extends Component {
     handleAmountChange(e){
         this.setState({ amount: e.target.value })
     }
-    handleCategoryChange(value, label){
+    handleCategoryChange(value){
         this.setState({ category: value })
     }
     handleFoodChange(value){
@@ -61,7 +61,7 @@ class ItemEdit extends Component {
         })
     }
     render(){
-        let item = this.props.item;
+        let item = this.props.item
         return (
             <div className="item-edit" >
                 <div className="container-fixed">
@@ -167,12 +167,12 @@ const mapStateToProps = (state) => {
         item: state.item,
         categories: state.categories
     }
-};
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchCategories: () => dispatch(fetchCategories())
     }
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemEdit)

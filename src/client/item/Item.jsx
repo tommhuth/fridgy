@@ -1,20 +1,20 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import ButtonLink from "../shared/ButtonLink";
-import Button from "../shared/Button";
-import Icon from "../shared/Icon";
-import Cloak from "../shared/Cloak";
-import { fetchItem, clearItem } from "../app/actions/item-actions";
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import ButtonLink from "../shared/ButtonLink"
+import Button from "../shared/Button"
+import Icon from "../shared/Icon"
+import Cloak from "../shared/Cloak"
+import { fetchItem, clearItem } from "../app/actions/item-actions"
 
 class Item extends Component {
     componentWillUnmount() {
-        this.props.clearItem();
+        this.props.clearItem()
     }
     componentDidMount(){
-        this.props.getItem(this.props.params.slug);
+        this.props.getItem(this.props.params.slug)
     }
     render(){
-        let item = this.props.item;
+        let item = this.props.item
 
         return (
             <div className="item-entry " >
@@ -61,13 +61,13 @@ const mapStateToProps = (state) => {
         status: state.status,
         categories: state.categories
     }
-};
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getItem: (slug) => dispatch(fetchItem(slug)),
         clearItem: () => dispatch(clearItem())
     }
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Item)

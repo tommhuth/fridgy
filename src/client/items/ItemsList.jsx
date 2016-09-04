@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import ListItem from "./ListItem";
+import React, { Component } from "react"
+import ListItem from "./ListItem"
 
 class ItemsList extends Component {
     render() { 

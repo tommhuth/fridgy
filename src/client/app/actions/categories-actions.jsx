@@ -1,16 +1,16 @@
-import fetch from 'isomorphic-fetch';
+import fetch from "isomorphic-fetch"
 
 export function fetchCategories() {
     return (dispatch) => {
-        dispatch(loadingCategories());
+        dispatch(loadingCategories())
 
         return fetch("/api/categories")
             .then(response => response.json())
             .then(categories => {
-                dispatch(receiveCategories(categories));
-                dispatch(loadingCategories());
+                dispatch(receiveCategories(categories))
+                dispatch(loadedCategories())
             })
-            .catch(error => dispatch(loadCategoriesFailed()))
+            .catch(() => dispatch(loadCategoriesFailed()))
     }
 }
 

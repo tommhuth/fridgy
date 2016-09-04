@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { fetchCategories } from "../app/actions/categories-actions";
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { fetchCategories } from "../app/actions/categories-actions"
 
 class Restock extends Component {
     componentDidMount(){
-        this.props.getCategories();
+        this.props.getCategories()
     }
     render() {
         return (
@@ -27,13 +27,13 @@ const mapStateToProps = (state) => {
         categories: state.categories,
         status: state.status
     }
-};
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {
         addItem: (id, name) => dispatch({type: "ADD_ITEM", id, name}),
         getCategories: () => dispatch(fetchCategories())
     }
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Restock)

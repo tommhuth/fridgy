@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import uuid from "node-uuid";
+import React, { Component } from "react"
+import uuid from "node-uuid"
     
 class Icon extends Component {  
     constructor(props) {
         super(props)
 
-        this.id = uuid.v1();
+        this.id = uuid.v1()
     }
     render() {
         /*
@@ -14,7 +14,7 @@ class Icon extends Component {
             suspect a mere change of attributes is not enough
         */  
         if (/Edge\/\d./i.test(navigator.userAgent)){ 
-            this.id = uuid.v1();
+            this.id = uuid.v1()
         }
 
         return (
@@ -25,4 +25,4 @@ class Icon extends Component {
     }
 }
 
-export default Icon;
+export default Icon

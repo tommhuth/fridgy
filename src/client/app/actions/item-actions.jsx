@@ -1,10 +1,10 @@
-import fetch from 'isomorphic-fetch';
+import fetch from "isomorphic-fetch"
 
 
 export function deleteItem(item){
     return (dispatch) => {
-        dispatch(clearItem(item._id));
-        dispatch(deletingItem());
+        dispatch(clearItem(item._id))
+        dispatch(deletingItem())
 
         return fetch("/api/items/" + item.slug, { method: "DELETE"  })
             .then(() => dispatch(deletedItem()))
@@ -15,15 +15,15 @@ export function deleteItem(item){
 
 export function fetchItem(slug) {
     return (dispatch) => {
-        dispatch(loadingItem());
+        dispatch(loadingItem())
 
         return fetch(`/api/items/${slug}`)
             .then(response => response.json())
             .then(item => {
-                dispatch(receiveItem(item));
-                dispatch(loadedItem());
+                dispatch(receiveItem(item))
+                dispatch(loadedItem())
             })
-            .catch(error => dispatch(loadItemFailed()))
+            .catch(() => dispatch(loadItemFailed()))
 
     }
 }
@@ -78,10 +78,4 @@ function deleteItemFailed(){
         type: "DELETE_ITEM_FAILED"
     }
 } 
-
-function clearItem(id) {
-    return {
-        type: "CLEAR_ITEM",
-        id
-    }
-}
+ 

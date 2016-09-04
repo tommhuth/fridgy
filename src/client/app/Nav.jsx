@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { Link } from "react-router";
-import classNames from "classnames";
-import Icon from "./../shared/Icon";
+import React, { Component } from "react"
+import { Link } from "react-router"
+import classNames from "classnames"
+import Icon from "./../shared/Icon"
     
 class Nav extends Component {
     render() {
         let navClass = classNames("nav", {
             "is-open": this.props.menuVisibility
-        });
+        })
 
         return (
             <nav className={navClass}>
@@ -35,4 +35,4 @@ class Nav extends Component {
     }
 }
 
-export default Nav;
+export default Nav

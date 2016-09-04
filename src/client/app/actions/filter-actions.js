@@ -13,20 +13,20 @@ export function setStockFilter(stock){
 }
 
 export function filterItems(items, filter) {
-    let filtered = [...items];
+    let filtered = [...items]
 
     switch(filter.stock) {
-        case "IN_STOCK":
-            filtered = filtered.filter(e => e.amount > 0);
-            break;
-        case "OUT_OF_STOCK":
-            filtered = filtered.filter(e => !e.amount );
-            break;
+    case "IN_STOCK":
+        filtered = filtered.filter(e => e.amount > 0)
+        break
+    case "OUT_OF_STOCK":
+        filtered = filtered.filter(e => !e.amount )
+        break
     }
 
     if(filter.category) {
-        filtered = filtered.filter(e => e.category.toLowerCase() === filter.category.toLowerCase());
+        filtered = filtered.filter(e => e.category.toLowerCase() === filter.category.toLowerCase())
     }
 
-    return filtered;
+    return filtered
 }

@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import ItemsList from "./ItemsList";
-import Cloak from "../shared/Cloak";
-import Filter from "./Filter";
-import { connect } from "react-redux";
-import { fetchItems } from "../app/actions/items-actions";
-import { filterItems } from "../app/actions/filter-actions";
+import React, { Component } from "react"
+import ItemsList from "./ItemsList"
+import Cloak from "../shared/Cloak"
+import Filter from "./Filter"
+import { connect } from "react-redux"
+import { fetchItems } from "../app/actions/items-actions"
+import { filterItems } from "../app/actions/filter-actions"
 
 class Items extends Component {
     componentDidMount(){
-        this.props.fetchItems();
+        this.props.fetchItems()
     }
     render(){
         return (
@@ -32,11 +32,11 @@ const mapStateToProps = (state) => {
         status: state.status,
         categories: state.categories
     }
-};
+}
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchItems: ()=> dispatch(fetchItems())
     }
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Items)

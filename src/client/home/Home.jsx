@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import Icon from "../shared/Icon";
+import React, { Component } from "react"
+import Icon from "../shared/Icon"
 
 export default class Home extends Component {
     render(){

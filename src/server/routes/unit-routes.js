@@ -1,15 +1,15 @@
-"use strict";
+"use strict"
 
-import express from "express";
-import * as ItemRepo from "../repositories/item-repo";
+import express from "express"
+import * as ItemRepo from "../repositories/item-repo"
 
-let router = express.Router();
+let router = express.Router()
 
 router.get("/", function (req, res, next) {
     ItemRepo.aggregateUnits()
         .then((data) => res.json(data))
-        .catch((error) => next(error));
-});
+        .catch((error) => next(error))
+})
 
 
-export default router;
+export default router

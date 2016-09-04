@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import Icon from "./Icon";
+import React, { Component } from "react"
+import Icon from "./Icon"
 
 class CheckBox extends Component {
     render() {
-        let selected = this.props.selected; 
-        let checked;
+        let selected = this.props.selected 
+        let checked
 
         if(Array.isArray(selected)){
             checked = selected.find(e => e === this.props.value)
         } else {
-            checked = selected;
+            checked = selected
         }
 
         return ( 
@@ -26,4 +26,4 @@ class CheckBox extends Component {
     }
 }
 
-export default CheckBox;
+export default CheckBox

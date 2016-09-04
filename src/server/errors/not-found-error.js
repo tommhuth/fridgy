@@ -1,6 +1,6 @@
 export class NotFoundError extends Error {
     constructor() {
-        super();
-        this.status = 404;
+        super()
+        this.status = 404
     }
 }

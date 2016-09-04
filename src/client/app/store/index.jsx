@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux';
-import items from './reducers/items';
-import item from './reducers/item';
-import menuVisibility from './reducers/menuVisibility';
-import status from "./reducers/status";
-import categories from "./reducers/categories";
-import filter from "./reducers/filter";
+import { combineReducers } from "redux"
+import items from "./reducers/items"
+import item from "./reducers/item"
+import menuVisibility from "./reducers/menuVisibility"
+import status from "./reducers/status"
+import categories from "./reducers/categories"
+import filter from "./reducers/filter"
 
 const fridgeStore = combineReducers({
     items,
@@ -13,7 +13,7 @@ const fridgeStore = combineReducers({
     menuVisibility,
     status,
     filter
-});
+})
  
 
-export default fridgeStore;
+export default fridgeStore
