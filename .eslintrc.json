@@ -2,7 +2,8 @@
     "env": {
         "browser": true,
         "es6": true,
-        "node": true
+        "node": true,
+        "mocha": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
@@ -13,7 +14,8 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "mocha"
     ],
     "rules": {
         "no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],

@@ -1,0 +1,23 @@
+import { expect } from "chai"
+import server from "../../src/server/server"
+import supertest from "supertest"
+
+suite("API - Units")
+
+test("Should get all units aggregated", function(done)  {   
+    server.then(app => {
+        supertest(app)
+            .get("/api/units") 
+            .expect(200)
+            .expect(res => {
+                res = res.body 
+
+                expect(res).to.be.an("array") 
+                expect(res.length).to.be.above(0)  
+                expect(res[0].unit).to.be.ok
+                expect(res[0].popularity).to.be.a("number") 
+            })
+            .end(done)
+    }) 
+}) 
+ 

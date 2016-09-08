@@ -1,0 +1,6 @@
+{
+    "NODE_ENV": "dev",
+    "CONNECTION_STRING_DEV": "mongodb://localhost:27017/fridgy", 
+    "CONNECTION_STRING_DEV_TEST": "mongodb://localhost:27017/fridgyTest",
+    "CONNECTION_POOL_SIZE": 1
+ }

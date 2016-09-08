@@ -23,6 +23,12 @@ router.get("/:slug", function (req, res, next) {
         .catch(error => next(error))
 })
 
+router.put("/:slug", function (req, res, next) {
+    ItemRepo.update(req.params.slug, req.body)
+        .then(item => res.json(item))
+        .catch(error => next(error))
+})
+
 router.delete("/:slug", function (req, res, next) {
     ItemRepo.remove(req.params.slug)
         .then(() => res.status(204).end())

@@ -2,6 +2,9 @@
 
 import Item from "../repositories/models/item-model"
 import { default as toSentenceCase } from "../helpers/to-sentence-case"
+import debug from "debug"
+
+const log = debug("fridgy-server:item-seeder") 
 
 let items = [
     {
@@ -90,6 +93,8 @@ export default function() {
 
                 all.push(item.save())
             }
+
+            log("Seeding items collection, " + items.length + " items")
 
             return Promise.all(all)
         })

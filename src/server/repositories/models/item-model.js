@@ -2,7 +2,7 @@
 
 import mongoose from "mongoose"
 import timestamps from "mongoose-timestamp"
-import slugger from "mongoose-url-slugs"
+import slugger from "mongoose-slug-generator"
 import uniqueValidator from "mongoose-unique-validator"
 import hidden from "mongoose-hidden" 
 
@@ -14,16 +14,14 @@ let ItemSchema = new Schema(
             type: String,
             default: mongoose.Types.ObjectId
         },
-        __v: {
+        __v: { 
             type: Number,
             default: 0
         },
         title: {
             type: String,
-            required: true,
-            trim: true,
-            unique: true,
-            uniqueCaseInsensitive: true
+            required: true, 
+            trim: true 
         },
         category: {
             type: String,
@@ -47,7 +45,12 @@ let ItemSchema = new Schema(
             type: Boolean,
             default: false
         },
-        slug: String
+        slug: { 
+            type: String, 
+            slug: "title", 
+            unique: true,
+            slug_padding_size: 2
+        } 
     },
     {
         toObject: {
@@ -65,6 +68,6 @@ ItemSchema.virtual("id").get(function () { return this._id })
 ItemSchema.plugin(timestamps)
 ItemSchema.plugin(hidden())
 ItemSchema.plugin(uniqueValidator, { message: "Attribute must be unique" })
-ItemSchema.plugin(slugger("title"))
+ItemSchema.plugin(slugger)
 
 export default mongoose.model("Item", ItemSchema)

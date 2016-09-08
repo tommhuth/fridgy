@@ -5,14 +5,14 @@ import bodyParser from "body-parser"
 import apiRoutes from "./routes/api-routes"
 import appRoutes from "./routes/app-routes"
 import mustache from "mustache-express"
-import * as database from "./db"
+import connect from "./db-connect"
 import compression from "compression"
 import serveStatic from "serve-static"
 import debug from "debug"
 import * as globalErrorHandlers from "./routes/global-error-handlers" 
 
 const app = express()
-const log = debug("fridgy-server")
+const log = debug("fridgy-server") 
 
 //settings
 app.engine("mustache", mustache())
@@ -35,11 +35,15 @@ app.use(globalErrorHandlers.error)
 app.use(globalErrorHandlers.notFound)
 
 //start
-database.connect()
-    .then(database.seed)
+export default connect() 
     .then(() => {
-        app.listen(3000, log.bind(null, "Ready at :3000"))
+        return new Promise((resolve) => {
+            app.listen(3000, () => {
+                log("Ready at :3000")
+                resolve(app)
+            })
+        })
     })
-    .catch(log.bind(null, "Error conneting to mongodb or seeding"))
+    .catch(log.bind(null, "Error conneting to mongodb"))
 
-process.on("exit", database.disconnect) 
+ 
