@@ -11,8 +11,8 @@ router.post("/", function (req, res, next) {
         .catch(error => next(error))
 })
 
-router.get("/", function (req, res, next) {
-    ItemRepo.all()
+router.get("/", function (req, res, next) { 
+    ItemRepo.find(req.query)
         .then(items => res.json(items))
         .catch(error => next(error))
 })

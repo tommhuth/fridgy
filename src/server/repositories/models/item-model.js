@@ -4,7 +4,7 @@ import mongoose from "mongoose"
 import timestamps from "mongoose-timestamp"
 import slugger from "mongoose-slug-generator"
 import uniqueValidator from "mongoose-unique-validator"
-import hidden from "mongoose-hidden" 
+import hidden from "mongoose-hidden"  
 
 let Schema = mongoose.Schema
 
@@ -68,6 +68,20 @@ ItemSchema.virtual("id").get(function () { return this._id })
 ItemSchema.plugin(timestamps)
 ItemSchema.plugin(hidden())
 ItemSchema.plugin(uniqueValidator, { message: "Attribute must be unique" })
-ItemSchema.plugin(slugger)
+ItemSchema.plugin(slugger) 
 
-export default mongoose.model("Item", ItemSchema)
+ItemSchema.index(
+    { 
+        "title":"text", 
+        "category": "text"
+    }, 
+    { 
+        name: "index1", 
+        weights:{
+            title: 3,
+            category: 1
+        } 
+    }
+)
+
+export default mongoose.model("item", ItemSchema)

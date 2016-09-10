@@ -2,7 +2,6 @@
 
 import mongoose from "mongoose"
 import config from "../../config/config-loader"
-import seeder from "./items-seeder"
 import debug from "debug"
 
 const log = debug("fridgy-server:db")
@@ -21,25 +20,22 @@ function getConnectionString() {
     }
 }
 
-function connect() {
+export function connect() {
     return new Promise((resolve, reject) => {
         let connectionString = getConnectionString()
 
         mongoose.connect(connectionString, { server: { poolSize: config.CONNECTION_POOL_SIZE } })
-        mongoose.connection.on("open", resolve)
+        mongoose.connection.on("open", () => {
+            resolve()
+            log(`Connected to ${connectionString} [${config.NODE_ENV}]`)
+        })
         mongoose.connection.on("error", reject)
-
-        log(`Connecting to ${connectionString} [${config.NODE_ENV}]`)
     })
 }
 
-export default function () {
-    return connect()
-        .then(() => {
-            return config.NODE_ENV === "test" ? seeder() : null
-        })
+export function disconnect() {
+    log("Manual close() called")
+
+    mongoose.connection.close()
 }
 
-process.on("exit", mongoose.connection.close)
-process.on("SIGINT", mongoose.connection.close)
-process.on("SIGTERM", mongoose.connection.close)

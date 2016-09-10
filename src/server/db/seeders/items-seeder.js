@@ -1,7 +1,7 @@
 "use strict"
 
-import Item from "../repositories/models/item-model"
-import { default as toSentenceCase } from "../helpers/to-sentence-case"
+import Item from "../../repositories/models/item-model"
+import { default as toSentenceCase } from "../../helpers/to-sentence-case"
 import debug from "debug"
 
 const log = debug("fridgy-server:item-seeder") 
@@ -87,15 +87,17 @@ export default function() {
                     category: toSentenceCase(categories[i.category]),
                     unit: units[i.unit],
                     amount: Math.floor(Math.random() * 4),
-                    favorite: Math.random() > .5,
+                    favorite: Math.random() > .6,
                     listed:  Math.random() > .7
                 })
 
                 all.push(item.save())
             }
-
-            log("Seeding items collection, " + items.length + " items")
+            
+            log(`Seeding collection ${items.length} items`)
+            log(`${categories.length} unique categories`)
+            log(`${units.length} unique units`)
 
             return Promise.all(all)
         })
-}
+} 
