@@ -20,8 +20,8 @@ export function start() {
     return connector.connect()
         .then(() => {
             return new Promise((resolve) => {
-                server = app.listen(3000, () => {  
-                    log("Ready at :3000") 
+                server = app.listen(config.PORT, () => {  
+                    log(`Ready @ localhost:${config.PORT}`) 
                     resolve(app)
                 })
             })
