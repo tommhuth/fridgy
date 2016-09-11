@@ -9,7 +9,7 @@ import * as connector from "./db/connector"
 import compression from "compression"
 import serveStatic from "serve-static"
 import debug from "debug"
-import config from "../config/config-loader"
+import config, { base as baseConfig } from "../config/config-loader"
 import * as globalErrorHandlers from "./routes/global-error-handlers"
 
 export const app = express()
@@ -21,7 +21,7 @@ export function start() {
         .then(() => {
             return new Promise((resolve) => {
                 server = app.listen(config.PORT, () => {  
-                    log(`Ready @ localhost:${config.PORT}`) 
+                    log(`Ready @ localhost:${config.PORT}`, baseConfig)
                     resolve(app)
                 })
             })
