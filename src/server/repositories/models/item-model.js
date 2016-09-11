@@ -50,7 +50,7 @@ let ItemSchema = new Schema(
             type: String, 
             slug: "title", 
             unique: true,
-            slug_padding_size: 2
+            slug_padding_size: 1
         } 
     },
     {
