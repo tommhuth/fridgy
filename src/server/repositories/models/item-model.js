@@ -5,6 +5,7 @@ import timestamps from "mongoose-timestamp"
 import slugger from "mongoose-slug-generator"
 import uniqueValidator from "mongoose-unique-validator"
 import hidden from "mongoose-hidden"  
+import {InvalidTitleError} from "../../errors/invalid-title-error"  
 
 let Schema = mongoose.Schema
 
@@ -83,5 +84,12 @@ ItemSchema.index(
         } 
     }
 )
+
+ItemSchema.pre("save", function (next) {  
+    if(!/^[a-z]+/.test(this.slug)){
+        next(new InvalidTitleError(this.title))
+    }
+    next()
+})
 
 export default mongoose.model("item", ItemSchema)
