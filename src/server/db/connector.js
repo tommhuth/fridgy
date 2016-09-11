@@ -8,16 +8,11 @@ const log = debug("fridgy-server:db")
 mongoose.Promise = Promise
 
 function getConnectionString() {
-    switch (config.NODE_ENV) {
-    case "test-dev":
-        return config.CONNECTION_STRING_DEV_TEST
-    case "dev":
-        return config.CONNECTION_STRING_DEV
-    case "prod":
-        return config.CONNECTION_STRING_PROD
-    case "prod-test":
-        return config.CONNECTION_STRING_PROD_TEST
-    }
+    if( config.NODE_ENV.toLowerCase().includes("test")){
+        return config.CONNECTION_STRING_TEST
+    } 
+    
+    return config.CONNECTION_STRING 
 }
 
 export function connect() {
