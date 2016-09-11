@@ -17,11 +17,11 @@ export function error(err, req, res, next) {
     }
 
     let error = {
-        message: "Oops!",
+        message: err.message || "Oops!",
         status: err.status || 500,
         ...err
     }
- 
+   
     res.status(error.status)
     res.send(error) 
 }
