@@ -20,13 +20,13 @@ export function insert(data) {
         .catch(validationErrorParser)
 }
 
-export function find(options) {  
+export function find(options) {   
     if (!options || !Object.keys(options).length) {
-        return Item.find().exec().then(mongooseErrorParser)
+        return Item.find().sort("title").exec().then(mongooseErrorParser)
     }
 
     return Item.find(...buildSearchObject(options))
-        .sort(options.search ? { score: { $meta: "textScore" } } : null)
+        .sort(options.search ? { score: { $meta: "textScore" } } : "title")
         .exec()
 }
 
