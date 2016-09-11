@@ -2,7 +2,7 @@ import { expect } from "chai"
 import { app } from "../../src/server/server"
 import supertest from "supertest"
 
-suite("API - /api/item")
+suite("API - /api/items")
 
 let item = {
     title: "Test",
