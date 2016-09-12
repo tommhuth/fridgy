@@ -5,12 +5,9 @@ import timestamps from "mongoose-timestamp"
 import slugger from "mongoose-slug-generator"
 import uniqueValidator from "mongoose-unique-validator"
 import hidden from "mongoose-hidden"  
-import { InvalidTitleError } from "../../errors/invalid-title-error"  
-import { MongoError } from "../../errors/mongo-error"  
-
-let Schema = mongoose.Schema
-
-let ItemSchema = new Schema(
+import { InvalidTitleError } from "../../errors/invalid-title-error"   
+  
+let ItemSchema = new mongoose.Schema(
     {
         _id: {
             type: String,
