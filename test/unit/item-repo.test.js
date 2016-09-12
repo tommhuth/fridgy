@@ -38,6 +38,16 @@ test("#find() should search for 'chocolate', category = diary, ignoring case", f
         .catch(done)
 })
 
+test("#search() should find all items (partialy) containing 'ea' in the title or category", function (done) {
+    ItemRepo.search("ea")
+        .then(res => {
+            expect(res).to.be.an("array")
+            expect(res.length).to.equal(4)
+            done()
+        })
+        .catch(done)
+})
+
 test("#get() should return single item by slug", function (done) {
     ItemRepo.get(existingItem.slug)
         .then(res => { 

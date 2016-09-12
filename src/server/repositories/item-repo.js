@@ -4,6 +4,28 @@ import { default as mongoErrorParser } from "../parsers/mongo-error-parser"
 import { default as toSentenceCase } from "../helpers/to-sentence-case"
 import buildSearchObject from "../helpers/build-search-query"
 
+
+function some(query) { 
+    return Item.find(...buildSearchObject(query))
+        .sort(query.search ? { score: { $meta: "textScore" } } : "title")
+        .exec()
+        .catch(mongoErrorParser)
+}
+
+function all() {
+    return Item.find()
+        .sort("title")
+        .exec()
+        .catch(mongoErrorParser)
+}
+
+export function search(keyword) {
+    return Item.find({ $or: [{ title: new RegExp(keyword, "i") },{ category:  new RegExp(keyword, "i") } ] })
+        .sort("title")
+        .exec()
+        .catch(mongoErrorParser)
+}
+
 export function insert(data) {
     let item = new Item({
         title: toSentenceCase(data.title),
@@ -17,18 +39,12 @@ export function insert(data) {
     return item.save().catch(mongoErrorParser)
 }
 
-export function find(options) {   
-    if (!options || !Object.keys(options).length) {
-        return Item.find()
-            .sort("title")
-            .exec()
-            .catch(mongoErrorParser)
+export function find(query) {   
+    if (!query || !Object.keys(query).length) {
+        return all()       
     }
 
-    return Item.find(...buildSearchObject(options))
-        .sort(options.search ? { score: { $meta: "textScore" } } : "title")
-        .exec()
-        .catch(mongoErrorParser)
+    return some(query)
 }
 
 export function get(slug) {
