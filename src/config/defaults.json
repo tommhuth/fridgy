@@ -4,5 +4,6 @@
     "CONNECTION_STRING_TEST": "mongodb://localhost:27017/fridgyTest",
     "CONNECTION_POOL_SIZE": 1,
     "PORT": 3000,
-    "DEBUG": ""
+    "DEBUG": "",
+    "SEED": false
 }
