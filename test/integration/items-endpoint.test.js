@@ -9,7 +9,8 @@ let item = {
     amount: 1,
     category: "Test category",
     favorite: true,
-    listed: true
+    listed: true,
+    tags: ["tag"]
 }
 let existingItem
 
@@ -73,7 +74,7 @@ test("Should fail add item with missing input", function (done) {
             expect(res.status).to.equal(422)
             expect(res.message).to.be.ok
             expect(res.errors).to.be.an("array")
-            expect(res.errors.length).to.equal(3)
+            expect(res.errors.length).to.equal(4)
         })
         .end(done)
 })
@@ -95,8 +96,9 @@ test("Should fail with invalid JSON", function (done) {
 
 test("Should get single item by slug", function (done) {
     supertest(app)
-        .get("/api/items/" + existingItem.slug)
+        .get("/api/items/" + existingItem.slug) 
         .expect(200)
+        
         .expect(res => {
             res = res.body
 

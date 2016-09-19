@@ -10,67 +10,80 @@ let items = [
     {
         title:  "chocolate milk",
         category: 0,
-        unit: 0
+        unit: 0,
+        tags: ["snacks", "candy", "diary"]
     },
     {
         title:  "butter",
         category: 0,
-        unit: 2
+        unit: 2,
+        tags: ["basics", "frying", "diary"]
     },
     {
         title:  "cheese",
         category: 0,
-        unit: 1
+        unit: 1,
+        tags: ["bread","basics", "diary"]
     },
     {
         title:  "potatoes",
         category: 3,
-        unit: 1
+        unit: 1,
+        tags: ["dinner", "basics", "vegetables"]
     },
     {
         title:  "carrots",
         category: 3,
-        unit: 1
+        unit: 1,
+        tags: ["dinner", "basics", "vegetables"]
     },
     {
         title:  "lemon ice tea",
         category: 1,
-        unit: 0
+        unit: 0,
+        tags: ["drink"]
     },
     {
         title:  "beer",
         category: 1,
-        unit: 0
+        unit: 0,
+        tags: ["party", "drink"]
     },
     {
         title:  "pork chops",
         category: 2,
-        unit: 1
+        unit: 1,
+        tags: ["dinner", "basics", "meat"]
     },
     {
         title: "orange juice",
         category: 1,
-        unit: 0
+        unit: 0,
+        tags: ["drink", "breakfast"]
     },
     {
         title: "milk",
         category: 0,
-        unit: 0
+        unit: 0,
+        tags: ["drink", "basic", "dairy"]
     },
     {
         title: "olive oil",
         category: 4,
-        unit: 0
+        unit: 0,
+        tags: ["condiments", "dinner"]
     },
     {
         title: "fish fillet",
         category: 2,
-        unit: 1
+        unit: 1,
+        tags: ["dinner","meat", "basic"]
     },
     {
         title: "chicken drumsticks",
         category: 2,
-        unit: 1
+        unit: 1,
+        tags: ["dinner","meat", "basic"]
     }
 ]
 let categories = ["Diary", "drinkables", "Meat and fish", "fruit and vegetables", "condiments"]
@@ -88,13 +101,14 @@ export default function() {
                     unit: units[i.unit],
                     amount: Math.floor(Math.random() * 4),
                     favorite: Math.random() > .6,
-                    listed:  Math.random() > .7
+                    listed:  Math.random() > .7,
+                    tags: i.tags
                 })
-
+                
                 all.push(item.save())
             }
             
-            log(`Seeding collection ${items.length} items`)
+            log(`Seeding collection, ${items.length} items`)
             log(`${categories.length} unique categories`)
             log(`${units.length} unique units`)
 

@@ -13,7 +13,8 @@ let item = {
     amount: 1,
     unit: "kg",
     listed: true,
-    favorite: true
+    favorite: true,
+    tags: ["basics"]
 }
 
 test("#find() should get all items", function (done) {
@@ -48,10 +49,15 @@ test("#search() should find all items (partialy) containing 'ea' in the title or
         .catch(done)
 })
 
-test("#get() should return single item by slug", function (done) {
-    ItemRepo.get(existingItem.slug)
+test("#get() should return single item by slug, with calculated similar items", function (done) {
+    ItemRepo.get(existingItem.slug, true)
         .then(res => { 
             expect(res.slug).to.equal(existingItem.slug) 
+            expect(res.similar).to.be.an("array") 
+            expect(res.similar.length).to.be.above(0)
+            expect(res.similar.length).to.be.at.most(5)
+            expect(res.similar[0].slug).to.be.a("string") 
+            expect(res.similar[0].title).to.be.a("string")
             done()
         })
         .catch(done)
@@ -103,7 +109,7 @@ test("#insert() should fail add new item, missing fields", function (done) {
         })
         .catch(err => {
             expect(err).to.be.instanceof(ValidationError)
-            expect(err.errors.length).to.equal(3)
+            expect(err.errors.length).to.equal(4)
             done()
         })
 })

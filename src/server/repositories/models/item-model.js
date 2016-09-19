@@ -49,7 +49,11 @@ let ItemSchema = new mongoose.Schema(
             slug: "title", 
             unique: true,
             slug_padding_size: 1
-        } 
+        },
+        tags: {
+            type: [String],
+            required: true
+        }
     },
     {
         toObject: {

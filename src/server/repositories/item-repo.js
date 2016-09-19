@@ -27,13 +27,15 @@ export function search(keyword) {
 }
 
 export function insert(data) {
+    let tags = Array.isArray(data.tags) ? data.tags.map(tag => tag.trim().toLowerCase()) : null
     let item = new Item({
         title: toSentenceCase(data.title),
         category: toSentenceCase(data.category),
         unit: (data.unit || "").toLowerCase(),
         amount: data.amount,
         favorite: data.favorite,
-        listed: data.listed
+        listed: data.listed,
+        tags: tags
     })
 
     return item.save().catch(mongoErrorParser)
@@ -47,9 +49,17 @@ export function find(query) {
     return some(query)
 }
 
-export function get(slug) {
-    return Item.findOne({ slug })
-        .then(notFoundParser) 
+export function get(slug, includeSimiliar) {  
+    return Item.findOne({ slug }) 
+        .then(notFoundParser)  
+        .then(item => {
+            if(includeSimiliar && Array.isArray(item.tags) && item.tags.length){ 
+                return getSimilar(item.tags, item.slug)
+                    .then(similar => ({ ...item.toObject(), similar }))
+            } 
+
+            return item
+        })
         .catch(mongoErrorParser)
 }
 
@@ -67,14 +77,38 @@ export function update(slug, data) {
         }) 
         .catch(mongoErrorParser)
 }
-
+ 
 export function remove(slug) {
     return Item.find({ slug: slug }).remove().exec()
         .then(notFoundParser) 
         .catch(mongoErrorParser)
 }
 
+export function getSimilar(tags, excludeId) {
+    if(!Array.isArray(tags) || !tags.length) return
+
+    return Item.aggregate([
+        { $match: { tags: { $in: tags }, _id: { $ne: excludeId } } },
+        { $project: { tags: 1, slug: 1, title: 1 } },
+        { $unwind: "$tags" },
+        { $match: { tags: { $in: tags } } },
+        {
+            $group: {
+                "_id": "$_id",
+                "score": { $sum: 1 },
+                "slug": { $first: "$slug" },
+                "title": { $first: "$title" }
+            }
+        },
+        { $sort: { "score": -1 } },
+        { $limit: 5 },
+        { $project: { _id: 0,  slug: 1, title: 1, score: 1 } }
+    ]).exec()
+}
+
 export function aggregateCategories() {
+    // This should not be an error, eslint
+    /*eslint-disable indent*/
     return Item.aggregate([
             {
                 $group: {
@@ -85,19 +119,23 @@ export function aggregateCategories() {
         ])
         .exec()
         .then(data => data.map((e) => ({ category: e._id, popularity: e.popularity }))) 
-        .catch(mongoErrorParser)
+        .catch(mongoErrorParser) 
+    /*eslint-enable indent*/
 }
 
-export function aggregateUnits() {
+export function aggregateUnits() { 
+    // This should not be an error, eslint  
+    /*eslint-disable indent*/
     return Item.aggregate([
-        {
-            $group: {
-                _id: "$unit", popularity: { $sum: 1 }
-            }
-        },
-        { $sort: { "_id": 1 } }
-    ])
+            {
+                $group: {
+                    _id: "$unit", popularity: { $sum: 1 }
+                }
+            },
+            { $sort: { "_id": 1 } }
+        ])
         .exec()
         .then(data => data.map((e) => ({ unit: e._id, popularity: e.popularity }))) 
-        .catch(mongoErrorParser)
+        .catch(mongoErrorParser)  
+    /*eslint-enable indent*/
 }

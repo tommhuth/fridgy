@@ -1,7 +1,7 @@
 "use strict"
 
 import express from "express"
-import * as ItemRepo  from "../repositories/item-repo"
+import * as ItemRepo  from "../repositories/item-repo" 
 
 let router = express.Router()
 
@@ -18,7 +18,7 @@ router.get("/", function (req, res, next) {
 })
 
 router.get("/:slug", function (req, res, next) {
-    ItemRepo.get(req.params.slug)
+    ItemRepo.get(req.params.slug, true)
         .then(item => res.json(item))
         .catch(error => next(error))
 })
@@ -33,6 +33,6 @@ router.delete("/:slug", function (req, res, next) {
     ItemRepo.remove(req.params.slug)
         .then(() => res.status(204).end())
         .catch(error => next(error))
-})
+}) 
 
 export default router
