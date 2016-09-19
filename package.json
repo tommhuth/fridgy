@@ -59,8 +59,10 @@
   },
   "scripts": {
     "start": "cross-env DEBUG=fridgy-server,fridgy-server:* nodemon --debug   src/server/server.js --watch src/server  --exec babel-node --presets es2015,stage-2",
-    "build-server": "babel src/server -d build --presets es2015,stage-2 ",
-    "serve": "node build/app.js",
+    "build-server": "babel src/server -d build/server --presets es2015,stage-2 --copy-files",
+    "build-config": "babel src/config -d build/config --presets es2015,stage-2 --copy-files",
+    "build":"npm run build-server&& npm run build-config",
+    "serve": "cross-env DEBUG=fridgy-server,fridgy-server:* node build/server/server.js",
     "build-react": "babel  src/app -d build/script   -x '.jsx'",
     "webpack": "webpack -w",
     "lint": "eslint src/ --ext 'jsx' --ext 'js'",
