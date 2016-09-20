@@ -136,3 +136,26 @@ export function aggregateUnits() {
         .catch(mongoErrorParser)  
     /*eslint-enable indent*/
 }
+
+export function aggregateTags() {  
+    /*eslint-disable indent*/
+    return Item.aggregate([
+            { $project: { tags: "$tags" } },
+            { $unwind: "$tags" },
+            {
+                $group: {
+                    _id: "$tags", score: { $sum: 1 }
+                }
+            },
+            { $sort: { "score": -1, "_id": 1 } },
+            {
+                $group: {
+                    _id: null, tags: { $addToSet: "$_id" }
+                }
+            }
+        ])
+        .exec()
+        .then(data => data[0].tags) 
+        .catch(mongoErrorParser)  
+    /*eslint-enable indent*/
+}
