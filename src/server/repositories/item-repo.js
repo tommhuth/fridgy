@@ -53,7 +53,7 @@ export function get(slug, includeSimiliar) {
         .then(notFoundParser)
         .then(item => {
             if (includeSimiliar && Array.isArray(item.tags) && item.tags.length) {
-                return getSimilar(item.tags, item.slug)
+                return getSimilar(item.tags, item.id)
                     .then(similar => ({ ...item.toObject(), similar }))
             }
 
@@ -147,15 +147,10 @@ export function aggregateTags() {
                     _id: "$tags", score: { $sum: 1 }
                 }
             },
-            { $sort: { "score": -1, "_id": 1 } },
-            {
-                $group: {
-                    _id: null, tags: { $addToSet: "$_id" }
-                }
-            }
+            { $sort: { "score": -1, "_id": 1 } } 
         ])
         .exec()
-        .then(data => data[0].tags) 
+        .then(data => data.map(e => e._id)) 
         .catch(mongoErrorParser)  
     /*eslint-enable indent*/
 }
