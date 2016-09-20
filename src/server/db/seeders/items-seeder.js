@@ -11,31 +11,31 @@ let items = [
         title:  "chocolate milk",
         category: 0,
         unit: 0,
-        tags: ["snacks", "candy", "diary"]
+        tags: ["snacks", "candy", "dairy"]
     },
     {
         title:  "butter",
         category: 0,
         unit: 2,
-        tags: ["basics", "frying", "diary"]
+        tags: ["basic", "frying", "dairy"]
     },
     {
         title:  "cheese",
         category: 0,
         unit: 1,
-        tags: ["bread","basics", "diary"]
+        tags: ["bread","basic", "dairy"]
     },
     {
         title:  "potatoes",
         category: 3,
         unit: 1,
-        tags: ["dinner", "basics", "vegetables"]
+        tags: ["dinner", "basic", "vegetables"]
     },
     {
         title:  "carrots",
         category: 3,
         unit: 1,
-        tags: ["dinner", "basics", "vegetables"]
+        tags: ["dinner", "basic", "vegetables"]
     },
     {
         title:  "lemon ice tea",
@@ -53,7 +53,7 @@ let items = [
         title:  "pork chops",
         category: 2,
         unit: 1,
-        tags: ["dinner", "basics", "meat"]
+        tags: ["dinner", "basic", "meat"]
     },
     {
         title: "orange juice",
@@ -86,7 +86,7 @@ let items = [
         tags: ["dinner","meat", "basic"]
     }
 ]
-let categories = ["Diary", "drinkables", "Meat and fish", "fruit and vegetables", "condiments"]
+let categories = ["dairy", "drinkables", "Meat and fish", "fruit and vegetables", "condiments"]
 let units = ["l", "pcs", "kg"]
 
 export default function() {
