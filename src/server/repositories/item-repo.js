@@ -1,11 +1,10 @@
 import { default as Item } from "./models/item-model"
-import { default as notFoundParser } from "../parsers/not-found-parser" 
+import { default as notFoundParser } from "../parsers/not-found-parser"
 import { default as mongoErrorParser } from "../parsers/mongo-error-parser"
 import { default as toSentenceCase } from "../helpers/to-sentence-case"
 import buildSearchObject from "../helpers/build-search-query"
 
-
-function some(query) { 
+function some(query) {
     return Item.find(...buildSearchObject(query))
         .sort(query.search ? { score: { $meta: "textScore" } } : "title")
         .exec()
@@ -20,7 +19,7 @@ function all() {
 }
 
 export function search(keyword) {
-    return Item.find({ $or: [{ title: new RegExp(keyword, "i") },{ category:  new RegExp(keyword, "i") } ] })
+    return Item.find({ $or: [{ title: new RegExp(keyword, "i") }, { category: new RegExp(keyword, "i") }] })
         .sort("title")
         .exec()
         .catch(mongoErrorParser)
@@ -41,22 +40,22 @@ export function insert(data) {
     return item.save().catch(mongoErrorParser)
 }
 
-export function find(query) {   
+export function find(query) {
     if (!query || !Object.keys(query).length) {
-        return all()       
+        return all()
     }
 
     return some(query)
 }
 
-export function get(slug, includeSimiliar) {  
-    return Item.findOne({ slug }) 
-        .then(notFoundParser)  
+export function get(slug, includeSimiliar) {
+    return Item.findOne({ slug })
+        .then(notFoundParser)
         .then(item => {
-            if(includeSimiliar && Array.isArray(item.tags) && item.tags.length){ 
+            if (includeSimiliar && Array.isArray(item.tags) && item.tags.length) {
                 return getSimilar(item.tags, item.slug)
                     .then(similar => ({ ...item.toObject(), similar }))
-            } 
+            }
 
             return item
         })
@@ -74,18 +73,18 @@ export function update(slug, data) {
             item.favorite = typeof data.favorite === "boolean" ? data.favorite : item.favorite
 
             return item.save()
-        }) 
+        })
         .catch(mongoErrorParser)
 }
- 
+
 export function remove(slug) {
     return Item.find({ slug: slug }).remove().exec()
-        .then(notFoundParser) 
+        .then(notFoundParser)
         .catch(mongoErrorParser)
 }
 
 export function getSimilar(tags, excludeId) {
-    if(!Array.isArray(tags) || !tags.length) return
+    if (!Array.isArray(tags) || !tags.length) return
 
     return Item.aggregate([
         { $match: { tags: { $in: tags }, _id: { $ne: excludeId } } },
@@ -102,12 +101,11 @@ export function getSimilar(tags, excludeId) {
         },
         { $sort: { "score": -1 } },
         { $limit: 5 },
-        { $project: { _id: 0,  slug: 1, title: 1, score: 1 } }
+        { $project: { _id: 0, slug: 1, title: 1 } }
     ]).exec()
 }
 
-export function aggregateCategories() {
-    // This should not be an error, eslint
+export function aggregateCategories() { 
     /*eslint-disable indent*/
     return Item.aggregate([
             {
@@ -123,8 +121,7 @@ export function aggregateCategories() {
     /*eslint-enable indent*/
 }
 
-export function aggregateUnits() { 
-    // This should not be an error, eslint  
+export function aggregateUnits() {  
     /*eslint-disable indent*/
     return Item.aggregate([
             {
