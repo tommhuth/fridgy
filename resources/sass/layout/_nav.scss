@@ -1,45 +1,35 @@
 .nav {
     &.is-open {
         .nav-wrapper {
-            display: block;
+            display: block; 
         } 
 
         .nav-toggle-button {
-            color: #000 !important; 
-            background-color: #FFF !important;
-        }
+            color: #fff !important;  
+        } 
     }
 
     .nav-toggle-button {
         transition:all .35s $anim-bouncy ; 
         position: relative;
-        margin: 3em 0 0 0; 
-        border-radius: 50%;  
-        padding: 1em; 
-        background-color: #000;
-        color:#FFF;
-        font-size:.85em;
+        margin: 3em 0 0 0;   
+        color:#000;
+        font-size: 1.25em;
         z-index: 2;
 
-        &:focus, &:hover {
-            background: $blue ;
-            color: #FFF ; 
-            padding: 1.75em;
-            margin: 2.25em 0 -.75em -.75em;
-            border-color: $blue;
+        &:focus, &:hover { 
+            color: $blue;
 
-            .app.is-special & {
-                background-color: #FFF;
-                color: #000; 
+            .app.is-special & { 
+                color: #fff; 
             }
         }
         
-        .app.is-special & {
-            background-color: #FFF;
-            color: $blue; 
-
+        .app.is-special & { 
+            color: #FFF; 
+ 
              &:focus, &:hover {
-                color: $blue; 
+                color: #FFF; 
              }
         }
 
@@ -58,7 +48,7 @@
         background: rgba(#000, 1);
         color: #FFF;
         display: none;
-
+     
         .container {
             height: 100%;
             position: relative;
@@ -68,6 +58,7 @@
             position: absolute;
             bottom: 10vh;
             left: 0;
+            right:0;
         }
 
         li {
@@ -76,6 +67,19 @@
             text-transform: lowercase;
             letter-spacing: -.025em;
             line-height: 1.125;
+
+            div {
+                padding: .075em 0;
+            }
+
+            a {
+                transition: all .25s;
+            }
+
+            a:hover {
+                display: block; 
+                color: $blue; 
+            }
         }
     }
 }
