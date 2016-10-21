@@ -1,5 +1,7 @@
 import nconf from "nconf"
-import defaults from "./defaults.json"
+import fs from "fs" 
+
+const defaults = JSON.parse(fs.readFileSync(__dirname + "/defaults.json"))
  
 nconf.argv().env().defaults(defaults)
 

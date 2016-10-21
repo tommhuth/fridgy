@@ -10,7 +10,7 @@ import compression from "compression"
 import serveStatic from "serve-static"
 import debug from "debug"
 import seeder from "./db/seeders"
-import config, { base as baseConfig } from "../config/config-loader"
+import config, { base as baseConfig } from "./config/config-loader"
 import * as globalErrorHandlers from "./routes/global-error-handlers"
 
 export const app = express()
@@ -37,7 +37,11 @@ export function start() {
 
 export function close() {
     return new Promise((resolve) => {
-        server ? server.close(resolve) : resolve()
+        if (server) {
+            server.close()
+        }
+
+        resolve()
     })
 } 
 

@@ -1,7 +1,7 @@
 "use strict"
 
 import mongoose from "mongoose"
-import config from "../../config/config-loader"
+import config from "../config/config-loader"
 import debug from "debug"
 
 const log = debug("fridgy-server:db")
