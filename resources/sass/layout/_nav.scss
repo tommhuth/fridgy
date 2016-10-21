@@ -10,7 +10,7 @@
     }
 
     .nav-toggle-button {
-        transition:all .35s $anim-bouncy ; 
+        transition:none ; 
         position: relative;
         margin: 3em 0 0 0;   
         color:#000;
@@ -66,19 +66,26 @@
             font-weight: bold;
             text-transform: lowercase;
             letter-spacing: -.025em;
-            line-height: 1.125;
-
-            div {
-                padding: .075em 0;
-            }
+            line-height: 1.125; 
+            margin-bottom: .2em;
 
             a {
                 transition: all .25s;
             }
 
-            a:hover {
-                display: block; 
+            .icon {
+                margin-bottom: -.125em;
+                font-size: .35em; 
+                margin-left: .25em;
+                opacity: .05;
+            }
+
+            a:hover, a:focus { 
                 color: $blue; 
+
+                .icon {
+                    opacity: 1;
+                }
             }
         }
     }

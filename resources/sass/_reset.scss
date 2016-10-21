@@ -39,8 +39,7 @@ html, body { height: 100%; }
 
 a {
     text-decoration: none;
-    color: inherit;
-    transition: color .2s;
+    color: inherit; 
 
     &:focus, &:hover {
         color: $blue;
@@ -106,10 +105,7 @@ input, button, select {
     font-family: inherit;
     font-size: inherit;
 }
-
-select {
-}
-
+  
 a:active {
     background-color: transparent;
 }

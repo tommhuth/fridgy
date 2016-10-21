@@ -4,8 +4,19 @@
     position: relative;
     color: #000;
     text-align: left;
-    padding: 3em 0;
-    margin-top: -23em;
-    animation: slide-up .35s ;
-    box-shadow: 0 15em  0 rgba(#FFF, 1), -1em 0 1em rgba(#000, .5);
+    padding: 2.5em ; 
+    margin: -6.15em -2.25em 3.25em;
+    position: relative;
+    border-radius: .125em;
+    animation: slide-up .35s ; 
+
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 2.25em;
+        border-left: 1em transparent solid;
+        border-right: 1em transparent solid;
+        border-bottom: 1em #FFF solid;
+    }
 }

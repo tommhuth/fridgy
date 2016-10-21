@@ -2,10 +2,11 @@
     padding-bottom: 4em;
     min-height: 100vh;
     box-sizing: border-box;
-    transition: background .25s; 
+    transition: background .35s;  
 
     &.is-special {
-        background-color: $blue; 
-        color: #FFF;
+        background-color: $blue;  
+        color: #FFF; 
     }
 }
+ 

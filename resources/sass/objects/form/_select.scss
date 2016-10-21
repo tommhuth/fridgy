@@ -5,11 +5,12 @@
     overflow: hidden;
     font-size: 1.25em;
     margin-bottom: .75em; 
-    transition:   background .2s ;
+    transition:   background .2s ; 
 
     span {
         text-transform: lowercase;
         display: block;
+        border-radius: .1em;
         position: relative;
         border: .135em  solid #000;
         padding: .5em  2.25em .5em .75em ;

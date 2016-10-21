@@ -16,7 +16,7 @@ body {
     color: #000;
 
     $size: 56;
-    $font-size: 1;
+    $font-size: 1.15;
 
     @while $size < 130 {
         @media (min-width: $size + em){
@@ -24,7 +24,7 @@ body {
         }
 
         $size: $size + 12.5;
-        $font-size: $font-size + .15;
+        $font-size: $font-size + .075;
     }
 }
 
