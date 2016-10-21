@@ -23,10 +23,10 @@ class Nav extends Component {
                 <div className="nav-wrapper">
                     <div className="container"> 
                         <ul onClick={this.props.toggleVisibility}>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/items">The fridge</Link></li>
-                            <li><Link to="/checklist">Checklist</Link></li>
-                            <li><Link to="/about">About</Link></li>
+                            <li><Link to="/">Home <Icon title="arrow-right"/></Link></li>
+                            <li><Link to="/items">The fridge <Icon title="arrow-right"/></Link></li>
+                            <li><Link to="/checklist">Checklist <Icon title="arrow-right"/></Link></li>
+                            <li><Link to="/about">About <Icon title="arrow-right"/></Link></li>
                         </ul>
                     </div>
                 </div>

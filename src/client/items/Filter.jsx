@@ -45,9 +45,9 @@ class Filter extends Component {
                     onChange={this.handleStockChange.bind(this)}
                     selectedValue=""
                     selectedText="In and out of stock">
-                    <option value="">In and out of stock</option>
-                    <option value="IN_STOCK">In stock</option>
-                    <option value="OUT_OF_STOCK">Out of stock</option>
+                    <option key={1} value="">In and out of stock</option>
+                    <option key={2} value="IN_STOCK">In stock</option>
+                    <option key={3} value="OUT_OF_STOCK">Out of stock</option>
                 </Select> 
             </fieldset>
         )

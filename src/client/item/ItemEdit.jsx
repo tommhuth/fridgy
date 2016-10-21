@@ -62,9 +62,9 @@ class ItemEdit extends Component {
     }
     render(){
         let item = this.props.item
-        return (
-            <div className="item-edit" >
-                <div className="container-fixed">
+        return ( 
+            <div className="container">
+                <div className="item-edit" >
                     <fieldset>
                         <legend className="visually-hidden">Edit {item.title}</legend>
 
