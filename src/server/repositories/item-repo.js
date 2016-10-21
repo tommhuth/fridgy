@@ -116,7 +116,7 @@ export function aggregateCategories() {
             { $sort: { "popularity": -1 } }
         ])
         .exec()
-        .then(data => data.map((e) => ({ category: e._id, popularity: e.popularity }))) 
+        .then(data => data.map((e) => ({ name: e._id, popularity: e.popularity }))) 
         .catch(mongoErrorParser) 
     /*eslint-enable indent*/
 }
@@ -132,7 +132,7 @@ export function aggregateUnits() {
             { $sort: { "_id": 1 } }
         ])
         .exec()
-        .then(data => data.map((e) => ({ unit: e._id, popularity: e.popularity }))) 
+        .then(data => data.map((e) => ({ name: e._id, popularity: e.popularity }))) 
         .catch(mongoErrorParser)  
     /*eslint-enable indent*/
 }
