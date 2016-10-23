@@ -33,7 +33,7 @@ export function start() {
                 return seeder()
             }
         })
-        .catch(e => log(e))
+        .catch(log)
 }
 
 export function close() {
@@ -51,7 +51,7 @@ app.engine("mustache", mustache())
 app.use(compression())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.set("views", "./src/server/views")
+app.set("views", "./resources/views")
 app.set("view engine", "mustache")
 
 // static files
