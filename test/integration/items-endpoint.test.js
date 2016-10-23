@@ -2,7 +2,7 @@ import { expect } from "chai"
 import { app } from "../../src/server/server"
 import supertest from "supertest"
 
-suite("API - /api/items")
+suite("API: /api/items")
 
 let item = {
     title: "Test",
@@ -30,7 +30,7 @@ test("Should get all items", function (done) {
 test("Should search for items", function (done) {
     supertest(app)
         .get("/api/items")
-        .query({ search: "milk", category: "diary" })
+        .query({ search: "milk", category: "dairy" })
         .expect(200)
         .expect(res => {
             res = res.body

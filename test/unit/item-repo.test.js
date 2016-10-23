@@ -29,8 +29,8 @@ test("#find() should get all items", function (done) {
         .catch(done)
 })
 
-test("#find() should search for 'chocolate', category = diary, ignoring case", function (done) {
-    ItemRepo.find({ search: "chocolate", category: "diary"})
+test("#find() should search for 'chocolate', category = dairy, ignoring case", function (done) {
+    ItemRepo.find({ search: "chocolate", category: "dairy"})
         .then(res => { 
             expect(res).to.be.an("array")
             expect(res.length).to.equal(1) 

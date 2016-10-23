@@ -2,7 +2,7 @@ import { expect } from "chai"
 import { app } from "../../src/server/server"
 import supertest from "supertest"
 
-suite("API - /api/tags")
+suite("API: /api/tags")
 
 test("Should get all tags aggregated", function (done) {
     supertest(app)
