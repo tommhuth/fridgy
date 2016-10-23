@@ -25,7 +25,7 @@ export function search(keyword) {
         .catch(mongoErrorParser)
 }
 
-export function insert(data) {
+export async function insert(data) {
     let tags = Array.isArray(data.tags) ? data.tags.map(tag => tag.trim().toLowerCase()) : null
     let item = new Item({
         title: toSentenceCase(data.title),

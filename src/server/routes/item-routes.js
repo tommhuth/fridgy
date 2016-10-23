@@ -5,10 +5,17 @@ import * as ItemRepo from "../repositories/item-repo"
 
 let router = express.Router()
 
-router.post("/", function (req, res, next) {
-    ItemRepo.insert(req.body)
-        .then(item => res.status(201).json(item))
-        .catch(error => next(error))
+
+
+
+router.post("/", async function(req, res, next) {
+    try { 
+        let item = await ItemRepo.insert(req.body)
+
+        res.status(201).json(item)
+    } catch(e) {
+        next(e)
+    } 
 })
 
 router.get("/", function (req, res, next) { 
