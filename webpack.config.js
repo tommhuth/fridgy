@@ -10,12 +10,12 @@ module.exports = {
                 exclude: /(node_modules)/,
                 loader: "babel",
                 query: {
-                    presets: ['react', 'es2015', 'stage-2', "stage-3"]
+                    presets: ["react", "es2015", "stage-2", "stage-3"]
                 }
             }
         ]
     },
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ["", ".js", ".jsx"]
     }
-};
+}
