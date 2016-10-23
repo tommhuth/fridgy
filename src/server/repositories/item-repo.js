@@ -18,7 +18,7 @@ function all() {
         .catch(mongoErrorParser)
 }
 
-export function search(keyword) {
+export async function search(keyword) {
     return Item.find({ $or: [{ title: new RegExp(keyword, "i") }, { category: new RegExp(keyword, "i") }] })
         .sort("title")
         .exec()
@@ -40,7 +40,7 @@ export async function insert(data) {
     return item.save().catch(mongoErrorParser)
 }
 
-export function find(query) {
+export async function find(query) {
     if (!query || !Object.keys(query).length) {
         return all()
     }
@@ -48,7 +48,7 @@ export function find(query) {
     return some(query)
 }
 
-export function get(slug, includeSimiliar) {
+export async function get(slug, includeSimiliar) {
     return Item.findOne({ slug })
         .then(notFoundParser)
         .then(item => {
@@ -62,7 +62,7 @@ export function get(slug, includeSimiliar) {
         .catch(mongoErrorParser)
 }
 
-export function update(slug, data) {
+export async function update(slug, data) {
     return get(slug)
         .then(item => {
             item.title = data.title || item.title
@@ -77,13 +77,13 @@ export function update(slug, data) {
         .catch(mongoErrorParser)
 }
 
-export function remove(slug) {
+export async function remove(slug) {
     return Item.find({ slug: slug }).remove().exec()
         .then(notFoundParser)
         .catch(mongoErrorParser)
 }
 
-export function getSimilar(tags, excludeId) {
+export async function getSimilar(tags, excludeId) {
     if (!Array.isArray(tags) || !tags.length) return
 
     return Item.aggregate([
