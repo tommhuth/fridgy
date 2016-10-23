@@ -5,10 +5,12 @@ import * as ItemRepo from "../repositories/item-repo"
 
 let router = express.Router()
 
-router.get("/", function (req, res, next) {
-    ItemRepo.aggregateTags()
-        .then((data) => res.json(data))
-        .catch((error) => next(error))
+router.get("/", async function (req, res, next) {
+    try {
+        res.status(200).json(await ItemRepo.aggregateTags())
+    } catch (e) {
+        next(e)
+    }
 })
 
 

@@ -1,45 +1,48 @@
 "use strict"
 
 import express from "express"
-import * as ItemRepo from "../repositories/item-repo" 
+import * as ItemRepo from "../repositories/item-repo"
 
 let router = express.Router()
 
-
-
-
-router.post("/", async function(req, res, next) {
-    try { 
-        let item = await ItemRepo.insert(req.body)
-
-        res.status(201).json(item)
-    } catch(e) {
+router.post("/", async function (req, res, next) {
+    try {
+        res.status(201).json(await ItemRepo.insert(req.body))
+    } catch (e) {
         next(e)
-    } 
+    }
 })
 
-router.get("/", function (req, res, next) { 
-    ItemRepo.find(req.query)
-        .then(items => res.json(items))
-        .catch(error => next(error))
+router.get("/", async function (req, res, next) {
+    try {
+        res.status(200).json(await ItemRepo.find(req.query))
+    } catch (e) {
+        next(e)
+    }
 })
 
-router.get("/:slug", function (req, res, next) {
-    ItemRepo.get(req.params.slug, true)
-        .then(item => res.json(item))
-        .catch(error => next(error))
+router.get("/:slug", async function (req, res, next) {
+    try {
+        res.status(200).json(await ItemRepo.get(req.params.slug, true))
+    } catch (e) {
+        next(e)
+    }
 })
 
-router.put("/:slug", function (req, res, next) {
-    ItemRepo.update(req.params.slug, req.body)
-        .then(item => res.json(item))
-        .catch(error => next(error))
+router.patch("/:slug", async function (req, res, next) {
+    try {
+        res.status(200).json(await ItemRepo.update(req.params.slug, req.body))
+    } catch (e) {
+        next(e)
+    }
 })
 
-router.delete("/:slug", function (req, res, next) {
-    ItemRepo.remove(req.params.slug)
-        .then(() => res.status(204).end())
-        .catch(error => next(error))
-}) 
+router.delete("/:slug", async function (req, res, next) {
+    try {
+        res.status(204).json(await ItemRepo.remove(req.params.slug))
+    } catch (e) {
+        next(e)
+    }
+})
 
 export default router

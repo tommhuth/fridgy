@@ -111,7 +111,7 @@ test("Should get single item by slug", function (done) {
 
 test("Should (partialy) update single item, ignoring invalid values", function (done) {
     supertest(app)
-        .put("/api/items/" + existingItem.slug)
+        .patch("/api/items/" + existingItem.slug)
         .send({
             title: null,
             category: "Category",

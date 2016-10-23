@@ -105,7 +105,7 @@ export function getSimilar(tags, excludeId) {
     ]).exec()
 }
 
-export function aggregateCategories() { 
+export async function aggregateCategories() { 
     /*eslint-disable indent*/
     return Item.aggregate([
             {
@@ -121,7 +121,7 @@ export function aggregateCategories() {
     /*eslint-enable indent*/
 }
 
-export function aggregateUnits() {  
+export async function aggregateUnits() {  
     /*eslint-disable indent*/
     return Item.aggregate([
             {
@@ -137,7 +137,7 @@ export function aggregateUnits() {
     /*eslint-enable indent*/
 }
 
-export function aggregateTags() {  
+export async function aggregateTags() {  
     /*eslint-disable indent*/
     return Item.aggregate([
             { $project: { tags: "$tags" } },
