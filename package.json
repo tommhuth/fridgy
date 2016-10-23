@@ -19,6 +19,7 @@
     "mongoose-unique-validator": "^1.0.2",
     "mustache-express": "^1.2.2",
     "nconf": "^0.8.4",
+    "ngrok": "^2.2.3",
     "node-uuid": "^1.4.7",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
@@ -65,6 +66,7 @@
     "build-client-dev": "webpack -w",
     "lint": "eslint src/ --ext 'jsx' --ext 'js'",
     "test": "cross-env NODE_ENV=test mocha   --ui qunit --compilers js:babel-register --recursive ",
+    "ngrok": "ngrok http localhost:3000" ,
     "nodemon": "cross-env DEBUG=fridgy-server,fridgy-server:* nodemon --debug   src/server.js --watch src/server  --exec babel-node --presets es2015,stage-2"
   },
   "repository": {
