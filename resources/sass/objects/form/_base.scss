@@ -37,6 +37,10 @@ label:not([for]) {
     input {
         opacity:0;
         position: absolute;
+
+        &:focus + svg {
+            color: $blue;
+        }
     }
 }
  

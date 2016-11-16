@@ -10,7 +10,7 @@
     vertical-align: top;
     overflow: hidden;
     position: relative;
-    border-radius: .1em;
+    border-radius: .15em;
     
     &:last-child {
         margin-right: 0;
@@ -47,8 +47,7 @@
     &.has-focus{
         color: #FFF;
 
-        &::before {
-            opacity: 1;
+        &::before { 
             width: 130%;
             padding-top: 130%;
             transition:width .25s, padding-top .25s, opacity .45s ;
@@ -68,8 +67,7 @@
         z-index: 0;
         top: 50%;
         border-radius: 50%;
-        left: 50%;
-        opacity: 0;
+        left: 50%; 
     }
 
     .inner {
