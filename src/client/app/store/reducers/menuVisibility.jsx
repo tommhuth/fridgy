@@ -1,4 +1,3 @@
-
 export default (state = false, action) => {
     switch(action.type) {
     case "SHOW_MENU": return true

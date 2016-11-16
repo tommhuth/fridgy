@@ -1,5 +1,3 @@
-"use strict"
-
 import mongoose from "mongoose"
 import config from "../config/config-loader"
 import debug from "debug"

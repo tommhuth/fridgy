@@ -1,6 +1,5 @@
 import fetch from "isomorphic-fetch"
 
-
 export function deleteItem(item){
     return (dispatch) => {
         dispatch(clearItem(item._id))

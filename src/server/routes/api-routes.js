@@ -1,5 +1,3 @@
-"use strict"
-
 import express from "express"
 import itemRouter from "./item-routes"
 import categoriesRouter from "./category-routes"

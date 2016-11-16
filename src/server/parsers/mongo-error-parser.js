@@ -1,5 +1,3 @@
-"use strict"
-
 import { MongoError } from "../errors/mongo-error"
 import { ValidationError } from "../errors/validation-error"
 import { DuplicateSlugError } from "../errors/duplicate-slug-error"

@@ -1,5 +1,3 @@
-"use strict"
-
 import Item from "../../repositories/models/item-model"
 import { default as toSentenceCase } from "../../helpers/to-sentence-case"
 import debug from "debug"

@@ -1,5 +1,3 @@
-"use strict"
-
 import mongoose from "mongoose"
 import timestamps from "mongoose-timestamp"
 import slugger from "mongoose-slug-generator"

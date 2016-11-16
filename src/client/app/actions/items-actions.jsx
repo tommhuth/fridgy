@@ -1,6 +1,5 @@
 import fetch from "isomorphic-fetch"
 
-
 export function fetchItems() {
     return (dispatch) => {
         dispatch(loadingItems())

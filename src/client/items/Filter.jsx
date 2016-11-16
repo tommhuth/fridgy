@@ -4,7 +4,6 @@ import { setCategoryFilter, setStockFilter } from "../app/actions/filter-actions
 import { fetchCategories } from "../app/actions/categories-actions"
 import Select from "../shared/Select"
 
-
 class Filter extends Component {
     componentDidMount(){
         this.props.fetchCategories()
