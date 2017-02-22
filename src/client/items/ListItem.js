@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { Link } from "react-router"
 import { connect } from "react-redux"
 import Icon from "../shared/Icon"
-import { deleteItem } from "../app/actions/item-actions"
+import { deleteItem } from "../data/store/actions/item-actions"
 
 class ListItem extends Component {
     render() {

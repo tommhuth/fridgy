@@ -4,7 +4,7 @@ import ButtonLink from "../shared/ButtonLink"
 import Button from "../shared/Button"
 import Icon from "../shared/Icon"
 import Cloak from "../shared/Cloak"
-import { fetchItem, clearItem } from "../app/actions/item-actions"
+import { fetchItem, clearItem } from "../data/store/actions/item-actions"
 
 class Item extends Component {
     componentWillUnmount() {

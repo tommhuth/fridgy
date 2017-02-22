@@ -1,12 +1,12 @@
 module.exports = {
-    entry: "./src/client/client.jsx",
+    entry: "./src/client/client.js",
     output: {
         filename: "public/js/bundle.js"
     },
     module: {
         loaders:[
             {
-                test: /\.jsx?$/,
+                test: /\.js$/,
                 exclude: /(node_modules)/,
                 loader: "babel",
                 query: {
@@ -16,6 +16,6 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ["", ".js", ".jsx"]
+        extensions: ["", ".js"]
     }
 }

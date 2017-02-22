@@ -3,8 +3,8 @@ import ItemsList from "./ItemsList"
 import Cloak from "../shared/Cloak"
 import Filter from "./Filter"
 import { connect } from "react-redux"
-import { fetchItems } from "../app/actions/items-actions"
-import { filterItems } from "../app/actions/filter-actions"
+import { fetchItems } from "../data/store/actions/items-actions"
+import { filterItems } from "../data/store/actions/filter-actions"
 
 class Items extends Component {
     componentDidMount(){

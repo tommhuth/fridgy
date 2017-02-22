@@ -15,7 +15,7 @@ class App extends Component {
                      toggleVisibility={this.props.toggleVisibility} />
 
                 <main id="main"
-                      tabindex="-1"
+                      tabIndex="-1"
                       className={"main " + (this.props.menuVisibility ? "hidden" : "")}>
                     { this.props.children }
                 </main>

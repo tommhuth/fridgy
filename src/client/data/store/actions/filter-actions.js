@@ -16,12 +16,12 @@ export function filterItems(items, filter) {
     let filtered = [...items]
 
     switch(filter.stock) {
-    case "IN_STOCK":
-        filtered = filtered.filter(e => e.amount > 0)
-        break
-    case "OUT_OF_STOCK":
-        filtered = filtered.filter(e => !e.amount )
-        break
+        case "IN_STOCK":
+            filtered = filtered.filter(e => e.amount > 0)
+            break
+        case "OUT_OF_STOCK":
+            filtered = filtered.filter(e => !e.amount )
+            break
     }
 
     if(filter.category) {

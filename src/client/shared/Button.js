@@ -25,7 +25,7 @@ class Button extends Component {
                         onClick={this.props.onClick}
                         className={className}>
                     <span className="inner"
-                          onTocuhStart={this.setFocus.bind(this)}
+                          onTouchStart={this.setFocus.bind(this)}
                           onBlur={this.setBlur.bind(this)}>
                         {this.props.children}
                     </span>

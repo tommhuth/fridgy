@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { setCategoryFilter, setStockFilter } from "../app/actions/filter-actions"
-import { fetchCategories } from "../app/actions/categories-actions"
+import { setCategoryFilter, setStockFilter } from "../data/store/actions/filter-actions"
+import { fetchCategories } from "../data/store/actions/categories-actions"
 import Select from "../shared/Select"
 
 class Filter extends Component {

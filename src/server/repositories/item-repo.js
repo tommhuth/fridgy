@@ -18,14 +18,14 @@ function all() {
         .catch(mongoErrorParser)
 }
 
-export async function search(keyword) {
+export function search(keyword) {
     return Item.find({ $or: [{ title: new RegExp(keyword, "i") }, { category: new RegExp(keyword, "i") }] })
         .sort("title")
         .exec()
         .catch(mongoErrorParser)
 }
 
-export async function insert(data) {
+export function insert(data) {
     let tags = Array.isArray(data.tags) ? data.tags.map(tag => tag.trim().toLowerCase()) : null
     let item = new Item({
         title: toSentenceCase(data.title),
@@ -40,7 +40,7 @@ export async function insert(data) {
     return item.save().catch(mongoErrorParser)
 }
 
-export async function find(query) {
+export function find(query) {
     if (!query || !Object.keys(query).length) {
         return all()
     }
@@ -48,7 +48,7 @@ export async function find(query) {
     return some(query)
 }
 
-export async function get(slug, includeSimiliar) {
+export function get(slug, includeSimiliar) {
     return Item.findOne({ slug })
         .then(notFoundParser)
         .then(item => {
@@ -62,7 +62,7 @@ export async function get(slug, includeSimiliar) {
         .catch(mongoErrorParser)
 }
 
-export async function update(slug, data) {
+export function update(slug, data) {
     return get(slug)
         .then(item => {
             item.title = data.title || item.title
@@ -77,13 +77,13 @@ export async function update(slug, data) {
         .catch(mongoErrorParser)
 }
 
-export async function remove(slug) {
+export function remove(slug) {
     return Item.find({ slug: slug }).remove().exec()
         .then(notFoundParser)
         .catch(mongoErrorParser)
 }
 
-export async function getSimilar(tags, excludeId) {
+export function getSimilar(tags, excludeId) {
     if (!Array.isArray(tags) || !tags.length) return
 
     return Item.aggregate([
@@ -105,7 +105,7 @@ export async function getSimilar(tags, excludeId) {
     ]).exec()
 }
 
-export async function aggregateCategories() { 
+export function aggregateCategories() { 
     /*eslint-disable indent*/
     return Item.aggregate([
             {
@@ -121,7 +121,7 @@ export async function aggregateCategories() {
     /*eslint-enable indent*/
 }
 
-export async function aggregateUnits() {  
+export function aggregateUnits() {  
     /*eslint-disable indent*/
     return Item.aggregate([
             {
@@ -137,7 +137,7 @@ export async function aggregateUnits() {
     /*eslint-enable indent*/
 }
 
-export async function aggregateTags() {  
+export function aggregateTags() {  
     /*eslint-disable indent*/
     return Item.aggregate([
             { $project: { tags: "$tags" } },

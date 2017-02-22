@@ -10,17 +10,17 @@ export default class Home extends Component {
                 <fieldset className="search input-pair">
                     <legend className="visually-hidden">Search the fridge</legend>
 
-                    <label className="visually-hidden" for="keyword">Search term</label>
+                    <label className="visually-hidden" htmlFor="keyword">Search term</label>
                     <input className="input"
                            name="keyword"
                            id="keyword"
-                           autocomplete="off"
+                           autoComplete="off"
                            type="text"
                            placeholder="Search..." />
 
                         <button
                             type="submit"
-                            tabindex="-1">
+                            tabIndex="-1">
                             <Icon title="magnifier" />
                             <span className="visually-hidden">Find or create</span>
                         </button>

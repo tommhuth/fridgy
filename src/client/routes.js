@@ -3,7 +3,6 @@ import { Route } from "react-router"
 import App from "./app/App"
 import Items from "./items/Items"
 import Item from "./item/Item"
-import Restock from "./restock/Restock"
 import Home from "./home/Home"
 import About from "./about/About"
 import ItemEdit from "./item/ItemEdit"
@@ -15,7 +14,6 @@ export default (
         <Route isSpecial={true} path="/items/:slug" component={Item} >
             <Route isSpecial={true} path="/items/:slug/edit" component={ItemEdit} />
         </Route>
-        <Route path="/stock-up" component={Restock} />
         <Route path="/about" component={About} />
     </Route>
 )

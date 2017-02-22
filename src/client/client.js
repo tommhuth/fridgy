@@ -4,7 +4,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { createStore, applyMiddleware } from "redux"
 import { Provider } from "react-redux"
-import fridgeStore from "./app/store"
+import fridgeStore from "./data/store"
 import { Router, browserHistory } from "react-router"
 import routes from "./routes"
 

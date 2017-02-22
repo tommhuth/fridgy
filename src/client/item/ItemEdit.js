@@ -6,7 +6,7 @@ import Select from "../shared/Select"
 import RadioButton from "../shared/RadioButton"
 import CheckBox from "../shared/CheckBox"
 import SelectionGroup from "../shared/SelectionGroup"
-import { fetchCategories  } from "../app/actions/categories-actions"
+import { fetchCategories  } from "../data/store/actions/categories-actions"
 
 class ItemEdit extends Component {
     constructor(props) {
