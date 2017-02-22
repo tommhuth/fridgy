@@ -56,7 +56,7 @@
     "webpack": "^1.13.2"
   },
   "scripts": {
-    "postinstall": "build && npm run test",
+    "postinstall": "node_modules/.bin/webpack && node_modules/.bin/babel src/server -d build/ --presets es2015,stage-2 --copy-files",
     "start": "cross-env DEBUG=fridgy-server,fridgy-server:* node build/server.js",
     "build": "npm run build-server && npm run build-client && gulp build",
     "build-dev": "  npm run build-server-dev & npm run build-client-dev & gulp",
