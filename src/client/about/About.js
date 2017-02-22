@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 
 export default class About extends Component {
-    render(){
+    render() {
         return (
             <div className="container page-bottom-margin">
                 <h1 className="beta offset-small">About</h1>

@@ -11,29 +11,28 @@ class App extends Component {
 
         return (
             <div className={appClass}>
-                <Nav menuVisibility={this.props.menuVisibility} 
-                     toggleVisibility={this.props.toggleVisibility} />
+                <Nav menuVisibility={this.props.menuVisibility}
+                    toggleVisibility={this.props.toggleVisibility} />
 
                 <main id="main"
-                      tabIndex="-1"
-                      className={"main " + (this.props.menuVisibility ? "hidden" : "")}>
-                    { this.props.children }
+                    tabIndex="-1"
+                    className={"main " + (this.props.menuVisibility ? "hidden" : "")}>
+                    {this.props.children}
                 </main>
             </div>
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    return { 
-        menuVisibility: state.menuVisibility
+export default connect(
+    (state) => {
+        return {
+            menuVisibility: state.menuVisibility
+        }
+    },
+    (dispatch) => {
+        return {
+            toggleVisibility: () => dispatch({ type: "TOGGLE_MENU" })
+        }
     }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        toggleVisibility: () => dispatch({type:"TOGGLE_MENU"})
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+)(App)

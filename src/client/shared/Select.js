@@ -1,8 +1,8 @@
 import React, { Component } from "react"
 import Icon from "./Icon"
 import classNames from "classnames"
-    
-class Select extends Component {
+
+export default class Select extends Component {
     constructor(props) {
         super(props)
 
@@ -13,17 +13,17 @@ class Select extends Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.handleSelectChange()
     }
 
-    handleBlur(){
+    handleBlur() {
         this.setState({
             hasFocus: false
         })
     }
 
-    handleFocus(){
+    handleFocus() {
         this.setState({
             hasFocus: true
         })
@@ -31,19 +31,19 @@ class Select extends Component {
 
     handleSelectChange() {
         let text = this.getSelectedOptionText()
-        let value = this.element.value 
+        let value = this.element.value
 
         this.setState({
             selectedText: text,
             selectedValue: value
         })
 
-        if(this.props.onChange) {
+        if (this.props.onChange) {
             this.props.onChange(value, text)
         }
     }
 
-    getSelectedOptionText(){
+    getSelectedOptionText() {
         let element = this.element
         let options = element.options
 
@@ -63,18 +63,13 @@ class Select extends Component {
                 <Icon title="chevron-down" />
 
                 <select ref={(e) => this.element = e}
-                        value={this.state.selectedValue}
-                        onFocus={this.handleFocus.bind(this)}
-                        onBlur={this.handleBlur.bind(this)}
-                        onChange={this.handleSelectChange.bind(this)}>
-                    {
-                        this.props.children
-                    }
+                    value={this.state.selectedValue}
+                    onFocus={this.handleFocus.bind(this)}
+                    onBlur={this.handleBlur.bind(this)}
+                    onChange={this.handleSelectChange.bind(this)}>
+                    {this.props.children}
                 </select>
             </div>
         )
     }
-
-}
-
-export default Select
+} 

@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import Icon from "../shared/Icon"
-    
-class Cloak extends Component {
+
+export default class Cloak extends Component {
     render() {
         return (
             <div>
@@ -15,6 +15,4 @@ class Cloak extends Component {
             </div>
         )
     }
-}
-
-export default Cloak
+} 

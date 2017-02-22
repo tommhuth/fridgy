@@ -10,10 +10,10 @@ class Item extends Component {
     componentWillUnmount() {
         this.props.clearItem()
     }
-    componentDidMount(){
+    componentDidMount() {
         this.props.getItem(this.props.params.slug)
     }
-    render(){
+    render() {
         let item = this.props.item
 
         return (
@@ -29,8 +29,8 @@ class Item extends Component {
                         </h1>
 
                         <p className="item-details">
-                            {item.amount ? "It’s in the fridge" : "Ooops, ain’t got that" }
-                            {item.amount ? " × " + item.amount  : "" }
+                            {item.amount ? "It’s in the fridge" : "Ooops, ain’t got that"}
+                            {item.amount ? " × " + item.amount : ""}
                         </p>
 
                         <Button className="is-inverted is-icon-only" >
@@ -43,31 +43,30 @@ class Item extends Component {
                             <span className="visually-hidden">Decrease amount</span>
                         </Button>
                         <ButtonLink to={"/items/" + this.props.params.slug + "/edit"}
-                                    className="is-inverted">
+                            className="is-inverted">
                             EDIT
-                        </ButtonLink> 
+                        </ButtonLink>
                     </div>
 
                     {this.props.children}
                 </Cloak>
             </div>
         )
-    } 
-}
-
-const mapStateToProps = (state) => {
-    return {
-        item: state.item,
-        status: state.status,
-        categories: state.categories
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getItem: (slug) => dispatch(fetchItem(slug)),
-        clearItem: () => dispatch(clearItem())
+export default connect(
+    (state) => {
+        return {
+            item: state.item,
+            status: state.status,
+            categories: state.categories
+        }
+    },
+    (dispatch) => {
+        return {
+            getItem: (slug) => dispatch(fetchItem(slug)),
+            clearItem: () => dispatch(clearItem())
+        }
     }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Item)
+)(Item)

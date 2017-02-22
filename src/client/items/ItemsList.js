@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import ListItem from "./ListItem"
 
-class ItemsList extends Component {
+export default class ItemsList extends Component {
     render() { 
 
         return (
@@ -15,5 +15,3 @@ class ItemsList extends Component {
         )
     }
 }
-
-export default ItemsList

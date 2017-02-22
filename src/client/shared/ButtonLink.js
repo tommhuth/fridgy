@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Link } from "react-router"
 
-class ButtonLink extends Component {
+export default class ButtonLink extends Component {
     constructor(props) {
         super(props)
 
@@ -9,12 +9,12 @@ class ButtonLink extends Component {
             hasFocus: false
         }
     }
-    setFocus(){
+    setFocus() {
         this.setState({
             hasFocus: true
         })
     }
-    setBlur(){
+    setBlur() {
         this.setState({
             hasFocus: false
         })
@@ -22,17 +22,15 @@ class ButtonLink extends Component {
     render() {
         let className = "button " + (this.props.className || "")
         return (
-                <Link to={this.props.to}
-                      onClick={this.props.onClick}
-                      className={className}>
-                    <span className="inner"
-                          onTocuhStart={this.setFocus.bind(this)}
-                          onBlur={this.setBlur.bind(this)}>
-                        {this.props.children}
-                    </span>
-                </Link> 
+            <Link to={this.props.to}
+                onClick={this.props.onClick}
+                className={className}>
+                <span className="inner"
+                    onTocuhStart={this.setFocus.bind(this)}
+                    onBlur={this.setBlur.bind(this)}>
+                    {this.props.children}
+                </span>
+            </Link>
         )
     }
-}
-
-export default ButtonLink
+} 

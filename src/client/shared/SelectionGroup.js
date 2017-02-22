@@ -1,8 +1,8 @@
 import React, { Component } from "react"
 import uuid from "node-uuid"
-    
-class SelectionGroup extends Component {
-    constructor(props){
+
+export default class SelectionGroup extends Component {
+    constructor(props) {
         super(props)
         this.id = "selection-group-" + uuid.v1()
 
@@ -13,14 +13,14 @@ class SelectionGroup extends Component {
     handleChange(e) {
         let value
 
-        if(e.target.type === "checkbox"){
+        if (e.target.type === "checkbox") {
             let inputs = this.element.querySelectorAll("input")
             value = []
 
-            for(let i = 0; i < inputs.length; i++) {
+            for (let i = 0; i < inputs.length; i++) {
                 let element = inputs[i]
 
-                if(element.checked){
+                if (element.checked) {
                     value.push(element.value)
                 }
             }
@@ -35,8 +35,8 @@ class SelectionGroup extends Component {
         let items = []
         let i = 0
         let legend = <legend>{this.props.title}</legend>
-        
-        for(let element of this.props.children){
+
+        for (let element of this.props.children) {
             items.push(
                 <li key={this.id + "-" + i++}>
                     {React.cloneElement(element, {
@@ -57,6 +57,4 @@ class SelectionGroup extends Component {
             </fieldset>
         )
     }
-}
-
-export default SelectionGroup
+} 
