@@ -56,6 +56,7 @@
     "webpack": "^1.13.2"
   },
   "scripts": {
+    "postinstall": "build && npm run test",
     "start": "cross-env DEBUG=fridgy-server,fridgy-server:* node build/server.js",
     "build": "npm run build-server && npm run build-client && gulp build",
     "build-dev": "  npm run build-server-dev & npm run build-client-dev & gulp",
