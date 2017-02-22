@@ -59,7 +59,7 @@
     "eslint-plugin-react": "^6.4.1"
   },
   "scripts": {
-    "postinstall": "node_modules/.bin/webpack && node_modules/.bin/babel src/server -d build/ --presets es2015,stage-2 --copy-files",
+    "postinstall": "node_modules/.bin/webpack && node_modules/.bin/babel src/server -d build/ --presets es2015,stage-2 --copy-files && node_modules/.bin/gulp build",
     "start": "cross-env DEBUG=fridgy-server,fridgy-server:* node build/server.js",
     "build": "npm run build-server && npm run build-client && gulp build",
     "build-dev": "  npm run build-server-dev & npm run build-client-dev & gulp",
