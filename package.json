@@ -31,9 +31,7 @@
     "react-router": "^2.8.1",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
-    "serve-static": "^1.11.1"
-  },
-  "devDependencies": {
+    "serve-static": "^1.11.1",
     "babel-cli": "^6.16.0",
     "babel-loader": "^6.2.5",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.16.0",
@@ -43,9 +41,6 @@
     "babel-preset-stage-2": "^6.17.0",
     "babel-register": "^6.16.3",
     "chai": "^3.5.0",
-    "eslint": "^3.8.1",
-    "eslint-plugin-mocha": "^4.7.0",
-    "eslint-plugin-react": "^6.4.1",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-rename": "^1.2.2",
@@ -57,6 +52,11 @@
     "pretty-error": "^2.0.2",
     "supertest": "^2.0.1",
     "webpack": "^1.13.2"
+  },
+  "devDependencies": {
+    "eslint": "^3.8.1",
+    "eslint-plugin-mocha": "^4.7.0",
+    "eslint-plugin-react": "^6.4.1"
   },
   "scripts": {
     "postinstall": "node_modules/.bin/webpack && node_modules/.bin/babel src/server -d build/ --presets es2015,stage-2 --copy-files",
