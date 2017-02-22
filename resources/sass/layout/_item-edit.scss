@@ -10,6 +10,11 @@
     border-radius: .125em;
     animation: slide-up .35s ; 
 
+    @media (max-width: $breakpoint-grid-collapse) {
+        margin-left: -2em;
+        margin-right: -2em;
+    }
+
     &::before {
         content: "";
         position: absolute;
