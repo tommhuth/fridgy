@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { setCategoryFilter, setStockFilter } from "../data/store/actions/filter-actions"
+import { setCategoryFilter, setStockFilter } from "../data/store/actions/filter"
 import { fetchCategories } from "../data/store/actions/categories"
 import Select from "../shared/Select"
 

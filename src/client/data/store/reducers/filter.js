@@ -1,15 +1,18 @@
+import { FilterAction } from "../actions/creators/filter"
+
 export default (state = {}, action) => {
     switch (action.type) {
-        case "SET_STOCK_FILTER":
+        case FilterAction.SetStock:
             return {
                 ...state,
-                stock: action.stock
+                stock: action.payload
             }
-        case "SET_CATEGORY_FILTER":
+        case FilterAction.SetCategory:
             return {
                 ...state,
-                category: action.category
+                category: action.payload
             }
-        default: return state
+        default:
+            return state
     }
 }
