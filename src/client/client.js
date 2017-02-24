@@ -1,3 +1,4 @@
+import "babel-polyfill"
 import _reactFastClick from "react-fastclick"
 import thunkMiddleware from "redux-thunk"
 import React from "react"
