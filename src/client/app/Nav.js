@@ -5,8 +5,9 @@ import Icon from "./../shared/Icon"
 
 export default class Nav extends Component {
     render() {
+        let visible = this.props.menu.visible
         let navClass = classNames("nav", {
-            "is-open": this.props.menuVisibility
+            "is-open": visible
         })
 
         return (
@@ -15,7 +16,7 @@ export default class Nav extends Component {
                 <div className="container">
                     <button className="nav-toggle-button" type="button" onClick={this.props.toggleVisibility}>
                         <span className="visually-hidden">Toggle menu</span>
-                        <Icon title={this.props.menuVisibility ? "x" : "menu"} />
+                        <Icon title={visible ? "x" : "menu"} />
                     </button>
                 </div>
 

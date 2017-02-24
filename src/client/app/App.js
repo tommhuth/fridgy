@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import Nav from "./Nav"
 import classNames from "classnames"
+import { toggleMenu } from "../data/store/actions/menu"
 
 class App extends Component {
     render() {
@@ -11,12 +12,12 @@ class App extends Component {
 
         return (
             <div className={appClass}>
-                <Nav menuVisibility={this.props.menuVisibility}
+                <Nav menu={this.props.menu}
                     toggleVisibility={this.props.toggleVisibility} />
 
                 <main id="main"
                     tabIndex="-1"
-                    className={"main " + (this.props.menuVisibility ? "hidden" : "")}>
+                    className={"main " + (this.props.menu.visible ? "hidden" : "")}>
                     {this.props.children}
                 </main>
             </div>
@@ -27,12 +28,12 @@ class App extends Component {
 export default connect(
     (state) => {
         return {
-            menuVisibility: state.menuVisibility
+            menu: state.menu
         }
     },
     (dispatch) => {
         return {
-            toggleVisibility: () => dispatch({ type: "TOGGLE_MENU" })
+            toggleVisibility: () => dispatch(toggleMenu())
         }
     }
 )(App)
