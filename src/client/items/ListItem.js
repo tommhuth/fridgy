@@ -1,10 +1,8 @@
 import React, { Component } from "react"
-import { Link } from "react-router"
-import { connect } from "react-redux"
-import Icon from "../shared/Icon"
-import { deleteItem } from "../data/store/actions/item-actions"
+import { Link } from "react-router" 
+import Icon from "../shared/Icon" 
 
-class ListItem extends Component {
+export default class ListItem extends Component {
     render() {
         let item = this.props.item
 
@@ -21,13 +19,4 @@ class ListItem extends Component {
             </div>
         )
     }
-}
-
-export default connect(
-    null,
-    (dispatch) => {
-        return {
-            deleteItem: item => dispatch(deleteItem(item))
-        }
-    }
-)(ListItem)
+} 

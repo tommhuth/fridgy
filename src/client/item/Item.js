@@ -4,15 +4,17 @@ import ButtonLink from "../shared/ButtonLink"
 import Button from "../shared/Button"
 import Icon from "../shared/Icon"
 import Cloak from "../shared/Cloak"
-import { fetchItem, clearItem } from "../data/store/actions/item-actions"
+import { fetchItem, clearItem } from "../data/store/actions/item"
 
 class Item extends Component {
     componentWillUnmount() {
-        this.props.clearItem()
+        this.props.clearItem() 
     }
-    componentDidMount() {
+    
+    componentWillMount() { 
         this.props.getItem(this.props.params.slug)
     }
+    
     render() {
         let item = this.props.item
 
