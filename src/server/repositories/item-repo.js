@@ -105,52 +105,52 @@ export function getSimilar(tags, excludeId) {
     ]).exec()
 }
 
-export function aggregateCategories() { 
-    /*eslint-disable indent*/
-    return Item.aggregate([
-            {
-                $group: {
-                    _id: "$category", popularity: { $sum: 1 }
-                }
-            },
-            { $sort: { "popularity": -1 } }
-        ])
+export function aggregateCategories() {
+    let query = [
+        {
+            $group: {
+                _id: "$category", popularity: { $sum: 1 }
+            }
+        },
+        { $sort: { "popularity": -1 } }
+    ]
+
+    return Item.aggregate(query)
         .exec()
-        .then(data => data.map((e) => ({ name: e._id, popularity: e.popularity }))) 
-        .catch(mongoErrorParser) 
-    /*eslint-enable indent*/
+        .then(data => data.map((e) => ({ name: e._id, popularity: e.popularity })))
+        .catch(mongoErrorParser)
 }
 
-export function aggregateUnits() {  
-    /*eslint-disable indent*/
-    return Item.aggregate([
-            {
-                $group: {
-                    _id: "$unit", popularity: { $sum: 1 }
-                }
-            },
-            { $sort: { "_id": 1 } }
-        ])
+export function aggregateUnits() {
+    let query = [
+        {
+            $group: {
+                _id: "$unit", popularity: { $sum: 1 }
+            }
+        },
+        { $sort: { "_id": 1 } }
+    ]
+
+    return Item.aggregate(query)
         .exec()
-        .then(data => data.map((e) => ({ name: e._id, popularity: e.popularity }))) 
-        .catch(mongoErrorParser)  
-    /*eslint-enable indent*/
+        .then(data => data.map((e) => ({ name: e._id, popularity: e.popularity })))
+        .catch(mongoErrorParser)
 }
 
-export function aggregateTags() {  
-    /*eslint-disable indent*/
-    return Item.aggregate([
-            { $project: { tags: "$tags" } },
-            { $unwind: "$tags" },
-            {
-                $group: {
-                    _id: "$tags", score: { $sum: 1 }
-                }
-            },
-            { $sort: { "score": -1, "_id": 1 } } 
-        ])
+export function aggregateTags() {
+    let query = [
+        { $project: { tags: "$tags" } },
+        { $unwind: "$tags" },
+        {
+            $group: {
+                _id: "$tags", score: { $sum: 1 }
+            }
+        },
+        { $sort: { "score": -1, "_id": 1 } }
+    ]
+
+    return Item.aggregate(query)
         .exec()
-        .then(data => data.map(e => e._id)) 
-        .catch(mongoErrorParser)  
-    /*eslint-enable indent*/
+        .then(data => data.map(e => e._id))
+        .catch(mongoErrorParser)
 }
