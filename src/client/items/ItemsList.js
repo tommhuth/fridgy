@@ -3,7 +3,6 @@ import ListItem from "./ListItem"
 
 export default class ItemsList extends Component {
     render() { 
-
         return (
             <div>
                 <ul className="items-list">
@@ -11,6 +10,8 @@ export default class ItemsList extends Component {
                         this.props.items.map( item => <li key={item.id}> <ListItem item={item}  /> </li>)
                     }
                 </ul>
+
+                {!this.props.items.length ? <p>Ooops, nothing to show!</p> : null}
             </div>
         )
     }

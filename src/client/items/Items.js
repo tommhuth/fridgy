@@ -12,14 +12,17 @@ class Items extends Component {
     }
 
     render() {
+        let { isLoading, data } = this.props.items
+        let list = filterItems(data, this.props.filter) 
+
         return (
             <div className="container">
                 <h1 className="beta offset-small">The fridge</h1>
-
-                <Cloak state={this.props.status.isLoadingCategories && this.props.status.isLoadingItems && !this.props.items.length}>
+                
+                <Cloak if={this.props.categories.isLoading || isLoading}>
                     <Filter />
 
-                    <ItemsList items={this.props.items} state={this.props.status} />
+                    <ItemsList items={list} />
                 </Cloak>
 
             </div>
@@ -30,8 +33,8 @@ class Items extends Component {
 export default connect(
     (state) => {
         return {
-            items: filterItems(state.items, state.filter),
-            status: state.status,
+            items: state.items, 
+            filter: state.filter, 
             categories: state.categories
         }
     },

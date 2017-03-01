@@ -61,7 +61,8 @@ class ItemEdit extends Component {
         })
     }
     render() {
-        let item = this.props.item
+        let item = this.props.item.data
+
         return (
             <div className="container">
                 <div className="item-edit" >
@@ -145,7 +146,7 @@ class ItemEdit extends Component {
                                 selectedText={item.category}
                                 selectedValue={item.category} >
                                 {
-                                    this.props.categories.map((e) => <option key={e.name} value={e.name}>{e.name}</option>)
+                                    this.props.categories.data.map((e) => <option key={e.name} value={e.name}>{e.name}</option>)
                                 }
                             </Select>
                         </div>

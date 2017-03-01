@@ -1,8 +1,7 @@
 .app {
     padding-bottom: 4em;
     min-height: 100vh;
-    box-sizing: border-box;
-    transition: background .35s;  
+    box-sizing: border-box; 
 
     &.is-special {
         background-color: $blue;  

@@ -20,19 +20,19 @@ class Item extends Component {
 
         return (
             <div className="item-entry " >
-                <Cloak state={this.props.status.isLoadingItem}>
+                <Cloak if={item.isLoading}>
                     <div className="container">
                         <div className="offset-small item-status">
-                            <Icon title={item.amount ? "checkmark" : "x"} />
+                            <Icon title={item.data.amount ? "checkmark" : "x"} />
                         </div>
 
                         <h1 className="beta item-name">
-                            {item.title}
+                            {item.data.title}
                         </h1>
 
                         <p className="item-details">
-                            {item.amount ? "It’s in the fridge" : "Ooops, ain’t got that"}
-                            {item.amount ? " × " + item.amount : ""}
+                            {item.data.amount ? "It’s in the fridge" : "Ooops, ain’t got that"}
+                            {item.data.amount ? " × " + item.data.amount : ""}
                         </p>
 
                         <Button className="is-inverted is-icon-only" >
@@ -60,8 +60,7 @@ class Item extends Component {
 export default connect(
     (state) => {
         return {
-            item: state.item,
-            status: state.status,
+            item: state.item, 
             categories: state.categories
         }
     },

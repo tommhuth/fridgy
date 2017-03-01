@@ -1,36 +1,42 @@
 .nav {
     &.is-open {
-        .nav-wrapper {
-            display: block; 
-        } 
-
         .nav-toggle-button {
-            color: #fff !important;  
-        } 
+            color: #fff !important;
+        }
+
+        .nav-wrapper {
+            display: block;
+        }
     }
 
     .nav-toggle-button {
-        transition:none ; 
-        position: relative;
-        margin: 3em 0 0 0;   
-        color:#000;
+        color: #000;
         font-size: 1.25em;
+        margin: 3em 0 0;
+        position: relative;
+        transition: none;
         z-index: 2;
 
-        &:focus, &:hover { 
+        @media (max-width: $breakpoint-grid-collapse) {
+            margin-top: 2em;
+        }
+
+        &:focus,
+        &:hover {
             color: $blue;
 
-            .app.is-special & { 
-                color: #fff; 
+            .app.is-special & {
+                color: #fff;
             }
         }
-        
-        .app.is-special & { 
-            color: #FFF; 
- 
-             &:focus, &:hover {
-                color: #FFF; 
-             }
+
+        .app.is-special & {
+            color: #FFF;
+
+            &:focus,
+            &:hover {
+                color: #FFF;
+            }
         }
 
         .icon {
@@ -39,77 +45,78 @@
     }
 
     .nav-wrapper {
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
         background: rgba(#000, 1);
+        bottom: 0;
         color: #FFF;
         display: none;
-     
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 1;
+
         .container {
             height: 100%;
             position: relative;
         }
 
-        ul {
-            position: absolute;
-            bottom: 10vh;
-            left: 0;
-            right:0;
-        }
-
         li {
             font-size: 4.5em;
             font-weight: bold;
-            text-transform: lowercase;
             letter-spacing: -.025em;
-            line-height: 1.125; 
+            line-height: 1.125;
             margin-bottom: .2em;
+            text-transform: lowercase;
             white-space: nowrap;
+
+            .icon {
+                font-size: .35em;
+                margin-bottom: -.125em;
+                margin-left: .25em;
+                opacity: .05;
+            }
 
             a {
                 transition: all .25s;
             }
 
-            .icon {
-                margin-bottom: -.125em;
-                font-size: .35em; 
-                margin-left: .25em;
-                opacity: .05;
-            }
-
-            a:hover, a:focus { 
-                color: $blue; 
+            a:focus,
+            a:hover {
+                color: $blue;
 
                 .icon {
                     opacity: 1;
                 }
             }
         }
+
+        ul {
+            bottom: 10vh;
+            left: 0;
+            position: absolute;
+            right: 0;
+        }
     }
 }
 
 .skip-to-content {
-    display: block;
-    position: fixed;
-    top:-3em;
-    line-height:1;
-    transition: top .2s;
-    left:50%;
-    margin-left: -3.5em;
-    width: 10em;
-    font-size: .65em;
-    text-transform: uppercase;
-    padding: 1em 1.25em;
     background-color: black;
     color: #FFF !important;
+    display: block;
+    font-size: .65em;
+    left: 50%;
+    line-height: 1;
+    margin-left: -3.5em;
+    padding: 1em 1.25em;
+    position: fixed;
     text-align: center;
+    text-transform: uppercase;
+    top: -3em;
+    transition: top .2s;
+    width: 10em;
 
     &:focus {
-        top:0;
+        top: 0;
     }
 
     .app.is-special & {

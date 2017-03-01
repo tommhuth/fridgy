@@ -1,6 +1,11 @@
 import { FilterAction } from "../actions/creators/filter"
 
-export default (state = {}, action) => {
+const init = {
+    stock: null,
+    category: null
+}
+
+export default (state = init, action) => {
     switch (action.type) {
         case FilterAction.SetStock:
             return {

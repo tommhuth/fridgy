@@ -32,7 +32,7 @@ class Filter extends Component {
                     selectedText="All">
                     <option value="">Everything</option>
                     {
-                        this.props.categories.map((e) => <option key={e.name} value={e.name}>{e.name}</option>)
+                        this.props.categories.data.map((e) => <option key={e.name} value={e.name}>{e.name}</option>)
                     }
                 </Select>
 
