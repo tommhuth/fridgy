@@ -69,6 +69,11 @@
             text-transform: lowercase;
             white-space: nowrap;
 
+            @media (max-width: $breakpoint-grid-collapse) {
+                font-size: 3em;
+                margin-bottom: .5em;
+            }
+
             .icon {
                 font-size: .35em;
                 margin-bottom: -.125em;
@@ -95,6 +100,11 @@
             left: 0;
             position: absolute;
             right: 0;
+
+            @media (max-width: $breakpoint-grid-collapse) {
+                bottom: 2em;
+            }
+
         }
     }
 }
