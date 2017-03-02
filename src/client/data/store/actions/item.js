@@ -1,12 +1,12 @@
-import fetch from "isomorphic-fetch"
 import * as item from "./creators/item"
 
+import Fetch from "../../../data/Fetch"
 export function fetchItem(slug) {
     return async (dispatch) => {
         dispatch(item.loading())
 
         try {
-            let result = await fetch(`/api/items/${slug}`).then(response => response.json())
+            let result = await Fetch.get(`/api/items/${slug}`)
 
             dispatch(item.receive(result))
         } catch (e) {
