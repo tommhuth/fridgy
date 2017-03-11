@@ -3,7 +3,7 @@ import config from "../config/config-loader"
 import debug from "debug"
 
 const log = debug("fridgy-server:db")
-mongoose.Promise = Promise
+mongoose.Promise = global.Promise
 
 function getConnectionString() {
     if( config.NODE_ENV.toLowerCase().includes("test")){

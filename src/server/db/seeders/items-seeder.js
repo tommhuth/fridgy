@@ -98,8 +98,7 @@ export default function() {
                     category: toSentenceCase(categories[i.category]),
                     unit: units[i.unit],
                     amount: Math.floor(Math.random() * 4),
-                    favorite: Math.random() > .6,
-                    listed:  Math.random() > .7,
+                    favorite: Math.random() > .6, 
                     tags: i.tags
                 })
                 

@@ -1,6 +1,7 @@
-import { expect } from "chai"
-import { app } from "../../src/server/server"
-import supertest from "supertest"
+const { expect } = require("chai")
+const { app } = require("../../build/server/server")
+const supertest = require("supertest")
+const config = require("../../build/server/config/config-loader").default
 
 suite("API: /api/items")
 
@@ -8,8 +9,7 @@ let item = {
     title: "Test",
     amount: 1,
     category: "Test category",
-    favorite: true,
-    listed: true,
+    favorite: true, 
     tags: ["tag"]
 }
 let existingItem
@@ -17,6 +17,7 @@ let existingItem
 test("Should get all items", function (done) {
     supertest(app)
         .get("/api/items")
+        .set("Authorization", config.READ_AUTH_TOKEN)
         .expect(200)
         .expect(res => {
             res = res.body
@@ -30,6 +31,7 @@ test("Should get all items", function (done) {
 test("Should search for items", function (done) {
     supertest(app)
         .get("/api/items")
+        .set("Authorization", config.READ_AUTH_TOKEN)
         .query({ search: "milk", category: "dairy" })
         .expect(200)
         .expect(res => {
@@ -44,6 +46,7 @@ test("Should search for items", function (done) {
 test("Should add item", function (done) {
     supertest(app)
         .post("/api/items")
+        .set("Authorization", config.WRITE_AUTH_TOKEN)
         .send(item)
         .expect(201)
         .expect(res => {
@@ -53,8 +56,7 @@ test("Should add item", function (done) {
             expect(res.title).to.equal(item.title)
             expect(res.amount).to.equal(item.amount)
             expect(res.category).to.equal(item.category)
-            expect(res.favorite).to.equal(item.favorite)
-            expect(res.listed).to.equal(item.listed)
+            expect(res.favorite).to.equal(item.favorite) 
             expect(res.createdAt).to.be.ok
             expect(res.updatedAt).to.be.ok
             expect(res.slug).to.be.ok
@@ -64,8 +66,9 @@ test("Should add item", function (done) {
 })
 
 test("Should fail add item with missing input", function (done) {
-    supertest(app)
+    supertest(app) 
         .post("/api/items")
+        .set("Authorization", config.WRITE_AUTH_TOKEN)
         .send({ title: null })
         .expect(422)
         .expect(res => {
@@ -80,8 +83,9 @@ test("Should fail add item with missing input", function (done) {
 })
 
 test("Should fail with invalid JSON", function (done) {
-    supertest(app)
+    supertest(app) 
         .post("/api/items")
+        .set("Authorization", config.WRITE_AUTH_TOKEN)
         .send("{ invalid")
         .set("content-type", "application/json")
         .expect(400)
@@ -96,9 +100,9 @@ test("Should fail with invalid JSON", function (done) {
 
 test("Should get single item by slug", function (done) {
     supertest(app)
-        .get("/api/items/" + existingItem.slug) 
-        .expect(200)
-        
+        .get("/api/items/" + existingItem.slug)
+        .set("Authorization", config.READ_AUTH_TOKEN)
+        .expect(200) 
         .expect(res => {
             res = res.body
 
@@ -110,8 +114,9 @@ test("Should get single item by slug", function (done) {
 })
 
 test("Should (partialy) update single item, ignoring invalid values", function (done) {
-    supertest(app)
+    supertest(app) 
         .patch("/api/items/" + existingItem.slug)
+        .set("Authorization", config.WRITE_AUTH_TOKEN)
         .send({
             title: null,
             category: "Category",
@@ -126,16 +131,16 @@ test("Should (partialy) update single item, ignoring invalid values", function (
             expect(res.title).to.equal(existingItem.title)
             expect(res.amount).to.equal(existingItem.amount)
             expect(res.unit).to.equal(existingItem.unit)
-            expect(res.category).to.equal("Category")
-            expect(res.listed).to.equal(true)
+            expect(res.category).to.equal("Category") 
             expect(res.favorite).to.equal(true)
         })
         .end(done)
 })
 
 test("Should remove item by slug", function (done) {
-    supertest(app)
+    supertest(app) 
         .delete("/api/items/" + existingItem.slug)
+        .set("Authorization", config.WRITE_AUTH_TOKEN)
         .expect(204)
         .end(done)
 })
@@ -143,6 +148,7 @@ test("Should remove item by slug", function (done) {
 test("Should fail getting unknown item by slug", function (done) {
     supertest(app)
         .delete("/api/items/" + existingItem.slug)
+        .set("Authorization", config.READ_AUTH_TOKEN)
         .expect(404)
         .end(done)
 })
@@ -150,6 +156,7 @@ test("Should fail getting unknown item by slug", function (done) {
 test("Should fail removing unknown item by slug", function (done) {
     supertest(app)
         .delete("/api/items/" + existingItem.slug)
+        .set("Authorization", config.WRITE_AUTH_TOKEN)
         .expect(404)
         .end(done)
 }) 

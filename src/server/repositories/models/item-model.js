@@ -34,9 +34,9 @@ let ItemSchema = new mongoose.Schema(
             type: Number,
             required: true
         },
-        listed: {
-            type: Boolean,
-            default: false
+        checklist: {
+            type: Date,
+            default: null
         },
         favorite: {
             type: Boolean,

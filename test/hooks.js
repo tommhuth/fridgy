@@ -1,5 +1,5 @@
-import { close, start } from "../src/server/server"
-import seeder from "../src/server/db/seeders"
+const { close, start } = require( "../build/server/server")
+const seeder = require( "../build/server/db/seeders").default
 
 before(() => {
     return start().then(seeder)

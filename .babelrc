@@ -1,5 +1,5 @@
 {
-  "presets": [ "stage-2", "stage-3"],
+  "presets": [ "stage-2", "stage-3", "react"],
   "plugins": ["transform-es2015-modules-commonjs", "transform-async-to-generator"]
 }
    

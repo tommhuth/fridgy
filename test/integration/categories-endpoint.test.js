@@ -1,12 +1,14 @@
-import { expect } from "chai"
-import { app } from "../../src/server/server"
-import supertest from "supertest"
+const { expect } = require("chai")
+const { app } = require("../../build/server/server")
+const supertest = require("supertest")
+const config = require("../../build/server/config/config-loader").default
 
 suite("API: /api/categories")
 
 test("Should get all categories aggregated", function (done) {
     supertest(app)
         .get("/api/categories")
+        .set("Authorization", config.READ_AUTH_TOKEN)
         .expect(200)
         .expect(res => {
             res = res.body
