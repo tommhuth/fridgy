@@ -3,20 +3,18 @@ const { app } = require("../../build/server/server")
 const supertest = require("supertest") 
 const config = require("../../build/server/config/config-loader").default
 
-suite("API: /api/checklist")
+suite("API: /api/checklists")
   
-test.skip("Should get all checklisted items", function (done) {
+test("Should get checklisted items for 1. jan 2000", function (done) {
     supertest(app)
-        .get("/api/categories")
+        .get("/api/checklists/2000-01-01")
         .set("Authorization", config.READ_AUTH_TOKEN)
         .expect(200)
         .expect(res => {
             res = res.body
 
-            expect(res).to.be.an("array")
-            expect(res.length).to.be.above(0)
-            expect(res[0].name).to.be.ok
-            expect(res[0].popularity).to.be.a("number")
+            expect(res).to.be.an("array") 
+            expect(res.length).to.be.above(1)
         })
         .end(done)
 })

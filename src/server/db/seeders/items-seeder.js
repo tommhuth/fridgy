@@ -86,18 +86,20 @@ let items = [
 ]
 let categories = ["dairy", "drinkables", "Meat and fish", "fruit and vegetables", "condiments"]
 let units = ["l", "pcs", "kg"]
+
 export default function () {
     return Item.remove({})
         .then(() => {
-            let all = [] 
+            let all = []
 
             for (let i of items) {
                 let item = new Item({
                     title: toSentenceCase(i.title),
                     category: toSentenceCase(categories[i.category]),
                     unit: units[i.unit],
-                    amount: Math.floor(Math.random() * 4),
-                    favorite: Math.random() > .6, 
+                    amount: Math.floor(Math.random() * 5),
+                    favorite: Math.random() > .6,
+                    checklist: Math.random() > .5 ? null : "2000-01-01",
                     tags: i.tags
                 })
 
