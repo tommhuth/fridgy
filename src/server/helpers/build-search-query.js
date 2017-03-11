@@ -13,17 +13,17 @@ export default function (input) {
         search.title = { $regex: new RegExp(input.title, "i") }
     }
 
-    if (parseBoolean(input.listed)) {
-        search.listed = input.listed === "true" ? true : false
+    if (input.checklist) {
+        search.checklist = input.checklist
     }
 
-    if (parseBoolean(input.favorite)) {
+    if (isBoolean(input.favorite)) {
         search.favorite = input.favorite === "true" ? true : false
     }
 
     return [search, search.$text ? { score: { $meta: "textScore" } } : null]
 }
 
-function parseBoolean(raw) {
+function isBoolean(raw) {
     return raw === "false" || raw === "true"
 }

@@ -9,7 +9,8 @@ let item = {
     title: "Test",
     amount: 1,
     category: "Test category",
-    favorite: true, 
+    favorite: true,
+    checklist: "2000-01-01",
     tags: ["tag"]
 }
 let existingItem
@@ -56,7 +57,8 @@ test("Should add item", function (done) {
             expect(res.title).to.equal(item.title)
             expect(res.amount).to.equal(item.amount)
             expect(res.category).to.equal(item.category)
-            expect(res.favorite).to.equal(item.favorite) 
+            expect(res.checklist).to.equal(item.checklist)
+            expect(res.favorite).to.equal(item.favorite)
             expect(res.createdAt).to.be.ok
             expect(res.updatedAt).to.be.ok
             expect(res.slug).to.be.ok
@@ -66,7 +68,7 @@ test("Should add item", function (done) {
 })
 
 test("Should fail add item with missing input", function (done) {
-    supertest(app) 
+    supertest(app)
         .post("/api/items")
         .set("Authorization", config.WRITE_AUTH_TOKEN)
         .send({ title: null })
@@ -82,8 +84,23 @@ test("Should fail add item with missing input", function (done) {
         .end(done)
 })
 
+test("Should fail invalid checklist date", function (done) {
+    supertest(app)
+        .post("/api/items")
+        .set("Authorization", config.WRITE_AUTH_TOKEN)
+        .send(Object.assign({}, item, { checklist: "0-0-0" }))
+        .expect(422)
+        .expect(res => {
+            res = res.body
+
+            expect(res.status).to.equal(422)
+            expect(res.message).to.equal("Invalid checklist date, should be on the format YYYY-MM-DD")
+        })
+        .end(done)
+})
+
 test("Should fail with invalid JSON", function (done) {
-    supertest(app) 
+    supertest(app)
         .post("/api/items")
         .set("Authorization", config.WRITE_AUTH_TOKEN)
         .send("{ invalid")
@@ -102,7 +119,7 @@ test("Should get single item by slug", function (done) {
     supertest(app)
         .get("/api/items/" + existingItem.slug)
         .set("Authorization", config.READ_AUTH_TOKEN)
-        .expect(200) 
+        .expect(200)
         .expect(res => {
             res = res.body
 
@@ -114,7 +131,7 @@ test("Should get single item by slug", function (done) {
 })
 
 test("Should (partialy) update single item, ignoring invalid values", function (done) {
-    supertest(app) 
+    supertest(app)
         .patch("/api/items/" + existingItem.slug)
         .set("Authorization", config.WRITE_AUTH_TOKEN)
         .send({
@@ -131,14 +148,14 @@ test("Should (partialy) update single item, ignoring invalid values", function (
             expect(res.title).to.equal(existingItem.title)
             expect(res.amount).to.equal(existingItem.amount)
             expect(res.unit).to.equal(existingItem.unit)
-            expect(res.category).to.equal("Category") 
+            expect(res.category).to.equal("Category")
             expect(res.favorite).to.equal(true)
         })
         .end(done)
 })
 
 test("Should remove item by slug", function (done) {
-    supertest(app) 
+    supertest(app)
         .delete("/api/items/" + existingItem.slug)
         .set("Authorization", config.WRITE_AUTH_TOKEN)
         .expect(204)

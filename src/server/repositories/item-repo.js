@@ -1,7 +1,7 @@
-import { default as Item } from "./models/item-model"
-import { default as notFoundParser } from "../parsers/not-found-parser"
-import { default as mongoErrorParser } from "../parsers/mongo-error-parser"
-import { default as toSentenceCase } from "../helpers/to-sentence-case"
+import Item from "./models/item-model"
+import notFoundParser from "../parsers/not-found-parser"
+import mongoErrorParser from "../parsers/mongo-error-parser"
+import toSentenceCase from "../helpers/to-sentence-case"
 import buildSearchObject from "../helpers/build-search-query"
 
 function some(query) {
@@ -26,14 +26,14 @@ export function search(keyword) {
 }
 
 export function insert(data) {
-    let tags = Array.isArray(data.tags) ? data.tags.map(tag => tag.trim().toLowerCase()) : null
+    let tags = Array.isArray(data.tags) ? data.tags.map(tag => tag.trim().toLowerCase()) : null 
     let item = new Item({
         title: toSentenceCase(data.title),
         category: toSentenceCase(data.category),
         unit: (data.unit || "").toLowerCase(),
         amount: data.amount,
         favorite: data.favorite,
-        listed: data.listed,
+        checklist: data.checklist,
         tags: tags
     })
 
@@ -69,7 +69,7 @@ export function update(slug, data) {
             item.category = data.category || item.category
             item.unit = typeof data.unit === "number" ? data.unit : item.unit
             item.amount = typeof data.amount === "number" ? data.amount : item.amount
-            item.listed = typeof data.listed === "boolean" ? data.amount : item.listed
+            item.checklist = data.checklist || item.checklist
             item.favorite = typeof data.favorite === "boolean" ? data.favorite : item.favorite
 
             return item.save()

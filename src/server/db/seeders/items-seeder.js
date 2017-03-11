@@ -2,53 +2,53 @@ import Item from "../../repositories/models/item-model"
 import { default as toSentenceCase } from "../../helpers/to-sentence-case"
 import debug from "debug"
 
-const log = debug("fridgy-server:item-seeder") 
+const log = debug("fridgy-server:item-seeder")
 
 let items = [
     {
-        title:  "chocolate milk",
+        title: "chocolate milk",
         category: 0,
         unit: 0,
         tags: ["snacks", "candy", "dairy"]
     },
     {
-        title:  "butter",
+        title: "butter",
         category: 0,
         unit: 2,
         tags: ["basic", "frying", "dairy"]
     },
     {
-        title:  "cheese",
+        title: "cheese",
         category: 0,
         unit: 1,
-        tags: ["bread","basic", "dairy"]
+        tags: ["bread", "basic", "dairy"]
     },
     {
-        title:  "potatoes",
+        title: "potatoes",
         category: 3,
         unit: 1,
         tags: ["dinner", "basic", "vegetables"]
     },
     {
-        title:  "carrots",
+        title: "carrots",
         category: 3,
         unit: 1,
         tags: ["dinner", "basic", "vegetables"]
     },
     {
-        title:  "lemon ice tea",
+        title: "lemon ice tea",
         category: 1,
         unit: 0,
         tags: ["drink"]
     },
     {
-        title:  "beer",
+        title: "beer",
         category: 1,
         unit: 0,
         tags: ["party", "drink"]
     },
     {
-        title:  "pork chops",
+        title: "pork chops",
         category: 2,
         unit: 1,
         tags: ["dinner", "basic", "meat"]
@@ -75,22 +75,21 @@ let items = [
         title: "fish fillet",
         category: 2,
         unit: 1,
-        tags: ["dinner","meat", "basic"]
+        tags: ["dinner", "meat", "basic"]
     },
     {
         title: "chicken drumsticks",
         category: 2,
         unit: 1,
-        tags: ["dinner","meat", "basic"]
+        tags: ["dinner", "meat", "basic"]
     }
 ]
 let categories = ["dairy", "drinkables", "Meat and fish", "fruit and vegetables", "condiments"]
 let units = ["l", "pcs", "kg"]
-
-export default function() {
+export default function () {
     return Item.remove({})
         .then(() => {
-            let all = []
+            let all = [] 
 
             for (let i of items) {
                 let item = new Item({
@@ -101,10 +100,10 @@ export default function() {
                     favorite: Math.random() > .6, 
                     tags: i.tags
                 })
-                
+
                 all.push(item.save())
             }
-            
+
             log(`Seeding collection, ${items.length} items`)
             log(`${categories.length} unique categories`)
             log(`${units.length} unique units`)

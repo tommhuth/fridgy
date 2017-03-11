@@ -1,9 +1,10 @@
 import express from "express"
-import itemRouter from "./item-routes"
-import categoriesRouter from "./category-routes"
-import unitsRouter from "./unit-routes"
-import tagsRouter from "./tags-routes"
-import authRouter from "./auth-routes"
+import itemRouter from "./api/item-routes"
+import categoryRouter from "./api/category-routes"
+import unitRouter from "./api/unit-routes"
+import tagRouter from "./api/tag-routes"
+import authRouter from "./api/auth-routes"
+import checklistRouter from "./api/checklist-routes"
 import { Auth } from "../auth/auth"
 
 let router = express.Router()
@@ -15,8 +16,9 @@ router.use("/auth", authRouter)
 router.use(Auth.requireReadAccess())
 
 router.use("/items", itemRouter)
-router.use("/categories", categoriesRouter)
-router.use("/units", unitsRouter)
-router.use("/tags", tagsRouter)
+router.use("/categories", categoryRouter)
+router.use("/units", unitRouter)
+router.use("/tags", tagRouter)
+router.use("/checklists", checklistRouter)
 
 export default router

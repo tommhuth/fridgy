@@ -1,5 +1,5 @@
 import express from "express"
-import * as ItemRepo from "../repositories/item-repo"
+import * as ItemRepo from "../../repositories/item-repo"
 
 let router = express.Router()
 

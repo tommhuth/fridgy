@@ -12,7 +12,6 @@ import debug from "debug"
 import seeder from "./db/seeders"
 import config, { base as baseConfig } from "./config/config-loader"
 import * as globalErrorHandlers from "./routes/global-error-handlers"
-
 export const app = express()
 const log = debug("fridgy-server")
 let server
@@ -50,11 +49,11 @@ app.engine("mustache", mustache())
 app.use(compression())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.set("views", path.join(__dirname, "..", "resources/views"))
+app.set("views", path.join(__dirname, "..", "..", "resources/views"))
 app.set("view engine", "mustache")
 
 // static files
-app.use(serveStatic(path.join(__dirname, "..", "public"), { maxAge: "1 day" }))
+app.use(serveStatic(path.join(__dirname, "..", "..", "public")))
 
 //routes
 app.use("/api", apiRoutes)

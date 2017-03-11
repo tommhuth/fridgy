@@ -3,7 +3,7 @@ const ItemRepo = require("../../build/server/repositories/item-repo")
 const { NotFoundError } = require("../../build/server/errors/not-found-error")
 const { ValidationError } = require("../../build/server/errors/validation-error")
 const { InvalidTitleError } = require("../../build/server/errors/invalid-title-error")
-
+const { InvalidChecklistDateError } = require("../../build/server/errors/invalid-checklist-date-error")
 
 suite("ItemRepo")
 
@@ -12,7 +12,7 @@ let item = {
     title: "Test",
     category: "Test category",
     amount: 1,
-    unit: "kg", 
+    unit: "kg",
     favorite: true,
     tags: ["basics"]
 }
@@ -82,7 +82,7 @@ test("#insert() should add new item", function (done) {
             expect(res.title).to.equal(item.title)
             expect(res.unit).to.equal(item.unit)
             expect(res.category).to.equal(item.category)
-            expect(res.favorite).to.equal(item.favorite) 
+            expect(res.favorite).to.equal(item.favorite)
             expect(res.amount).to.equal(item.amount)
             done()
         })
@@ -111,6 +111,17 @@ test("#insert() should fail add new item, missing fields", function (done) {
         })
 })
 
+test("#insert() should fail add new item, invalid checklist date", function (done) {
+    ItemRepo.insert(Object.assign({}, item, { checklist: "0-0-0" }))
+        .then(() => {
+            done(new Error("Should not get here"))
+        })
+        .catch(err => {
+            expect(err).to.be.instanceof(InvalidChecklistDateError)
+            done()
+        })
+})
+
 test("#insert() should fail add new item, slug must start with chars [a-z]", function (done) {
     ItemRepo.insert(Object.assign(item, { title: "*/" }))
         .then(() => {
@@ -132,7 +143,7 @@ test("#update() should partialy update item", function (done) {
             expect(res.slug).to.not.equal(existingItem.slug)
             expect(res.unit).to.equal(existingItem.unit)
             expect(res.category).to.equal(existingItem.category)
-            expect(res.favorite).to.equal(existingItem.favorite) 
+            expect(res.favorite).to.equal(existingItem.favorite)
             expect(res.amount).to.equal(10)
 
             existingItem = res

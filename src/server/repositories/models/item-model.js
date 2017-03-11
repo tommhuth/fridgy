@@ -2,23 +2,24 @@ import mongoose from "mongoose"
 import timestamps from "mongoose-timestamp"
 import slugger from "mongoose-slug-generator"
 import uniqueValidator from "mongoose-unique-validator"
-import hidden from "mongoose-hidden"  
-import { InvalidTitleError } from "../../errors/invalid-title-error"   
-  
+import hidden from "mongoose-hidden"
+import { InvalidTitleError } from "../../errors/invalid-title-error"
+import { InvalidChecklistDateError } from "../../errors/invalid-checklist-date-error"
+
 let ItemSchema = new mongoose.Schema(
     {
         _id: {
             type: String,
             default: mongoose.Types.ObjectId
         },
-        __v: { 
+        __v: {
             type: Number,
             default: 0
         },
         title: {
             type: String,
-            required: true, 
-            trim: true 
+            required: true,
+            trim: true
         },
         category: {
             type: String,
@@ -35,16 +36,16 @@ let ItemSchema = new mongoose.Schema(
             required: true
         },
         checklist: {
-            type: Date,
+            type: String,
             default: null
         },
         favorite: {
             type: Boolean,
             default: false
         },
-        slug: { 
-            type: String, 
-            slug: "title", 
+        slug: {
+            type: String,
+            slug: "title",
             unique: true,
             slug_padding_size: 1
         },
@@ -69,28 +70,45 @@ ItemSchema.virtual("id").get(function () { return this._id })
 ItemSchema.plugin(timestamps)
 ItemSchema.plugin(hidden())
 ItemSchema.plugin(uniqueValidator, { message: "Attribute must be unique" })
-ItemSchema.plugin(slugger) 
+ItemSchema.plugin(slugger)
 
 ItemSchema.index(
-    { 
-        "title":"text", 
+    {
+        "title": "text",
         "category": "text"
-    }, 
-    { 
-        name: "index1", 
-        weights:{
+    },
+    {
+        name: "index1",
+        weights: {
             title: 3,
             category: 1
-        } 
+        }
     }
 )
 
-ItemSchema.pre("save", function (next) {  
-    if(!/^[a-z]+/.test(this.slug)){
+// title check
+ItemSchema.pre("save", function (next) {
+    if (!/^[a-z]+/.test(this.slug)) {
         return next(new InvalidTitleError(this.title))
     }
 
     next()
-}) 
+})
+
+// checklist date check
+ItemSchema.pre("save", function (next) {
+    if (!this.checklist) {
+        this.checklist = null
+        return next()
+    }
+
+    let parts = this.checklist.split("-")
+
+    if (parseInt(parts[0]) > 1900 && parseInt(parts[1]) <= 31 && parseInt(parts[2]) <= 12) {
+        return next()
+    }
+
+    next(new InvalidChecklistDateError())
+})
 
 export default mongoose.model("item", ItemSchema)

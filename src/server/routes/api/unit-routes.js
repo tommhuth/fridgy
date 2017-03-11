@@ -1,14 +1,14 @@
 import express from "express"
-import * as ItemRepo from "../repositories/item-repo"
+import * as ItemRepo from "../../repositories/item-repo"
 
 let router = express.Router()
 
 router.get("/", async function (req, res, next) {
     try {
-        res.json(await ItemRepo.aggregateCategories())
+        res.status(200).json(await ItemRepo.aggregateUnits())
     } catch (e) {
         next(e)
-    } 
+    }
 })
 
 
