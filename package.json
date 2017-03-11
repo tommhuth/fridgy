@@ -62,14 +62,14 @@
     "postinstall": "node_modules/.bin/webpack && node_modules/.bin/babel src/server -d build/ --presets es2015,stage-2 --copy-files && node_modules/.bin/gulp build",
     "start": "cross-env DEBUG=fridgy-server,fridgy-server:* node build/server.js",
     "build": "npm run build-server && npm run build-client && gulp build",
-    "build-dev": "  npm run build-server-dev & npm run build-client-dev & gulp",
+    "build:dev": "  npm run build-server:dev & npm run build-client:dev & gulp",
     "build-server": "babel src/server -d build/ --presets es2015,stage-2 --copy-files",
     "build-client": "webpack",
-    "build-server-dev": "babel src/server -d build/ --presets es2015,stage-2,stage-3 --copy-files --source-maps  -w",
-    "build-client-dev": "webpack -w",
+    "build-server:dev": "babel src/server -d build/ --presets es2015,stage-2,stage-3 --copy-files --source-maps  -w",
+    "build-client:dev": "webpack -w",
     "lint": "eslint src/ --ext 'jsx' --ext 'js'",
     "test": "cross-env NODE_ENV=test mocha   --ui qunit --compilers js:babel-register --recursive ",
-    "ngrok": "ngrok http localhost:3000"
+    "ngrok": "ngrok http localhost:3000" 
   },
   "repository": {
     "type": "git",
