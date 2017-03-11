@@ -23,6 +23,9 @@ export class ExternalRequestError extends Error {
 }
 
 export default class Fetch {
+    static _authorization = null
+    static _authorizationHeader = null
+
     static makeRequest(url, method, options = { headers: {} }, body) {
         let mergedOptions = {
             method,
@@ -83,7 +86,8 @@ export default class Fetch {
         return this.makeRequest(url, HttpMethod.Put, options, body)
     }
 
-    static authorize(token) {
-        Fetch._authorization = token
+    static authorize(token, headerName = "Authorization") {
+        this._authorization = token
+        this._authorizationHeader = headerName
     }
 }

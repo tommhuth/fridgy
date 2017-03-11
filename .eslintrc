@@ -5,6 +5,7 @@
         "node": true,
         "mocha": true
     },
+    "parser": "babel-eslint",
     "extends": "eslint:recommended",
     "parserOptions": {
         "ecmaVersion": 8,
