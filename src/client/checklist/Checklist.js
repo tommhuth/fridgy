@@ -35,7 +35,7 @@ export default connect(
     },
     (dispatch) => {
         return {
-            fetchItems: () => dispatch(fetchItems())
+            fetchItems: (silent) => dispatch(fetchItems(silent))
         }
     }
 )(Items)
