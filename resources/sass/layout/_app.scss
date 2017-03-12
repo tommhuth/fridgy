@@ -3,6 +3,10 @@
     min-height: 100vh;
     box-sizing: border-box; 
 
+    @media (max-width: $breakpoint-grid-collapse) {
+        padding-bottom: 1.75em; 
+    }
+
     &.is-special {
         background-color: $blue;  
         color: #FFF; 
