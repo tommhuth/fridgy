@@ -2,7 +2,7 @@
   "name": "fridgy",
   "version": "0.0.1",
   "description": "",
-  "main": "build/server.js",
+  "main": "build/server/server.js",
   "engines": {
     "node": "7.3.0"
   },
