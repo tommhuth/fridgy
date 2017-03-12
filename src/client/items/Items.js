@@ -8,39 +8,40 @@ import { filterItems } from "../data/store/actions/filter"
 
 class Items extends Component {
     componentWillMount() {
-        this.props.fetchItems()
+        let silent = this.props.items.data.length > 0
+
+        this.props.fetchItems(silent)
     }
 
     render() {
-        let { isLoading, data } = this.props.items
-        let list = filterItems(data, this.props.filter) 
+        let item = this.props.items
+        let categories = this.props.categories
+        let list = filterItems(item.data, this.props.filter)
 
         return (
             <div className="container">
                 <h1 className="beta offset-small">The fridge</h1>
-                
-                <Cloak if={this.props.categories.isLoading || isLoading}>
-                    <Filter />
 
+                <Cloak if={item.isLoading || categories.isLoading}>
+                    <Filter />
                     <ItemsList items={list} />
                 </Cloak>
-
             </div>
         )
     }
 }
- 
+
 export default connect(
     (state) => {
         return {
-            items: state.items, 
-            filter: state.filter, 
+            items: state.items,
+            filter: state.filter,
             categories: state.categories
         }
     },
     (dispatch) => {
         return {
-            fetchItems: () => dispatch(fetchItems())
+            fetchItems: (silent) => dispatch(fetchItems(silent))
         }
     }
 )(Items)

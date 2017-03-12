@@ -7,7 +7,9 @@ import moment from "moment"
 
 class Items extends Component {
     componentWillMount() {
-        this.props.fetchItems()
+        let silent = this.props.items.data.length > 0
+
+        this.props.fetchItems(silent)
     }
 
     render() { 

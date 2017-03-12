@@ -1,9 +1,11 @@
 import * as categories from "./creators/categories"
 import Fetch from "../../../data/Fetch"
 
-export function fetchCategories() {
+export function fetchCategories(silent) {
     return async (dispatch) => {
-        dispatch(categories.loading())
+        if (silent) {
+            dispatch(categories.loading())
+        }
 
         try {
             let list = await Fetch.get("/api/categories")
@@ -12,7 +14,9 @@ export function fetchCategories() {
         } catch (e) {
             dispatch(categories.error(e))
         } finally {
-            categories.loaded()
+            if (silent) {
+                categories.loaded()
+            }
         }
     }
 }

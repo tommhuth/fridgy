@@ -6,7 +6,9 @@ import Select from "../shared/Select"
 
 class Filter extends Component {
     componentDidMount() {
-        this.props.fetchCategories()
+        let silent = this.props.categories.data.length > 0
+
+        this.props.fetchCategories(silent)
     }
 
     handleCategoryChange(value) {
@@ -52,7 +54,7 @@ class Filter extends Component {
         )
     }
 }
- 
+
 export default connect(
     (state) => {
         return {
@@ -64,7 +66,7 @@ export default connect(
         return {
             setCategoryFilter: (category) => dispatch(setCategoryFilter(category)),
             setStockFilter: (stock) => dispatch(setStockFilter(stock)),
-            fetchCategories: () => dispatch(fetchCategories())
+            fetchCategories: (silent) => dispatch(fetchCategories(silent))
         }
     }
 )(Filter)

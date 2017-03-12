@@ -8,13 +8,13 @@ import { fetchItem, clearItem } from "../data/store/actions/item"
 
 class Item extends Component {
     componentWillUnmount() {
-        this.props.clearItem() 
+        this.props.clearItem()
     }
-    
-    componentWillMount() { 
+
+    componentWillMount() {
         this.props.getItem(this.props.params.slug)
     }
-    
+
     render() {
         let item = this.props.item
 
@@ -60,7 +60,7 @@ class Item extends Component {
 export default connect(
     (state) => {
         return {
-            item: state.item, 
+            item: state.item,
             categories: state.categories
         }
     },
