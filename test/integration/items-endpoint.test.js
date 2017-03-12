@@ -132,7 +132,7 @@ test("Should get single item by slug", function (done) {
 
 test("Should (partialy) update single item, ignoring invalid values", function (done) {
     supertest(app)
-        .patch("/api/items/" + existingItem.slug)
+        .put("/api/items/" + existingItem.slug)
         .set("Authorization", config.WRITE_AUTH_TOKEN)
         .send({
             title: null,

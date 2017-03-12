@@ -9,7 +9,7 @@ const init = {
 export default (state = init, action) => {
     switch (action.type) {
         case ItemAction.Receive:
-            return { 
+            return {
                 ...state,
                 error: null,
                 data: action.payload

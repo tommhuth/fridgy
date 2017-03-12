@@ -5,6 +5,7 @@ import Items from "./items/Items"
 import Item from "./item/Item"
 import Home from "./home/Home"
 import About from "./about/About"
+import Checklist from "./checklist/Checklist"
 import ItemEdit from "./item/ItemEdit"
 
 export default (
@@ -15,5 +16,6 @@ export default (
             <Route isSpecial={true} path="/items/:slug/edit" component={ItemEdit} />
         </Route>
         <Route path="/about" component={About} />
+        <Route path="/checklist" component={Checklist} />
     </Route>
 )

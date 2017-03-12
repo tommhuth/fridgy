@@ -27,7 +27,7 @@ router.get("/:slug", async function (req, res, next) {
     }
 })
 
-router.patch("/:slug", async function (req, res, next) {
+router.put("/:slug", async function (req, res, next) {
     try {
         res.status(200).json(await ItemRepo.update(req.params.slug, req.body))
     } catch (e) {

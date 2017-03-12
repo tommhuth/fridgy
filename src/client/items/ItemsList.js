@@ -1,17 +1,20 @@
 import React, { Component } from "react"
 import ListItem from "./ListItem"
+import sort from "sort-array"
 
 export default class ItemsList extends Component {
     render() { 
+        let items = sort(this.props.items, "title")
+
         return (
             <div>
                 <ul className="items-list">
                     {
-                        this.props.items.map( item => <li key={item.id}> <ListItem item={item}  /> </li>)
+                        items.map( item => <li key={item.id}> <ListItem item={item}  /> </li>)
                     }
                 </ul>
 
-                {!this.props.items.length ? <p>Ooops, nothing to show!</p> : null}
+                {!items.length ? <p>Ooops, nothing to show!</p> : null}
             </div>
         )
     }

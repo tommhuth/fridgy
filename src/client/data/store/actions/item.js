@@ -1,6 +1,6 @@
 import * as item from "./creators/item"
+import Fetch from "../../../data/Fetch" 
 
-import Fetch from "../../../data/Fetch"
 export function fetchItem(slug) {
     return async (dispatch) => {
         dispatch(item.loading())

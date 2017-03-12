@@ -69,7 +69,7 @@ export function update(slug, data) {
             item.category = data.category || item.category
             item.unit = typeof data.unit === "number" ? data.unit : item.unit
             item.amount = typeof data.amount === "number" ? data.amount : item.amount
-            item.checklist = data.checklist || item.checklist
+            item.checklist = "checklist" in data ? data.checklist : item.checklist
             item.favorite = typeof data.favorite === "boolean" ? data.favorite : item.favorite
 
             return item.save()

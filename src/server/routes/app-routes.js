@@ -7,6 +7,7 @@ function render(req, res) {
 }
 
 router.get("/", render) 
+router.get("/checklist", render)
 router.get("/about", render)
 router.get("/items", render)
 router.get("/items/:slug", render)

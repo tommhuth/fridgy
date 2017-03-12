@@ -19,6 +19,6 @@ router.use("/items", itemRouter)
 router.use("/categories", categoryRouter)
 router.use("/units", unitRouter)
 router.use("/tags", tagRouter)
-router.use("/checklists", checklistRouter)
+router.use("/checklist", checklistRouter)
 
 export default router

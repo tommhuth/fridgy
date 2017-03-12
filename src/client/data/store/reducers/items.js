@@ -13,6 +13,28 @@ export default (state = init, action) => {
                 ...state,
                 error: null,
                 data: action.payload
+            } 
+        case ItemsAction.Checklist:
+            return {
+                ...state,
+                data: [
+                    ...state.data.filter(i => i.slug !== action.payload.slug),
+                    { 
+                        ...state.data.find(i => i.slug === action.payload.slug),
+                        checklist: action.payload.date
+                    }
+                ]
+            }
+        case ItemsAction.Dechecklist:
+            return {
+                ...state,
+                data: [
+                    ...state.data.filter(i => i.slug !== action.payload),
+                    { 
+                        ...state.data.find(i => i.slug === action.payload),
+                        checklist: null
+                    }
+                ]
             }
         case ItemsAction.Error:
             return {
