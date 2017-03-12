@@ -19,11 +19,11 @@ class Login extends Component {
     }
     render() {
         return (
-            <form onSubmit={this.attemptAuth.bind(this)}>
+            <form onSubmit={this.attemptAuth.bind(this)} action="">
                 <fieldset className="login">
                     <legend className="visually-hidden">Login</legend>
 
-                    <input value={this.state.tokenInput} onChange={this.handleTokenInputChange.bind(this)} />
+                    <input value={this.state.tokenInput} onChange={this.handleTokenInputChange.bind(this)} type="password" />
                     <button>Login</button> 
                 </fieldset>
             </form>
