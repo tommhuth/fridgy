@@ -104,7 +104,7 @@ ItemSchema.pre("save", function (next) {
 
     let parts = this.checklist.split("-")
 
-    if (parseInt(parts[0]) > 1900 && parseInt(parts[1]) <= 31 && parseInt(parts[2]) <= 12) {
+    if (parseInt(parts[0]) > 1900 && parseInt(parts[1]) <= 12 && parseInt(parts[2]) <= 31) {
         return next()
     }
 
