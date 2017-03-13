@@ -4,8 +4,7 @@ import { attemptAuth } from "../data/store/actions/auth"
 
 class Login extends Component {
     state = {
-        tokenInput: "",
-        clicked: false
+        tokenInput: ""
     }
 
     handleTokenInputChange(e) {
@@ -15,8 +14,6 @@ class Login extends Component {
     attemptAuth(e) {
         e.preventDefault()
         this.props.attemptAuth(this.state.tokenInput)
-        this.setState({ clicked: true })
-        setTimeout(() => this.setState({clicked: false }), 300)
     }
 
     render() {
@@ -26,7 +23,7 @@ class Login extends Component {
                     <div className="input-pair">
                         <legend className="visually-hidden">Login</legend>
 
-                        <label className="visually-hidden" for="password-input">Password</label>
+                        <label className="visually-hidden" htmlFor="password-input">Password</label>
                         <input
                             className="input-pair__input"
                             autoComplete="off"
