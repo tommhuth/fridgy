@@ -1,6 +1,18 @@
 .login {
-    input,
-    button {
-        border: 1px solid #CCC;
-    } 
+    display: inline-block;
+    left: 50%;
+    position: fixed;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+
+    &__wrapper {
+        &--error {
+            animation: shake .82s cubic-bezier(.36,.07,.19,.97) both;
+            backface-visibility: hidden;
+            perspective: 1000px;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
 }
+

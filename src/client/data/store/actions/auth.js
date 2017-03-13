@@ -5,6 +5,7 @@ import Fetch from "../../../data/Fetch"
 export function attemptAuth(token) {
     return async (dispatch) => {
         dispatch(auth.loading())
+        dispatch(auth.clearError())
 
         try {  
             let accessLevel = await Fetch.post("/api/auth/login", {token})

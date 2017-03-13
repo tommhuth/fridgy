@@ -29,6 +29,11 @@ export default (state = init, action) => {
                 ...state,
                 isLoading: true
             }
+        case AuthAction.ClearError:
+            return {
+                ...state,
+                error: null
+            }
         default:
             return state
     }

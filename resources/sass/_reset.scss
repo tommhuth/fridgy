@@ -1,21 +1,20 @@
 @-ms-viewport {
     width: device-width;
 }
-
 @viewport {
     width: device-width;
 }
 
 * {
-    outline: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+    outline: none;
 }
 
 fieldset {
+    border: none;
+    margin: 0;
     min-width: 0;
-    border:none;
-    margin:0;
-    padding:0;
+    padding: 0;
 }
 
 html {
@@ -28,38 +27,45 @@ body {
     background: #FFF;
 }
 
-body, body * {
-    margin:0;
-    padding: 0;
-    list-style-type: none;
+body,
+body * {
     border: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
-html, body { height: 100%; }
+body,
+html {
+    height: 100%;
+}
 
 a {
+    color: inherit;
     text-decoration: none;
-    color: inherit; 
 
-    &:focus, &:hover {
+    &:focus,
+    &:hover {
         color: $blue;
     }
 }
 
-
-a, button, [tabindex="0"]:not(input)  {
+[tabindex="0"]:not(input),
+a,
+button {
     -ms-touch-action: none !important;
 
-    .inner, svg {
-        pointer-events: none;
+    &:disabled {
+        opacity: .5;
     }
 
     &:not(:disabled) {
         cursor: pointer;
     }
 
-    &:disabled {
-        opacity: .5;
+    .inner,
+    svg {
+        pointer-events: none;
     }
 }
 
@@ -70,21 +76,21 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 input[type=number] {
-    -moz-appearance:textfield;
+    -moz-appearance: textfield;
 }
 
 button {
-    line-height: 1;
-    padding:0;
     background-color: transparent;
+    border: none;
+    color: inherit;
     font: inherit;
-    color:inherit;
-    border:none;
+    line-height: 1;
+    padding: 0;
 }
 
 button::-moz-focus-inner {
+    border: 0;
     padding: 0;
-    border: 0
 }
 
 :invalid {
@@ -96,17 +102,18 @@ input {
     line-height: inherit;
 
     &:-webkit-autofill {
-        -webkit-box-shadow: 0 0 0px 9999em $blue inset;
-        -webkit-text-fill-color: #FFF !important;
+        -webkit-box-shadow: 0 0 0 9999em #FFF inset;
+        -webkit-text-fill-color: inherit !important;
     }
 }
 
-input, button, select {
+button,
+input,
+select {
     font-family: inherit;
     font-size: inherit;
 }
-  
+
 a:active {
     background-color: transparent;
 }
-

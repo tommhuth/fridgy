@@ -3,6 +3,7 @@ export const AuthAction = {
     Loading: "auth:loading",
     Loaded: "auth:loaded",
     Error: "auth:error",
+    ClearError: "auth:clear-error"
 }
 
 
@@ -10,6 +11,12 @@ export function success(userAccess){
     return {
         type: AuthAction.Success,
         payload: userAccess
+    }
+}
+
+export function clearError(){
+    return {
+        type: AuthAction.ClearError
     }
 }
 

@@ -1,50 +1,25 @@
 .input-pair {
     position: relative;
 
-    .input {
-        width: 100%;
-        padding: 1.25em 5em 1.25em 1.65em;
-        background: $blue;
-        color: #FFF;
+    &__button {
+        background: #000;
+        border: 2px solid #000;
+        bottom: 0;
         box-sizing: border-box;
-        border: none;
-
-        &:focus {
-            background-color: darken($blue, 10%);
-        }
-
-        &:placeholder {
-            color: rgba(#FFF, .5);
-        }
-    }
-
-    button, .spinner {
-        position: absolute;
-        right: .75em;
         color: #FFF;
-        top: 50%;
-        display: block;
-        margin-top: -1em;
-        font-size: 1.5em;
+        padding: .75em 1em;
+        position: absolute;
+        right: 0;
+        text-transform: uppercase;
+        top: 0;
+        width: 5em;
     }
 
-    .icon-repeat {
-        display: block;
-    }
-
-    button {
-        padding: 0;
-        min-width: 2em;
-        margin-right: -.5em;
-        border:none;
-        background-color: transparent;
-
-        .icon{
-            width: 1.25em;
-        }
-
-        &:focus {
-            text-shadow: 0 0 .5em #FFF;
-        }
+    &__input {
+        border: 2px solid #000;
+        box-sizing: border-box;
+        margin-right: 5em;
+        padding: .75em 1em;
+        width: 15em;
     }
 }

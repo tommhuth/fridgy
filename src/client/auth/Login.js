@@ -3,28 +3,40 @@ import { connect } from "react-redux"
 import { attemptAuth } from "../data/store/actions/auth"
 
 class Login extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            tokenInput: ""
-        }
+    state = {
+        tokenInput: "",
+        clicked: false
     }
+
     handleTokenInputChange(e) {
         this.setState({ tokenInput: e.target.value })
     }
+
     attemptAuth(e) {
         e.preventDefault()
         this.props.attemptAuth(this.state.tokenInput)
+        this.setState({ clicked: true })
+        setTimeout(() => this.setState({clicked: false }), 300)
     }
+
     render() {
         return (
-            <form onSubmit={this.attemptAuth.bind(this)} action="">
-                <fieldset className="login">
-                    <legend className="visually-hidden">Login</legend>
+            <form onSubmit={this.attemptAuth.bind(this)} action="" className="login">
+                <fieldset className={"login__wrapper " + (this.props.auth.error ? "login__wrapper--error" : "")}>
+                    <div className="input-pair">
+                        <legend className="visually-hidden">Login</legend>
 
-                    <input value={this.state.tokenInput} onChange={this.handleTokenInputChange.bind(this)} type="password" />
-                    <button>Login</button> 
+                        <label className="visually-hidden" for="password-input">Password</label>
+                        <input
+                            className="input-pair__input"
+                            autoComplete="off"
+                            id="password-input"
+                            value={this.state.tokenInput}
+                            onChange={this.handleTokenInputChange.bind(this)}
+                            type="password" />
+
+                        <button className="input-pair__button">Login</button>
+                    </div>  
                 </fieldset>
             </form>
 
