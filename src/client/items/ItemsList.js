@@ -14,7 +14,7 @@ export default class ItemsList extends Component {
                     }
                 </ul>
 
-                {!items.length ? <p>Ooops, nothing to show!</p> : null}
+                {!items.length ? <p className="subtle">Ooops, nothing to show!</p> : null}
             </div>
         )
     }
