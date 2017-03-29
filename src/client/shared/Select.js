@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import Icon from "./Icon"
+import Icon, {IconType} from "./Icon"
 import classNames from "classnames"
 
 export default class Select extends Component {
@@ -60,7 +60,7 @@ export default class Select extends Component {
         return (
             <div className={selectClass + " " + (this.props.size || "")}>
                 <span>{this.state.selectedText}</span>
-                <Icon title="chevron-down" />
+                <Icon type={IconType.ChevronDown} />
 
                 <select ref={(e) => this.element = e}
                     value={this.state.selectedValue}

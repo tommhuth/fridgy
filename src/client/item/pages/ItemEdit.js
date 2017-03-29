@@ -1,12 +1,12 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import ButtonLink from "../shared/ButtonLink"
-import Button from "../shared/Button"
-import Select from "../shared/Select"
-import RadioButton from "../shared/RadioButton"
-import CheckBox from "../shared/CheckBox"
-import SelectionGroup from "../shared/SelectionGroup"
-import { fetchCategories } from "../data/store/actions/categories"
+import ButtonLink from "../../shared/ButtonLink"
+import Button from "../../shared/Button"
+import Select from "../../shared/Select"
+import RadioButton from "../../shared/RadioButton"
+import CheckBox from "../../shared/CheckBox"
+import SelectionGroup from "../../shared/SelectionGroup"
+import { fetchCategories } from "../../data/store/actions/categories"
 
 class ItemEdit extends Component {
     constructor(props) {

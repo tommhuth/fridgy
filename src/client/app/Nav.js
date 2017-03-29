@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Link } from "react-router"
 import classNames from "classnames"
-import Icon from "./../shared/Icon"
+import Icon, { IconType } from "./../shared/Icon"
 
 export default class Nav extends Component {
     render() {
@@ -16,7 +16,7 @@ export default class Nav extends Component {
                 <div className="container">
                     <button className="nav-toggle-button" type="button" onClick={this.props.toggleVisibility}>
                         <span className="visually-hidden">Toggle menu</span>
-                        <Icon title={visible ? "x" : "menu"} />
+                        <Icon type={visible ? IconType.X : IconType.Hamburger} />
                     </button>
                 </div>
 

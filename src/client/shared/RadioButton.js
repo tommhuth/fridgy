@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import Icon from "./Icon"
+import Icon, { IconType } from "./Icon"
 
 export default class RadioButton extends Component {
     render() {
@@ -12,7 +12,7 @@ export default class RadioButton extends Component {
                     name={this.props.id}
                     defaultChecked={checked}
                     defaultValue={this.props.value} />
-                <Icon title={checked ? "radiobutton-checked" : "radiobutton-default"} />
+                <Icon type={checked ? IconType.RadiobuttonChecked : IconType.RadiobuttonDefault} />
                 {this.props.children}
             </label>
         )

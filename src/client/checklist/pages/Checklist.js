@@ -1,8 +1,8 @@
 import React, { Component } from "react"
-import ItemsList from "../items/ItemsList"
-import Cloak from "../shared/Cloak"
+import ItemsList from "../../items/ItemsList"
+import Cloak from "../../shared/Cloak"
 import { connect } from "react-redux"
-import { fetchItems } from "../data/store/actions/items"
+import { fetchItems } from "../../data/store/actions/items"
 import moment from "moment"
 
 class Items extends Component {

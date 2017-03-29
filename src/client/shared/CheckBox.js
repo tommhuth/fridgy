@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import Icon from "./Icon"
+import Icon, { IconType } from "./Icon"
 
 export default class CheckBox extends Component {
     render() {
@@ -19,7 +19,7 @@ export default class CheckBox extends Component {
                     name={this.props.id}
                     defaultChecked={!!checked}
                     defaultValue={this.props.value} />
-                <Icon title={checked ? "checkbox-checked" : "checkbox-default"} />
+                <Icon type={checked ? IconType.CheckboxChecked : IconType.CheckboxDefault} />
                 {this.props.children}
             </label>
         )

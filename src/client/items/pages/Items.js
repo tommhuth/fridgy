@@ -1,10 +1,10 @@
 import React, { Component } from "react"
-import ItemsList from "./ItemsList"
-import Cloak from "../shared/Cloak"
-import Filter from "./Filter"
+import ItemsList from "./../ItemsList"
+import Cloak from "../../shared/Cloak"
+import Filter from "./../Filter"
 import { connect } from "react-redux"
-import { fetchItems } from "../data/store/actions/items"
-import { filterItems } from "../data/store/actions/filter"
+import { fetchItems } from "../../data/store/actions/items"
+import { filterItems } from "../../data/store/actions/filter"
 
 class Items extends Component {
     componentWillMount() {

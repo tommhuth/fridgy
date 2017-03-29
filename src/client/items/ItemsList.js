@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import ListItem from "./ListItem"
+import ListItem from "./ListItem" 
 import sort from "sort-array"
 
 export default class ItemsList extends Component {
@@ -7,7 +7,7 @@ export default class ItemsList extends Component {
         let items = sort(this.props.items, "title")
 
         return (
-            <div>
+            <div> 
                 <ul className="items-list">
                     {
                         items.map( item => <li key={item.id}> <ListItem item={item}  /> </li>)

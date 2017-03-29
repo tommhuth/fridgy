@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="78px" height="78px" viewBox="0 0 78 78" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
-    <title>chevron-down</title>
+    <title>chevron-up</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Page-1"   fill-rule="evenodd">
-        <g id="chevron-down"  >
-            <g id="Group" transform="translate(2.000000, 20.000000)">
+    <g id="Page-1"  fill-rule="evenodd">
+        <g id="chevron-up"  >
+            <g id="Group" transform="translate(39.000000, 39.500000) scale(1, -1) translate(-39.000000, -39.500000) translate(2.000000, 20.000000)">
                 <path d="M2.78125,0.33093 C2.00274128,0.406695539 1.33982724,0.929303217 1.08442739,1.66861855 C0.829027551,2.40793389 1.02800952,3.22828746 1.59375,3.76843 L35.59375,37.76843 C36.3729866,38.5388116 37.6270134,38.5388116 38.40625,37.76843 L72.40625,3.76843 C72.9308343,3.2695377 73.1449048,2.52612843 72.9659755,1.82465387 C72.7870461,1.12317932 72.2430468,0.57313551 71.5435921,0.386466222 C70.8441374,0.199796935 70.0984082,0.405640141 69.59375,0.92468 L37,33.51843 L4.40625,0.92468 C3.98261989,0.490626005 3.38492244,0.272236553 2.78125,0.33093 L2.78125,0.33093 Z" id="Shape"></path>
             </g>
         </g>

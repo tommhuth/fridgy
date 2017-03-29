@@ -1,10 +1,9 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import ButtonLink from "../shared/ButtonLink"
-import Button from "../shared/Button"
-import Icon from "../shared/Icon"
-import Cloak from "../shared/Cloak"
-import { fetchItem, clearItem } from "../data/store/actions/item"
+import ButtonLink from "../../shared/ButtonLink"
+import Icon, { IconType } from "../../shared/Icon"
+import Cloak from "../../shared/Cloak"
+import { fetchItem, clearItem } from "../../data/store/actions/item"
 
 class Item extends Component {
     componentWillUnmount() {
@@ -23,7 +22,7 @@ class Item extends Component {
                 <Cloak if={item.isLoading}>
                     <div className="container">
                         <div className="offset-small item-status">
-                            <Icon title={item.data.amount ? "checkmark" : "x"} />
+                            <Icon type={item.data.amount ? IconType.Checkmark : IconType.X} />
                         </div>
 
                         <h1 className="beta item-name">
@@ -35,15 +34,6 @@ class Item extends Component {
                             {item.data.amount ? " × " + item.data.amount : ""}
                         </p>
 
-                        <Button className="is-inverted is-icon-only" >
-                            <Icon title="plus" />
-                            <span className="visually-hidden">Increase amount</span>
-                        </Button>
-
-                        <Button className="is-inverted is-icon-only" >
-                            <Icon title="minus" />
-                            <span className="visually-hidden">Decrease amount</span>
-                        </Button>
                         <ButtonLink to={"/items/" + this.props.params.slug + "/edit"}
                             className="is-inverted">
                             EDIT
