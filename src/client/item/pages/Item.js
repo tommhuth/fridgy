@@ -1,13 +1,19 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import ButtonLink from "../../shared/ButtonLink"
-import Icon, { IconType } from "../../shared/Icon"
 import Cloak from "../../shared/Cloak"
 import { fetchItem, clearItem } from "../../data/store/actions/item"
+import moment from "moment"
+import SimilarItemsList from "../SimilarItemsList"
 
 class Item extends Component {
     componentWillUnmount() {
         this.props.clearItem()
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (this.props.params.slug !== newProps.params.slug) {
+            this.props.getItem(newProps.params.slug)
+        }
     }
 
     componentWillMount() {
@@ -21,23 +27,29 @@ class Item extends Component {
             <div className="item-entry " >
                 <Cloak if={item.isLoading}>
                     <div className="container">
-                        <div className="offset-small item-status">
-                            <Icon type={item.data.amount ? IconType.Checkmark : IconType.X} />
-                        </div>
-
-                        <h1 className="beta item-name">
+                        <h1 className="beta offset-small item-entry__title">
                             {item.data.title}
                         </h1>
-
-                        <p className="item-details">
-                            {item.data.amount ? "It’s in the fridge" : "Ooops, ain’t got that"}
-                            {item.data.amount ? " × " + item.data.amount : ""}
+                        <p className="item-entry__status">
+                            {item.data.amount ? `You’ve got ${item.data.amount} of that, buddy` : "Ooops, ain’t got that"}
                         </p>
 
-                        <ButtonLink to={"/items/" + this.props.params.slug + "/edit"}
-                            className="is-inverted">
-                            EDIT
-                        </ButtonLink>
+                        <div className="item-entry__related-items">
+                            <h2 className="item-entry__details-header">See also</h2>
+                            <div className="item-entry__details-data">
+                                <SimilarItemsList items={item.data.similar} />
+                            </div>
+                        </div>
+
+                        <div className="item-entry__category">
+                            <h2 className="item-entry__details-header">Category</h2>
+                            <p className="item-entry__details-data">{item.data.category}</p>
+                        </div>
+
+                        <div className="item-entry__last-updated">
+                            <h2 className="item-entry__details-header">Last edited</h2>
+                            <p className="item-entry__details-data">{moment(item.data.updatedAt).fromNow()}</p>
+                        </div>
                     </div>
 
                     {this.props.children}

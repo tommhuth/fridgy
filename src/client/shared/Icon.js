@@ -12,6 +12,7 @@ export const IconType = {
     ChevronUp: "chevron-up",
     Hamburger: "hamburger",
     Plus: "plus",
+    Minus: "minus",
     RadiobuttonChecked: "radiobutton-checked",
     RadiobuttonDefault: "radiobutton-default",
     Refresh: "refresh",
@@ -31,6 +32,7 @@ const ViewBox = {
     [IconType.ChevronRight]: "78 78",
     [IconType.Hamburger]: "78 41",
     [IconType.Plus]: "78 73",
+    [IconType.Minus]: "78 5",
     [IconType.Refresh]: "78 73",
     [IconType.X]: "78 79"
 }
