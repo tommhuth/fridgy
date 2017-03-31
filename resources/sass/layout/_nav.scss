@@ -18,8 +18,8 @@
         opacity: 1;
 
         &--open {
-            top: 4em;
-            right: 4em;
+            top: 3em;
+            right: 3em;
             left: auto; 
             color: #FFF;
 
@@ -28,8 +28,12 @@
             }
 
             @media (max-width: $breakpoint-grid-collapse) {
-                top: 2em;
+                top: 1.5em;
                 right: 1.5em;
+
+                .container {
+                    margin:0;
+                }
             }
         }
  
