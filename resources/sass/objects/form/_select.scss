@@ -6,6 +6,7 @@
     font-size: 1.25em;
     margin-bottom: .75em;
     transition: background .2s;
+    border-radius: .1em;
 
     span {
         text-transform: lowercase;
@@ -30,6 +31,7 @@
             width: 130%;
             padding-top: 130%;
             transition: width .35s, padding-top .35s, opacity .45s;
+            transition-timing-function: ease-in-out;
         }
     }
 
