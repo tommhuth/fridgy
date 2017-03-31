@@ -3,10 +3,10 @@
 
     .icon {
         font-size: 1.75em;
-        color: $blue;
+        color: $green;
         animation: spin 1s infinite linear;
 
-        .app.is-special & {
+        .app--special & {
             color: #FFF;
             position: fixed;
             left: 50%;

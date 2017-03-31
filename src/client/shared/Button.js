@@ -19,12 +19,15 @@ export default class Button extends Component {
         })
     }
     render() {
-        let className = "button " + (this.state.hasFocus ? "has-focus" : "") + (this.props.className || "")
+        let className = "button " + (this.state.hasFocus ? "button--focus" : "")
+    
         return (
-            <button type="button"
+            <button 
+                type="button"
                 onClick={this.props.onClick}
                 className={className}>
-                <span className="inner"
+                <span 
+                    className={"button__inner " + (this.props.isInverted ? "button__inner--inverted" : "")}
                     onTouchStart={this.setFocus.bind(this)}
                     onBlur={this.setBlur.bind(this)}>
                     {this.props.children}

@@ -1,6 +1,7 @@
 .app { 
     min-height: 100vh; 
     box-sizing: border-box;  
+    overflow:hidden;
 
     &--special {
         background-color: $blue;  

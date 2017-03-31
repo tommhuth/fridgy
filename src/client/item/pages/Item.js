@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import Cloak from "../../shared/Cloak"
 import { fetchItem, clearItem } from "../../data/store/actions/item"
 import moment from "moment"
+import Button from "../../shared/Button"
 import SimilarItemsList from "../SimilarItemsList"
 
 class Item extends Component {
@@ -49,6 +50,15 @@ class Item extends Component {
                         <div className="item-entry__last-updated">
                             <h2 className="item-entry__details-header">Last edited</h2>
                             <p className="item-entry__details-data">{moment(item.data.updatedAt).fromNow()}</p>
+                        </div>
+
+                        <div className="item-entry__admin">
+                            <h2 className="item-entry__details-header">Edit</h2>
+                            <div className="item-entry__details-data">
+                                <Button>+</Button>
+                                <Button>-</Button>
+                                <Button>Edit</Button>
+                            </div>
                         </div>
                     </div>
 

@@ -28,6 +28,11 @@
 
         a {
             word-wrap: break-word;
+
+            &:hover,
+            &:focus {
+                border-bottom: .075em solid currentColor;
+            }
         }
 
         .amount {

@@ -1,104 +1,60 @@
 .button {
-    border:none;
+    border: none;
     line-height: 1.25em;
-    display:  inline-block;
+    display: inline-block;
     text-transform: lowercase;
     text-align: center;
     padding: 0;
-    color: #000;
-    margin-right: .5em;
     vertical-align: top;
     overflow: hidden;
     position: relative;
     border-radius: .15em;
-    
-    &:last-child {
-        margin-right: 0;
+
+    &:not(:last-child) {
+        margin-right: .5em;
     }
 
-    &.is-inverted {
-        color: #FFF;
-
-        .inner {
+    &--focus,
+    &:focus,
+    &:hover {
+        .button__inner {
+            color: $blue;
             border-color: #FFF;
         }
 
-        &:focus,
-        &:hover,
-        &.has-focus {
-            color: $blue;
+        .button__inner--inverted  {
+            color: #FFF;
+            border-color: #000;
         }
 
         &::before {
-            background-color: #FFF;
-        }
-    }
-
-    &.is-icon-only .icon {
-        font-size: .625em;
-        color: currentColor;
-        position: relative;
-        z-index: 1;
-        display: block;
-    }
-
-    &:hover,
-    &:focus,
-    &.has-focus{
-        color: #FFF;
-
-        &::before { 
             width: 130%;
             padding-top: 130%;
-            transition:width .25s, padding-top .25s, opacity .45s ;
+            transition: width .25s, padding-top .25s, opacity .45s;
         }
     }
 
     &::before {
         transform: translateX(-50%) translateY(-50%);
         content: "";
-        width:0;
+        width: 0;
         padding-top: 0;
         display: block;
         position: absolute;
         box-sizing: content-box;
-        background: #000;
+        background: currentColor;
         margin: 0;
         z-index: 0;
         top: 50%;
         border-radius: 50%;
-        left: 50%; 
+        left: 50%;
     }
 
-    .inner {
+    &__inner {
         border: .2rem solid currentColor;
         z-index: 1;
         position: relative;
         padding: .55em 1.25em;
-        display: block;
-    }
-}
-
-.circle-button {
-    padding: .5em;
-    line-height:1;
-    color: darken($light-gray, 15%);
-    border-radius: 50%;
-    margin-left: .75em;
-    font-size: .35em;
-    position: relative;
-    margin-top: -0.2em;
-    margin-bottom: -0.5em;
-    vertical-align: middle;
-    border: .1em solid $light-gray;
-
-    &:hover, &:active, &:focus {
-        color: #FFF;
-        border-color: #000;
-        background-color: #000;
-    }
-    
-    .icon{
         display: block;
     }
 }
