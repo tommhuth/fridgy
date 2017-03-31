@@ -14,10 +14,13 @@ export class Nav extends Component {
         let menuClass = classNames("nav__menu", {
             "nav__menu--open": visible
         })
+        let togglerClass = classNames("nav__toggler", {
+            "nav__toggler--open": visible
+        })
 
         return (
             <nav className={navClass}>
-                <div className="nav__toggler">
+                <div className={togglerClass}>
                     <div className="container">
                         <button type="button" onClick={this.props.toggleVisibility}>
                             <span className="visually-hidden">Toggle menu</span>
@@ -30,16 +33,28 @@ export class Nav extends Component {
                     <div className="container">
                         <ul className="menu" onClick={this.props.toggleVisibility}>
                             <li className="menu__link">
-                                <Link to="/">Home</Link>
+                                <Link to="/">
+                                    Home
+                                    <Icon type={IconType.ChevronRight} />
+                                </Link>
                             </li>
                             <li className="menu__link">
-                                <Link to="/items">The fridge</Link>
+                                <Link to="/items">
+                                    The fridge
+                                    <Icon type={IconType.ChevronRight} />
+                                </Link>
                             </li>
                             <li className="menu__link">
-                                <Link to="/checklist">Checklist</Link>
+                                <Link to="/checklist">
+                                    Checklist
+                                    <Icon type={IconType.ChevronRight} />
+                                </Link>
                             </li>
                             <li className="menu__link">
-                                <Link to="/about">About</Link>
+                                <Link to="/about">
+                                    About
+                                    <Icon type={IconType.ChevronRight} />
+                                </Link>
                             </li>
                         </ul>
                     </div>

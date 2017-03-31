@@ -1,0 +1,25 @@
+.skip-to-content {
+    background-color: black;
+    color: #FFF;
+    display: block;
+    font-size: .65em;
+    left: 50%;
+    line-height: 1;
+    margin-left: -3.5em;
+    padding: 1em 1.25em;
+    position: fixed;
+    text-align: center;
+    text-transform: uppercase;
+    top: -3em;
+    transition: top .2s;
+    width: 10em;
+
+    &:focus {
+        top: 0;
+    }
+
+    .app.is-special & {
+        background-color: #FFF;
+        color: $blue !important;
+    }
+}

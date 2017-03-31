@@ -1,23 +1,40 @@
-.nav {
-    color: #000;
+.nav { 
     min-height: 5em;
     position: relative;
 
     &--open {
-        background: #000;
+        background-color: $blue;
+        background-image: linear-gradient(45deg, rgba($green, .85)  , $blue );
         min-height: 100vh;
         color: #FFF;
     }
 
     &__toggler {
         position: absolute;
-        top: 4em;
-        opacity: .3;
+        top: 4em; 
+        color: $green;
         left: 0;
         right: 0;
+        opacity: 1;
 
+        &--open {
+            top: 4em;
+            right: 4em;
+            left: auto; 
+            color: #FFF;
+
+            .icon { 
+                opacity: .3;
+            }
+
+            @media (max-width: $breakpoint-grid-collapse) {
+                top: 2em;
+                right: 1.5em;
+            }
+        }
+ 
         .icon {
-            font-size: 1.85em;
+            font-size: 1.75em; 
         }
     }
 
@@ -26,64 +43,12 @@
         display: none;
         left: 0;
         right: 0;
+        text-align: center;
         top: 50%;
         transform: translateY( -50%);
 
         &--open {
             display: block;
         }
-    }
-}
-
-.menu {
-    padding: 3em 4.5em;
-    border: .5em solid #FFF;
-    margin: 0 auto;
-
-    @media (max-width: $breakpoint-grid-collapse) {
-        padding: 2em 2.5em;
-        border-width: .35em;
-    }
-
-    &__link {
-        font-size: 3em;
-        line-height: 1;
-        font-weight: 500;
-        color: #FFF;
-        text-transform: lowercase;
-
-        @media (max-width: $breakpoint-grid-collapse) {
-            font-size: 2em;
-        }
-
-        &:not(:last-child) {
-            margin-bottom: .45em;
-        }
-    }
-}
-
-.skip-to-content {
-    background-color: black;
-    color: #FFF;
-    display: block;
-    font-size: .65em;
-    left: 50%;
-    line-height: 1;
-    margin-left: -3.5em;
-    padding: 1em 1.25em;
-    position: fixed;
-    text-align: center;
-    text-transform: uppercase;
-    top: -3em;
-    transition: top .2s;
-    width: 10em;
-
-    &:focus {
-        top: 0;
-    }
-
-    .app.is-special & {
-        background-color: #FFF;
-        color: $blue !important;
     }
 }
