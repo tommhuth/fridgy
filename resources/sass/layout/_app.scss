@@ -6,7 +6,7 @@
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 
-    &.is-special {
+    &--special {
         background-color: $blue;  
         color: #FFF; 
     } 

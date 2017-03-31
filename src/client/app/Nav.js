@@ -1,9 +1,11 @@
 import React, { Component } from "react"
 import { Link } from "react-router"
+import { connect } from "react-redux"
 import classNames from "classnames"
 import Icon, { IconType } from "./../shared/Icon"
+import { toggleMenu } from "../data/store/actions/menu"
 
-export default class Nav extends Component {
+export class Nav extends Component {
     render() {
         let visible = this.props.menu.visible
         let navClass = classNames("nav", {
@@ -41,8 +43,21 @@ export default class Nav extends Component {
                             </li>
                         </ul>
                     </div>
-                </div> 
+                </div>
             </nav>
         )
     }
 }
+
+export default connect(
+    (state) => {
+        return {
+            menu: state.menu
+        }
+    },
+    (dispatch) => {
+        return {
+            toggleVisibility: () => dispatch(toggleMenu())
+        }
+    }
+)(Nav)
