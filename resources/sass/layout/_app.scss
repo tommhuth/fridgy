@@ -1,15 +1,14 @@
-.app {
-    padding-bottom: 4em;
-    min-height: 100vh;
+.app { 
+    height: 100vh;
+    width: 100vw;
     box-sizing: border-box; 
-
-    @media (max-width: $breakpoint-grid-collapse) {
-        padding-bottom: 1.75em; 
-    }
+    overflow: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 
     &.is-special {
         background-color: $blue;  
         color: #FFF; 
-    }
+    } 
 }
  

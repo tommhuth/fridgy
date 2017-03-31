@@ -1,117 +1,70 @@
 .nav {
-    &.is-open {
-        .nav-toggle-button {
-            color: #fff !important;
-        }
+    color: #000;
+    min-height: 5em;
+    position: relative;
 
-        .nav-wrapper {
-            display: block;
-        }
+    &--open {
+        background: #000;
+        min-height: 100vh;
+        color: #FFF;
     }
 
-    .nav-toggle-button {
-        color: #000;
-        font-size: 1.25em;
-        margin: 3em 0 0;
-        position: relative;
-        transition: none;
-        z-index: 2;
-
-        @media (max-width: $breakpoint-grid-collapse) {
-            margin-top: 2em;
-        }
-
-        &:focus,
-        &:hover {
-            color: $blue;
-
-            .app.is-special & {
-                color: #fff;
-            }
-        }
-
-        .app.is-special & {
-            color: #FFF;
-
-            &:focus,
-            &:hover {
-                color: #FFF;
-            }
-        }
+    &__toggler {
+        position: absolute;
+        top: 4em;
+        opacity: .3;
+        left: 0;
+        right: 0;
 
         .icon {
-            display: block;
+            font-size: 1.85em;
         }
     }
 
-    .nav-wrapper {
-        background: rgba(#000, 1);
-        bottom: 0;
-        color: #FFF;
+    &__menu {
+        position: absolute;
         display: none;
         left: 0;
-        position: fixed;
         right: 0;
-        top: 0;
-        z-index: 1;
+        top: 50%;
+        transform: translateY( -50%);
 
-        .container {
-            height: 100%;
-            position: relative;
+        &--open {
+            display: block;
+        }
+    }
+}
+
+.menu {
+    padding: 3em 4.5em;
+    border: .5em solid #FFF;
+    margin: 0 auto;
+
+    @media (max-width: $breakpoint-grid-collapse) {
+        padding: 2em 2.5em;
+        border-width: .35em;
+    }
+
+    &__link {
+        font-size: 3em;
+        line-height: 1;
+        font-weight: 500;
+        color: #FFF;
+        text-transform: lowercase;
+
+        @media (max-width: $breakpoint-grid-collapse) {
+            font-size: 2em;
         }
 
-        li {
-            font-size: 4.5em;
-            font-weight: bold;
-            letter-spacing: -.025em;
-            line-height: 1.125;
-            margin-bottom: .2em;
-            text-transform: lowercase;
-            white-space: nowrap;
-
-            @media (max-width: $breakpoint-grid-collapse) {
-                font-size: 3em;
-                margin-bottom: .5em;
-            }
-
-            .icon {
-                font-size: .35em;
-                margin-bottom: -.125em;
-                margin-left: .25em;
-                opacity: .05;
-            }
-
-            a {
-                transition: all .25s;
-            }
-
-            a:focus,
-            a:hover {
-                color: $blue;
-
-                .icon {
-                    opacity: 1;
-                }
-            }
-        }
-
-        ul {
-            bottom: 10vh;
-            left: 0;
-            position: absolute;
-            right: 0;
-
-            @media (max-width: $breakpoint-grid-collapse) {
-                bottom: 2em;
-            }
-
+        &:not(:last-child) {
+            margin-bottom: .45em;
         }
     }
 }
 
 .skip-to-content {
     background-color: black;
-    color: #FFF !important;
+    color: #FFF;
     display: block;
     font-size: .65em;
     left: 50%;

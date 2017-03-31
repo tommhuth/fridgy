@@ -16,7 +16,8 @@ export const IconType = {
     RadiobuttonChecked: "radiobutton-checked",
     RadiobuttonDefault: "radiobutton-default",
     Refresh: "refresh",
-    X: "x"
+    X: "x",
+    Fridge: "fridge"
 }
 
 const ViewBox = {
@@ -34,7 +35,8 @@ const ViewBox = {
     [IconType.Plus]: "78 73",
     [IconType.Minus]: "78 5",
     [IconType.Refresh]: "78 73",
-    [IconType.X]: "78 79"
+    [IconType.X]: "78 79",
+    [IconType.Fridge]: "239 364"
 }
 
 export default class Icon extends Component {

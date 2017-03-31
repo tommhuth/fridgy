@@ -7,7 +7,7 @@ import { toggleMenu } from "../data/store/actions/menu"
 class App extends Component {
     render() {
         let appClass = classNames("app", {
-            "is-special": this.props.routes[this.props.routes.length - 1].isSpecial
+            "is-special": this.props.routes[this.props.routes.length - 1].isSpecial 
         })
 
         return (

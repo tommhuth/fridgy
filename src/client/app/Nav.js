@@ -7,29 +7,41 @@ export default class Nav extends Component {
     render() {
         let visible = this.props.menu.visible
         let navClass = classNames("nav", {
-            "is-open": visible
+            "nav--open": visible
+        })
+        let menuClass = classNames("nav__menu", {
+            "nav__menu--open": visible
         })
 
         return (
             <nav className={navClass}>
-                <a className="skip-to-content" href="#main">Skip to content</a>
-                <div className="container">
-                    <button className="nav-toggle-button" type="button" onClick={this.props.toggleVisibility}>
-                        <span className="visually-hidden">Toggle menu</span>
-                        <Icon type={visible ? IconType.X : IconType.Hamburger} />
-                    </button>
-                </div>
-
-                <div className="nav-wrapper">
+                <div className="nav__toggler">
                     <div className="container">
-                        <ul onClick={this.props.toggleVisibility}>
-                            <li><Link to="/">Home <Icon title="arrow-right" /></Link></li>
-                            <li><Link to="/items">The fridge <Icon title="arrow-right" /></Link></li>
-                            <li><Link to="/checklist">Checklist <Icon title="arrow-right" /></Link></li>
-                            <li><Link to="/about">About <Icon title="arrow-right" /></Link></li>
-                        </ul>
+                        <button type="button" onClick={this.props.toggleVisibility}>
+                            <span className="visually-hidden">Toggle menu</span>
+                            <Icon type={visible ? IconType.X : IconType.Hamburger} />
+                        </button>
                     </div>
                 </div>
+
+                <div className={menuClass}>
+                    <div className="container">
+                        <ul className="menu" onClick={this.props.toggleVisibility}>
+                            <li className="menu__link">
+                                <Link to="/">Home</Link>
+                            </li>
+                            <li className="menu__link">
+                                <Link to="/items">The fridge</Link>
+                            </li>
+                            <li className="menu__link">
+                                <Link to="/checklist">Checklist</Link>
+                            </li>
+                            <li className="menu__link">
+                                <Link to="/about">About</Link>
+                            </li>
+                        </ul>
+                    </div>
+                </div> 
             </nav>
         )
     }
