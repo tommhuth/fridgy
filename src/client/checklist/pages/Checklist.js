@@ -4,6 +4,7 @@ import Cloak from "../../shared/Cloak"
 import { connect } from "react-redux"
 import { fetchItems } from "../../data/store/actions/items"
 import moment from "moment"
+import Page from "../../app/Page"
 
 class Items extends Component {
     componentWillMount() {
@@ -12,17 +13,20 @@ class Items extends Component {
         this.props.fetchItems(silent)
     }
 
-    render() { 
+    render() {
         let data = this.props.items.data.filter(i => i.checklist === moment().format("YYYY-MM-DD"))
 
         return (
-            <div className="container">
-                <h1 className="beta offset-small">Checklist</h1>
+            <Page>
+                <div className="container">
+                    <h1 className="beta offset-small">Checklist</h1>
 
-                <Cloak if={this.props.items.isLoading}>
-                    <ItemsList items={data} />
-                </Cloak>
-            </div>
+                    <Cloak if={this.props.items.isLoading}>
+                        <ItemsList items={data} />
+                    </Cloak>
+                </div>
+            </Page>
+
         )
     }
 }

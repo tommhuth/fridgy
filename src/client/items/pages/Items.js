@@ -1,10 +1,11 @@
 import React, { Component } from "react"
 import ItemsList from "./../ItemsList"
-import Cloak from "../../shared/Cloak" 
+import Cloak from "../../shared/Cloak"
 import Filter from "./../Filter"
 import { connect } from "react-redux"
 import { fetchItems } from "../../data/store/actions/items"
 import { filterItems } from "../../data/store/actions/filter"
+import Page from "../../app/Page"
 
 class Items extends Component {
     componentWillMount() {
@@ -19,14 +20,16 @@ class Items extends Component {
         let list = filterItems(item.data, this.props.filter)
 
         return (
-            <div className="container">
-                <h1 className="beta offset-small">The fridge</h1>
-                
-                <Cloak if={item.isLoading || categories.isLoading}>
-                    <Filter />
-                    <ItemsList items={list} />
-                </Cloak>
-            </div>
+            <Page>
+                <div className="container">
+                    <h1 className="beta offset-small">The fridge</h1>
+
+                    <Cloak if={item.isLoading || categories.isLoading}>
+                        <Filter />
+                        <ItemsList items={list} />
+                    </Cloak>
+                </div>
+            </Page>
         )
     }
 }

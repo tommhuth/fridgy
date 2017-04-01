@@ -2,6 +2,8 @@
     margin: 0 auto;
     display: inline-block;
     text-align: left;
+    animation: slide-up .4s;
+    position: relative;
 
     &__link {
         font-size: 3.25em;

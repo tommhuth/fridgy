@@ -9,6 +9,7 @@ import SimilarItemsList from "../SimilarItemsList"
 import AdminOnly from "../../shared/AdminOnly"
 import BodyClassName from "react-body-classname"
 import numberConverter from "number-to-words"
+import Page from "../../app/Page"
 
 class Item extends Component {
     componentWillUnmount() {
@@ -30,8 +31,8 @@ class Item extends Component {
 
         return (
             <BodyClassName className="fill fill--blue">
-                <div className="item-entry " >
-                    <Cloak if={item.isLoading}>
+                <Cloak if={item.isLoading}> 
+                    <Page className="item-entry " >
                         <div className="container">
                             <h1 className="beta offset-small item-entry__title">
                                 {item.data.title}
@@ -67,9 +68,9 @@ class Item extends Component {
                             </AdminOnly>
                         </div>
 
-                        {this.props.children}
-                    </Cloak>
-                </div> 
+                        {this.props.children} 
+                    </Page>
+                </Cloak>
             </BodyClassName>
         )
     }
