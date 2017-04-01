@@ -5,8 +5,13 @@ import config from "./config/config-loader"
 const filePath = path.join(__dirname, "..", "..", "version.json")
 
 export function incrementVersion() { 
-    writeFileSync(filePath, JSON.stringify({ version: getVersion() + 1 }))
+    setVersion(getVersion() + 1)  
 }
+
+export function setVersion(v) { 
+    writeFileSync(filePath, JSON.stringify({ version: v }))
+}
+
 
 export function getVersion() { 
     try { 
@@ -14,6 +19,8 @@ export function getVersion() {
 
         return version
     } catch (e) {
+        setVersion(0)
+        
         return 0
     }
 }
