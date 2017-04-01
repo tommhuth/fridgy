@@ -16,7 +16,7 @@ export default class Nav extends Component {
         let togglerClass = classNames("nav__toggler", {
             "nav__toggler--open": visible
         })
-        let x = <BodyClassName className="fill fill--gradient fill--blue">
+        let menu = <BodyClassName className="fill fill--dark-blue">
             <div className={menuClass}>
                 <div className="container">
                     <ul className="menu" onClick={this.props.toggleVisibility}>
