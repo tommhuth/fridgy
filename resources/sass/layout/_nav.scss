@@ -4,7 +4,7 @@
 
     &--open {
         background-color: $blue;
-        background-image: linear-gradient(45deg, rgba($green, .85)  , $blue );
+        background-image: linear-gradient(45deg, rgba($green, .65), $blue);
         min-height: 100vh;
         color: #FFF;
     }
@@ -22,11 +22,7 @@
             right: 3em;
             left: auto; 
             color: #FFF;
-
-            .icon { 
-                opacity: .3;
-            }
-
+  
             @media (max-width: $breakpoint-grid-collapse) {
                 top: 1.5em;
                 right: 1.5em;
@@ -35,7 +31,7 @@
                     margin:0;
                 }
             }
-        }
+        } 
  
         .icon {
             font-size: 1.75em; 
