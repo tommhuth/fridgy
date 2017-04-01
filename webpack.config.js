@@ -1,10 +1,13 @@
+const { getVersion } = require("./build/server/versioning")
+const webpack = require("webpack")
+
 module.exports = {
     entry: "./src/client/client.js",
     output: {
         filename: "public/js/bundle.js"
     },
     module: {
-        loaders:[
+        loaders: [
             {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
@@ -17,5 +20,10 @@ module.exports = {
     },
     resolve: {
         extensions: ["", ".js"]
-    }
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            "process.env.ASSETS_VERSION": JSON.stringify(getVersion())
+        })
+    ]
 }

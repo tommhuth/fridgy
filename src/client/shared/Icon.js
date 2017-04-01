@@ -54,7 +54,7 @@ export default class Icon extends Component {
 
         return (
             <svg key={this.id} className={"icon " + (this.props.size || "")} viewBox={`0 0 ${ViewBox[this.props.type] || "0 0"}`} >
-                <use xlinkHref={"/gfx/iconset.svg#" + this.props.type} />
+                <use xlinkHref={ `/gfx/iconset.svg?v=${process.env.ASSETS_VERSION}#${this.props.type}`} />
             </svg>
         )
     }

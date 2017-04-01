@@ -7,7 +7,7 @@
     "node": "7.3.0"
   },
   "scripts": {
-    "postinstall": "node_modules/.bin/webpack && node_modules/.bin/babel src/ -d build/ --presets stage-2 --copy-files && node_modules/.bin/gulp build",
+    "postinstall": "npm run make-version & node_modules/.bin/webpack && node_modules/.bin/babel src/ -d build/ --presets stage-2 --copy-files && node_modules/.bin/gulp build",
     "start": "cross-env DEBUG=fridgy-server,fridgy-server:* node build/server/server.js",
     "build": "npm run build-server && npm run build-client && gulp build",
     "build:dev": "  npm run build-server:dev & npm run build-client:dev & gulp",
@@ -17,7 +17,8 @@
     "build-client:dev": "webpack -w",
     "lint": "eslint src/ --ext 'jsx' --ext 'js'",
     "test": "cross-env NODE_ENV=test mocha --ui qunit --recursive ",
-    "ngrok": "ngrok http localhost:3000"
+    "ngrok": "ngrok http localhost:3000",
+    "make-version": "node increment-version.js"
   },
   "dependencies": {
     "babel-cli": "^6.23.0",
@@ -58,6 +59,7 @@
     "node-uuid": "^1.4.7",
     "number-to-words": "^1.2.3",
     "pretty-error": "^2.0.2",
+    "pug": "^2.0.0-beta11",
     "react": "^15.4.2",
     "react-body-classname": "^1.1.0",
     "react-dom": "^15.4.2",
