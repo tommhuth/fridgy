@@ -11,9 +11,10 @@ import debug from "debug"
 import seeder from "./db/seeders"
 import config, { base as baseConfig } from "./config/config-loader"
 import * as globalErrorHandlers from "./routes/global-error-handlers"
+import { autoVersion } from "./versioning" 
+
 export const app = express()
 const log = debug("fridgy-server")
-import { autoVersion } from "./versioning"
 let server
 
 export function start() {
