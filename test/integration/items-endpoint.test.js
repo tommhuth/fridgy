@@ -165,7 +165,7 @@ test("Should remove item by slug", function (done) {
 test("Should fail getting unknown item by slug", function (done) {
     supertest(app)
         .delete("/api/items/" + existingItem.slug)
-        .set("Authorization", config.READ_AUTH_TOKEN)
+        .set("Authorization", config.WRITE_AUTH_TOKEN)
         .expect(404)
         .end(done)
 })
