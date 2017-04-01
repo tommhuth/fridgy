@@ -1,5 +1,5 @@
 import express from "express"
-import { Auth } from "../../auth/auth"
+import { Auth } from "../../auth/Auth"
 
 let router = express.Router()
 
