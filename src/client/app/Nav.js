@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { Link } from "react-router"
 import classNames from "classnames"
+import BodyClassName from "react-body-classname"
 import Icon, { IconType } from "./../shared/Icon"
 
 export default class Nav extends Component {
@@ -15,6 +16,38 @@ export default class Nav extends Component {
         let togglerClass = classNames("nav__toggler", {
             "nav__toggler--open": visible
         })
+        let x = <BodyClassName className="fill fill--gradient fill--blue">
+            <div className={menuClass}>
+                <div className="container">
+                    <ul className="menu" onClick={this.props.toggleVisibility}>
+                        <li className="menu__link">
+                            <Link to="/">
+                                Home
+                                    <Icon type={IconType.ChevronRight} />
+                            </Link>
+                        </li>
+                        <li className="menu__link">
+                            <Link to="/items">
+                                The fridge
+                                    <Icon type={IconType.ChevronRight} />
+                            </Link>
+                        </li>
+                        <li className="menu__link">
+                            <Link to="/checklist">
+                                Checklist
+                                    <Icon type={IconType.ChevronRight} />
+                            </Link>
+                        </li>
+                        <li className="menu__link">
+                            <Link to="/about">
+                                About
+                                    <Icon type={IconType.ChevronRight} />
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </BodyClassName>
 
         return (
             <nav className={navClass}>
@@ -27,36 +60,7 @@ export default class Nav extends Component {
                     </div>
                 </div>
 
-                <div className={menuClass}>
-                    <div className="container">
-                        <ul className="menu" onClick={this.props.toggleVisibility}>
-                            <li className="menu__link">
-                                <Link to="/">
-                                    Home
-                                    <Icon type={IconType.ChevronRight} />
-                                </Link>
-                            </li>
-                            <li className="menu__link">
-                                <Link to="/items">
-                                    The fridge
-                                    <Icon type={IconType.ChevronRight} />
-                                </Link>
-                            </li>
-                            <li className="menu__link">
-                                <Link to="/checklist">
-                                    Checklist
-                                    <Icon type={IconType.ChevronRight} />
-                                </Link>
-                            </li>
-                            <li className="menu__link">
-                                <Link to="/about">
-                                    About
-                                    <Icon type={IconType.ChevronRight} />
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                {visible ? x : null}
             </nav>
         )
     }

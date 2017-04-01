@@ -13,7 +13,7 @@ export class Wrapper extends Component {
         </main>
 
         return (
-            <div className={"app " + (this.props.isSpecial ? "app--special" : "")}>
+            <div className={"app"}>
                 <Nav toggleVisibility={this.props.toggleVisibility} isVisible={this.props.isVisible} />
                 {this.props.isVisible ? null : main}
             </div>
