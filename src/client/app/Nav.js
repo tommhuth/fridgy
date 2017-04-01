@@ -60,7 +60,7 @@ export default class Nav extends Component {
                     </div>
                 </div>
 
-                {visible ? x : null}
+                {visible ? menu : null}
             </nav>
         )
     }
