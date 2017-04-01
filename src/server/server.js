@@ -53,7 +53,7 @@ app.set("views", path.join(__dirname, "..", "..", "resources/views"))
 app.set("view engine", "mustache")
 
 // static files
-app.use(serveStatic(path.join(__dirname, "..", "..", "public"), /* { maxAge: "1 day" } */))
+app.use(serveStatic(path.join(__dirname, "..", "..", "public"), { maxAge: "1 day" } ))
 
 //routes
 app.use("/api", apiRoutes)

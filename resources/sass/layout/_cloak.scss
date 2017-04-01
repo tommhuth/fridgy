@@ -7,12 +7,11 @@
         animation: spin 1s infinite linear;
         transform-origin: 50% 53%;
 
-        .app--special & {
-            color: #FFF;
+        .fill & { 
             position: fixed;
+            display: block;
             left: 50%;
-            top: 50%;
-            margin: -1em 0 0 -1em;
+            top: 50%; 
         }
     }
 } 
