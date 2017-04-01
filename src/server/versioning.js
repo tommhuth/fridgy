@@ -9,13 +9,17 @@ export function incrementVersion() {
 }
 
 export function getVersion() { 
-    let { version } = JSON.parse(readFileSync(filePath))
+    try { 
+        let { version } = JSON.parse(readFileSync(filePath))
 
-    return version
+        return version
+    } catch (e) {
+        return 0
+    }
 }
 
 export function autoVersion(path) { 
-    if(config.NODE_ENV !== "production") {
+    if (config.NODE_ENV !== "production") {
         return path
     }
 
