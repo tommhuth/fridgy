@@ -1,28 +1,11 @@
-import { readFileSync, writeFileSync } from "fs"
+import { readFileSync } from "fs"
 import path from "path"
 import config from "./config/config-loader"
+  
+export function getVersion() {  
+    let { version } = JSON.parse(readFileSync(path.join(__dirname, "..", "..", "package.json")))
 
-const filePath = path.join(__dirname, "..", "..", "version.json")
-
-export function incrementVersion() { 
-    setVersion(getVersion() + 1)  
-}
-
-export function setVersion(v) { 
-    writeFileSync(filePath, JSON.stringify({ version: v }))
-}
-
-
-export function getVersion() { 
-    try { 
-        let { version } = JSON.parse(readFileSync(filePath))
-
-        return version
-    } catch (e) {
-        setVersion(0)
-        
-        return 0
-    }
+    return version 
 }
 
 export function autoVersion(path) { 
