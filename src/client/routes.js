@@ -19,11 +19,10 @@ export default (
             <Route path="/about" component={About} />
             <Route path="/checklist" component={Checklist} />
             <Route path="/items" component={Items} />
+            <Route path="/items/:slug/edit" component={ItemEdit} />
         </Route>
         <Route component={SpecialWrapper}>
-            <Route path="/items/:slug" component={Item} >
-                <Route path="/items/:slug/edit" component={ItemEdit} />
-            </Route>
+            <Route path="/items/:slug" component={Item} />
         </Route>
     </Route>
 )
