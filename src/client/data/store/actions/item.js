@@ -28,7 +28,11 @@ export function updateItem(item, silent = false) {
 }
 
 export function fetchItem(slug) {
-    return async (dispatch) => {
+    return async (dispatch, getState) => { 
+        if (getState().item.data.slug === slug) { 
+            return
+        } 
+        
         dispatch(itemActions.loading())
 
         try {
@@ -39,7 +43,7 @@ export function fetchItem(slug) {
             dispatch(itemActions.error(e))
         } finally {
             dispatch(itemActions.loaded())
-        }
+        } 
     }
 }
 

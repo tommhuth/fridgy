@@ -12,10 +12,6 @@ import numberConverter from "number-to-words"
 import Page from "../../app/Page"
 
 class Item extends Component {
-    componentWillUnmount() {
-        this.props.clearItem()
-    }
-
     componentWillReceiveProps(newProps) {
         if (this.props.params.slug !== newProps.params.slug) {
             this.props.getItem(newProps.params.slug)
