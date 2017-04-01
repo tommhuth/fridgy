@@ -5,7 +5,7 @@ export function adjustAmount(item, adjustAmount) {
     return async (dispatch) => {
         item.amount = item.amount + adjustAmount > -1 ? item.amount + adjustAmount : 0
 
-        dispatch(updateItem(item))
+        dispatch(updateItem(item, true))
     }
 }
 

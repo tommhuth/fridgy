@@ -6,19 +6,21 @@
     margin: 1.5em 0 0;
     font-size: 1.75em;
     text-transform: lowercase;
-    line-height: 1.15;
-    overflow: auto;
+    line-height: 1.15; 
 
     li {
         box-sizing: border-box;
         padding-right: 1em;
-        margin-bottom: 1em;
         position: relative;
         float:left;
         width: 50%;
 
         &:nth-child(odd) {
             clear: left;
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 1em;
         }
 
         @media (max-width: 52em) {
