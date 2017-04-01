@@ -1,21 +1,21 @@
-import * as categories from "./creators/categories"
+import * as categoriesActions from "./creators/categories"
 import Fetch from "../../../data/Fetch"
 
 export function fetchCategories(silent) {
     return async (dispatch) => {
         if (silent) {
-            dispatch(categories.loading())
+            dispatch(categoriesActions.loading())
         }
 
         try {
             let list = await Fetch.get("/api/categories")
 
-            dispatch(categories.receive(list))
+            dispatch(categoriesActions.receive(list))
         } catch (e) {
-            dispatch(categories.error(e))
+            dispatch(categoriesActions.error(e))
         } finally {
             if (silent) {
-                categories.loaded()
+                categoriesActions.loaded()
             }
         }
     }

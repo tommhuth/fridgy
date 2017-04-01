@@ -1,10 +1,13 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import Cloak from "../../shared/Cloak"
-import { fetchItem, clearItem } from "../../data/store/actions/item"
+import { fetchItem, clearItem, adjustAmount } from "../../data/store/actions/item"
 import moment from "moment"
 import Button from "../../shared/Button"
+import ButtonLink from "../../shared/ButtonLink"
 import SimilarItemsList from "../SimilarItemsList"
+import AdminOnly from "../../shared/AdminOnly"
+import numberConverter from "number-to-words"
 
 class Item extends Component {
     componentWillUnmount() {
@@ -20,7 +23,7 @@ class Item extends Component {
     componentWillMount() {
         this.props.getItem(this.props.params.slug)
     }
-
+ 
     render() {
         let item = this.props.item
 
@@ -32,7 +35,7 @@ class Item extends Component {
                             {item.data.title}
                         </h1>
                         <p className="item-entry__status">
-                            {item.data.amount ? `You’ve got ${item.data.amount} of that, buddy` : "Ooops, ain’t got that"}
+                            {item.data.amount ? `You’ve got ${numberConverter.toWords(item.data.amount)} of that, buddy` : "Ooops, ain’t got that"}
                         </p>
 
                         <div className="item-entry__related-items">
@@ -52,14 +55,14 @@ class Item extends Component {
                             <p className="item-entry__details-data">{moment(item.data.updatedAt).fromNow()}</p>
                         </div>
 
-                        <div className="item-entry__admin">
-                            <h2 className="item-entry__details-header">Edit</h2>
-                            <div className="item-entry__details-data">
-                                <Button>+</Button>
-                                <Button>-</Button>
-                                <Button>Edit</Button>
+                        <AdminOnly>
+                            <div className="item-entry__admin">
+                                <h2 className="item-entry__details-header">Edit</h2> 
+                                <Button onClick={this.props.adjustAmount.bind(null, item.data, 1)}>+</Button>
+                                <Button onClick={this.props.adjustAmount.bind(null, item.data, -1)}>-</Button> 
+                                <ButtonLink to={`/items/${item.data.slug}/edit`}>Edit</ButtonLink> 
                             </div>
-                        </div>
+                        </AdminOnly>
                     </div>
 
                     {this.props.children}
@@ -79,7 +82,8 @@ export default connect(
     (dispatch) => {
         return {
             getItem: (slug) => dispatch(fetchItem(slug)),
-            clearItem: () => dispatch(clearItem())
+            clearItem: () => dispatch(clearItem()),
+            adjustAmount: (item, amount) => dispatch(adjustAmount(item, amount))
         }
     }
 )(Item)

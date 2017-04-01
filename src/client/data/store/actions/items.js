@@ -1,22 +1,22 @@
-import * as items from "../actions/creators/items"
+import * as itemsActions from "../actions/creators/items"
 import Fetch from "../../../data/Fetch"
 import moment from "moment"
 
 export function fetchItems(silent = false) {
     return async (dispatch) => {
         if (!silent) {
-            dispatch(items.loading())
+            dispatch(itemsActions.loading())
         }
 
         try {
             let result = await Fetch.get("/api/items")
 
-            dispatch(items.receive(result))
+            dispatch(itemsActions.receive(result))
         } catch (e) {
-            dispatch(items.error(e))
+            dispatch(itemsActions.error(e))
         } finally {
             if (!silent) {
-                dispatch(items.loaded())
+                dispatch(itemsActions.loaded())
             }
         }
     }
@@ -26,24 +26,24 @@ export function checklistItem(slug) {
     return async (dispatch) => {
         let date = moment().format("YYYY-MM-DD")
 
-        dispatch(items.checklist(slug, date))
+        dispatch(itemsActions.checklist(slug, date))
 
         try {
             await Fetch.put(`/api/items/${slug}`, { checklist: date })
         } catch (e) {
-            dispatch(items.error(e))
+            dispatch(itemsActions.error(e))
         }
     }
 }
 
 export function dechecklistItem(slug) {
     return async (dispatch) => { 
-        dispatch(items.dechecklist(slug))
+        dispatch(itemsActions.dechecklist(slug))
 
         try {
             await Fetch.put(`/api/items/${slug}`, { checklist: null })
         } catch (e) {
-            dispatch(items.error(e))
+            dispatch(itemsActions.error(e))
         }
     }
 }

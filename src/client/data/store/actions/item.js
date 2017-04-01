@@ -1,24 +1,50 @@
-import * as item from "./creators/item"
-import Fetch from "../../../data/Fetch" 
+import * as itemActions from "./creators/item"
+import Fetch from "../../../data/Fetch"
+
+export function adjustAmount(item, adjustAmount) {
+    return async (dispatch) => {
+        item.amount = item.amount + adjustAmount > -1 ? item.amount + adjustAmount : 0
+
+        dispatch(updateItem(item))
+    }
+}
+
+export function updateItem(item, silent = false) {
+    return async (dispatch) => {
+        if (!silent) {
+            dispatch(itemActions.loading())
+        }
+
+        dispatch(itemActions.updateItem(item))
+
+        try {
+            await Fetch.put(`/api/items/${item.slug}`, item)
+        } catch (e) {
+            dispatch(itemActions.error(e))
+        } finally {
+            dispatch(itemActions.loaded())
+        }
+    }
+}
 
 export function fetchItem(slug) {
     return async (dispatch) => {
-        dispatch(item.loading())
+        dispatch(itemActions.loading())
 
         try {
             let result = await Fetch.get(`/api/items/${slug}`)
 
-            dispatch(item.receive(result))
+            dispatch(itemActions.receive(result))
         } catch (e) {
-            dispatch(item.error(e))
+            dispatch(itemActions.error(e))
         } finally {
-            dispatch(item.loaded())
+            dispatch(itemActions.loaded())
         }
     }
 }
 
 export function clearItem() {
     return (dispatch) => {
-        dispatch(item.clear())
+        dispatch(itemActions.clear())
     }
 }

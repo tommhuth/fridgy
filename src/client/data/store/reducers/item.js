@@ -18,7 +18,7 @@ export default (state = init, action) => {
             return {
                 ...state,
                 data: {}
-            }
+            } 
         case ItemAction.Error:
             return {
                 ...state,
@@ -34,6 +34,16 @@ export default (state = init, action) => {
             return {
                 ...state,
                 isLoading: false
+            }
+        }
+        case ItemAction.Update: {
+            return {
+                ...state,
+                data: {
+                    ...state.data,
+                    ...action.payload,
+                    updatedAt: new Date()
+                }
             }
         }
         default:

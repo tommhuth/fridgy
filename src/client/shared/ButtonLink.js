@@ -19,13 +19,14 @@ export default class ButtonLink extends Component {
             hasFocus: false
         })
     }
-    render() {
-        let className = "button " + (this.props.className || "")
+    render() { 
         return (
-            <Link to={this.props.to}
+            <Link 
+                to={this.props.to}
                 onClick={this.props.onClick}
-                className={className}>
-                <span className="inner"
+                className="button">
+                <span 
+                    className={"button__inner "}
                     onTouchStart={this.setFocus.bind(this)}
                     onBlur={this.setBlur.bind(this)}>
                     {this.props.children}

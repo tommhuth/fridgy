@@ -1,4 +1,4 @@
-import * as filter from "./creators/filter"
+import * as filterActions from "./creators/filter"
 
 export const StockFilter = {
     OutOfStock: "OUT_OF_STOCK",
@@ -7,13 +7,13 @@ export const StockFilter = {
 
 export function setCategoryFilter(category) {
     return (dispatch) => {
-        dispatch(filter.setCategoryFilter(category))
+        dispatch(filterActions.setCategoryFilter(category))
     }
 }
 
 export function setStockFilter(stock) {
     return (dispatch) => {
-        dispatch(filter.setStockFilter(stock))
+        dispatch(filterActions.setStockFilter(stock))
     }
 }
 

@@ -5,7 +5,7 @@ import unitRouter from "./api/unit-routes"
 import tagRouter from "./api/tag-routes"
 import authRouter from "./api/auth-routes"
 import checklistRouter from "./api/checklist-routes"
-import { Auth } from "../auth/auth"
+import { Auth } from "../auth/Auth"
 
 let router = express.Router()
 

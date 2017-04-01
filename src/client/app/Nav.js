@@ -20,7 +20,7 @@ export default class Nav extends Component {
             <nav className={navClass}>
                 <div className={togglerClass}>
                     <div className="container">
-                        <button type="button" onClick={this.props.toggleVisibility}>
+                        <button className="nav__toggler-button" type="button" onClick={this.props.toggleVisibility}>
                             <span className="visually-hidden">Toggle menu</span>
                             <Icon type={visible ? IconType.X : IconType.Hamburger} />
                         </button>

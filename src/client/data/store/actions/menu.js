@@ -1,19 +1,19 @@
-import * as menu from "./creators/menu"
+import * as menuActions from "./creators/menu"
 
 export function toggleMenu() {
     return (dispatch) => {
-        dispatch(menu.toggle())
+        dispatch(menuActions.toggle())
     }
 }
 
 export function hideMenu() {
     return (dispatch) => {
-        dispatch(menu.hide())
+        dispatch(menuActions.hide())
     }
 }
 
 export function showMenu() {
     return (dispatch) => {
-        dispatch(menu.show())
+        dispatch(menuActions.show())
     }
 }

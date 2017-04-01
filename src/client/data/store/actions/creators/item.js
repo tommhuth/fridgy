@@ -4,6 +4,14 @@ export const ItemAction = {
     Loading: "item:loading",
     Loaded: "item:loaded",
     Error: "item:error",
+    Update: "item:update"
+}
+
+export function updateItem(item) {
+    return {
+        type: ItemAction.Update,
+        payload: item
+    }
 }
 
 export function clear() {

@@ -1,20 +1,19 @@
-
-import * as auth from "../actions/creators/auth"
+import * as authActions from "../actions/creators/auth"
 import Fetch from "../../../data/Fetch"
 
 export function attemptAuth(token) {
     return async (dispatch) => {
-        dispatch(auth.loading())
-        dispatch(auth.clearError())
+        dispatch(authActions.loading())
+        dispatch(authActions.clearError())
 
         try {  
             let accessLevel = await Fetch.post("/api/auth/login", {token})
 
-            dispatch(auth.success(accessLevel))
+            dispatch(authActions.success(accessLevel))
         } catch (e) {
-            dispatch(auth.error(e))
+            dispatch(authActions.error(e))
         } finally {
-            dispatch(auth.loaded())
+            dispatch(authActions.loaded())
         }
     }
 }
