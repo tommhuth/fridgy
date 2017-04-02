@@ -7,9 +7,11 @@
     1000: global layouts (nav)
 */
 
+// helpers
 @import "vars";
 @import "helpers";
 
+// base
 @import "global";
 @import "keyframes";
 @import "icons";
@@ -17,5 +19,8 @@
 @import "typography";
 @import "shame";
 
+// objects
 @import "objects/_all";
+
+// layout
 @import "layout/_all";

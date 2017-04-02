@@ -1,0 +1,12 @@
+.fill {
+    &--blue {
+        background-color: $blue;
+        color: #FFF;
+    }
+
+    &--dark-blue {
+        background-color: darken($green, 0%);
+        overflow: hidden;
+        height: 100vh;
+    }
+}

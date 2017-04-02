@@ -7,13 +7,13 @@
         animation: spin 1s infinite linear;
         transform-origin: 50% 53%;
 
-        .fill & { 
+        .fill & {
             position: fixed;
             display: block;
             left: 50%;
             margin-left: -.5em;
             margin-top: -.5em;
-            top: 50%; 
+            top: 50%;
         }
     }
-} 
+}

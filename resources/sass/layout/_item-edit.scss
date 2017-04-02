@@ -1,14 +1,13 @@
 .item-edit {
     background: #FFF;
-    z-index:10;
+    z-index: 10;
     position: relative;
     color: #000;
     text-align: left;
-    padding: 2.5em ; 
+    padding: 2.5em;
     margin: -6.15em 0 3.25em;
-    position: relative;
     border-radius: .125em;
-    animation: slide-up .35s ; 
+    animation: slide-up .35s;
 
     @media (max-width: $breakpoint-grid-collapse) {
         margin-left: -2em;

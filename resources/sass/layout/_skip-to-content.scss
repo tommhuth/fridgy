@@ -17,9 +17,4 @@
     &:focus {
         top: 0;
     }
-
-    .app.is-special & {
-        background-color: #FFF;
-        color: $blue !important;
-    }
 }

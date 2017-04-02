@@ -1,0 +1,14 @@
+label[for] {
+    text-transform: uppercase;
+    display: inline;
+    font-size: .75em;
+    opacity: .2;
+    letter-spacing: .025em;
+
+    &::after {
+        content: "\A";
+        display: block;
+        height: .65em;
+        white-space: pre;
+    }
+}

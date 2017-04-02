@@ -1,0 +1,30 @@
+label:not([for]) {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    padding: .35em .35em .5em 0;
+    transition: color .35s;
+    user-select: none;
+
+    &:hover {
+        color: $blue;
+    }
+
+    .icon {
+        width: 1em;
+        height: 1em;
+        vertical-align: middle;
+        margin-right: .5em;
+        margin-top: -.15em;
+        fill: currentColor;
+    }
+
+    input {
+        opacity: 0;
+        position: absolute;
+
+        &:focus + svg {
+            color: $blue;
+        }
+    }
+}

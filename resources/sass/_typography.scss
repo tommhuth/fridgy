@@ -16,10 +16,11 @@ body {
     color: #000;
 
     $size: 56;
+
     $font-size: 1.15;
 
     @while $size < 130 {
-        @media (min-width: $size + em){
+        @media (min-width: $size + em) {
             font-size: $font-size + em;
         }
 
@@ -30,7 +31,8 @@ body {
 
 .alpha {
     @extend %heading;
-    font-size:7em;
+
+    font-size: 7em;
     text-transform: lowercase;
 
     @media (max-width: 31.5em) {
@@ -40,6 +42,7 @@ body {
 
 .beta {
     @extend %heading;
+
     font-size: 5em;
     text-transform: lowercase;
 
@@ -50,11 +53,12 @@ body {
 
 .gamma {
     @extend %heading;
-    font-size:1.5em;
+
+    font-size: 1.5em;
 }
 
 .text {
-    margin: 0 0 1em ;
+    margin: 0 0 1em;
     line-height: 1.5;
     max-width: 26em;
 }
@@ -67,13 +71,14 @@ body {
 
 .intro {
     font-size: 1.25em;
-    margin:  1em 0;
+    margin: 1em 0;
 }
 
-p a:hover, p a:focus {
+p a:hover,
+p a:focus {
     text-decoration: underline;
 }
 
-.nowrap{
+.nowrap {
     white-space: nowrap;
 }

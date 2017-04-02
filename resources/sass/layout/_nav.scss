@@ -1,8 +1,8 @@
-.nav { 
+.nav {
     min-height: 6em;
     position: relative;
 
-    &--open { 
+    &--open {
         min-height: 100vh;
         margin-bottom: -4.5em;
         color: #FFF;
@@ -10,7 +10,7 @@
 
     &__toggler {
         position: absolute;
-        top: 4em; 
+        top: 4em;
         color: $green;
         left: 0;
         right: 0;
@@ -19,23 +19,23 @@
         &--open {
             top: 3em;
             right: 3em;
-            left: auto; 
+            left: auto;
             color: #FFF;
             opacity: .3;
-  
+
             @media (max-width: $breakpoint-grid-collapse) {
                 top: 2em;
                 right: 2em;
 
                 .container {
-                    margin:0;
+                    margin: 0;
                 }
             }
-        } 
- 
+        }
+
         .icon {
-            font-size: 1.75em; 
- 
+            font-size: 1.75em;
+
             @media (max-width: $breakpoint-grid-collapse) {
                 font-size: 1.35em;
             }
@@ -49,11 +49,10 @@
         right: 0;
         text-align: center;
         top: 50%;
-        transform: translateY( -50%);
+        transform: translateY(-50%);
 
         &--open {
             display: block;
         }
     }
 }
-
