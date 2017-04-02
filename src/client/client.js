@@ -9,6 +9,7 @@ import AuthGate from "./auth/AuthGate"
 import Fetch from "./data/Fetch"
 import makeStore from "./data/store/make-store"
 import LocalStorage from "./data/LocalStorage"
+import { cloneDeep } from "lodash"
 
 fastClick()
 
@@ -20,7 +21,10 @@ Fetch.authorize(intialState && intialState.auth.data.token)
 
 // set token on change + save state
 store.subscribe(() => {
-    let state = store.getState()  
+    let state = cloneDeep(store.getState())
+
+    // lets not persist everything
+    delete state.menu.visible
     
     LocalStorage.set("fridgy-store", state)
     Fetch.authorize(state.auth.data.token)  

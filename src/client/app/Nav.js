@@ -1,67 +1,78 @@
-import React, { Component } from "react"
-import { Link } from "react-router"
-import classNames from "classnames"
+import React, {Component}  from "react"
+import { Link } from "react-router" 
 import BodyClassName from "react-body-classname"
 import Icon, { IconType } from "./../shared/Icon"
 
-export default class Nav extends Component {
-    render() {
-        let visible = this.props.isVisible
-        let navClass = classNames("nav", {
-            "nav--open": visible
-        })
-        let menuClass = classNames("nav__menu", {
-            "nav__menu--open": visible
-        })
-        let togglerClass = classNames("nav__toggler", {
-            "nav__toggler--open": visible
-        })
-        let menu = <BodyClassName className="fill fill--dark-blue">
-            <div className={menuClass}>
-                <div className="container">
-                    <ul className="menu" onClick={this.props.toggleVisibility}>
-                        <li className="menu__link">
-                            <Link to="/">
-                                Home
-                                    <Icon type={IconType.ChevronRight} />
-                            </Link>
-                        </li>
-                        <li className="menu__link">
-                            <Link to="/items">
-                                The fridge
-                                    <Icon type={IconType.ChevronRight} />
-                            </Link>
-                        </li>
-                        <li className="menu__link">
-                            <Link to="/checklist">
-                                Checklist
-                                    <Icon type={IconType.ChevronRight} />
-                            </Link>
-                        </li>
-                        <li className="menu__link">
-                            <Link to="/about">
-                                About
-                                    <Icon type={IconType.ChevronRight} />
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </BodyClassName>
+const KeyCode = {
+    Escape: 27
+} 
+
+export default class  Nav extends Component { 
+    handleEsc = (e) => {
+        if(e.keyCode === KeyCode.Escape && this.props.isVisible) {
+            this.props.toggleVisibility()
+        }
+    }
+    componentWillMount(){
+        document.addEventListener("keydown", this.handleEsc)
+    } 
+    render() { 
+        let { isVisible, toggleVisibility } = this.props 
 
         return (
-            <nav className={navClass}>
-                <div className={togglerClass}>
-                    <div className="container">
-                        <button className="nav__toggler-button" type="button" onClick={this.props.toggleVisibility}>
-                            <span className="visually-hidden">Toggle menu</span>
-                            <Icon type={visible ? IconType.X : IconType.Hamburger} />
-                        </button>
+            <nav className="nav">
+                {
+                    !isVisible && 
+                    <div className="nav__toggler">
+                        <div className="container">
+                            <button className="nav__toggler-button" onClick={toggleVisibility}>
+                                <Icon type={IconType.Hamburger} />
+                                <span className="visually-hidden">Open menu</span>
+                            </button> 
+                        </div>
                     </div>
-                </div>
+                }
+                {
+                    isVisible &&
+                    <BodyClassName className="fill fill--green">
+                        <div className="nav__menu" > 
+                            <ul className="nav__menu-primary" onClick={toggleVisibility}>
+                                <li className="nav__menu-primary-item">
+                                    <Link to="/" className="nav__link">
+                                        Home
+                                        <Icon type={IconType.ChevronRight} />
+                                    </Link>
+                                </li>
+                                <li className="nav__menu-primary-item">
+                                    <Link to="/items" className="nav__link">
+                                        The fridge
+                                        <Icon type={IconType.ChevronRight} />
+                                    </Link>
+                                </li>
+                                <li className="nav__menu-primary-item">
+                                    <Link to="/checklist" className="nav__link">
+                                        Checklist
+                                        <Icon type={IconType.ChevronRight} />
+                                    </Link>
+                                </li>
+                                <li className="nav__menu-primary-item">
+                                    <Link to="/about" className="nav__link">
+                                        About
+                                        <Icon type={IconType.ChevronRight} />
+                                    </Link>
+                                </li>
+                            </ul>
 
-                {visible ? menu : null}
+                            <div className="nav__menu-secondary">
+                                <button className="nav__menu-secondary-item" onClick={toggleVisibility}> 
+                                    <Icon type={IconType.X} />
+                                    <span className="nav__menu-secondary-item__text">Close</span>
+                                </button> 
+                            </div>
+                        </div> 
+                    </BodyClassName>
+                }
             </nav>
-        )
+        ) 
     }
 }

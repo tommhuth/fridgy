@@ -22,12 +22,36 @@
 
 @keyframes slide-up {
     from {
-        top: -1em;
+        transform: translateY(1.5em);
         opacity: 0;
     }
 
     to {
-        top: 0;
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateY(-2em);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-left {
+    from {
+        transform: translateX(-2em);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
         opacity: 1;
     }
 }
