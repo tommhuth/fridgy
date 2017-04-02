@@ -4,7 +4,7 @@ import { attemptAuth } from "../data/store/actions/auth"
 
 class Login extends Component {
     state = {
-        tokenInput: "b"
+        tokenInput: ""
     }
 
     handleTokenInputChange(e) {
@@ -30,7 +30,7 @@ class Login extends Component {
                             id="password-input"
                             value={this.state.tokenInput}
                             onChange={this.handleTokenInputChange.bind(this)}
-                            type="text" />
+                            type="password" />
 
                         <button className="input-pair__button">Login</button>
                     </div>
