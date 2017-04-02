@@ -16,7 +16,7 @@ let intialState = LocalStorage.get("fridgy-store")
 let store = makeStore(intialState)
 
 // initialize Fetch auth token from exisiting
-Fetch.authorize(intialState.auth.data.token)  
+Fetch.authorize(intialState && intialState.auth.data.token)  
 
 // set token on change + save state
 store.subscribe(() => {
