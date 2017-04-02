@@ -1,22 +1,29 @@
 import "babel-polyfill"
-import _reactFastClick from "react-fastclick"
-import thunkMiddleware from "redux-thunk"
+import fastClick from "react-fastclick"
 import React from "react"
 import ReactDOM from "react-dom"
-import { createStore, applyMiddleware } from "redux"
 import { Provider } from "react-redux"
-import fridgeStore from "./data/store"
 import { Router, browserHistory } from "react-router"
 import routes from "./routes"
 import AuthGate from "./auth/AuthGate"
 import Fetch from "./data/Fetch"
+import makeStore from "./data/store/make-store"
+import LocalStorage from "./data/LocalStorage"
 
-let store = createStore(fridgeStore, applyMiddleware(thunkMiddleware))
+fastClick()
 
+let intialState = LocalStorage.get("fridgy-store")
+let store = makeStore(intialState)
+
+// initialize Fetch auth token from exisiting
+Fetch.authorize(intialState.auth.data.token)  
+
+// set token on change + save state
 store.subscribe(() => {
-    let token = store.getState().auth.data.token
-
-    Fetch.authorize(token)  
+    let state = store.getState()  
+    
+    LocalStorage.set("fridgy-store", state)
+    Fetch.authorize(state.auth.data.token)  
 })
 
 ReactDOM.render(
