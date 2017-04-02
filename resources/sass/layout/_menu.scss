@@ -17,6 +17,14 @@
             max-width: 20em;
         }
 
+        a:hover {
+            color: #FFF;
+
+            .icon {
+                opacity: 1;
+            }
+        }
+
         .icon {
             position: relative;
             top: .05em;
