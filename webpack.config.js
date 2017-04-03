@@ -6,7 +6,7 @@ let plugins = [
     webpackFailPlugin,
     new webpack.DefinePlugin({
         "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
-        "process.env.ASSETS_VERSION": JSON.stringify(getVersion())
+        "process.env.APP_VERSION": JSON.stringify(getVersion())
     })
 ] 
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import Nav from "./Nav"
-import { toggleMenu } from "../data/store/actions/menu"
+import { toggleMenu } from "../data/store/actions/app"
 import { connect } from "react-redux"
 
 export class Wrapper extends Component {
@@ -14,8 +14,8 @@ export class Wrapper extends Component {
 
         return (
             <div className={"app"}>
-                <Nav toggleVisibility={this.props.toggleVisibility} isVisible={this.props.isVisible} />
-                {this.props.isVisible ? null : main}
+                <Nav toggleVisibility={this.props.toggleVisibility} isVisible={this.props.menuVisible} />
+                {this.props.menuVisible ? null : main}
             </div>
         )
     }
@@ -24,7 +24,7 @@ export class Wrapper extends Component {
 export default connect(
     (state) => {
         return {
-            isVisible: state.menu.visible
+            menuVisible: state.app.menuVisible
         }
     },
     (dispatch) => {

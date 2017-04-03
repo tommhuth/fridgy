@@ -22,4 +22,12 @@ export default class LocalStorage {
             return null
         }
     } 
+    
+    static remove(key) {
+        try {
+            window.localStorage.removeItem(key)
+        } catch (e) {
+            // nothing to do here
+        }
+    } 
 }

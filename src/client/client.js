@@ -7,26 +7,25 @@ import { Router, browserHistory } from "react-router"
 import routes from "./routes"
 import AuthGate from "./auth/AuthGate"
 import Fetch from "./data/Fetch"
-import makeStore from "./data/store/make-store"
-import LocalStorage from "./data/LocalStorage"
+import { makeStore, getPersistedStore, persistStore } from "./data/store/make-store"
 import { cloneDeep } from "lodash"
 
 fastClick()
 
-let intialState = LocalStorage.get("fridgy-store")
-let store = makeStore(intialState)
+let intialStore = getPersistedStore()
+let store = makeStore(intialStore)
 
 // initialize Fetch auth token from exisiting
-Fetch.authorize(intialState && intialState.auth.data.token)  
+Fetch.authorize(intialStore && intialStore.auth.data.token)  
 
 // set token on change + save state
 store.subscribe(() => {
     let state = cloneDeep(store.getState())
 
     // lets not persist everything
-    delete state.menu.visible
+    delete state.app.menuVisible
     
-    LocalStorage.set("fridgy-store", state)
+    persistStore(state)
     Fetch.authorize(state.auth.data.token)  
 })
 
