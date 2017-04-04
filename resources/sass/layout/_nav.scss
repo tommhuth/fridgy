@@ -2,19 +2,19 @@
     &__toggler {
         padding-top: 4.5em;
         margin-bottom: 2em;
-        animation: slide-down .35s ease-out;
+        animation: slide-down .35s .4s ease-out backwards;
         color: $green;
 
         &-button {
             transition: background-color .15s, color .15s;
-            padding: .75em .35em;
-            margin: -.75em -.35em;
+            padding: .75em .25em;
+            margin: -.75em -.25em;
 
             &:hover,
             &:focus {
                 background-color: $green;
                 color: #FFF;
-                border-radius: .2em;
+                border-radius: .15em;
 
                 .fill--blue & {
                     color: $blue;
@@ -29,24 +29,13 @@
 
     &__link {
         white-space: nowrap;
-
-        .icon {
-            font-size: .325em;
-            margin-left: .75em;
-            opacity: .35;
-
-            @media (max-width: $breakpoint-grid-collapse) {
-                font-size: .275em;
-            }
-        }
+        padding: .05em .35em .15em .35em;
+        border-radius: .05em;
 
         &:hover,
         &:focus {
-            color: #FFF;
-
-            .icon {
-                opacity: 1;
-            }
+            color: $green;
+            background-color: #FFF;
         }
     }
 
@@ -66,7 +55,6 @@
                 font-weight: 600;
                 text-transform: lowercase;
                 animation: slide-left .15s ease backwards;
-                margin-left: .5em;
 
                 @media (max-width: $breakpoint-grid-collapse) {
                     font-size: 2.5em;
@@ -95,7 +83,7 @@
             bottom: 3.5em;
             left: 0;
             right: 0;
-            animation: slide-up .2s .2s backwards ease;
+            animation: slide-up .2s .45s backwards ease;
 
             &-item {
                 text-align: center;

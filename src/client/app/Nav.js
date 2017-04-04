@@ -40,25 +40,21 @@ export default class  Nav extends Component {
                                 <li className="nav__menu-primary-item">
                                     <Link to="/" className="nav__link">
                                         Home
-                                        <Icon type={IconType.ChevronRight} />
                                     </Link>
                                 </li>
                                 <li className="nav__menu-primary-item">
                                     <Link to="/items" className="nav__link">
                                         The fridge
-                                        <Icon type={IconType.ChevronRight} />
                                     </Link>
                                 </li>
                                 <li className="nav__menu-primary-item">
                                     <Link to="/checklist" className="nav__link">
                                         Checklist
-                                        <Icon type={IconType.ChevronRight} />
                                     </Link>
                                 </li>
                                 <li className="nav__menu-primary-item">
                                     <Link to="/about" className="nav__link">
                                         About
-                                        <Icon type={IconType.ChevronRight} />
                                     </Link>
                                 </li>
                             </ul>
