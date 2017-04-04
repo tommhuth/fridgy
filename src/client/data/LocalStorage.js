@@ -1,9 +1,7 @@
 export default class LocalStorage {
-    static set(key, value) {
-        value = typeof value === "object" ? JSON.stringify(value) : value
-
+    static set(key, value = null) {
         try {
-            window.localStorage.setItem(key, value)
+            window.localStorage.setItem(key, JSON.stringify(value))
         } catch (e) {
             // nothing to do here
         }
@@ -11,7 +9,7 @@ export default class LocalStorage {
 
     static get(key) {
         try {
-            let value: any = window.localStorage.getItem(key)
+            let value = window.localStorage.getItem(key)
 
             try {
                 return JSON.parse(value)
