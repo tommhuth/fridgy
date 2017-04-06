@@ -1,5 +1,4 @@
 import "babel-polyfill"
-import fastClick from "react-fastclick"
 import React from "react"
 import ReactDOM from "react-dom"
 import { Provider } from "react-redux"
@@ -9,8 +8,6 @@ import AuthGate from "./auth/AuthGate"
 import Fetch from "./data/Fetch"
 import { makeStore, getPersistedStore, persistStore } from "./data/store/make-store"
 import { cloneDeep } from "lodash"
-
-fastClick()
 
 let intialStore = getPersistedStore()
 let store = makeStore(intialStore)
