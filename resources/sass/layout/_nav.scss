@@ -14,7 +14,7 @@
             &:focus {
                 background-color: $green;
                 color: #FFF;
-                border-radius: .15em;
+                border-radius: $border-radius;
 
                 .fill--blue & {
                     color: $blue;
@@ -30,7 +30,7 @@
     &__link {
         white-space: nowrap;
         padding: .05em .35em .15em;
-        border-radius: .05em;
+        border-radius: $border-radius;
 
         &:hover,
         &:focus {

@@ -1,8 +1,8 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import ButtonLink from "../../shared/ButtonLink"
-import Button from "../../shared/Button"
-import Select from "../../shared/Select"
+import Button, { ButtonStyle } from "../../shared/Button"
+import Select, { SelectStyle } from "../../shared/Select"
 import RadioButton from "../../shared/RadioButton"
 import CheckBox from "../../shared/CheckBox"
 import SelectionGroup from "../../shared/SelectionGroup"
@@ -144,21 +144,21 @@ class ItemEdit extends Component {
                         <div className="question">
                             <label htmlFor="amount">Category</label>
                             <Select
-                                isSubtle={true}
-                                size="large"
+                                subtle={true}
+                                style={SelectStyle.Narrow}
                                 id="category"
                                 onChange={this.handleCategoryChange.bind(this)}
                                 selectedText={item.category}
-                                selectedValue={item.category} >
+                                selectedValue={item.category}>
                                 {
                                     this.props.categories.data.map((e) => <option key={e.name} value={e.name}>{e.name}</option>)
                                 }
                             </Select>
                         </div>
 
-                        <Button>Save</Button>
-                        <ButtonLink to={"/items/" + this.props.params.slug}>Back</ButtonLink>
-                        <ButtonLink to={"/items"}>items</ButtonLink>
+                        <Button style={ButtonStyle.Inverted}>Save</Button>
+                        <ButtonLink style={ButtonStyle.Inverted} to={"/items/" + this.props.params.slug}>Back</ButtonLink>
+                        <ButtonLink style={ButtonStyle.Inverted} to={"/items"}>items</ButtonLink>
 
                         <pre>{JSON.stringify(this.state, null, 4)}</pre>
                     </fieldset>

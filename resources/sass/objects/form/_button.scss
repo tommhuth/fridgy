@@ -1,60 +1,97 @@
 .button {
-    border: none;
+    user-select: none;
     line-height: 1.25em;
     display: inline-block;
     text-transform: lowercase;
     text-align: center;
-    padding: 0;
     vertical-align: top;
     overflow: hidden;
     position: relative;
-    border-radius: .15em;
+    border-radius: 2px;
+    box-sizing: border-box;
+    border: .2rem solid currentColor;
 
     &:not(:last-child) {
         margin-right: .5em;
     }
 
-    &:focus,
-    &:hover {
-        .button__inner {
-            color: $blue;
-            border-color: #FFF;
-        }
-
-        .button__inner--inverted {
-            color: #FFF;
-            border-color: #000;
-        }
+    &:focus {
+        color: $blue;
+        border-color: #FFF;
 
         &::before {
             width: 130%;
             padding-top: 130%;
-            transition: width .25s, padding-top .25s, opacity .45s;
+            opacity: 1;
+            transition: width .25s, padding-top .25s, opacity .251s;
             transition-timing-function: ease-in-out;
+        }
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            color: $blue;
+            border-color: #FFF;
+
+            &::before {
+                width: 130%;
+                padding-top: 130%;
+                opacity: 1;
+                transition: width .25s, padding-top .25s, opacity .251s;
+                transition-timing-function: ease-in-out;
+            }
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            background-color: #FFF;
         }
     }
 
     &::before {
         transform: translateX(-50%) translateY(-50%);
         content: "";
-        width: 0;
-        padding-top: 0;
+        width: 20%;
+        padding-top: 20%;
         display: block;
         position: absolute;
         box-sizing: content-box;
         background: #FFF;
         margin: 0;
+        opacity: 0;
         z-index: 0;
         top: 50%;
         border-radius: 50%;
         left: 50%;
     }
 
+    &--inverted {
+        &:focus {
+            color: #FFF;
+            border-color: #000;
+
+            &::before {
+                background: #000;
+            }
+        }
+
+        @media (hover: hover) {
+            &:hover {
+                color: #FFF;
+                border-color: #000;
+
+                &::before {
+                    background: #000;
+                }
+            }
+        }
+    }
+
     &__inner {
-        border: .2rem solid currentColor;
         z-index: 1;
         position: relative;
-        padding: .55em 1.25em;
         display: block;
+        padding: .55em 1.25em;
     }
 }
