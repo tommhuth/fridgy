@@ -46,6 +46,8 @@
     @media (hover: none) {
         &:active {
             background-color: #FFF;
+            border-color: #FFF;
+            color: $blue;
         }
     }
 
@@ -84,6 +86,14 @@
                 &::before {
                     background: #000;
                 }
+            }
+        }
+
+        @media (hover: none) {
+            &:active {
+                background-color: #000;
+                border-color: #000;
+                color: #FFF;
             }
         }
     }
