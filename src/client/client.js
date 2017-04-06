@@ -29,7 +29,7 @@ store.subscribe(() => {
 ReactDOM.render(
     <Provider store={store}>
         <AuthGate>
-            <Router history={browserHistory} routes={routes} />
+            <Router history={browserHistory} routes={routes} onUpdate={() => window.scrollTo(0,0)}/>
         </AuthGate>
     </Provider>,
     document.getElementById("root")
