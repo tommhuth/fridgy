@@ -29,13 +29,13 @@
 
     &__link {
         white-space: nowrap;
-        padding: .05em .35em .15em .35em;
+        padding: .05em .35em .15em;
         border-radius: .05em;
 
         &:hover,
         &:focus {
-            color: $green;
-            background-color: #FFF;
+            color: rgba(#FFF, .75);
+            background-color: rgba(#FFF, .25);
         }
     }
 
