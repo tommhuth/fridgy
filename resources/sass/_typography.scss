@@ -82,3 +82,14 @@ p a:focus {
 .nowrap {
     white-space: nowrap;
 }
+
+.center-text {
+    text-align: center;
+    line-height: 1.5em;
+}
+
+.intro-text {
+    font-size: 1.65em;
+    font-family: $serif-font;
+    font-style: italic;
+}

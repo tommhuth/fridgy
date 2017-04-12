@@ -23,8 +23,10 @@
     }
 
     &--focus {
-        color: #FFF;
-        background-color: #000;
+        &:not(.select--plain) {
+            color: #FFF;
+            background-color: #000;
+        }
 
         .icon {
             animation: tip-down .5s;
@@ -32,10 +34,12 @@
     }
 
     @media (hover: hover) {
-        &:hover {
+        &:not(.select--plain):hover {
             color: #FFF;
             background-color: #000;
+        }
 
+        &:hover {
             .icon {
                 animation: tip-down .5s;
             }
@@ -95,6 +99,20 @@
 
     &--medium {
         width: 12em;
+    }
+
+    &--plain {
+        border: none;
+        font-weight: bold;
+        padding-right: 1.95em;
+        padding-top: .25em;
+        padding-bottom: .25em;
+        margin: 0 0 0 1.95em;
+        font-size: 2em;
+
+        .icon {
+            opacity: .2;
+        }
     }
 }
 

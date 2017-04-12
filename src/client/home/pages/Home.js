@@ -1,19 +1,37 @@
 import React, { Component } from "react"
-import Icon, { IconType } from "../../shared/Icon"
+import { connect } from "react-redux"
+import { fetchItems } from "../../data/store/actions/items"
 import Page from "../../app/Page"
+import MealAdvisor from "../MealAdvisor"
 
-export default class Home extends Component {
-    render() {
+export  class Home extends Component {
+    componentWillMount() {
+        let silent = this.props.items.data.length > 0
+
+        this.props.fetchItems(silent)
+    }
+
+    render() {  
         return (
             <Page>
-                <div className="container">
-                    <h1 className="beta offset-small">What’s in <br />that fridge?</h1>
+                <h1 className="visually-hidden">What’s in that fridge?</h1>
 
-
-                    <Icon type={IconType.Fridge} />
-                </div>
+                <MealAdvisor items={this.props.items} />
             </Page>
 
         )
     }
 }
+
+export default connect(
+    state => {
+        return {
+            items: state.items
+        }
+    },
+    (dispatch) => {
+        return {
+            fetchItems: (silent) => dispatch(fetchItems(silent))
+        }
+    }
+)(Home)

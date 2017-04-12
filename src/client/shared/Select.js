@@ -4,6 +4,7 @@ import classNames from "classnames"
 
 export const SelectStyle = {
     Wide: "select--large",
+    Plain: "select--plain",
     Narrow: "select--medium"
 }
 

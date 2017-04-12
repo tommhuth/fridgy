@@ -1,5 +1,6 @@
-import React, { Component } from "react"
-import ItemsList from "./../ItemsList"
+import React, { Component } from "react" 
+import ListItem from "../ListItem" 
+import sort from "sort-array"
 import Cloak from "../../shared/Cloak"
 import Filter from "./../Filter"
 import { connect } from "react-redux"
@@ -26,7 +27,12 @@ class Items extends Component {
 
                     <Cloak if={item.isLoading || categories.isLoading}>
                         <Filter />
-                        <ItemsList items={list} />
+
+                        <ul className="items-list">
+                            {
+                                sort(list, "title").map( item => <li key={item.id}> <ListItem item={item}  /> </li>)
+                            }
+                        </ul>
                     </Cloak>
                 </div>
             </Page>

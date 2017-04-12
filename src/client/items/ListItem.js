@@ -11,11 +11,11 @@ export class ListItem extends Component {
         let item = this.props.item
 
         return (
-            <div>
-                <Link to={"/items/" + item.slug} >{item.title}</Link>
+            <div className="item">
+                <Link to={"/items/" + item.slug} className="item__link" >{item.title}</Link>
 
                 <span className="nowrap">
-                    <span className="amount ">× {item.amount}</span>
+                    <span className="item__amount ">× {item.amount}</span>
 
                     <Only if={item.checklist === moment().format("YYYY-MM-DD")}>
                         <button className="circle-button" type="button" onClick={this.props.dechecklistItem.bind(null, item.slug)}>

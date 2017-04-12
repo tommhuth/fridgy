@@ -2,6 +2,7 @@ import React, { Component } from "react"
 
 export const IconType = {
     ArrowRight: "arrow-right",
+    ArrowDown: "arrow-down",
     CheckboxChecked: "checkbox-checked",
     CheckboxDefault: "checkbox-default",
     Checkmark: "checkmark",
@@ -20,7 +21,8 @@ export const IconType = {
 }
 
 const ViewBox = {
-    [IconType.ArrowRight]: "78 39",
+    [IconType.ArrowRight]: "58 31",
+    [IconType.ArrowDown]: "31 58",
     [IconType.CheckboxChecked]: "90 90",
     [IconType.CheckboxDefault]: "90 90",
     [IconType.RadiobuttonChecked]: "90 90",

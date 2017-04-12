@@ -1,5 +1,6 @@
 import React, { Component } from "react"
-import ItemsList from "../../items/ItemsList"
+import ListItem from "../../items/ListItem" 
+import sort from "sort-array"
 import Cloak from "../../shared/Cloak"
 import { connect } from "react-redux"
 import { fetchItems } from "../../data/store/actions/items"
@@ -22,7 +23,11 @@ class Items extends Component {
                     <h1 className="beta offset-small">Checklist</h1>
 
                     <Cloak if={this.props.items.isLoading}>
-                        <ItemsList items={data} />
+                        <ul className="items-list">
+                            {
+                                sort(data, "title").map( item => <li key={item.id}> <ListItem item={item}  /> </li>)
+                            }
+                        </ul>
                     </Cloak>
                 </div>
             </Page>

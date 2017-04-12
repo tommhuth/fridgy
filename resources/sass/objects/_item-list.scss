@@ -1,14 +1,7 @@
-.filter-list {
-    margin: 2em 0;
-}
-
 .items-list {
-    margin: 1.5em 0 0;
-    font-size: 1.75em;
-    text-transform: lowercase;
-    line-height: 1.15;
+    margin-top: 1.5em;
 
-    li {
+    > li {
         box-sizing: border-box;
         padding-right: 1em;
         position: relative;
@@ -20,43 +13,12 @@
         }
 
         &:not(:last-child) {
-            margin-bottom: 1em;
+            margin-bottom: 1.5em;
         }
 
         @media (max-width: 52em) {
             width: 100%;
             padding-right: 0;
         }
-
-        a {
-            word-wrap: break-word;
-
-            &:focus,
-            &:hover {
-                border-bottom: .075em solid currentColor;
-            }
-        }
-
-        .amount {
-            opacity: .4;
-            margin-left: .25em;
-            font-size: .6em;
-            white-space: nowrap;
-        }
-
-        &.is-empty .amount {
-            display: none;
-        }
     }
-}
-
-.found-nothing {
-    font-style: italic;
-    margin: 1.5em 0;
-    font-size: 1.2em;
-    color: rgba(#000, .5);
-}
-
-.is-empty a {
-    text-decoration: line-through;
 }
