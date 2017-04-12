@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import sort from "sort-array"
 import ListItem from "../items/ListItem" 
 import Select, { SelectStyle } from "../shared/Select"
+import Cloak from "../shared/Cloak"
 import Icon, { IconType } from "../shared/Icon"
 
 export default class MealAdvisor extends Component {
@@ -68,11 +69,15 @@ export default class MealAdvisor extends Component {
                             </Select>
                             <p className="intro-text">something you can make a meal out of</p>
                         </div> 
-                        <ul className="meal-advisor__list">
-                            {sort(this.filter(items, tag), "title").map(i => <li key={i.id}> <ListItem item={i} /> </li>)}
-                        </ul>
+
+                        <Cloak if={this.props.items.loading} >
+                            <ul className="meal-advisor__list">
+                                {sort(this.filter(items, tag), "title").map(i => <li key={i.id}><ListItem item={i} /> </li>)}
+                            </ul>
                         
-                        { this.hasMorePages(items, tag) ? this.getLoadMoreButton() : null }
+                             { this.hasMorePages(items, tag) ? this.getLoadMoreButton() : null }
+                        </Cloak>
+                        
                     </div> 
                 </div>  
             </div>
