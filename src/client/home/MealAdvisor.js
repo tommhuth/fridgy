@@ -11,16 +11,16 @@ export default class MealAdvisor extends Component {
         tag: "dinner",
         page: 0
     }
+
     hasMorePages(items, tag) {
         let pages = Math.ceil(items.filter(i => i.tags.includes(tag)).length / this.pageSize)
 
         return this.state.page < pages - 1
     }
-
     incrementPage() { 
         this.setState({ page: this.state.page + 1})
     }
-    onTagChange(value) {
+    onTagChange(value) { 
         this.setState({ tag: value, page: 0 })
     }
     getTags(items) {
@@ -34,9 +34,13 @@ export default class MealAdvisor extends Component {
             }
         }
 
+        if(!result.length) {
+            result.push("dinner")
+        }
+
         return result
     }
-    filter(items, tag) {
+    filter(items, tag) { 
         return sort(
             items.filter(i => i.tags.includes(tag)),
             "title" 
@@ -52,7 +56,7 @@ export default class MealAdvisor extends Component {
     }
     render() { 
         let items = this.props.items.data
-        let tag = this.state.tag 
+        let tag = this.state.tag  
 
         return (
            <div className="meal-advisor">
@@ -70,7 +74,7 @@ export default class MealAdvisor extends Component {
                             <p className="intro-text">something you can make a meal out of</p>
                         </div> 
 
-                        <Cloak if={this.props.items.loading} >
+                        <Cloak if={this.props.items.isLoading} >
                             <ul className="meal-advisor__list">
                                 {sort(this.filter(items, tag), "title").map(i => <li key={i.id}><ListItem item={i} /> </li>)}
                             </ul>
