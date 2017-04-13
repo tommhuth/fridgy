@@ -4,6 +4,8 @@
         margin-bottom: 2em;
         animation: slide-down .35s .4s ease-out backwards;
         color: $green;
+        position: relative;
+        z-index: 1;
 
         &-button {
             transition: background-color .15s, color .15s;
