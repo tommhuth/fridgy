@@ -6,7 +6,7 @@ const log = debug("fridgy-server:db")
 mongoose.Promise = global.Promise
 
 function getConnectionString() {
-    if( config.NODE_ENV.toLowerCase().includes("test")){
+    if( config.NODE_ENV === "test"){
         return config.CONNECTION_STRING_TEST
     } 
     
