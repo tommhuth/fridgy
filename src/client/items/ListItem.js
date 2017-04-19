@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import Icon, { IconType } from "../shared/Icon"
 import { checklistItem, dechecklistItem } from "../data/store/actions/items"
 import Only from "../shared/Only"
+import AdminOnly from "../shared/AdminOnly"
 import moment from "moment"
 
 export class ListItem extends Component {
@@ -17,19 +18,21 @@ export class ListItem extends Component {
                 <span className="nowrap">
                     <span className="item__amount ">× {item.amount}</span>
 
-                    <Only if={item.checklist === moment().format("YYYY-MM-DD")}>
-                        <button className="circle-button" type="button" onClick={this.props.dechecklistItem.bind(null, item.slug)}>
-                            <Icon type={IconType.X} />
-                            <span className="visually-hidden">Remove from checklist</span>
-                        </button>
-                    </Only>
+                    <AdminOnly element="span">
+                        <Only if={item.checklist === moment().format("YYYY-MM-DD")}>
+                            <button className="circle-button" type="button" onClick={this.props.dechecklistItem.bind(null, item.slug)}>
+                                <Icon type={IconType.X} />
+                                <span className="visually-hidden">Remove from checklist</span>
+                            </button>
+                        </Only>
 
-                    <Only if={item.checklist !== moment().format("YYYY-MM-DD")}>
-                        <button className="circle-button" type="button" onClick={this.props.checklistItem.bind(null, item.slug)}>
-                            <Icon type={IconType.Plus} />
-                            <span className="visually-hidden">Add to checklist</span>
-                        </button>
-                    </Only>
+                        <Only if={item.checklist !== moment().format("YYYY-MM-DD")}>
+                            <button className="circle-button" type="button" onClick={this.props.checklistItem.bind(null, item.slug)}>
+                                <Icon type={IconType.Plus} />
+                                <span className="visually-hidden">Add to checklist</span>
+                            </button>
+                        </Only>
+                    </AdminOnly>
                 </span>
             </div>
         )

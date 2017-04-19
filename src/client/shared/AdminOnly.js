@@ -3,10 +3,12 @@ import { connect } from "react-redux"
 
 export  class AdminOnly extends Component {
     render() {
+        let Wrapper = this.props.element || "div"
+
         return (
-            <div>
+            <Wrapper>
                 {this.props.auth.data.level === 2 ? this.props.children : null}
-            </div>
+            </Wrapper>
         )
     }
 } 
