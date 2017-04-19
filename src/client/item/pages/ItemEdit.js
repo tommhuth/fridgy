@@ -75,7 +75,8 @@ class ItemEdit extends Component {
                         <legend className="visually-hidden">Edit {item.title}</legend>
 
                         <div className="question" >
-                            <CheckBox onChange={this.handleSingle.bind(this)}
+                            <CheckBox 
+                                onChange={this.handleSingle.bind(this)}
                                 id="terms-and-cond"
                                 selected={this.state.conditions}>
                                 I agree to terms and conditions
@@ -83,7 +84,8 @@ class ItemEdit extends Component {
                         </div>
 
                         <div className="question" >
-                            <SelectionGroup title="Cities been to"
+                            <SelectionGroup 
+                                title="Cities been to"
                                 onChange={this.handlePlacesChange.bind(this)}>
                                 <CheckBox value="oslo">Oslo</CheckBox>
                                 <CheckBox value="nyc">NYC</CheckBox>
@@ -92,7 +94,8 @@ class ItemEdit extends Component {
                         </div>
 
                         <div className="question" >
-                            <SelectionGroup title="Food I eat"
+                            <SelectionGroup 
+                                title="Food I eat"
                                 selected={this.state.food}
                                 onChange={this.handleFoodChange.bind(this)}>
                                 <CheckBox value="sushi">Sushi</CheckBox>
@@ -105,14 +108,16 @@ class ItemEdit extends Component {
                         <div className="question" >
                             <fieldset className="input-group">
                                 <legend>Whole buncha radios</legend>
-                                <SelectionGroup onChange={this.handleTest1Change.bind(this)}
+                                <SelectionGroup 
+                                    onChange={this.handleTest1Change.bind(this)}
                                     selected={this.state.test1}>
                                     <RadioButton value="a">Option A</RadioButton>
                                     <RadioButton value="b">Option B</RadioButton>
                                     <RadioButton value="c">Option C</RadioButton>
                                 </SelectionGroup>
                                 <hr />
-                                <SelectionGroup selected={this.state.test2}
+                                <SelectionGroup 
+                                    selected={this.state.test2}
                                     onChange={this.handleTest2Change.bind(this)}>
                                     <RadioButton value="1">Option 1</RadioButton>
                                     <RadioButton value="2">Option 2</RadioButton>
