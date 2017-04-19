@@ -128,7 +128,7 @@ class ItemEdit extends Component {
                                 id="title"
                                 value={this.state.title}
                                 onChange={this.handleTitleChange.bind(this)}
-                                className="text-input large" />
+                                className="text-input text-input--large" />
                         </div>
 
                         <div className="question ">
@@ -137,7 +137,7 @@ class ItemEdit extends Component {
                                 id="amount"
                                 value={this.state.amount}
                                 onChange={this.handleAmountChange.bind(this)}
-                                className="text-input small" />
+                                className="text-input text-input--small" />
                         </div>
 
 

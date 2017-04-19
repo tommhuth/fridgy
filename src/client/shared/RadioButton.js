@@ -6,7 +6,7 @@ export default class RadioButton extends Component {
         let checked = this.props.value === this.props.selected
 
         return (
-            <label>
+            <label className="toggle-input">
                 <input type="radio"
                     onChange={this.props.onChange}
                     name={this.props.id}

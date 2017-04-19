@@ -13,7 +13,7 @@ export default class CheckBox extends Component {
         }
 
         return (
-            <label>
+            <label className="toggle-input">
                 <input type="checkbox"
                     onChange={this.props.onChange}
                     name={this.props.id}

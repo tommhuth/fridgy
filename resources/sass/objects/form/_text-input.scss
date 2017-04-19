@@ -7,24 +7,12 @@
     box-sizing: border-box;
     max-width: 100%;
 
-    &.small {
+    &--small {
         width: 7em;
     }
 
-    &.medium {
-        width: 15em;
-    }
-
-    &.large {
+    &--large {
         width: 22em;
-
-        @media (max-width: $breakpoint-grid-collapse) {
-            width: 100%;
-        }
-    }
-
-    &.full {
-        width: 100%;
     }
 
     &:focus {
