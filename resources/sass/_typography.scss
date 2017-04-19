@@ -16,7 +16,6 @@ body {
     color: #000;
 
     $size: 56;
-
     $font-size: 1.15;
 
     @while $size < 130 {
@@ -57,23 +56,6 @@ body {
     font-size: 1.5em;
 }
 
-.text {
-    margin: 0 0 1em;
-    line-height: 1.5;
-    max-width: 26em;
-}
-
-.subtle {
-    font-size: 1.25em;
-    font-style: italic;
-    opacity: .5;
-}
-
-.intro {
-    font-size: 1.25em;
-    margin: 1em 0;
-}
-
 p a:hover,
 p a:focus {
     text-decoration: underline;
@@ -91,5 +73,6 @@ p a:focus {
 .intro-text {
     font-size: 1.65em;
     font-family: $serif-font;
+    line-height: 1.2;
     font-style: italic;
 }

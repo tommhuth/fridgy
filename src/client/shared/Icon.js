@@ -43,7 +43,7 @@ const ViewBox = {
 export default class Icon extends Component { 
     render() { 
         return (
-            <svg key={this.id} className={"icon " + (this.props.size || "")} viewBox={`0 0 ${ViewBox[this.props.type] || "0 0"}`} >
+            <svg key={this.id} className={"icon"} viewBox={`0 0 ${ViewBox[this.props.type] || "0 0"}`} >
                 <use xlinkHref={ `/gfx/iconset.svg?v=${process.env.APP_VERSION}#${this.props.type}`} />
             </svg>
         )
