@@ -3,14 +3,15 @@ import config from "../config/config-loader"
 import debug from "debug"
 
 const log = debug("fridgy-server:db")
+
 mongoose.Promise = global.Promise
 
 function getConnectionString() {
     if( config.NODE_ENV === "test"){
         return config.CONNECTION_STRING_TEST
-    } 
-    
-    return config.CONNECTION_STRING 
+    } else {
+        return config.CONNECTION_STRING  
+    }
 }
 
 export function connect() {
@@ -19,8 +20,8 @@ export function connect() {
 
         mongoose.connect(connectionString, { server: { poolSize: config.CONNECTION_POOL_SIZE } })
         mongoose.connection.on("open", () => {
-            resolve()
             log(`Connected to ${connectionString} [${config.NODE_ENV}]`)
+            resolve()
         })
         mongoose.connection.on("error", reject)
     })
