@@ -104,18 +104,14 @@
     &--plain {
         border: none;
         font-weight: bold;
-        padding-right: 1.85em;
+        padding-right: 1.75em;
         padding-top: .25em;
-        padding-bottom: .25em;
-        margin: 0 0 0 1.1em;
+        padding-bottom: .25em; 
         font-size: 2em;
 
         .select__icon {
             margin-top: .05em;
-        }
-
-        .icon {
-            opacity: .2;
+            font-size: .9em;
         }
     }
 }
