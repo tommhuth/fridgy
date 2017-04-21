@@ -1,9 +1,8 @@
 .meal-advisor {
     background-color: $blue;
     margin: 0 -1.75em;
-    margin-top: -9em;
     color: #FFF;
-    padding: 11.5em 1.75em 3em;
+    padding: 3em 1.75em;
 
     &__load-more {
         display: block;
@@ -14,7 +13,7 @@
         width: 1em;
         border-radius: 50%;
         box-sizing: content-box;
-        opacity: .4;
+        opacity: .2;
 
         &:hover,
         &:focus {
@@ -24,7 +23,7 @@
     }
 
     &__list {
-        margin-top: 3.5em;
+        margin-top: 2em;
         font-size: .9em;
 
         > li {
@@ -34,7 +33,7 @@
 
             &:not(:last-child) {
                 margin-bottom: 1.35em;
-                border-bottom: 1px solid rgba(#FFF, .1);
+                border-bottom: 1px solid rgba(#FFF, .15);
             }
         }
 
@@ -51,6 +50,7 @@
             &:focus {
                 background-color: #FFF;
                 color: $blue;
+                border-color: #FFF;
             }
         }
     }

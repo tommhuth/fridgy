@@ -58,11 +58,11 @@ export default class MealAdvisor extends Component {
         let items = this.props.items.data
         let tag = this.state.tag  
 
-        return (
-           <div className="meal-advisor">
+        return ( 
+            <div className="meal-advisor">
                 <div className="container "> 
                     <div className="container-restricted">
-                         <div className="center-text"> 
+                        <div className="center-text"> 
                             <h2 className="visually-hidden">{tag}</h2>
                             <Select 
                                 selectedText={tag} 
@@ -71,7 +71,6 @@ export default class MealAdvisor extends Component {
                                 onChange={this.onTagChange.bind(this)}>    
                                 {this.getTags(items).map(i => <option value={i} key={i}>{i}</option>)}
                             </Select>
-                            <p className="intro-text">something you can make a meal out of</p>
                         </div> 
 
                         <Cloak if={this.props.items.isLoading} >
@@ -79,12 +78,12 @@ export default class MealAdvisor extends Component {
                                 {sort(this.filter(items, tag), "title").map(i => <li key={i.id}><ListItem item={i} /> </li>)}
                             </ul>
                         
-                             { this.hasMorePages(items, tag) ? this.getLoadMoreButton() : null }
+                            { this.hasMorePages(items, tag) ? this.getLoadMoreButton() : null }
                         </Cloak>
                         
                     </div> 
                 </div>  
-            </div>
+            </div>   
         )
     }
 } 

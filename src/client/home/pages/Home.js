@@ -3,6 +3,8 @@ import { connect } from "react-redux"
 import { fetchItems } from "../../data/store/actions/items"
 import Page from "../../app/Page"
 import MealAdvisor from "../MealAdvisor"
+import FridgeIntro from "../FridgeIntro"
+import FridgeOutro from "../FridgeOutro"
 
 export  class Home extends Component {
     componentWillMount() {
@@ -13,10 +15,10 @@ export  class Home extends Component {
 
     render() {  
         return (
-            <Page>
-                <h1 className="visually-hidden">What’s in that fridge?</h1>
-
+            <Page> 
+                <FridgeIntro />
                 <MealAdvisor items={this.props.items} />
+                <FridgeOutro />
             </Page>
 
         )
