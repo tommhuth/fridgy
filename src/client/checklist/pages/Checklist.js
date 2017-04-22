@@ -15,20 +15,26 @@ class Items extends Component {
     }
 
     render() {
-        let data = this.props.items.data.filter(i => i.checklist === moment().format("YYYY-MM-DD"))
+        let data = sort(this.props.items.data.filter(i => i.checklist === moment().format("YYYY-MM-DD")), "title")
 
         return (
             <Page>
-                <div className="container">
-                    <h1 className="beta offset-small">Checklist</h1>
+                <div className="checklist">
+                    <div className="container">
+                        <h1 className="beta offset-small">Checklist</h1>
+                        <div className="checklist__description">
+                            <p className="intro-text">Stuff you need to do something about.</p>
+                             {!data.length && <p className="intro-text">But there's nothing here yet!</p>}
+                        </div>
 
-                    <Cloak if={this.props.items.isLoading}>
-                        <ul className="items-list">
-                            {
-                                sort(data, "title").map( item => <li key={item.id}> <ListItem item={item}  /> </li>)
-                            }
-                        </ul>
-                    </Cloak>
+                        <Cloak if={this.props.items.isLoading}>  
+                            <ul className="items-list">
+                                {
+                                   data.map( item => <li key={item.id}> <ListItem item={item}  /> </li>)
+                                }
+                            </ul>
+                        </Cloak>
+                    </div> 
                 </div>
             </Page>
 
