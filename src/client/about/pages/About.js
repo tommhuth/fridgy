@@ -7,7 +7,7 @@ export default class About extends Component {
             <Page>
                 <div className="about">
                     <div className="container">
-                        <h1 className="about__title beta offset-small">About</h1>
+                        <h1 className="beta offset-small">About</h1>
 
                         <div className="about__description paragraphs">
                             <p className="intro-text">Tired of going grocery shopping only to end up with four ten donuts and none of that milk you really need?</p>
