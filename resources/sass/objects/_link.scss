@@ -1,0 +1,11 @@
+.link {
+    border-bottom: 1px solid #CCC;
+    padding-bottom: .2em;
+    margin-bottom: -.2em;
+    transition: all .2s;
+
+    &:hover,
+    &:focus {
+        border-bottom-color: $dark-gray;
+    }
+}

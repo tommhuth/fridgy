@@ -1,1 +1,24 @@
-// empty
+.about {
+    &__description {
+        margin-top: 1.5em;
+        max-width: 35em;
+    }
+}
+
+.list {
+    margin: 1.5em 0;
+
+    > li {
+        margin-bottom: .5em;
+    }
+
+    &--bulleted {
+        padding-left: 1.25em;
+
+        > li {
+            list-style: disc outside;
+            padding-right: 0;
+            margin-left: 0;
+        }
+    }
+}

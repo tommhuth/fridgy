@@ -5,22 +5,22 @@ export default class About extends Component {
     render() {
         return (
             <Page>
-                <div className="container">
-                    <h1 className="beta offset-small">About</h1>
+                <div className="about">
+                    <div className="container">
+                        <h1 className="about__title beta offset-small">About</h1>
 
-                    <p className="text intro">Tired of going grocery shopping only to end up with four packets of butter and none of that milk you really needed?</p>
-
-                    <div className="text-container">
-                        <p className="text">So was I, so I made this to keep track of what I actually have in the fridge. But mostly to play with Laravel and Angular. And did I just use up my big, bold Helvetica design?</p>
-                        <p className="text">Made with NodeJS/Express + React.</p>
-                    </div>
-
-                    <div className="text-container">
-                        <ul className="list-bulleted">
-                            <li>Icons by Noun Project.</li>
-                            <li>Font hosting by Fonts.com.</li>
-                            <li>Find this project on <a href="/fridge" target="_self">GitHub</a>.</li>
-                        </ul>
+                        <div className="about__description paragraphs">
+                            <p className="intro-text">Tired of going grocery shopping only to end up with four ten donuts and none of that milk you really need?</p>
+                            <p>So was I, so I made this to keep track of what I actually have in the fridge &mdash; but obviously mostly to play with NodeJS and React.</p>
+                            <p>Made with NodeJS/Express + React.</p>
+                            
+                            <ul className="list list--bulleted">
+                                <li>Hosted on Heroku.</li>
+                                <li>Icons by Noun Project.</li>
+                                <li>Fonts by Fonts.com.</li>
+                                <li>Find this project on <a href="https://github.com/tommhuth/fridgy" className="link" target="_blank">GitHub</a>.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </Page> 

@@ -2,8 +2,8 @@
     position: relative;
 
     &__button {
-        background: #000;
-        border: 2px solid #000;
+        background: $dark-gray;
+        border: 2px solid $dark-gray;
         bottom: 0;
         box-sizing: border-box;
         color: #FFF;
@@ -16,7 +16,7 @@
     }
 
     &__input {
-        border: 2px solid #000;
+        border: 2px solid $dark-gray;
         box-sizing: border-box;
         margin-right: 5em;
         padding: .75em 1em;

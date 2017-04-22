@@ -1,4 +1,4 @@
-%heading {
+@mixin heading {
     word-wrap: break-word;
     font-family: $font;
     font-weight: 700;
@@ -13,7 +13,7 @@ body {
     font-weight: 400;
     font-size: 1em;
     line-height: 1.4;
-    color: #000;
+    color: $dark-gray;
 
     $size: 56;
     $font-size: 1.15;
@@ -29,7 +29,7 @@ body {
 }
 
 .alpha {
-    @extend %heading;
+    @include heading;
 
     font-size: 7em;
     text-transform: lowercase;
@@ -40,7 +40,7 @@ body {
 }
 
 .beta {
-    @extend %heading;
+    @include heading;
 
     font-size: 5em;
     text-transform: lowercase;
@@ -51,23 +51,9 @@ body {
 }
 
 .gamma {
-    @extend %heading;
+    @include heading;
 
     font-size: 1.5em;
-}
-
-p a:hover,
-p a:focus {
-    text-decoration: underline;
-}
-
-.nowrap {
-    white-space: nowrap;
-}
-
-.center-text {
-    text-align: center;
-    line-height: 1.5em;
 }
 
 .intro-text {
@@ -75,4 +61,12 @@ p a:focus {
     font-family: $serif-font;
     line-height: 1.2;
     font-style: italic;
+    text-transform: lowercase;
 }
+
+.paragraphs {
+    > p:not(:last-child) {
+        margin-bottom: 1em;
+    }
+}
+

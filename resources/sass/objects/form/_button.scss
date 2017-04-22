@@ -71,28 +71,28 @@
     &--inverted {
         &:focus {
             color: #FFF;
-            border-color: #000;
+            border-color: $dark-gray;
 
             &::before {
-                background: #000;
+                background: $dark-gray;
             }
         }
 
         @media (hover: hover) {
             &:hover {
                 color: #FFF;
-                border-color: #000;
+                border-color: $dark-gray;
 
                 &::before {
-                    background: #000;
+                    background: $dark-gray;
                 }
             }
         }
 
         @media (hover: none) {
             &:active {
-                background-color: #000;
-                border-color: #000;
+                background-color: $dark-gray;
+                border-color: $dark-gray;
                 color: #FFF;
             }
         }

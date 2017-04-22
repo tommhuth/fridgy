@@ -21,6 +21,7 @@ export default class  Nav extends Component {
 
         return (
             <nav className="nav">
+                <a className="visually-hidden" href="#main">Skip to content</a>
                 {
                     !isVisible && 
                     <div className="nav__toggler">
