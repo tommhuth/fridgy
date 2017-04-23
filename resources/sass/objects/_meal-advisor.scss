@@ -4,6 +4,14 @@
     color: #FFF;
     padding: 3em 1.75em;
 
+    &__heading {
+        text-align: center;
+
+        @media (max-width: 50em) {
+            text-align: left;
+        }
+    }
+
     &__load-more {
         display: block;
         margin: 0 auto;

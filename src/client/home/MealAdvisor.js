@@ -62,7 +62,7 @@ export default class MealAdvisor extends Component {
             <div className="meal-advisor">
                 <div className="container "> 
                     <div className="container-restricted">
-                        <div className="center-text"> 
+                        <div className="meal-advisor__heading"> 
                             <h2 className="visually-hidden">{tag}</h2>
                             <Select 
                                 selectedText={tag} 
