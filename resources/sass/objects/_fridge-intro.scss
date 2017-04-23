@@ -22,6 +22,7 @@
         font-size: 1.5em;
         text-transform: lowercase;
         display: inline-block;
+        transition: color .2s;
 
         &:hover,
         &:focus {
