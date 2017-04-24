@@ -21,7 +21,8 @@ store.subscribe(() => {
     let state = cloneDeep(store.getState())
 
     // lets not persist everything
-    delete state.app.menuVisible
+    state.app.menuVisible = false
+    state.notifications.data = []
     
     persistStore(state)
     Fetch.authorize(state.auth.data.token)  

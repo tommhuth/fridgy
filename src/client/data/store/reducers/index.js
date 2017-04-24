@@ -5,6 +5,7 @@ import app from "./app"
 import categories from "./categories"
 import filter from "./filter"
 import auth from "./auth"
+import notifications from "./notifications"
  
 export default combineReducers({
     items,
@@ -12,5 +13,6 @@ export default combineReducers({
     categories,
     app,
     filter,
-    auth
+    auth,
+    notifications
 })

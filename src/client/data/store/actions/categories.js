@@ -13,10 +13,8 @@ export function fetchCategories(silent) {
             dispatch(categoriesActions.receive(list))
         } catch (e) {
             dispatch(categoriesActions.error(e))
-        } finally {
-            if (silent) {
-                categoriesActions.loaded()
-            }
+        } finally { 
+            categoriesActions.loaded() 
         }
     }
 }

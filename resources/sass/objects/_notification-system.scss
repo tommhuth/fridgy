@@ -1,0 +1,66 @@
+.notification-system {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+
+    &-message {
+        background-color: $dark-gray;
+        padding-top: 2.75em;
+        padding-bottom: 4em;
+        color: #FFF;
+        transition: all .35s;
+        overflow: hidden;
+        box-sizing: border-box;
+        cursor: pointer;
+
+        &.slide-enter {
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            opacity: 0;
+
+            &.slide-enter-active {
+                max-height: 15em;
+                padding-top: 2.75em;
+                padding-bottom: 4em;
+                opacity: 1;
+            }
+        }
+
+        &.slide-leave {
+            max-height: 15em;
+            opacity: 1;
+
+            &.slide-leave-active {
+                max-height: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+                opacity: 0;
+            }
+        }
+
+        &__description {
+            font-size: 1.5em;
+            margin-bottom: .75em;
+        }
+
+        &__subtitle {
+            font-size: .9em;
+            text-transform: uppercase;
+            opacity: .35;
+            letter-spacing: .1em;
+
+            .icon {
+                width: 1.5em;
+                margin-left: 1em;
+                opacity: .4;
+            }
+        }
+
+        &--error {
+            background-color: $red;
+        }
+    }
+}

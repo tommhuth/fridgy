@@ -1,4 +1,5 @@
 import { ItemsAction } from "../actions/creators/items"
+import { ItemAction } from "../actions/creators/item"
 
 const init = {
     data: [],
@@ -13,39 +14,26 @@ export default (state = init, action) => {
                 ...state,
                 error: null,
                 data: action.payload
-            } 
-        case ItemsAction.Checklist:
-            return {
-                ...state,
-                data: [
-                    ...state.data.filter(i => i.slug !== action.payload.slug),
-                    { 
-                        ...state.data.find(i => i.slug === action.payload.slug),
-                        checklist: action.payload.date
-                    }
-                ]
-            }
-        case ItemsAction.Dechecklist:
-            return {
-                ...state,
-                data: [
-                    ...state.data.filter(i => i.slug !== action.payload),
-                    { 
-                        ...state.data.find(i => i.slug === action.payload),
-                        checklist: null
-                    }
-                ]
-            }
+            }  
         case ItemsAction.Error:
             return {
                 ...state,
-                data: [],
                 error: action.payload
             }
         case ItemsAction.Loaded:
             return {
                 ...state,
                 isLoading: false
+            }
+        case ItemAction.Update:
+            return {
+                ...state,
+                data: [
+                    ...state.data.filter(i => i.id !== action.payload.id),
+                    {
+                        ...action.payload
+                    }
+                ]
             }
         case ItemsAction.Loading:
             return {
