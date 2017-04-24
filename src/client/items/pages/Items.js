@@ -7,6 +7,7 @@ import { connect } from "react-redux"
 import { fetchItems } from "../../data/store/actions/items"
 import { filterItems } from "../../data/store/actions/filter"
 import Page from "../../app/Page"
+import DocumentTitle from "react-document-title"
 
 class Items extends Component {
     componentWillMount() {
@@ -21,21 +22,23 @@ class Items extends Component {
         let list = filterItems(item.data, this.props.filter)
 
         return (
-            <Page>
-                <div className="container">
-                    <h1 className="beta offset-small">The fridge</h1>
+            <DocumentTitle title="The Fridge / Items">
+                <Page>
+                    <div className="container">
+                        <h1 className="beta offset-small">The fridge</h1>
 
-                    <Cloak if={item.isLoading || categories.isLoading}>
-                        <Filter />
+                        <Cloak if={item.isLoading || categories.isLoading}>
+                            <Filter />
 
-                        <ul className="items-list">
-                            {
-                                sort(list, "title").map( item => <li key={item.id}> <ListItem item={item}  /> </li>)
-                            }
-                        </ul>
-                    </Cloak>
-                </div>
-            </Page>
+                            <ul className="items-list">
+                                {
+                                    sort(list, "title").map( item => <li key={item.id}> <ListItem item={item}  /> </li>)
+                                }
+                            </ul>
+                        </Cloak>
+                    </div>
+                </Page>
+            </DocumentTitle>
         )
     }
 }

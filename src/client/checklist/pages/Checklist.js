@@ -6,6 +6,7 @@ import { connect } from "react-redux"
 import { fetchItems } from "../../data/store/actions/items"
 import moment from "moment"
 import Page from "../../app/Page"
+import DocumentTitle from "react-document-title"
 
 class Items extends Component {
     componentWillMount() {
@@ -18,25 +19,27 @@ class Items extends Component {
         let data = sort(this.props.items.data.filter(i => i.checklist === moment().format("YYYY-MM-DD")), "title")
 
         return (
-            <Page>
-                <div className="checklist">
-                    <div className="container">
-                        <h1 className="beta offset-small">Checklist</h1>
-                        <div className="checklist__description">
-                            <p className="intro-text">Stuff you need to do something about.</p>
-                             {!data.length && <p className="intro-text">But there's nothing here yet!</p>}
-                        </div>
+            <DocumentTitle title="The Fridge / Checklist">
+                <Page>
+                    <div className="checklist">
+                        <div className="container">
+                            <h1 className="beta offset-small">Checklist</h1>
+                            <div className="checklist__description">
+                                <p className="intro-text">Stuff you need to do something about.</p>
+                                {!data.length && <p className="intro-text">But there's nothing here yet!</p>}
+                            </div>
 
-                        <Cloak if={this.props.items.isLoading}>  
-                            <ul className="items-list">
-                                {
-                                   data.map( item => <li key={item.id}> <ListItem item={item}  /> </li>)
-                                }
-                            </ul>
-                        </Cloak>
-                    </div> 
-                </div>
-            </Page>
+                            <Cloak if={this.props.items.isLoading}>  
+                                <ul className="items-list">
+                                    {
+                                    data.map( item => <li key={item.id}> <ListItem item={item}  /> </li>)
+                                    }
+                                </ul>
+                            </Cloak>
+                        </div> 
+                    </div>
+                </Page>
+            </DocumentTitle>
 
         )
     }

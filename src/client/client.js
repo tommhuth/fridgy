@@ -8,6 +8,7 @@ import AuthGate from "./auth/AuthGate"
 import Fetch from "./data/Fetch"
 import { makeStore, getPersistedStore, persistStore } from "./data/store/make-store"
 import { cloneDeep } from "lodash"
+import DocumentTitle from "react-document-title"
 
 let intialStore = getPersistedStore()
 let store = makeStore(intialStore)
@@ -27,10 +28,12 @@ store.subscribe(() => {
 })
 
 ReactDOM.render(
-    <Provider store={store}>
-        <AuthGate>
-            <Router history={browserHistory} routes={routes} onUpdate={() => window.scrollTo(0,0)}/>
-        </AuthGate>
-    </Provider>,
+    <DocumentTitle title="The Fridge">
+        <Provider store={store}>
+            <AuthGate>
+                <Router history={browserHistory} routes={routes} onUpdate={() => window.scrollTo(0,0)}/>
+            </AuthGate>
+        </Provider>
+    </DocumentTitle>,
     document.getElementById("root")
 )

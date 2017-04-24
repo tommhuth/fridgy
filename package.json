@@ -61,6 +61,7 @@
     "pug": "^2.0.0-beta11",
     "react": "^15.4.2",
     "react-body-classname": "^1.1.0",
+    "react-document-title": "^2.0.3",
     "react-dom": "^15.4.2",
     "react-redux": "latest",
     "react-router": "^2.8.1",
