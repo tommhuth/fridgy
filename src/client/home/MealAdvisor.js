@@ -49,7 +49,7 @@ export default class MealAdvisor extends Component {
     getLoadMoreButton(){
         return (
             <button type="button"  className="meal-advisor__load-more" onClick={this.incrementPage.bind(this)}>
-                <Icon type={IconType.ArrowDown} />
+                <Icon type={IconType.Plus} />
                 <span className="visually-hidden">Load more</span>
             </button>
         )
