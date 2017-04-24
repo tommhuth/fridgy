@@ -5,7 +5,7 @@ import Cloak from "../../shared/Cloak"
 import Filter from "./../Filter"
 import { connect } from "react-redux"
 import { fetchItems } from "../../data/store/actions/items"
-import { filterItems } from "../../data/store/actions/filter"
+import { filterItems } from "../../data/data-parsers"
 import Page from "../../app/Page"
 import DocumentTitle from "react-document-title"
 
