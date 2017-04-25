@@ -6,6 +6,8 @@
     transform: translateX(-50%) translateY(-50%);
 
     &__wrapper {
+        animation: slide-up .5s;
+
         &--error {
             animation: shake .82s cubic-bezier(.36, .07, .19, .97) both;
             backface-visibility: hidden;

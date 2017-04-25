@@ -16,6 +16,10 @@
         text-transform: uppercase;
         top: 0;
         width: 4em;
+
+        &:focus {
+            background-color: darken($blue, 6%);
+        }
     }
 
     &__input {
