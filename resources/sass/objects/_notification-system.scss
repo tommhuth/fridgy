@@ -1,6 +1,6 @@
 .notification-system {
     position: fixed;
-    bottom: 0;
+    bottom: -.25em;
     left: 0;
     right: 0;
     z-index: 1;
@@ -11,11 +11,28 @@
         padding-bottom: 4em;
         color: #FFF;
         transition: all .35s;
+        margin-top: -.25em;
         overflow: hidden;
         box-sizing: border-box;
         background-clip: border-box;
-        border-bottom: .2em solid rgba(#000, .075);
         cursor: pointer;
+        position: relative;
+
+        &::after {
+            content: "";
+            height: .5em;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(#000, .1);
+            position: absolute;
+            display: block;
+        }
+
+        @media (max-width: $breakpoint-grid-collapse) {
+            padding-top: 2em;
+            padding-bottom: 2.75em;
+        }
 
         &.slide-enter {
             max-height: 0;
@@ -25,8 +42,8 @@
 
             &.slide-enter-active {
                 max-height: 15em;
-                padding-top: 2.75em;
-                padding-bottom: 4em;
+                padding-top: 3.25em;
+                padding-bottom: 4.5em;
                 opacity: 1;
             }
         }
