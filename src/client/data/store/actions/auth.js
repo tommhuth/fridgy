@@ -13,7 +13,7 @@ export function attemptAuth(token) {
             dispatch(authActions.success(accessLevel))
         } catch (e) {
             dispatch(authActions.error(e))
-            dispatch(notificationsActions.add("Invalid password -- try again."))
+            dispatch(notificationsActions.add("Invalid password — try again."))
         } finally {
             dispatch(authActions.loaded())
         }
