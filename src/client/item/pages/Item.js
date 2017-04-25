@@ -76,13 +76,13 @@ class Item extends Component {
 }
 
 export default connect(
-    (state) => {
+    store => {
         return {
-            item: state.item,
-            categories: state.categories
+            item: store.item,
+            categories: store.categories
         }
     },
-    (dispatch) => {
+    dispatch => {
         return {
             getItem: (slug) => dispatch(fetchItem(slug)),
             clearItem: () => dispatch(clearItem()),

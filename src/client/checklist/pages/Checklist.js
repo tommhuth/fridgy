@@ -46,12 +46,12 @@ class Items extends Component {
 }
 
 export default connect(
-    (state) => {
+    store => {
         return {
-            items: state.items,
+            items: store.items,
         }
     },
-    (dispatch) => {
+    dispatch => {
         return {
             fetchItems: (silent) => dispatch(fetchItems(silent))
         }

@@ -56,13 +56,13 @@ class Filter extends Component {
 }
 
 export default connect(
-    (state) => {
+    store => {
         return {
-            filter: state.filter,
-            categories: state.categories
+            filter: store.filter,
+            categories: store.categories
         }
     },
-    (dispatch) => {
+    dispatch => {
         return {
             setCategoryFilter: (category) => dispatch(setCategoryFilter(category)),
             setStockFilter: (stock) => dispatch(setStockFilter(stock)),

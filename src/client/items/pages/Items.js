@@ -44,14 +44,14 @@ class Items extends Component {
 }
 
 export default connect(
-    (state) => {
+    store => {
         return {
-            items: state.items,
-            filter: state.filter,
-            categories: state.categories
+            items: store.items,
+            filter: store.filter,
+            categories: store.categories
         }
     },
-    (dispatch) => {
+    dispatch => {
         return {
             fetchItems: (silent) => dispatch(fetchItems(silent))
         }

@@ -13,9 +13,9 @@ class AuthGate extends Component {
 }
 
 export default connect(
-    (state) => {
+    store => {
         return {
-            auth: state.auth
+            auth: store.auth
         }
     }
 )(AuthGate)

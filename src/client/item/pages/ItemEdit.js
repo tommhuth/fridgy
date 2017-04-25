@@ -174,13 +174,13 @@ class ItemEdit extends Component {
 }
 
 export default connect(
-    (state) => {
+    store => {
         return {
-            item: state.item,
-            categories: state.categories
+            item: store.item,
+            categories: store.categories
         }
     },
-    (dispatch) => {
+    dispatch => {
         return {
             fetchCategories: () => dispatch(fetchCategories()),
             fetchItem: (slug) => dispatch(fetchItem(slug))

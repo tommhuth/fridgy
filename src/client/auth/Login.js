@@ -48,12 +48,12 @@ class Login extends Component {
 }
 
 export default connect(
-    (state) => {
+    store => {
         return {
-            auth: state.auth
+            auth: store.auth
         }
     },
-    (dispatch) => {
+    dispatch => {
         return {
             attemptAuth: (token) => dispatch(attemptAuth(token)),
         }
