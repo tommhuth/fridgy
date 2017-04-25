@@ -9,12 +9,15 @@ import Fetch from "./data/Fetch"
 import { makeStore, getPersistedStore, persistStore } from "./data/store/make-store"
 import { cloneDeep } from "lodash"
 import DocumentTitle from "react-document-title"
+import NotificationSystem from "./app/NotificationSystem"
 
 let intialStore = getPersistedStore()
 let store = makeStore(intialStore)
 
 // initialize Fetch auth token from exisiting
-Fetch.authorize(intialStore && intialStore.auth.data.token)  
+if (intialStore) {
+    Fetch.authorize(intialStore.auth.data.token)      
+}
 
 // set token on change + save state
 store.subscribe(() => {
@@ -31,9 +34,13 @@ store.subscribe(() => {
 ReactDOM.render(
     <DocumentTitle title="The Fridge">
         <Provider store={store}>
-            <AuthGate>
-                <Router history={browserHistory} routes={routes} onUpdate={() => window.scrollTo(0,0)}/>
-            </AuthGate>
+            <div>
+                <AuthGate>
+                    <Router history={browserHistory} routes={routes} onUpdate={() => window.scrollTo(0,0)}/>
+                </AuthGate>
+
+                <NotificationSystem />
+            </div>
         </Provider>
     </DocumentTitle>,
     document.getElementById("root")

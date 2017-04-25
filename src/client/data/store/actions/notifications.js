@@ -1,7 +1,7 @@
 import * as notificationsActions from "./creators/notifications"
 import uuid from "node-uuid"
 
-export function add(message, isError = false, duration = 4000) {
+export function add(message, isError = false, duration = 3000) {
     return (dispatch) => {
         let id = uuid.v4()
         let notification = {

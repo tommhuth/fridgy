@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 import Nav from "./Nav"
-import NotificationSystem from "./NotificationSystem"
 import { toggleMenu } from "../data/store/actions/app"
 import { connect } from "react-redux"
 
@@ -18,8 +17,6 @@ export class Wrapper extends Component {
                 <Nav toggleVisibility={this.props.toggleVisibility} isVisible={this.props.menuVisible} />
                 
                 {this.props.menuVisible ? null : main}
-                
-                <NotificationSystem />
             </div>
         )
     }

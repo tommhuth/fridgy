@@ -1,5 +1,6 @@
 import * as authActions from "../actions/creators/auth"
 import Fetch from "../../../data/Fetch"
+import * as notificationsActions from "./notifications"
 
 export function attemptAuth(token) {
     return async (dispatch) => {
@@ -12,6 +13,7 @@ export function attemptAuth(token) {
             dispatch(authActions.success(accessLevel))
         } catch (e) {
             dispatch(authActions.error(e))
+            dispatch(notificationsActions.add("Invalid password -- try again."))
         } finally {
             dispatch(authActions.loaded())
         }

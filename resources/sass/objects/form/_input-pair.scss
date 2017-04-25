@@ -1,9 +1,12 @@
 .input-pair {
     position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+    font-size: 1.2em;
 
     &__button {
-        background: $dark-gray;
-        border: 2px solid $dark-gray;
+        background: $blue;
+        border: 2px solid $blue;
         bottom: 0;
         box-sizing: border-box;
         color: #FFF;
@@ -12,14 +15,23 @@
         right: 0;
         text-transform: uppercase;
         top: 0;
-        width: 5em;
+        width: 4em;
     }
 
     &__input {
         border: 2px solid $dark-gray;
+        background: $dark-gray;
         box-sizing: border-box;
-        margin-right: 5em;
+        margin-right: 4em;
         padding: .75em 1em;
-        width: 15em;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+        width: 16em;
+        color: #FFF;
+
+        &:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 9999em $dark-gray inset;
+            -webkit-text-fill-color: #FFF !important;
+        }
     }
 }
