@@ -3,7 +3,8 @@
         "browser": true,
         "es6": true,
         "node": true,
-        "mocha": true
+        "mocha": true,
+        "jest": true
     },
     "parser": "babel-eslint",
     "extends": "eslint:recommended",
@@ -17,7 +18,8 @@
     },
     "plugins": [
         "react",
-        "mocha"
+        "mocha",
+        "jest"
     ],
     "rules": {
         "no-unused-vars": [

@@ -1,9 +1,9 @@
 const { expect } = require("chai")
-const ItemRepo = require("../../build/server/repositories/item-repo")
-const { NotFoundError } = require("../../build/server/errors/not-found-error")
-const { ValidationError } = require("../../build/server/errors/validation-error")
-const { InvalidTitleError } = require("../../build/server/errors/invalid-title-error")
-const { InvalidChecklistDateError } = require("../../build/server/errors/invalid-checklist-date-error")
+const ItemRepo = require("../../../build/server/repositories/item-repo")
+const { NotFoundError } = require("../../../build/server/errors/not-found-error")
+const { ValidationError } = require("../../../build/server/errors/validation-error")
+const { InvalidTitleError } = require("../../../build/server/errors/invalid-title-error")
+const { InvalidChecklistDateError } = require("../../../build/server/errors/invalid-checklist-date-error")
 
 suite("ItemRepo")
 

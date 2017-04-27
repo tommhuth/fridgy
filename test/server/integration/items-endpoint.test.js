@@ -1,7 +1,7 @@
 const { expect } = require("chai")
-const { app } = require("../../build/server/server")
+const { app } = require("../../../build/server/server")
 const supertest = require("supertest")
-const config = require("../../build/server/config/config-loader").default
+const config = require("../../../build/server/config/config-loader").default
 
 suite("API: /api/items")
 
