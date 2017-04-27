@@ -1,7 +1,7 @@
 import React, { Component } from "react"  
 import sort from "sort-array"
 import ListItem from "../items/ListItem" 
-import Select, { SelectStyle } from "../shared/Select"
+import  { Select, Option, SelectStyle } from "../shared/Select"
 import Cloak from "../shared/Cloak"
 import Icon, { IconType } from "../shared/Icon"
 
@@ -69,7 +69,7 @@ export default class MealAdvisor extends Component {
                                 selectedValue={tag} 
                                 style={SelectStyle.Plain} 
                                 onChange={this.onTagChange.bind(this)}>    
-                                {this.getTags(items).map(i => <option value={i} key={i}>{i}</option>)}
+                                {this.getTags(items).map(i => <Option value={i} key={i}>{i}</Option>)}
                             </Select>
                         </div> 
 
