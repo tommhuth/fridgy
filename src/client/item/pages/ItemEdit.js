@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import ButtonLink from "../../shared/ButtonLink"
 import Button, { ButtonStyle } from "../../shared/Button"
-import Select, { SelectStyle } from "../../shared/Select"
+import {Select, Option, SelectStyle } from "../../shared/Select"
 import RadioButton from "../../shared/RadioButton"
 import CheckBox from "../../shared/CheckBox"
 import SelectionGroup from "../../shared/SelectionGroup"
@@ -152,11 +152,10 @@ class ItemEdit extends Component {
                                 subtle={true}
                                 style={SelectStyle.Narrow}
                                 id="category"
-                                onChange={this.handleCategoryChange.bind(this)}
-                                selectedText={item.category}
-                                selectedValue={item.category}>
+                                onChange={this.handleCategoryChange.bind(this)} 
+                                value={item.category}>
                                 {
-                                    this.props.categories.data.map((e) => <option key={e.name} value={e.name}>{e.name}</option>)
+                                    this.props.categories.data.map((e) => <Option key={e.name} value={e.name}>{e.name}</Option>)
                                 }
                             </Select>
                         </div>

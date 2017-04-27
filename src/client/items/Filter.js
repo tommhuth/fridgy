@@ -2,7 +2,8 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import { setCategoryFilter, setStockFilter } from "../data/store/actions/filter"
 import { fetchCategories } from "../data/store/actions/categories"
-import Select from "../shared/Select"
+import { StockFilter } from "../data/store/actions/filter"
+import {Select, Option} from "../shared/Select"
 
 class Filter extends Component {
     componentDidMount() {
@@ -30,11 +31,10 @@ class Filter extends Component {
                 <Select
                     id="filter-category"
                     onChange={this.handleCategoryChange.bind(this)}
-                    selectedValue=""
-                    selectedText="All">
-                    <option value="">Everything</option>
+                    value="" >
+                    <Option value="">Everything</Option>
                     {
-                        this.props.categories.data.map((e) => <option key={e.name} value={e.name}>{e.name}</option>)
+                        this.props.categories.data.map((e) => <Option key={e.name} value={e.name}>{e.name}</Option>)
                     }
                 </Select>
 
@@ -44,11 +44,10 @@ class Filter extends Component {
                 <Select
                     id="filter-stock"
                     onChange={this.handleStockChange.bind(this)}
-                    selectedValue=""
-                    selectedText="In and out of stock">
-                    <option key={1} value="">In and out of stock</option>
-                    <option key={2} value="IN_STOCK">In stock</option>
-                    <option key={3} value="OUT_OF_STOCK">Out of stock</option>
+                    value={StockFilter.All}>
+                    <Option value={StockFilter.All}>In and out of stock</Option>
+                    <Option value={StockFilter.InStock}>In stock</Option>
+                    <Option value={StockFilter.OutOfStock}>Out of stock</Option>
                 </Select>
             </fieldset>
         )

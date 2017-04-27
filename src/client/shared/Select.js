@@ -8,15 +8,34 @@ export const SelectStyle = {
     Narrow: "select--medium"
 }
 
-export default class Select extends Component { 
+export class Option extends Component {
+    render() {
+        return <option value={this.props.value}>{this.props.children}</option>
+    }
+}
+
+export class Select extends Component { 
     state = {
-        selectedText: this.props.selectedText,
-        selectedValue: this.props.selectedValue,
+        selectedText: null,
+        selectedValue: this.props.value,
         hasFocus: false
+    } 
+
+    getSelected(element) {
+        let index = element.selectedIndex
+        let text = element.options[index].text
+        let value = element.value
+
+        return { index, text, value }
     }
 
     componentDidMount() {
-        this.handleSelectChange()
+        let { text, value } = this.getSelected(this.element)
+
+        this.setState({ 
+            selectedText: text,
+            selectedValue: value
+        })
     }
 
     handleBlur() { 
@@ -31,10 +50,9 @@ export default class Select extends Component {
             hasFocus: true
         })
     }
-
-    handleSelectChange() {
-        let text = this.getSelectedOptionText()
-        let value = this.element.value
+  
+    handleSelectChange({ target }) {  
+        let { text, value } = this.getSelected(target) 
 
         this.setState({
             selectedText: text,
@@ -44,14 +62,7 @@ export default class Select extends Component {
         if (this.props.onChange) {
             this.props.onChange(value, text)
         }
-    }
-
-    getSelectedOptionText() {
-        let element = this.element
-        let options = element.options
-
-        return (element.selectedIndex > -1 && options[element.selectedIndex]) ? options[element.selectedIndex].text : this.props.selectedText
-    }
+    } 
  
     render() {
         let selectClass = classNames("select", {
