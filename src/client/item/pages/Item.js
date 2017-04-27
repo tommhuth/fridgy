@@ -24,7 +24,7 @@ class Item extends Component {
     }
 
     render() {
-        let item = this.props.item
+        let { item, adjustAmount } = this.props
 
         return (
             <DocumentTitle title={"The Fridge / Items / " + item.data.title}>
@@ -59,8 +59,8 @@ class Item extends Component {
                                 <AdminOnly>
                                     <div className="item-entry__admin">
                                         <h2 className="item-entry__details-header">Edit</h2>
-                                        <Button onClick={this.props.adjustAmount.bind(null, item.data, 1)}>+</Button>
-                                        <Button onClick={this.props.adjustAmount.bind(null, item.data, -1)}>-</Button>
+                                        <Button onClick={adjustAmount.bind(null, item.data, 1)}>+</Button>
+                                        <Button onClick={adjustAmount.bind(null, item.data, -1)}>-</Button>
                                         <ButtonLink to={`/items/${item.data.slug}/edit`}>Edit</ButtonLink>
                                     </div>
                                 </AdminOnly>

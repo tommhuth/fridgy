@@ -9,7 +9,7 @@ import moment from "moment"
 
 export class ListItem extends Component {
     render() {
-        let item = this.props.item
+        let { item, dechecklistItem, checklistItem } = this.props
 
         return (
             <div className="item">
@@ -20,14 +20,14 @@ export class ListItem extends Component {
 
                     <AdminOnly element="span">
                         <Only if={item.checklist === moment().format("YYYY-MM-DD")}>
-                            <button className="circle-button" type="button" onClick={this.props.dechecklistItem.bind(null, item)}>
+                            <button className="circle-button" type="button" onClick={dechecklistItem.bind(null, item)}>
                                 <Icon type={IconType.X} />
                                 <span className="visually-hidden">Remove from checklist</span>
                             </button>
                         </Only>
 
                         <Only if={item.checklist !== moment().format("YYYY-MM-DD")}>
-                            <button className="circle-button" type="button" onClick={this.props.checklistItem.bind(null, item)}>
+                            <button className="circle-button" type="button" onClick={checklistItem.bind(null, item)}>
                                 <Icon type={IconType.Plus} />
                                 <span className="visually-hidden">Add to checklist</span>
                             </button>

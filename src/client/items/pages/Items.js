@@ -17,9 +17,8 @@ class Items extends Component {
     }
 
     render() {
-        let item = this.props.items
-        let categories = this.props.categories
-        let list = filterItems(item.data, this.props.filter)
+        let { items, categories, filter } = this.props
+        let list = filterItems(items.data, filter)
 
         return (
             <DocumentTitle title="The Fridge / Items">
@@ -27,13 +26,11 @@ class Items extends Component {
                     <div className="container">
                         <h1 className="beta offset-small">The fridge</h1>
 
-                        <Cloak if={item.isLoading || categories.isLoading}>
+                        <Cloak if={items.isLoading || categories.isLoading}>
                             <Filter />
 
                             <ul className="items-list">
-                                {
-                                    sort(list, "title").map( item => <li key={item.id}> <ListItem item={item}  /> </li>)
-                                }
+                                {sort(list, "title").map( item => <li key={item.id}><ListItem item={item} /></li>)}
                             </ul>
                         </Cloak>
                     </div>
