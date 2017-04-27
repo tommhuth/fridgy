@@ -72,8 +72,8 @@ export class Select extends Component {
  
     render() {
         let { hasFocus, selectedValue, selectedText } = this.state
-        let { subtle, children } = this.props
-        let selectClass = classNames("select", {
+        let { subtle, children, style } = this.props
+        let selectClass = classNames("select", style, {
             "select--focus": hasFocus,
             "select--subtle": subtle
         })
