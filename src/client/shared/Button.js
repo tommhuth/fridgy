@@ -14,13 +14,14 @@ export default class Button extends Component {
         className: PropTypes.string
     }
     render() {
+        let { onClick, className, children } = this.props
         return (
             <button
                 type="button" 
-                onClick={this.props.onClick}
-                className={"button " + this.props.className}>
+                onClick={onClick}
+                className={"button " + className}>
                 <span className="button__inner">
-                    {this.props.children}
+                    {children}
                 </span>
             </button>
         )

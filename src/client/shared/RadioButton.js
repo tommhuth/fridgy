@@ -9,17 +9,18 @@ export default class RadioButton extends Component {
         selected: PropTypes.any
     }
     render() {
-        let checked = this.props.value === this.props.selected
+        let { onChange, id, value, children, selected } = this.props
+        let checked = value === selected
 
         return (
             <label className="toggle-input">
                 <input type="radio"
-                    onChange={this.props.onChange}
-                    name={this.props.id}
+                    onChange={onChange}
+                    name={id}
                     checked={checked}
-                    value={this.props.value} />
+                    value={value} />
                 <Icon type={checked ? IconType.RadiobuttonChecked : IconType.RadiobuttonDefault} />
-                {this.props.children}
+                {children}
             </label>
         )
     }

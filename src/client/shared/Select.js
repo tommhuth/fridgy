@@ -71,24 +71,26 @@ export class Select extends Component {
     } 
  
     render() {
+        let { hasFocus, selectedValue, selectedText } = this.state
+        let { subtle, children } = this.props
         let selectClass = classNames("select", {
-            "select--focus": this.state.hasFocus,
-            "select--subtle": this.props.subtle
+            "select--focus": hasFocus,
+            "select--subtle": subtle
         })
 
         return (
-            <div className={selectClass + " " + (this.props.style || "")}>
-                <span className="select__inner">{this.state.selectedText}</span>
+            <div className={selectClass}>
+                <span className="select__inner">{selectedText}</span>
                 <span className="select__icon"><Icon type={IconType.ChevronDown} /></span>
                 
                 <select 
                     className="select__native"
                     ref={(e) => this.element = e}
-                    value={this.state.selectedValue} 
+                    value={selectedValue} 
                     onFocus={this.handleFocus.bind(this)}
                     onBlur={this.handleBlur.bind(this)}
                     onChange={this.handleSelectChange.bind(this)}>
-                    {this.props.children}
+                    {children}
                 </select> 
             </div>
         )

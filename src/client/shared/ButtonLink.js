@@ -28,16 +28,18 @@ export default class ButtonLink extends Component {
         })
     }
     render() { 
+        let { to, onClick, className, children } = this.props
+
         return (
             <Link 
-                to={this.props.to}
-                onClick={this.props.onClick}
-                className={"button " + this.props.className}>
+                to={to}
+                onClick={onClick}
+                className={"button " + className}>
                 <span 
                     className={"button__inner"}
                     onTouchStart={this.setFocus.bind(this)}
                     onBlur={this.setBlur.bind(this)}>
-                    {this.props.children}
+                    {children}
                 </span>
             </Link>
         )

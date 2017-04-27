@@ -3,7 +3,7 @@ import Icon, { IconType } from "./Icon"
 
 export default class CheckBox extends Component { 
     render() {
-        let { selected } = this.props
+        let { selected, id, value, onChange, children } = this.props
         let checked
 
         if (Array.isArray(selected)) {
@@ -15,12 +15,12 @@ export default class CheckBox extends Component {
         return (
             <label className="toggle-input">
                 <input type="checkbox"
-                    onChange={this.props.onChange}
-                    name={this.props.id}
-                    defaultChecked={!!checked}
-                    defaultValue={this.props.value} />
+                    onChange={onChange}
+                    name={id}
+                    checked={!!checked}
+                    value={value} />
                 <Icon type={checked ? IconType.CheckboxChecked : IconType.CheckboxDefault} />
-                {this.props.children}
+                {children}
             </label>
         )
     }

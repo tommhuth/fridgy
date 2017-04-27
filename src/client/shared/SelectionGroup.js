@@ -29,12 +29,11 @@ export default class SelectionGroup extends Component {
     }
     render() {
         let items = []
-        let i = 0
-        let legend = <legend>{this.props.title}</legend>
+        let i = 0 
 
         for (let element of this.props.children) {
             items.push(
-                <li key={this.id + "-" + i++}>
+                <li key={`${this.id}-${i++}`}>
                     {React.cloneElement(element, {
                         onChange: this.handleChange.bind(this),
                         selected: this.state.selected,
@@ -46,7 +45,7 @@ export default class SelectionGroup extends Component {
 
         return (
             <fieldset className="input-group" ref={(e) => this.element = e}>
-                {this.props.title ? legend : null}
+                {this.props.title ? <legend>{this.props.title}</legend> : null}
                 <ul>
                     {items}
                 </ul>
