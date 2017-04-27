@@ -1,9 +1,9 @@
 import React, { Component } from "react"
 import Icon, { IconType } from "./Icon"
 
-export default class CheckBox extends Component {
+export default class CheckBox extends Component { 
     render() {
-        let selected = this.props.selected
+        let { selected } = this.props
         let checked
 
         if (Array.isArray(selected)) {

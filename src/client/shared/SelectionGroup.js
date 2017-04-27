@@ -1,15 +1,11 @@
 import React, { Component } from "react"
-import uuid from "node-uuid"
+import uuid from "node-uuid" 
 
-export default class SelectionGroup extends Component {
-    constructor(props) {
-        super(props)
-        this.id = "selection-group-" + uuid.v1()
-
-        this.state = {
-            selected: props.selected
-        }
-    }
+export default class SelectionGroup extends Component { 
+    id = "selection-group-" + uuid.v1()
+    state = {
+        selected: this.props.selected
+    } 
     handleChange(e) {
         let value
 
