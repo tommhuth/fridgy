@@ -29,7 +29,7 @@ export class Select extends Component {
 
     getSelected(element) {
         let index = element.selectedIndex
-        let text = element.options[index].text
+        let text = element.options[index] ? element.options[index].text : null
         let value = element.value
 
         return { index, text, value }
