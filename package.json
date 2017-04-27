@@ -58,6 +58,7 @@
     "nconf": "^0.8.4",
     "node-uuid": "^1.4.7",
     "number-to-words": "^1.2.3",
+    "prop-types": "^15.5.8",
     "pug": "^2.0.0-beta11",
     "react": "^15.5.4",
     "react-body-classname": "^1.1.1",

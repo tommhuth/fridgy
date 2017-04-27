@@ -1,18 +1,22 @@
 import React, { Component } from "react"
 import { Link } from "react-router"
+import PropTypes from "prop-types"
 
 export const ButtonStyle = {
     Inverted: "button--inverted"
 }
 
 export default class ButtonLink extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            hasFocus: false
-        }
+    static defaultProps = {
+        className: ""
     }
+    static propTypes = {
+        onClick: PropTypes.func,
+        to: PropTypes.string.isRequired
+    }
+    state = {
+        hasFocus: false
+    } 
     setFocus() {
         this.setState({
             hasFocus: true
@@ -28,7 +32,7 @@ export default class ButtonLink extends Component {
             <Link 
                 to={this.props.to}
                 onClick={this.props.onClick}
-                className={"button " + (this.props.style ? this.props.style : "")}>
+                className={"button " + this.props.className}>
                 <span 
                     className={"button__inner"}
                     onTouchStart={this.setFocus.bind(this)}

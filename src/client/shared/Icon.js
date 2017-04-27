@@ -1,4 +1,5 @@
 import React, { Component } from "react" 
+import PropTypes from "prop-types"
 
 export const IconType = {
     ArrowRight: "arrow-right",
@@ -41,6 +42,9 @@ const ViewBox = {
 }
 
 export default class Icon extends Component { 
+    static propTypes = {
+        type: PropTypes.string.isRequired
+    }
     render() { 
         return (
             <svg key={this.id} className={"icon"} viewBox={`0 0 ${ViewBox[this.props.type] || "0 0"}`} >

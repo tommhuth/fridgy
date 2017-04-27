@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import Icon, {IconType} from "./Icon"
 import classNames from "classnames"
+import PropTypes from "prop-types"
 
 export const SelectStyle = {
     Wide: "select--large",
@@ -15,6 +16,11 @@ export class Option extends Component {
 }
 
 export class Select extends Component { 
+    static propTypes = {
+        value: PropTypes.any,
+        onChange: PropTypes.func
+    }
+
     state = {
         selectedText: null,
         selectedValue: this.props.value,
