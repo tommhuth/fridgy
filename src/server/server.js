@@ -45,6 +45,17 @@ export function close() {
     })
 }
 
+// force SSL in production
+app.use((req, res, next) => {
+    if (config.NODE_ENV === "production") {
+        if (req.headers["x-forwarded-proto"] !== "https") {
+            res.redirect("https://" + req.get("host") + req.url)
+        }
+    } else {
+        next()
+    }
+})
+
 // settings 
 app.use(compression())
 app.use(bodyParser.json())
