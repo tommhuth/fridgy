@@ -26,6 +26,9 @@ store.subscribe(() => {
     // lets not persist everything
     state.app.menuVisible = false
     state.notifications.data = []
+    state.auth.error = null
+    state.items.error = null
+    state.item.error = null
     
     persistStore(state)
     Fetch.authorize(state.auth.data.token)  
