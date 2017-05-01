@@ -1,6 +1,6 @@
 {
   "name": "fridgy",
-  "version": "0.9.37",
+  "version": "0.9.38",
   "description": "",
   "main": "build/server/server.js",
   "engines": {
