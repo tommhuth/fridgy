@@ -1,7 +1,7 @@
 import React, { Component } from "react" 
 import { connect } from "react-redux"
 import Icon, { IconType } from "../shared/Icon"
-import Link from "../shared/Link"
+import { Link } from "react-router"
 import { checklistItem, dechecklistItem } from "../data/store/actions/item"
 import Only from "../shared/Only"
 import AdminOnly from "../shared/AdminOnly"

@@ -1,5 +1,5 @@
 import React, {Component}  from "react"
-import Link from "../shared/Link"
+import { Link } from "react-router"
 import BodyClassName from "react-body-classname"
 import Icon, { IconType } from "./../shared/Icon"
 

@@ -1,5 +1,5 @@
 import React from "react"
-import Link from "../shared/Link"
+import { Link } from "react-router"
 
 export default function SimilarItemsList(props) {
     return (

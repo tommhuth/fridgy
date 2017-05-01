@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import Link from "./Link"
+import { Link } from "react-router"
 import PropTypes from "prop-types"
 
 export const ButtonStyle = {
