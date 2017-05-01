@@ -30,7 +30,7 @@ class Items extends Component {
                             <Filter />
 
                             <ul className="items-list">
-                                {sort(list, "title").map( item => <li key={item.id}><ListItem item={item} /></li>)}
+                                {sort(list, "title").map(item => <li key={item.id}><ListItem item={item} /></li>)}
                             </ul>
                         </Cloak>
                     </div>
