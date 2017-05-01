@@ -1,6 +1,5 @@
 import "babel-polyfill"
-import React from "react"
-import fastClick from "react-fastclick"
+import React from "react" 
 import ReactDOM from "react-dom"
 import { Provider } from "react-redux"
 import { Router, browserHistory } from "react-router"
@@ -30,9 +29,7 @@ store.subscribe(() => {
     
     persistStore(state)
     Fetch.authorize(state.auth.data.token)  
-})
-
-fastClick()
+}) 
 
 ReactDOM.render(
     <DocumentTitle title="The Fridge">
