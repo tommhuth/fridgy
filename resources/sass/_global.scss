@@ -12,12 +12,9 @@
     font-size: inherit;
     font-family: inherit;
     font-weight: inherit;
-}
-
-fieldset {
     border: none;
+    list-style-type: none;
     margin: 0;
-    min-width: 0;
     padding: 0;
 }
 
@@ -32,16 +29,15 @@ body {
 }
 
 body,
-body * {
-    border: none;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-body,
 html {
     height: 100%;
+}
+
+fieldset {
+    border: none;
+    margin: 0;
+    min-width: 0;
+    padding: 0;
 }
 
 a {
