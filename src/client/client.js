@@ -7,7 +7,7 @@ import routes from "./routes"
 import AuthGate from "./auth/AuthGate"
 import Fetch from "./data/Fetch"
 import { makeStore, getPersistedStore, persistStore } from "./data/store/make-store"
-import { cloneDeep } from "lodash"
+import { cloneDeep } from "lodash/cloneDeep"
 import DocumentTitle from "react-document-title"
 import NotificationSystem from "./app/NotificationSystem"
 
