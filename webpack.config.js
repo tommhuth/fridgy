@@ -1,9 +1,11 @@
 const webpack = require("webpack")
+const LodashModuleReplacementPlugin = require("lodash-webpack-plugin")
 const webpackFailPlugin = require("webpack-fail-plugin") 
 const { getVersion } = require("./build/server/versioning")
 
 let plugins = [
     webpackFailPlugin,
+    new LodashModuleReplacementPlugin,
     new webpack.DefinePlugin({
         "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
         "process.env.APP_VERSION": JSON.stringify(getVersion())
