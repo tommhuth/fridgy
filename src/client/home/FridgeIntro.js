@@ -1,6 +1,6 @@
 import React, { Component } from "react"   
 import Icon, { IconType } from "../shared/Icon"
-import { Link } from "react-router"
+import Link from "../shared/Link"
 
 export default class MealAdvisor extends Component { 
     render() {  

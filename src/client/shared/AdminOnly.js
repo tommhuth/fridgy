@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 
-export  class AdminOnly extends Component {
+export class AdminOnly extends Component {
     render() {
         let Wrapper = this.props.element || "div"
 
