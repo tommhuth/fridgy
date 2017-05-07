@@ -10,7 +10,7 @@ async function load() {
     try {
         await Promise.all([helvetica700, helvetica400, didotItalic])
 
-        document.documentElement.className = "fonts-loaded"
+        document.documentElement.classList.add("fonts-loaded")
         LocalStorage.set(key, true)
     } catch(e) {
         // oh no! only fallback fonts
@@ -21,5 +21,5 @@ async function load() {
 if (!LocalStorage.get(key)) {
     load()
 } else {
-    document.documentElement.className = "fonts-loaded"
+    document.documentElement.classList.add("fonts-loaded")
 }
