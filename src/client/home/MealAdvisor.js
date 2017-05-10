@@ -64,9 +64,8 @@ export default class MealAdvisor extends Component {
                     <div className="container-restricted">
                         <div className="meal-advisor__heading"> 
                             <h2 className="visually-hidden">{tag}</h2>
-                            <Select 
-                                selectedText={tag} 
-                                selectedValue={tag} 
+                            <Select  
+                                value={tag} 
                                 style={SelectStyle.Plain} 
                                 onChange={this.onTagChange.bind(this)}>    
                                 {this.getTags(items).map(i => <Option value={i} key={i}>{i}</Option>)}
