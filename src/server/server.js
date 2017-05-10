@@ -46,6 +46,8 @@ export function close() {
 }
 
 // force SSL in production
+// this is disabled for now, running on free dyno only
+/*
 app.use((req, res, next) => {
     if (config.NODE_ENV === "production") {
         if (req.headers["x-forwarded-proto"] !== "https") {
@@ -55,6 +57,7 @@ app.use((req, res, next) => {
 
     next() 
 })
+*/
 
 // settings 
 app.use(compression())
