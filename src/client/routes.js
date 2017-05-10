@@ -6,7 +6,6 @@ import Item from "./item/pages/Item"
 import Home from "./home/pages/Home"
 import About from "./about/pages/About"
 import Checklist from "./checklist/pages/Checklist"
-import ItemEdit from "./item/pages/ItemEdit"
  
 export default (
     <Route>
@@ -16,7 +15,6 @@ export default (
             <Route path="/checklist" component={Checklist} />
             <Route path="/items" component={Items} />
             <Route path="/items/:slug" component={Item} />
-            <Route path="/items/:slug/edit" component={ItemEdit} />
         </Route> 
     </Route>
 )

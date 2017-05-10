@@ -4,7 +4,6 @@ import Cloak from "../../shared/Cloak"
 import { fetchItem, clearItem, adjustAmount } from "../../data/store/actions/item"
 import moment from "moment"
 import Button from "../../shared/Button"
-import ButtonLink from "../../shared/ButtonLink"
 import SimilarItemsList from "../SimilarItemsList"
 import AdminOnly from "../../shared/AdminOnly"
 import BodyClassName from "react-body-classname"
@@ -61,7 +60,6 @@ class Item extends Component {
                                         <h2 className="item-entry__details-header">Edit</h2>
                                         <Button onClick={adjustAmount.bind(null, item.data, 1)}>+</Button>
                                         <Button onClick={adjustAmount.bind(null, item.data, -1)}>-</Button>
-                                        <ButtonLink to={`/items/${item.data.slug}/edit`}>Edit</ButtonLink>
                                     </div>
                                 </AdminOnly>
                             </div>
