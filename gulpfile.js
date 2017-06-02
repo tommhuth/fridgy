@@ -11,7 +11,7 @@ gulp.task("build", ["sass", "icons"])
 
 gulp.task("sass", () => {
     return gulp.src("./resources/sass/app.scss")
-        .pipe(sass().on("error", sass.logError))
+        .pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError))
         .pipe(autoprefix())
         .pipe(gulp.dest("./public/css"))
 })
