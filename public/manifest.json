@@ -1,0 +1,14 @@
+{
+    "name": "The Fridge",
+    "short_name": "The Fridge",
+    "lang": "en-US",
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#005AFF",
+    "icons": [
+        {
+            "src": "/homescreen.png",
+            "sizes": "144x144"
+        }
+    ]
+}
