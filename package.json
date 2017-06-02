@@ -4,7 +4,8 @@
   "description": "",
   "main": "build/server/server.js",
   "engines": {
-    "node": "7.3.0"
+    "node": "8.0.0",
+    "npm": "5.0.1"
   },
   "scripts": {
     "postinstall": "node_modules/.bin/babel src/ -d build/ --presets stage-2 --copy-files && node_modules/.bin/webpack && node_modules/.bin/gulp build",

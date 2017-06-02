@@ -1,11 +1,19 @@
-html
+html(lang="en")
     head
         link(rel="stylesheet" href=autoVersion("/css/app.css"))
         link(rel="stylesheet" href="//fast.fonts.net/cssapi/df392b0b-c023-4472-9c52-822294458377.css")
+        link(rel="manifest" href="/manifest.json")
 
-        meta(name="apple-mobile-web-app-capable" content="yes")
         meta(name="mobile-web-app-capable" content="yes")
-        meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
+        meta(name="apple-mobile-web-app-capable" content="yes")
+        meta(name="application-name" content="The Fridge")
+        meta(name="apple-mobile-web-app-title" content="The Fridge")
+        meta(name="theme-color" content="#005AFF")
+        meta(name="msapplication-navbutton-color" content="#005AFF")
+        meta(name="apple-mobile-web-app-status-bar-style" content="black-translucent")
+        meta(name="msapplication-starturl" content="/")  
+        meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+
         title The Fridge
     body
         #root
