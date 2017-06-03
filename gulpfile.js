@@ -5,10 +5,12 @@ const rename = require("gulp-rename")
 const svgstore = require("gulp-svgstore")
 const svgmin = require("gulp-svgmin")
 
-gulp.task("default", ["sass:watch", "sass", "icons:watch", "icons"])
+// derived
+gulp.task("default", ["sass:watch", "sass", "icons:watch", "icons", "copy-static:watch", "copy-static"])
 
-gulp.task("build", ["sass", "icons"])
+gulp.task("build", ["sass", "icons", "copy-static"])
 
+// partials
 gulp.task("sass", () => {
     return gulp.src("./resources/sass/app.scss")
         .pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError))
@@ -20,15 +22,26 @@ gulp.task("sass:watch", () => {
     gulp.watch("./resources/sass/**/*.scss", ["sass"])
 })
 
-gulp.task("icons:watch", () => {
-    gulp.watch("./resources/icons/*", ["icons"])
-})
-
 gulp.task("icons", () => {
-    return gulp
-        .src("resources/icons/*.svg")
+    return gulp.src("./resources/icons/*.svg")
         .pipe(svgmin())
         .pipe(svgstore())
         .pipe(rename("iconset.svg"))
         .pipe(gulp.dest("public/gfx"))
+})
+
+gulp.task("icons:watch", () => {
+    gulp.watch("./resources/icons/*", ["icons"])
+})
+
+gulp.task("copy-static", () => {
+    return Promise.all([
+        gulp.src("./resources/fonts/*", { base: "resources" }).pipe(gulp.dest("public")),
+        gulp.src("./resources/font-tracking.js", { base: "resources" }).pipe(gulp.dest("public/js")),
+        gulp.src("./resources/pwa/*", { base: "resources/pwa" }).pipe(gulp.dest("public"))
+    ])
+})
+
+gulp.task("copy-static:watch", () => {
+    gulp.watch("./resources/**/*", ["copy-static"])
 })
