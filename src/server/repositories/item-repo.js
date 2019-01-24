@@ -102,7 +102,7 @@ export function getSimilar(tags, excludeId) {
         { $sort: { "score": -1 } },
         { $limit: 5 },
         { $project: { _id: 0, slug: 1, title: 1 } }
-    ]).exec()
+    ]).cursor({ batchSize: 40, async: true }).exec()
 }
 
 export function aggregateCategories() {
@@ -116,6 +116,7 @@ export function aggregateCategories() {
     ]
 
     return Item.aggregate(query)
+        .cursor({ batchSize: 40, async: true })
         .exec()
         .then(data => data.map((e) => ({ name: e._id, popularity: e.popularity })))
         .catch(mongoErrorParser)
@@ -132,6 +133,7 @@ export function aggregateUnits() {
     ]
 
     return Item.aggregate(query)
+        .cursor({ batchSize: 40, async: true })
         .exec()
         .then(data => data.map((e) => ({ name: e._id, popularity: e.popularity })))
         .catch(mongoErrorParser)
@@ -150,6 +152,7 @@ export function aggregateTags() {
     ]
 
     return Item.aggregate(query)
+        .cursor({ batchSize: 40, async: true })
         .exec()
         .then(data => data.map(e => e._id))
         .catch(mongoErrorParser)
