@@ -102,7 +102,7 @@ export function getSimilar(tags, excludeId) {
         { $sort: { "score": -1 } },
         { $limit: 5 },
         { $project: { _id: 0, slug: 1, title: 1 } }
-    ]).cursor({ batchSize: 40, async: true }).exec()
+    ]).exec()
 }
 
 export function aggregateCategories() {
