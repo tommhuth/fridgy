@@ -86,7 +86,8 @@ export function remove(slug) {
 export function getSimilar(tags, excludeId) {
     if (!Array.isArray(tags) || !tags.length) return
 
-    return Item.aggregate([
+    let result = []
+    let cursor = Item.aggregate([
         { $match: { tags: { $in: tags }, _id: { $ne: excludeId } } },
         { $project: { tags: 1, slug: 1, title: 1 } },
         { $unwind: "$tags" },
@@ -102,7 +103,15 @@ export function getSimilar(tags, excludeId) {
         { $sort: { "score": -1 } },
         { $limit: 5 },
         { $project: { _id: 0, slug: 1, title: 1 } }
-    ]).exec()
+    ]).cursor({ batchSize: 40 }).exec()
+
+    return new Promise((resovle, reject) => {
+        cursor.on("data", (e) => {
+            result.push(e)
+        })
+        cursor.on("end", () => resovle(result))
+        cursor.on("error", (error) => reject(error))
+    }) 
 }
 
 export function aggregateCategories() {
