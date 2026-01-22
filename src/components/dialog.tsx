@@ -19,11 +19,11 @@ export default function Dialog({
         }
 
         ref.current.showModal()
-        // window.document.body.style.overflow = "hidden"
+        window.document.body.style.overflow = "hidden"
 
         return () => {
             ref.current?.close()
-            //   window.document.body.style.overflow = ""
+            window.document.body.style.overflow = ""
         }
     }, [open])
 

@@ -301,7 +301,7 @@ function HorizontalAction({
 
                 if (e.pointerType === "touch" && Math.abs(dist) > buffer) {
                     let x = clamp(-threshold, threshold, -dist)
-                    let s = easeInSine(Math.abs(x) / threshold)
+                    let s = (Math.abs(x) / threshold)
 
                     setX(Math.round(s * threshold * Math.sign(x)))
                 }
