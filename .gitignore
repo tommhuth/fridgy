@@ -2,12 +2,7 @@
 logs
 *.log
 npm-debug.log*
- 
-# node-waf configuration
-.lock-wscript
-
-# Compiled binary addons (http://nodejs.org/api/addons.html)
-build/Release
+  
 
 # Dependency directory
 node_modules
@@ -20,11 +15,4 @@ node_modules
 
 #ide
 .idea/
-
-build/
-public/*
-!public/manifest.json
-!public/homescreen.png
-.vscode/tasks.json
-jsconfig.json
-.vscode/
+build
