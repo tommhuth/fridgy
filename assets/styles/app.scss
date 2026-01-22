@@ -3,7 +3,7 @@
 @use "typography.scss";
 
 body {
-    padding-block: 4em;
+    padding-block: calc(4em + env(safe-area-inset-top, 0px)) 4em;
     background-color: var(--background);
     color: var(--color);
     transition: background-color .45s, color .45s;
@@ -11,7 +11,7 @@ body {
     --color: #222;
 
     @media (max-width: 52rem) {
-        padding-block: 2em;
+        padding-block: calc(2em + env(safe-area-inset-top, 0px)) 2em;
     }
 }
 
