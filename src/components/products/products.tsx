@@ -60,24 +60,18 @@ export default function Products() {
     }, []);
 
     return (
-        <>
-            <div
+        <div className="page">
+            <nav
+                className="container"
                 style={{
-                    display: !data ? "flex" : "none",
-                    inset: 0,
-                    position: "fixed",
-                    placeContent: "center",
-                    placeItems: "center",
-                    background: "white"
+                    position: "relative",
+                    paddingBottom: "1em",
+                    marginBottom: "1.5em",
+                    borderBottom: "1px dashed gray"
                 }}
             >
-                Loading...
-            </div>
-
-            <nav className="container" style={{ position: "relative" }}>
                 <ul
                     style={{
-                        marginBottom: "2em",
                         display: "flex",
                         gap: "1em"
                     }}
@@ -99,7 +93,7 @@ export default function Products() {
                 </ul>
             </nav>
 
-            <h1 className="container">The fridge</h1>
+            <h1 className="container">What's in   that fridge</h1>
 
             <fieldset
                 className="container"
@@ -110,27 +104,6 @@ export default function Products() {
                 }}
             >
                 <legend className="visually-hidden">Filter</legend>
-                <label style={{ flex: "2 2", maxWidth: "20em" }}>
-                    <span className="visually-hidden">Search</span>
-                    <input
-                        placeholder="Search"
-                        style={{ width: "100%" }}
-                        onChange={(e) => startTransition(() => setKeyword(e.currentTarget.value))}
-                        value={keyword}
-                        type="search"
-                    />
-                </label>
-                <label style={{
-                    marginLeft: "auto",
-                    display: "flex", placeContent: "center", placeItems: "center"
-                }}>
-                    <input
-                        type="checkbox"
-                        onChange={(e) => setNonEmpty(e.currentTarget.checked)}
-                        checked={nonEmpty}
-                    />
-                    Hide empty
-                </label>
                 <label style={{ flex: "1 1", maxWidth: "15em" }}>
                     <span className="visually-hidden">Product type</span>
                     <select
@@ -143,6 +116,27 @@ export default function Products() {
                             return <option key={i.id} value={i.name}>{i.name}</option>
                         })}
                     </select>
+                </label>
+                <label style={{
+                    marginRight: "auto",
+                    display: "flex", placeContent: "center", placeItems: "center"
+                }}>
+                    <input
+                        type="checkbox"
+                        onChange={(e) => setNonEmpty(e.currentTarget.checked)}
+                        checked={nonEmpty}
+                    />
+                    Hide empty
+                </label>
+                <label style={{ flex: "2 2", maxWidth: "20em" }}>
+                    <span className="visually-hidden">Search</span>
+                    <input
+                        placeholder="Search"
+                        style={{ width: "100%" }}
+                        onChange={(e) => startTransition(() => setKeyword(e.currentTarget.value))}
+                        value={keyword}
+                        type="search"
+                    />
                 </label>
             </fieldset>
 
@@ -163,7 +157,7 @@ export default function Products() {
             </ul >
 
             <AnimatedOutlet />
-        </>
+        </div>
     )
 }
 
@@ -344,13 +338,13 @@ function HorizontalAction({
                 style={{
                     position: "relative",
                     zIndex: 2,
-                    background: "white",
+                    background: "var(--background)",
                     display: "flex",
                     justifyContent: "space-between",
                     gap: "1em",
                     padding: "1em",
-                    translate: `${x}px 0`,
-                    transition: sliding ? undefined : "translate .35s"
+                    translate: `${x}px 0 0`,
+                    transition: sliding ? undefined : "translate .35s, color .45s, background-color .45s"
                 }}
             >
                 {children}
@@ -431,7 +425,13 @@ function Item({ id, slug, name, amount, unitType, ...rest }: Product) {
                         </div>
                     )}
                 >
-                    <div style={{ display: "flex", gap: ".5em" }}>
+                    <div
+                        style={{
+                            display: "flex",
+                            gap: ".5em",
+                            flex: "auto"
+                        }}
+                    >
                         <span
                             style={{
                                 opacity: amountChangeActive ? .35 : 1,

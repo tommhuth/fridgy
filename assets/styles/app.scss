@@ -3,28 +3,40 @@
 @use "typography.scss";
 
 body {
-    margin-block: 4em;
-    display: flex;
-    flex-direction: column;
-    gap: 2em;
-    //touch-action: pan-x pan-y;
+    padding-block: 4em;
+    background-color: var(--background);
+    color: var(--color);
+    transition: background-color .45s, color .45s;
+    --background: white;
+    --color: #222;
+
+    @media (max-width: 52rem) {
+        padding-block: 2em;
+    }
 }
 
 body,
 html {
     overscroll-behavior: none;
+    min-height: 100%;
+}
+
+html {
+    height: 100%;
 }
 
 .container {
     max-width: 50rem;
-    padding-inline: 1rem;
     margin-inline: auto;
+
+    @media (max-width: 52rem) {
+        margin-inline: 1rem;
+    }
 }
 
 fieldset {
     display: flex;
     flex-direction: column;
-    background-color: white;
 }
 
 h2,
@@ -41,19 +53,35 @@ h1 {
 
 h1 {
     font-size: 4em;
+    margin-block: 1em .5em;
+    text-wrap: balance;
 }
 
 menu {
-    display: none;
+    visibility: hidden;
     gap: .5em;
-}
-
-.breadcrumb {
-    margin-bottom: 2em;
+    display: flex;
 }
 
 .items {
     margin-block: 2em;
+}
+
+
+@keyframes page {
+    from {
+        opacity: 0;
+        translate: 0 1em 0;
+    }
+
+    to {
+        opacity: 1;
+        translate: 0 0 0;
+    }
+}
+
+.page {
+    animation: page .35s both;
 }
 
 .items>li {
@@ -62,7 +90,8 @@ menu {
     &::after {
         content: "";
         height: 1px;
-        background-color: rgb(226, 226, 226);
+        background-color: var(--color);
+        opacity: .25;
         display: block;
         position: absolute;
         bottom: 0;
@@ -77,16 +106,21 @@ menu {
     margin: -1em;
 }
 
+@media (pointer: coarse) {
+    .items>li menu {
+        display: none;
+    }
+}
+
 @media not (pointer: coarse) {
     .items>li:hover menu {
-        display: flex;
+        visibility: visible;
     }
 }
 
 fieldset {
     display: flex;
     gap: 1em;
-    padding: 1em;
     flex-wrap: wrap;
 }
 
@@ -95,12 +129,15 @@ label {
     gap: .5em;
 }
 
-::backdrop {
+dialog::backdrop {
     pointer-events: none;
     cursor: pointer;
+    transition: all .2s;
+    background-color: rgba(black, .4);
+    opacity: 0;
 }
 
-.dialog {
+dialog {
     inset: auto;
     z-index: 100;
     bottom: -3em;
@@ -109,32 +146,37 @@ label {
     position: fixed;
     box-sizing: border-box;
     box-shadow: 0 0 2em rgba(0, 0, 0, 0.25);
-    max-width: 50em;
+    max-width: 50rem;
     width: 100%;
-    border: 1px solid gray;
+    color: black;
     padding: 4em 2em;
     background: white;
+    border: 1px solid gray;
     height: 85vh;
+
+    @media (max-width: 50rem) {
+        border: none;
+        border-top: 1px solid gray;
+    }
 
     @media (max-width: 40rem) {
         height: 95vh;
         bottom: -2em;
+        padding-top: 2.5em;
     }
-}
-
-::backdrop {
-    display: none;
 }
 
 input {
     padding: .25em;
 }
 
-form {
-
-    input,
-    select,
-    button {
-        padding: .5em;
-    }
+input[type=number],
+input[type=text],
+input[type=search],
+select,
+form button {
+    padding: .5em;
+    border: 1px solid #444;
+    border-radius: 0;
+    outline: none;
 }

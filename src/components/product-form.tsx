@@ -35,7 +35,7 @@ export default function ProductForm({
                 }
             }}
         >
-            <fieldset style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
+            <fieldset style={{ padding: "1em" }}>
                 <legend>{legend}</legend>
 
                 <label style={{ display: "flex", gap: ".25em", flexDirection: "column" }}>

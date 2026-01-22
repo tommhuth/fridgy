@@ -33,35 +33,40 @@ export default function Settings(props) {
                         form.reset()
                     }}
                 >
-                    <fieldset>
+                    <fieldset style={{ padding: "1em" }}>
                         <legend>Product types</legend>
-
-                        <p style={{ display: "flex", gap: ".5em" }}>
-                            {(productTypes || data).map(i => {
-                                return (
-                                    <button
-                                        onClick={() => {
-                                            db.productTypes.delete(i.id)
-                                        }}
-                                        type="button"
-                                    >
-                                        {i.name}
-                                    </button>
-                                )
-                            })}
-                        </p>
 
                         <div
                             style={{ display: "flex", gap: "1em" }}
                         >
                             <label>
-                                New <input type="text" name="name" required />
+                                <span className="visually-hidden">New</span> <input type="text" name="name" required />
                             </label>
 
                             <button type="submit">
                                 Add
                             </button>
                         </div>
+
+                        <ul style={{ display: "flex", gap: ".75em", flexDirection: "column", }}>
+                            {(productTypes || data).map(i => {
+                                return (
+                                    <li>
+                                        {i.name}
+                                        {" "}
+                                        <button
+                                            onClick={() => {
+                                                db.productTypes.delete(i.id)
+                                            }}
+                                            style={{ border: "none", textDecoration: "underline", padding: 0 }}
+                                            type="button"
+                                        >
+                                            Delete
+                                        </button>
+                                    </li>
+                                )
+                            })}
+                        </ul>
                     </fieldset>
                 </form>
             </Dialog>
