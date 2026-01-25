@@ -53,14 +53,14 @@ const router = createBrowserRouter([
                         Component: AddProduct,
                         path: "add"
                     },
-                    {
-                        Component: Settings,
-                        path: "settings",
-                        loader: async () => {
-                            return getAllProductTypes()
-                        },
-                    }
                 ]
+            },
+            {
+                Component: Settings,
+                path: "settings",
+                loader: async () => {
+                    return getAllProductTypes()
+                },
             },
             {
                 path: "/product",
