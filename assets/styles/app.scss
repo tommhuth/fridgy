@@ -44,8 +44,8 @@ h2,
 h1 {
     font-weight: bold;
     font-size: 2em;
+    line-height: 1.1;
     margin-bottom: .5em;
-    line-height: 1.2;
 
     &:first-child {
         margin-top: 0;
@@ -105,6 +105,8 @@ menu {
 .items>li a {
     border: 1em solid transparent;
     margin: -1em;
+    font-size: 1.25em;
+    text-decoration: none;
 }
 
 @media (pointer: coarse) {

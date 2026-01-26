@@ -65,6 +65,7 @@ export default function Settings(props) {
                                         display: "flex",
                                         justifyContent: "space-between"
                                     }}
+                                    key={i.id}
                                 >
                                     <strong>{i.name}</strong>
                                     <button

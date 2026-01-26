@@ -1,10 +1,10 @@
 import { useLiveQuery } from "dexie-react-hooks";
-import { startTransition, useEffect, useRef, useState } from "react";
-import { db, getAllProducts, getAllProductTypes, Product } from "@data/db";
-import { Link, useLoaderData, useNavigate } from "react-router";
-import { AnimatePresence, clamp, motion, Variants } from "framer-motion";
+import { startTransition, useState } from "react";
+import { getAllProducts, getAllProductTypes, Product } from "@data/db";
+import { Link, useLoaderData } from "react-router";
+import { AnimatePresence, Variants } from "framer-motion";
 import { AnimatedOutlet } from "@data/utils";
-import { useToaster } from "@components/Toaster";
+import Item from "./item";
 
 export interface HTMLProductForm extends HTMLFormControlsCollection {
     name: HTMLInputElement
@@ -93,7 +93,7 @@ export default function Products() {
                 </ul>
             </nav>
 
-            <h1 className="container">What's in   that fridge</h1>
+            <h1 className="container">What's in that fridge</h1>
 
             <fieldset
                 className="container"
@@ -117,10 +117,14 @@ export default function Products() {
                         })}
                     </select>
                 </label>
-                <label style={{
-                    marginRight: "auto",
-                    display: "flex", placeContent: "center", placeItems: "center"
-                }}>
+                <label
+                    style={{
+                        marginRight: "auto",
+                        display: "flex",
+                        placeContent: "center",
+                        placeItems: "center"
+                    }}
+                >
                     <input
                         type="checkbox"
                         onChange={(e) => setNonEmpty(e.currentTarget.checked)}
@@ -154,354 +158,9 @@ export default function Products() {
                         return <Item key={product.id} {...product} />
                     })}
                 </AnimatePresence>
-            </ul >
+            </ul>
 
             <AnimatedOutlet />
         </div>
-    )
-}
-
-function AmountHandler({ amount, unitType, onActive, productId }) {
-    let [[start, step], setStep] = useState([0, 0])
-    let [isTouching, setIsTouching] = useState(false)
-    let interval = 10
-    let stepValue = Math.round(step / interval) * (unitType === "unit" ? 1 : 50)
-    let threshold = 20
-
-    useEffect(() => {
-        onActive?.(isTouching)
-    }, [isTouching])
-
-    return (
-        <>
-            <div
-                style={{
-                    border: isTouching ? "1em solid transparent" : undefined,
-                    margin: "-.5em -1em",
-                    padding: ".5em 1em",
-                    display: "flex",
-                    placeContent: "space-between",
-                    backgroundColor: isTouching ? "#eee" : "transparent",
-                    placeItems: "center",
-                    cursor: "ew-resize",
-                    touchAction: "pan-y",
-                    position: isTouching ? "absolute" : undefined,
-                    inset: isTouching ? 0 : undefined,
-                    textAlign: "center",
-                    zIndex: 5
-                }}
-                onContextMenu={e => e.preventDefault()}
-                onPointerDown={(e) => {
-                    e.stopPropagation()
-                    e.nativeEvent.stopImmediatePropagation()
-                    e.currentTarget.setPointerCapture(e.pointerId)
-
-                    setIsTouching(true)
-                    setStep([e.clientX, 0])
-                }}
-                onPointerMove={e => {
-                    e.stopPropagation()
-                    e.nativeEvent.stopImmediatePropagation()
-
-                    let distance = Math.floor(e.clientX - start)
-
-                    if (!isTouching || Math.abs(distance) < threshold) {
-                        return
-                    }
-
-                    if (start === 0) {
-                        setStep([e.clientX, 0])
-                    } else {
-                        setStep([start, distance + -Math.sign(distance) * threshold])
-                    }
-                }}
-                onPointerUp={async (e) => {
-                    if (stepValue) {
-                        await db.products.update(productId, {
-                            amount: Math.max(amount + stepValue, 0)
-                        })
-
-                        setIsTouching(false)
-                        setStep([0, 0])
-                    }
-                }}
-                onPointerCancel={() => setIsTouching(false)}
-            >
-                <span
-                    style={{
-                        fontSize: "1.5em",
-                        display: !isTouching ? "none" : undefined
-                    }}
-                >
-                    &minus;
-                </span>
-                <div style={{ display: "flex", gap: ".35em" }}>
-                    <div>
-                        {unitType === "unit" ? "x" : null}
-                        {amount.toLocaleString("en")}
-                        {unitType === "unit" ? null : unitType}
-                    </div>
-                    <output
-                        style={{
-                            color: "blue",
-                            display: !isTouching ? "none" : undefined
-                        }}
-                    >
-                        {Math.sign(stepValue) === 1 ? <>+</> : <>&minus;</>}
-                        {" "}
-                        {Math.abs(Math.max(stepValue, -amount))}
-                        {unitType === "unit" ? "x" : unitType}
-                    </output>
-                </div>
-                <span
-                    style={{
-                        fontSize: "1.5em",
-                        display: !isTouching ? "none" : undefined
-                    }}
-                >
-                    +
-                </span>
-            </div>
-        </>
-    )
-}
-
-function easeInSine(x: number): number {
-    return 1 - Math.cos((x * Math.PI) / 2);
-}
-
-function HorizontalAction({
-    children,
-    threshold = 80,
-    onRight,
-    onLeft,
-    leftElement,
-    rightElement
-}) {
-    let data = useRef({ start: 0 })
-    let [sliding, setSliding] = useState(false)
-    let [x, setX] = useState(0)
-
-    return (
-        <motion.div
-            style={{
-                position: "relative",
-                marginInline: "-1em",
-                overflow: "hidden"
-            }}
-            onPointerDown={(e) => {
-                if (e.pointerType === "touch") {
-                    data.current.start = e.clientX
-                    setSliding(true)
-                }
-            }}
-            onPointerMove={(e) => {
-                let dist = data.current.start - e.clientX
-                let buffer = 15
-
-                if (e.pointerType === "touch" && Math.abs(dist) > buffer) {
-                    let x = clamp(-threshold, threshold, -dist)
-                    let s = (Math.abs(x) / threshold)
-
-                    setX(Math.round(s * threshold * Math.sign(x)))
-                }
-            }}
-            onPointerCancel={() => {
-                setX(0)
-                setSliding(false)
-            }}
-            onPointerUp={() => {
-                if (x === -threshold) {
-                    onRight?.()
-                } else if (x === threshold) {
-                    onLeft?.()
-                } else {
-                    setX(0)
-                }
-
-                setSliding(false)
-            }}
-        >
-            <div
-                style={{
-                    position: "absolute",
-                    left: 0,
-                    height: "100%",
-                    top: 0,
-                    zIndex: 1,
-                    width: threshold
-                }}
-            >
-                {leftElement}
-            </div>
-            <div
-                style={{
-                    position: "relative",
-                    zIndex: 2,
-                    background: "var(--background)",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    gap: "1em",
-                    padding: "1em",
-                    translate: `${x}px 0 0`,
-                    transition: sliding ? undefined : "translate .35s, color .45s, background-color .45s"
-                }}
-            >
-                {children}
-            </div>
-            <div
-                style={{
-                    position: "absolute",
-                    right: 0,
-                    height: "100%",
-                    top: 0,
-                    zIndex: 1,
-                    width: threshold
-                }}
-            >
-                {rightElement}
-            </div>
-        </motion.div>
-    )
-}
-
-function Item({ id, slug, name, amount, unitType, ...rest }: Product) {
-    let [amountChangeActive, setAmountChangeActive] = useState(false)
-    let navigate = useNavigate()
-    let { createToast } = useToaster()
-
-    return (
-        <motion.li
-            key={id}
-            variants={variants}
-            initial="initial"
-            animate="enter"
-            exit="exit"
-            style={{
-                touchAction: "pan-y"
-            }}
-        >
-            <div className="container">
-                <HorizontalAction
-                    onRight={async () => {
-                        await db.products.delete(id)
-                        createToast({ title: name + " deleted" })
-                    }}
-                    onLeft={() => {
-                        navigate(`/product/${slug}/edit`)
-                    }}
-                    leftElement={(
-                        <div
-                            style={{
-                                placeContent: "center",
-                                placeItems: "center",
-                                display: "flex",
-                                background: "blue",
-                                lineHeight: 1,
-                                height: "100%",
-                                fontSize: "2em",
-                                color: "white",
-                                width: "100%"
-                            }}
-                        >
-                            &rarr;
-                        </div>
-                    )}
-                    rightElement={(
-                        <div
-                            style={{
-                                placeContent: "center",
-                                placeItems: "center",
-                                display: "flex",
-                                background: "red",
-                                height: "100%",
-                                lineHeight: 1,
-                                fontSize: "2em",
-                                color: "white",
-                                width: "100%"
-                            }}
-                        >
-                            &#9760;
-                        </div>
-                    )}
-                >
-                    <div
-                        style={{
-                            display: "flex",
-                            gap: ".5em",
-                            flex: "auto"
-                        }}
-                    >
-                        <span
-                            style={{
-                                opacity: amountChangeActive ? .35 : 1,
-                                display: "flex",
-                                gap: ".5em"
-                            }}
-                        >
-                            <Link
-                                to={`/product/${slug}`}
-                            >
-                                {amount === 0 ? <del>{name}</del> : name}
-                            </Link>
-                            &mdash;
-                        </span>
-
-                        <AmountHandler
-                            amount={amount}
-                            unitType={unitType}
-                            productId={id}
-                            onActive={setAmountChangeActive}
-                        />
-                    </div>
-
-                    <menu>
-                        <li>
-                            <button
-                                onClick={() => {
-                                    startTransition(async () => {
-                                        await db.products.delete(id)
-                                        createToast({ title: name + " deleted" })
-                                    })
-                                }}
-                            >
-                                Delete
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                style={{ width: "1.5em" }}
-                                onClick={() => {
-                                    let d = (unitType === "unit" ? 1 : 100)
-                                    let val = Math.max(amount - d, 0)
-
-                                    db.products.update(id, { amount: val - amount % d })
-                                }}
-                            >
-                                &minus;
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                style={{ width: "1.5em" }}
-                                onClick={() => {
-                                    let d = (unitType === "unit" ? 1 : 100)
-                                    let val = amount + d
-
-                                    db.products.update(id, { amount: val - amount % d })
-                                }}
-                            >
-                                +
-                            </button>
-                        </li>
-                        <li>
-                            <Link to={`/product/${slug}/edit`}>
-                                Edit
-                            </Link>
-                        </li>
-                    </menu>
-                </HorizontalAction>
-            </div>
-        </motion.li>
     )
 }

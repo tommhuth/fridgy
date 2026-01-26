@@ -58,6 +58,7 @@ const router = createBrowserRouter([
             {
                 Component: Settings,
                 path: "settings",
+                HydrateFallback,
                 loader: async () => {
                     return getAllProductTypes()
                 },

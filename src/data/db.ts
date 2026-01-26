@@ -69,7 +69,7 @@ export function getProductBySlug(slug: string) {
 
 export function getAllProducts(type?: string) {
     if (type) {
-        return db.products.where("type").equalsIgnoreCase(type).toArray()
+        return db.products.where("productType").equalsIgnoreCase(type).toArray()
     }
 
     return db.products.toArray()
