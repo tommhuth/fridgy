@@ -37,7 +37,9 @@ export default function Product() {
                 </Link>
             </p>
 
-            <h1>{product?.name}</h1>
+            <h1>
+                {product?.name}
+            </h1>
 
             <pre>{JSON.stringify(product, null, 4)}</pre>
 

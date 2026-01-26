@@ -160,6 +160,13 @@ export default function Products() {
                 </AnimatePresence>
             </ul>
 
+            <p
+                className="container"
+                style={{ marginTop: "2em", opacity: .5 }}
+            >
+                {(products || data).length} items in the fridge
+            </p>
+
             <AnimatedOutlet />
         </div>
     )
