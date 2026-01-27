@@ -143,7 +143,7 @@ dialog {
     max-width: 50rem;
     width: 100%;
     color: black;
-    padding: 4em 2em var(--bottom);
+    padding: 4em 2em calc(var(--bottom) + 4em);
     background: white;
     border: 1px solid gray;
     height: 85vh;
