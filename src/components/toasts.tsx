@@ -26,7 +26,7 @@ export interface ToastData {
     duration?: number
 }
 
-export function useToaster() {
+export function useToasts() {
     return useContext(context)
 }
 

@@ -1,13 +1,13 @@
 import Dialog from "@components/dialog"
 import ProductForm from "@components/product-form"
 import { HTMLProductForm } from "@components/products/products"
-import { useToaster } from "@components/toasterx"
+import { useToasts } from "@components/toasts"
 import { db, getSlug, Product, slugify } from "@data/db"
 import { useNavigate } from "react-router"
 
 export default function AddProduct(props) {
     let navigate = useNavigate()
-    let { createToast } = useToaster()
+    let { createToast } = useToasts()
 
     return (
         <>

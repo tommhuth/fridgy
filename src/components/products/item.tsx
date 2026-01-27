@@ -2,7 +2,7 @@ import { startTransition, useState } from "react";
 import { db, Product } from "@data/db";
 import { Link, useNavigate } from "react-router";
 import { motion } from "framer-motion";
-import { useToaster } from "@components/toasterx";
+import { useToasts } from "@components/toasts";
 import { variants } from "./products";
 import AmountHandler from "./amount-handler";
 import HorizontalAction from "./horizontal-action";
@@ -10,7 +10,7 @@ import HorizontalAction from "./horizontal-action";
 export default function Item({ id, slug, name, amount, unitType }: Product) {
     let [amountChangeActive, setAmountChangeActive] = useState(false)
     let navigate = useNavigate()
-    let { createToast } = useToaster()
+    let { createToast } = useToasts()
 
     return (
         <motion.li
