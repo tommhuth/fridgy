@@ -131,9 +131,10 @@ dialog::backdrop {
 }
 
 dialog {
+    --bottom: calc(4em + env(safe-area-inset-bottom));
     inset: auto;
     z-index: 100;
-    bottom: -3em;
+    bottom: calc(var(--bottom) * -1);
     left: 50%;
     translate: -50% 0%;
     position: fixed;
@@ -142,7 +143,7 @@ dialog {
     max-width: 50rem;
     width: 100%;
     color: black;
-    padding: 4em 2em;
+    padding: 4em 2em var(--bottom);
     background: white;
     border: 1px solid gray;
     height: 85vh;
@@ -153,7 +154,7 @@ dialog {
     }
 
     @media (max-width: 40rem) {
-        height: 95vh;
+        height: 90vh;
         bottom: -2em;
         padding-top: 2.5em;
     }
