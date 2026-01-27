@@ -1,7 +1,7 @@
 import { type Product } from "@data/db"
 import { AnimatedOutlet } from "@data/utils"
 import { useEffect } from "react"
-import { Link, useLoaderData, useLocation } from "react-router"
+import { Link, useLoaderData } from "react-router"
 
 export default function Product() {
     const product = useLoaderData<Product>()
@@ -43,8 +43,8 @@ export default function Product() {
                 </h1>
 
                 <pre>{JSON.stringify(product, null, 4)}</pre>
-
             </div>
+
             <AnimatedOutlet initial context={{ product }} />
         </>
     )
