@@ -68,7 +68,7 @@ export function ToastProvider({ children }) {
                     placeItems: "center",
                     flexDirection: "column",
                     pointerEvents: "none",
-                    zIndex: 100000,
+                    zIndex: 10_000,
                 }}
             >
                 <AnimatePresence>

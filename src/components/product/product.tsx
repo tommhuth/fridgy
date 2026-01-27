@@ -17,33 +17,35 @@ export default function Product() {
     }, [])
 
     return (
-        <div className="container page">
-            <p
-                style={{
-                    position: "relative",
-                    paddingBottom: "1em",
-                    marginBottom: "1.5em",
-                    borderBottom: "1px dashed gray",
-                    display: "flex",
-                    placeContent: "space-between"
-                }}
-            >
-                <Link to="/">&larr; Products</Link>
-
-                <Link
-                    to={`/product/${product?.slug}/edit`}
+        <>
+            <div className="container page">
+                <p
+                    style={{
+                        position: "relative",
+                        paddingBottom: "1em",
+                        marginBottom: "1.5em",
+                        borderBottom: "1px dashed gray",
+                        display: "flex",
+                        placeContent: "space-between"
+                    }}
                 >
-                    Edit
-                </Link>
-            </p>
+                    <Link to="/">&larr; Products</Link>
 
-            <h1>
-                {product?.name}
-            </h1>
+                    <Link
+                        to={`/product/${product?.slug}/edit`}
+                    >
+                        Edit
+                    </Link>
+                </p>
 
-            <pre>{JSON.stringify(product, null, 4)}</pre>
+                <h1>
+                    {product?.name}
+                </h1>
 
+                <pre>{JSON.stringify(product, null, 4)}</pre>
+
+            </div>
             <AnimatedOutlet initial context={{ product }} />
-        </div>
+        </>
     )
 }

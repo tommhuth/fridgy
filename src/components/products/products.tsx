@@ -61,183 +61,185 @@ export default function Products() {
     const items = products || data
 
     return (
-        <div
-            className="page"
-        >
-            <nav
-                className="container"
-                style={{
-                    paddingBottom: "1em",
-                    marginBottom: "1.5em",
-                    borderBottom: "1px dashed gray",
-                }}
-            >
-                <ul
-                    style={{
-                        display: "flex",
-                        gap: "1em"
-                    }}
-                >
-                    <li>
-                        <Link
-                            to={"/add"}
-                        >
-                            Add product
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to={"/settings"}
-                        >
-                            Settings
-                        </Link>
-                    </li>
-                </ul>
-            </nav>
-
+        <>
             <div
-                style={{
-                    position: !items.length ? "fixed" : undefined,
-                    bottom: !items.length ? "calc(6em + env(safe-area-inset-bottom))" : undefined,
-                    left: !items.length ? 0 : undefined,
-                    right: !items.length ? 0 : undefined,
-                }}
+                className="page"
             >
-                <h1
+                <nav
                     className="container"
                     style={{
-                        fontSize: !items.length ? "clamp(4.5em, 14vw, 6.5em)" : undefined,
-                        lineHeight: !items.length ? 1.1 : undefined,
-                        marginTop: "1em"
+                        paddingBottom: "1em",
+                        marginBottom: "1.5em",
+                        borderBottom: "1px dashed gray",
                     }}
                 >
-                    What's in that fridge
-                </h1>
+                    <ul
+                        style={{
+                            display: "flex",
+                            gap: "1em"
+                        }}
+                    >
+                        <li>
+                            <Link
+                                to={"/add"}
+                            >
+                                Add product
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to={"/settings"}
+                            >
+                                Settings
+                            </Link>
+                        </li>
+                    </ul>
+                </nav>
 
                 <div
-                    className="container"
                     style={{
-                        marginTop: "-1em",
-                        lineHeight: "1.4",
-                        fontSize: !items.length ? "clamp(1.25em, 4.5vw, 1.75em)" : undefined,
-                        display: !items.length ? "flex" : "none",
-                        flexDirection: "column",
-                        gap: ".5em"
+                        position: !items.length ? "fixed" : undefined,
+                        bottom: !items.length ? "calc(6em + env(safe-area-inset-bottom))" : undefined,
+                        left: !items.length ? 0 : undefined,
+                        right: !items.length ? 0 : undefined,
                     }}
                 >
-                    <p>
-                        You've got nothing in that fridge, buddy!
+                    <h1
+                        className="container"
+                        style={{
+                            fontSize: !items.length ? "clamp(4.5em, 14vw, 6.5em)" : undefined,
+                            lineHeight: !items.length ? 1.1 : undefined,
+                            marginTop: "1em"
+                        }}
+                    >
+                        What's in that fridge
+                    </h1>
 
-                    </p>
-                    <p>
-                        Start by
-                        {" "}
-                        <Link
-                            style={{
-                                textDecoration: "underline"
-                            }}
-                            to={"/add"}
-                        >
-                            populating
-                        </Link>
-                        {" "} that fridge and adding some{" "}
-                        <Link
-                            style={{
-                                textDecoration: "underline"
-                            }}
-                            to="/settings"
-                        >
-                            categories
-                        </Link>
-                        .
-                    </p>
+                    <div
+                        className="container"
+                        style={{
+                            marginTop: "-1em",
+                            lineHeight: "1.4",
+                            fontSize: !items.length ? "clamp(1.25em, 4.5vw, 1.75em)" : undefined,
+                            display: !items.length ? "flex" : "none",
+                            flexDirection: "column",
+                            gap: ".5em"
+                        }}
+                    >
+                        <p>
+                            You've got nothing in that fridge, buddy!
+
+                        </p>
+                        <p>
+                            Start by
+                            {" "}
+                            <Link
+                                style={{
+                                    textDecoration: "underline"
+                                }}
+                                to={"/add"}
+                            >
+                                populating
+                            </Link>
+                            {" "} that fridge and adding some{" "}
+                            <Link
+                                style={{
+                                    textDecoration: "underline"
+                                }}
+                                to="/settings"
+                            >
+                                categories
+                            </Link>
+                            .
+                        </p>
+                    </div>
+
                 </div>
 
-            </div>
-
-            <fieldset
-                className="container"
-                style={{
-                    flexDirection: "row",
-                    paddingBlock: 0,
-                    border: "none",
-                    display: !products?.length ? "none" : undefined
-                }}
-            >
-                <legend className="visually-hidden">Filter</legend>
-                <label style={{ flex: "1 1", maxWidth: "15em" }}>
-                    <span className="visually-hidden">Product type</span>
-                    <select
-                        onChange={(e) => setProductType(e.currentTarget.value)}
-                        value={productType}
-                        style={{ width: "100%" }}
-                    >
-                        <option value="">Everything</option>
-                        {productTypes?.map(i => {
-                            return <option key={i.id} value={i.name}>{i.name}</option>
-                        })}
-                    </select>
-                </label>
-                <label
+                <fieldset
+                    className="container"
                     style={{
-                        marginRight: "auto",
-                        display: "flex",
-                        placeContent: "center",
-                        placeItems: "center"
+                        flexDirection: "row",
+                        paddingBlock: 0,
+                        border: "none",
+                        display: !products?.length ? "none" : undefined
                     }}
                 >
-                    <input
-                        type="checkbox"
-                        onChange={(e) => setNonEmpty(e.currentTarget.checked)}
-                        checked={nonEmpty}
-                    />
-                    Hide empty
-                </label>
-                <label style={{ flex: "2 2", maxWidth: "20em" }}>
-                    <span className="visually-hidden">Search</span>
-                    <input
-                        placeholder="Search"
-                        style={{ width: "100%" }}
-                        onChange={(e) => startTransition(() => setKeyword(e.currentTarget.value))}
-                        value={keyword}
-                        type="search"
-                    />
-                </label>
-            </fieldset>
+                    <legend className="visually-hidden">Filter</legend>
+                    <label style={{ flex: "1 1", maxWidth: "15em" }}>
+                        <span className="visually-hidden">Product type</span>
+                        <select
+                            onChange={(e) => setProductType(e.currentTarget.value)}
+                            value={productType}
+                            style={{ width: "100%" }}
+                        >
+                            <option value="">Everything</option>
+                            {productTypes?.map(i => {
+                                return <option key={i.id} value={i.name}>{i.name}</option>
+                            })}
+                        </select>
+                    </label>
+                    <label
+                        style={{
+                            marginRight: "auto",
+                            display: "flex",
+                            placeContent: "center",
+                            placeItems: "center"
+                        }}
+                    >
+                        <input
+                            type="checkbox"
+                            onChange={(e) => setNonEmpty(e.currentTarget.checked)}
+                            checked={nonEmpty}
+                        />
+                        Hide empty
+                    </label>
+                    <label style={{ flex: "2 2", maxWidth: "20em" }}>
+                        <span className="visually-hidden">Search</span>
+                        <input
+                            placeholder="Search"
+                            style={{ width: "100%" }}
+                            onChange={(e) => startTransition(() => setKeyword(e.currentTarget.value))}
+                            value={keyword}
+                            type="search"
+                        />
+                    </label>
+                </fieldset>
 
-            <ul
-                className="items"
-                style={{
-                    display: !products?.length ? "none" : undefined
-                }}
-            >
-                <AnimatePresence initial={false}>
-                    {items.sort(sort).map(product => {
-                        if (product.amount === 0 && nonEmpty) {
-                            return null
-                        }
+                <ul
+                    className="items"
+                    style={{
+                        display: !products?.length ? "none" : undefined
+                    }}
+                >
+                    <AnimatePresence initial={false}>
+                        {items.sort(sort).map(product => {
+                            if (product.amount === 0 && nonEmpty) {
+                                return null
+                            }
 
-                        if (keyword && !product.name.toLowerCase().includes(keyword.toLowerCase())) {
-                            return null
-                        }
+                            if (keyword && !product.name.toLowerCase().includes(keyword.toLowerCase())) {
+                                return null
+                            }
 
-                        return <Item key={product.id} {...product} />
-                    })}
-                </AnimatePresence>
-            </ul>
+                            return <Item key={product.id} {...product} />
+                        })}
+                    </AnimatePresence>
+                </ul>
 
-            <p
-                className="container"
-                style={{
-                    display: !items.length ? "none" : undefined,
-                    marginTop: "2em",
-                    opacity: .5
-                }}
-            >
-                {items.length} items in the fridge
-            </p>
+                <p
+                    className="container"
+                    style={{
+                        display: !items.length ? "none" : undefined,
+                        marginTop: "2em",
+                        opacity: .5
+                    }}
+                >
+                    {items.length} items in the fridge
+                </p>
 
+            </div>
             <AnimatedOutlet />
-        </div>
+        </>
     )
 }
