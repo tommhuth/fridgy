@@ -58,16 +58,18 @@ export default function Products() {
     const productTypes = useLiveQuery(async () => {
         return getAllProductTypes()
     }, []);
+    const items = products || data
 
     return (
-        <div className="page">
+        <div
+            className="page"
+        >
             <nav
                 className="container"
                 style={{
-                    position: "relative",
                     paddingBottom: "1em",
                     marginBottom: "1.5em",
-                    borderBottom: "1px dashed gray"
+                    borderBottom: "1px dashed gray",
                 }}
             >
                 <ul
@@ -93,7 +95,65 @@ export default function Products() {
                 </ul>
             </nav>
 
-            <h1 className="container">What's in that fridge</h1>
+            <div
+                style={{
+                    position: !items.length ? "fixed" : undefined,
+                    bottom: !items.length ? "calc(6em + env(safe-area-inset-bottom))" : undefined,
+                    left: !items.length ? 0 : undefined,
+                    right: !items.length ? 0 : undefined,
+                }}
+            >
+                <h1
+                    className="container"
+                    style={{
+                        fontSize: !items.length ? "clamp(4.5em, 14vw, 6.5em)" : undefined,
+                        lineHeight: !items.length ? 1.1 : undefined,
+                        marginTop: "1em"
+                    }}
+                >
+                    What's in that fridge
+                </h1>
+
+                <div
+                    className="container"
+                    style={{
+                        marginTop: "-1em",
+                        lineHeight: "1.4",
+                        fontSize: !items.length ? "clamp(1.25em, 4.5vw, 1.75em)" : undefined,
+                        display: !items.length ? "flex" : "none",
+                        flexDirection: "column",
+                        gap: ".5em"
+                    }}
+                >
+                    <p>
+                        You've got nothing in that fridge, buddy!
+
+                    </p>
+                    <p>
+                        Start by
+                        {" "}
+                        <Link
+                            style={{
+                                textDecoration: "underline"
+                            }}
+                            to={"/add"}
+                        >
+                            populating
+                        </Link>
+                        {" "} that fridge and adding some{" "}
+                        <Link
+                            style={{
+                                textDecoration: "underline"
+                            }}
+                            to="/settings"
+                        >
+                            categories
+                        </Link>
+                        .
+                    </p>
+                </div>
+
+            </div>
 
             <fieldset
                 className="container"
@@ -101,6 +161,7 @@ export default function Products() {
                     flexDirection: "row",
                     paddingBlock: 0,
                     border: "none",
+                    display: !products?.length ? "none" : undefined
                 }}
             >
                 <legend className="visually-hidden">Filter</legend>
@@ -144,9 +205,14 @@ export default function Products() {
                 </label>
             </fieldset>
 
-            <ul className="items">
+            <ul
+                className="items"
+                style={{
+                    display: !products?.length ? "none" : undefined
+                }}
+            >
                 <AnimatePresence initial={false}>
-                    {(products || data).sort(sort).map(product => {
+                    {items.sort(sort).map(product => {
                         if (product.amount === 0 && nonEmpty) {
                             return null
                         }
@@ -162,9 +228,13 @@ export default function Products() {
 
             <p
                 className="container"
-                style={{ marginTop: "2em", opacity: .5 }}
+                style={{
+                    display: !items.length ? "none" : undefined,
+                    marginTop: "2em",
+                    opacity: .5
+                }}
             >
-                {(products || data).length} items in the fridge
+                {items.length} items in the fridge
             </p>
 
             <AnimatedOutlet />
