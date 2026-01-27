@@ -26,11 +26,6 @@ body {
 
     &.standalone {
         height: 100vh;
-        background-color: red;
-
-        * {
-            outline: 1px solid red;
-        }
     }
 }
 
