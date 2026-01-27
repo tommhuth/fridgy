@@ -19,6 +19,11 @@
     <style>
         @import "/assets/styles/app.scss";
     </style>
+    <script>
+        if (window.navigator.standalone) {
+            document.body.classList.add("standalone")
+        }
+    </script>
 </head>
 
 <body>

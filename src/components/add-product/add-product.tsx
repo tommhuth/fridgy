@@ -31,14 +31,14 @@ export default function AddProduct(props) {
                             slug: slugify(await getSlug(name)),
                             name,
                             amount: elements.amount.valueAsNumber,
-                            createdAt: Date.now(),
-                            updatedAt: 0,
+                            createdAt: new Date().toISOString(),
+                            updatedAt: new Date().toISOString(),
                             unitType: elements.unitType.value as Product["unitType"],
                             productType: elements.productType.value as Product["productType"],
                         })
 
                         createToast({
-                            title: name + " is now in the fridge!",
+                            text: name + " is now in the fridge!",
                             type: "success"
                         })
 

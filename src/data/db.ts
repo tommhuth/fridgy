@@ -6,9 +6,9 @@ export interface Product {
     slug: string;
     amount: number;
     unitType: "unit" | "g" | "ml";
-    createdAt: number;
+    createdAt: string;
     productType: string
-    updatedAt: number
+    updatedAt: string | null
 }
 
 export interface ProductType {

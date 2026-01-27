@@ -25,7 +25,7 @@ export default function Item({ id, slug, name, amount, unitType }: Product) {
                 <HorizontalAction
                     onRight={async () => {
                         await db.products.delete(id)
-                        createToast({ title: name + " deleted" })
+                        createToast({ text: name + " deleted" })
                     }}
                     onLeft={() => {
                         navigate(`/product/${slug}/edit`)
@@ -121,7 +121,7 @@ export default function Item({ id, slug, name, amount, unitType }: Product) {
                                 onClick={() => {
                                     startTransition(async () => {
                                         await db.products.delete(id)
-                                        createToast({ title: name + " deleted" })
+                                        createToast({ text: name + " deleted" })
                                     })
                                 }}
                             >

@@ -15,15 +15,13 @@ const context = createContext<ToastContext>({
 
 export interface Toast {
     id: string
-    title: string
-    text?: string
+    text: string
     type: string
     duration: number
 }
 
 export interface ToastData {
-    title: string
-    text?: string
+    text: string
     type?: string
     duration?: number
 }
@@ -59,21 +57,22 @@ export function ToastProvider({ children }) {
         >
             {children}
 
-            <ul
+            <div
                 style={{
                     position: "fixed",
-                    left: 0,
-                    right: 0,
-                    top: "1em",
+                    left: "1em",
+                    right: "1em",
+                    top: "calc(1em + env(safe-area-inset-top))",
                     display: "flex",
                     placeContent: "center",
                     placeItems: "center",
                     flexDirection: "column",
+                    pointerEvents: "none",
                     zIndex: 100000,
                 }}
             >
                 <AnimatePresence>
-                    {toasts.map(({ id, title, type }) => {
+                    {toasts.map(({ id, text, type }) => {
                         let background = {
                             error: "red",
                             info: "lightgray",
@@ -86,15 +85,18 @@ export function ToastProvider({ children }) {
                         }[type]
 
                         return (
-                            <motion.li
+                            <motion.div
                                 style={{
-                                    maxWidth: "35em",
+                                    maxWidth: "min(35em, 100%)",
                                     marginBlock: "auto",
+                                    position: "relative",
+                                    hyphens: "auto"
                                 }}
                                 variants={variants}
                                 initial="initial"
                                 animate="enter"
                                 exit="exit"
+                                aria-live="polite"
                                 key={id}
                             >
                                 <div
@@ -102,21 +104,37 @@ export function ToastProvider({ children }) {
                                         paddingBottom: ".5em"
                                     }}
                                 >
-                                    <div
+                                    <p
                                         style={{
-                                            padding: ".5em 1em",
+                                            padding: ".75em 1em",
                                             backgroundColor: background,
                                             color,
                                         }}
                                     >
-                                        {title}
-                                    </div>
+                                        {text}
+                                    </p>
+                                    <button
+                                        style={{
+                                            position: "absolute",
+                                            inset: 0,
+                                            opacity: 0,
+                                            zIndex: 1,
+                                            pointerEvents: "auto",
+                                            border: "none",
+                                            padding: 0,
+                                        }}
+                                        onClick={() => {
+                                            setToasts(toasts.filter(i => i.id !== id))
+                                        }}
+                                    >
+                                        Dismiss
+                                    </button>
                                 </div>
-                            </motion.li>
+                            </motion.div>
                         )
                     })}
                 </AnimatePresence>
-            </ul>
-        </context.Provider>
+            </div>
+        </context.Provider >
     )
 }

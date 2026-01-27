@@ -34,7 +34,7 @@ export default function EditProduct() {
                         unitType: elements.unitType.value as Product["unitType"],
                         productType: elements.productType.value as Product["productType"],
                     })
-                    createToast({ title: name + " updated" })
+                    createToast({ text: name + " updated" })
                     navigate("/product/" + slug)
                 }}
                 {...product}
