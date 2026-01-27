@@ -25,15 +25,15 @@ export default defineConfig({
                 globPatterns: ["**/*.{html,js,css,png,svg,woff,woff2,glb}"]
             },
             manifest: {
-                name: "R3F Boilerplate",
-                short_name: "R3F Boilerplate",
+                name: "Fridgy",
+                short_name: "Fridgy",
                 display: "fullscreen",
-                description: "R3F Boilerplate",
+                description: "What's in that fridge?",
                 orientation: "portrait",
                 theme_color: "#000000",
                 icons: [
                     {
-                        "src": "/assets/icons/pwa-icon.png",
+                        "src": path.resolve(__dirname, "/assets/icons/pwa-icon.png"),
                         "sizes": "512x512",
                         "type": "image/png",
                         "purpose": "any maskable"
