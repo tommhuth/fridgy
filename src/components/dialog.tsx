@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, useEffect, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion"
+import { motion } from "framer-motion"
 
 interface DialogProps extends Omit<ComponentPropsWithoutRef<typeof motion.dialog>, "onClose"> {
     onClose: () => void
