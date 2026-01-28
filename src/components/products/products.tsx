@@ -70,7 +70,7 @@ export default function Products() {
                     style={{
                         paddingBottom: "1em",
                         marginBottom: "1.5em",
-                        borderBottom: "1px dashed gray",
+                        borderBottom: "1px solid black",
                     }}
                 >
                     <ul
