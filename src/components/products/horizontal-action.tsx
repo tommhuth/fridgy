@@ -9,12 +9,15 @@ export default function HorizontalAction({
     leftElement,
     rightElement
 }) {
-    let data = useMemo(() => ({ start: 0, x: 0 }), [])
+    let data = useMemo(() => ({ start: 0, x: 0, reveal: 0 }), [])
     let [active, setActive] = useState(false)
+    let [interacting, setInteracting] = useState(false)
     let ref = useRef<HTMLDivElement>(null)
     let reset = () => {
         data.x = 0
+        data.reveal = 0
         setActive(false)
+        setInteracting(false)
     }
 
     useAnimationFrame(() => {
@@ -22,11 +25,16 @@ export default function HorizontalAction({
             return
         }
 
-        ref.current.style.translate = `${data.x}px 0 0`
+        let [left, main, right] = ref.current.children as unknown as HTMLDivElement[]
+
+        main.style.translate = `${data.x}px 0 0`
+        right.style.clipPath = `inset(0 0 0 ${((1 + Math.min(data.reveal, 0)) * 100).toFixed(2)}%)`
+        left.style.clipPath = `inset(0 ${((1 - Math.max(data.reveal, 0)) * 100).toFixed(2)}% 0 0)`
     })
 
     return (
         <motion.div
+            ref={ref}
             style={{
                 position: "relative",
                 marginInline: "-1em",
@@ -39,6 +47,7 @@ export default function HorizontalAction({
                 }
 
                 data.start = e.clientX
+                setInteracting(true)
             }}
             onPointerMove={(e) => {
                 if (e.pointerType !== "touch") {
@@ -56,6 +65,7 @@ export default function HorizontalAction({
                     let scale = (Math.abs(currentX) / threshold)
 
                     data.x = Math.round(scale * threshold * Math.sign(currentX))
+                    data.reveal = currentX / threshold
                 }
             }}
             onPointerCancel={reset}
@@ -78,6 +88,7 @@ export default function HorizontalAction({
                     position: "absolute",
                     left: 0,
                     height: "100%",
+                    transition: !interacting ? "all .3s" : undefined,
                     top: 0,
                     zIndex: 1,
                     width: threshold
@@ -89,13 +100,11 @@ export default function HorizontalAction({
                 style={{
                     position: "relative",
                     zIndex: 2,
-                    background: "var(--background)",
                     display: "flex",
                     gap: "1em",
                     padding: "1em",
                     transition: active ? undefined : "translate .35s, color .45s, background-color .45s"
                 }}
-                ref={ref}
             >
                 {children}
             </motion.div>
@@ -104,6 +113,7 @@ export default function HorizontalAction({
                     position: "absolute",
                     right: 0,
                     height: "100%",
+                    transition: !interacting ? "all .3s" : undefined,
                     top: 0,
                     zIndex: 1,
                     width: threshold

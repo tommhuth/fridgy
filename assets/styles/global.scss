@@ -22,8 +22,6 @@ button {
 
 html,
 body {
-    background-color: var(--background-color);
-
     &.standalone {
         height: 100vh;
     }
