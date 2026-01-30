@@ -49,6 +49,34 @@ export default function Product() {
 
     return (
         <>
+            <Header>
+                <p
+                    style={{
+                        display: "flex",
+                        placeContent: "space-between",
+                        placeItems: "center"
+                    }}
+                >
+                    <Link to="/" className="back">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path
+                                d="M1 12H24M1 12L8 6M1 12L8 18"
+                                stroke="currentColor"
+                                strokeWidth="1"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                        </svg>
+                        <span className="visually-hidden">Back to the fridge</span>
+                    </Link>
+
+                    <Link
+                        to={`/product/${product?.slug}/edit`}
+                    >
+                        Edit
+                    </Link>
+                </p>
+            </Header>
             <div
                 className="page"
                 style={{
@@ -57,34 +85,6 @@ export default function Product() {
                     paddingBottom: "calc(1em + env(safe-area-inset-bottom) + 5vw)"
                 }}
             >
-                <Header>
-                    <p
-                        style={{
-                            display: "flex",
-                            placeContent: "space-between",
-                            placeItems: "center"
-                        }}
-                    >
-                        <Link to="/" className="back">
-                            <svg viewBox="0 0 24 24" fill="none">
-                                <path
-                                    d="M1 12H24M1 12L8 6M1 12L8 18"
-                                    stroke="currentColor"
-                                    strokeWidth="1"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
-                            <span className="visually-hidden">Back to the fridge</span>
-                        </Link>
-
-                        <Link
-                            to={`/product/${product?.slug}/edit`}
-                        >
-                            Edit
-                        </Link>
-                    </p>
-                </Header>
 
                 <div
                     style={{
@@ -120,7 +120,6 @@ export default function Product() {
                             style={{
                                 display: "grid",
                                 gridTemplateColumns: "repeat(auto-fit, minmax(15em, 1fr))",
-                                marginBlock: "2em",
                                 lineHeight: 1.5,
                                 gap: "1em"
                             }}

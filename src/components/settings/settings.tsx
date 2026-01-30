@@ -185,7 +185,7 @@ export default function Settings() {
     }, []);
 
     return (
-        <div className="page">
+        <>
             <Header>
                 <Link to="/" className="back">
                     <svg viewBox="0 0 24 24" fill="none">
@@ -201,113 +201,115 @@ export default function Settings() {
                 </Link>
             </Header>
 
-            <div className="container">
-                <h1>Settings</h1>
+            <div className="page">
+                <div className="container">
+                    <h1>Settings</h1>
 
-                <form
-                    onSubmit={async (e) => {
-                        e.preventDefault()
-                        let form = e.currentTarget
-                        let elements = form.elements as HTMLProductForm
-                        let name = elements.name.value.trim()
+                    <form
+                        onSubmit={async (e) => {
+                            e.preventDefault()
+                            let form = e.currentTarget
+                            let elements = form.elements as HTMLProductForm
+                            let name = elements.name.value.trim()
 
-                        await db.productTypes.add({
-                            name
-                        })
-                        form.reset()
-                    }}
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "1em"
-                    }}
-                >
-                    <fieldset style={{ padding: "1em 1em .25em" }}>
-                        <legend>Product types</legend>
+                            await db.productTypes.add({
+                                name
+                            })
+                            form.reset()
+                        }}
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "1em"
+                        }}
+                    >
+                        <fieldset style={{ padding: "1em 1em .25em" }}>
+                            <legend>Product types</legend>
 
-                        <div
-                            style={{ display: "flex", gap: "1em" }}
-                        >
-                            <label>
-                                <span className="visually-hidden">New</span> <input type="text" name="name" required />
-                            </label>
+                            <div
+                                style={{ display: "flex", gap: "1em" }}
+                            >
+                                <label>
+                                    <span className="visually-hidden">New</span> <input type="text" name="name" required />
+                                </label>
 
-                            <button type="submit">
-                                Add
-                            </button>
-                        </div>
+                                <button type="submit">
+                                    Add
+                                </button>
+                            </div>
 
-                        <ul>
-                            {(productTypes || data).map(i => {
-                                return (
-                                    <li
-                                        style={{
-                                            paddingBlock: ".75em",
-                                            borderTop: "1px solid lightgray",
-                                            display: "flex",
-                                            justifyContent: "space-between"
-                                        }}
-                                        key={i.id}
-                                    >
-                                        <strong>{i.name}</strong>
-                                        <button
-                                            onClick={() => {
-                                                db.productTypes.delete(i.id)
+                            <ul>
+                                {(productTypes || data).map(i => {
+                                    return (
+                                        <li
+                                            style={{
+                                                paddingBlock: ".75em",
+                                                borderTop: "1px solid lightgray",
+                                                display: "flex",
+                                                justifyContent: "space-between"
                                             }}
-                                            style={{ border: "none", textDecoration: "underline", padding: 0 }}
-                                            type="button"
+                                            key={i.id}
                                         >
-                                            Delete
-                                        </button>
-                                    </li>
-                                )
-                            })}
-                        </ul>
-                    </fieldset>
+                                            <strong>{i.name}</strong>
+                                            <button
+                                                onClick={() => {
+                                                    db.productTypes.delete(i.id)
+                                                }}
+                                                style={{ border: "none", textDecoration: "underline", padding: 0 }}
+                                                type="button"
+                                            >
+                                                Delete
+                                            </button>
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                        </fieldset>
 
-                    <button
-                        type="button"
-                        onClick={async () => {
-                            if (!confirm("Populate the fridge?")) {
-                                return
-                            }
+                        <button
+                            type="button"
+                            onClick={async () => {
+                                if (!confirm("Populate the fridge?")) {
+                                    return
+                                }
 
-                            for (let name of types) {
-                                db.productTypes.add({ name })
-                            }
+                                for (let name of types) {
+                                    db.productTypes.add({ name })
+                                }
 
-                            for (let product of products) {
-                                db.products.add({
-                                    slug: await getUniqueSlug(slugify(product.name)),
-                                    createdAt: new Date().toISOString(),
-                                    updatedAt: null,
-                                    ...product
-                                })
-                            }
-                        }}
-                    >
-                        Generate data
-                    </button>
-                    <button
-                        type="button"
-                        onClick={() => {
-                            if (confirm("Delete everything?")) {
-                                db.productTypes.clear()
-                                db.products.clear()
-                            }
-                        }}
-                    >
-                        Clear data
-                    </button>
-                </form>
+                                for (let product of products) {
+                                    db.products.add({
+                                        slug: await getUniqueSlug(slugify(product.name)),
+                                        createdAt: new Date().toISOString(),
+                                        updatedAt: null,
+                                        ...product
+                                    })
+                                }
+                            }}
+                        >
+                            Generate data
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => {
+                                if (confirm("Delete everything?")) {
+                                    db.productTypes.clear()
+                                    db.products.clear()
+                                }
+                            }}
+                        >
+                            Clear data
+                        </button>
+                    </form>
 
-                <h2 style={{ marginBlock: "1em .5em" }}>Credits</h2>
-                <ul>
-                    <li>
-                        “Arrow Left” icon by Dazzle UI from <a href="https://www.svgrepo.com/svg/533593/arrow-left">SVG Repo</a>.
-                    </li>
-                </ul>
+                    <h2 style={{ marginBlock: "1em .5em" }}>Credits</h2>
+                    <ul>
+                        <li>
+                            “Arrow Left” icon by Dazzle UI from <a href="https://www.svgrepo.com/svg/533593/arrow-left">SVG Repo</a>.
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
+        </>
     )
 }

@@ -63,35 +63,34 @@ export default function Products() {
 
     return (
         <>
+            <Header>
+                <nav>
+                    <ul
+                        style={{
+                            display: "flex",
+                            gap: "1em"
+                        }}
+                    >
+                        <li>
+                            <Link
+                                to={"/add"}
+                            >
+                                Add product
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to={"/settings"}
+                            >
+                                Settings
+                            </Link>
+                        </li>
+                    </ul>
+                </nav>
+            </Header>
             <div
                 className="page"
             >
-                <Header>
-                    <nav>
-                        <ul
-                            style={{
-                                display: "flex",
-                                gap: "1em"
-                            }}
-                        >
-                            <li>
-                                <Link
-                                    to={"/add"}
-                                >
-                                    Add product
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to={"/settings"}
-                                >
-                                    Settings
-                                </Link>
-                            </li>
-                        </ul>
-                    </nav>
-                </Header>
-
                 <div
                     style={{
                         position: !items.length ? "fixed" : undefined,
