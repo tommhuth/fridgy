@@ -6,6 +6,7 @@ import { AnimatePresence, Variants } from "framer-motion";
 import { AnimatedOutlet } from "@data/utils";
 import Item from "./item";
 import Header from "@components/header";
+import { startHolyLoader } from "holy-loader";
 
 export interface HTMLProductForm extends HTMLFormControlsCollection {
     name: HTMLInputElement
@@ -60,6 +61,8 @@ export default function Products() {
         return getAllProductTypes()
     }, []);
     const items = products || data
+
+    startHolyLoader()
 
     return (
         <>

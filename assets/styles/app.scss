@@ -2,6 +2,11 @@
 @use "variables.scss";
 @use "typography.scss";
 
+#holy-progress>div {
+    top: calc(var(--header-height) - 1px) !important;
+    height: 3px !important;
+}
+
 body {
     background-color: var(--background);
     color: var(--color);

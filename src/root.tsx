@@ -5,10 +5,11 @@ import Products from "@components/products/products"
 import Settings from "@components/settings/settings"
 import { ToastProvider } from "@components/toasts"
 import { getAllProducts, getAllProductTypes, getProductBySlug } from "@data/db"
-import HolyLoader, { } from "holy-loader"
+import HolyLoader, { startHolyLoader } from "holy-loader"
 import { createRoot } from "react-dom/client"
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router"
 import { registerSW } from "virtual:pwa-register"
+
 
 function Layout() {
     return (
