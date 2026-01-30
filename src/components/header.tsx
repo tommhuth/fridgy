@@ -5,7 +5,7 @@ export default function Header({ children, style, ...rest }) {
                 position: "absolute",
                 left: 0,
                 right: 0,
-                top: 0,
+                top: "env(safe-area-inset-top)",
                 height: "var(--header-height)",
                 textTransform: "uppercase",
                 placeContent: "center",
