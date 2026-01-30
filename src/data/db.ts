@@ -36,7 +36,7 @@ export function slugify(str: string) {
     str = str.replaceAll("ø", "o")
     str = str.replace(/[^a-z0-9 -]/g, "") // remove any non-alphanumeric characters
         .replace(/\s+/g, "-") // replace spaces with hyphens
-        .replace(/-+/g, "-") // remove consecutive hyphens
+        .replace(/-+/g, "-") // remove consecutive hyphens 
 
     return str
 }
@@ -47,20 +47,20 @@ export function getLastNumber(slug: string): number {
     return match ? parseInt(match[1], 10) : 1
 }
 
-export async function getSlug(name: string) {
+export async function getUniqueSlug(slug: string) {
     const products = await db.products.where("name")
-        .equalsIgnoreCase(name.trim())
+        .equalsIgnoreCase(slug.trim())
         .toArray()
 
     if (!products.length) {
-        return name
+        return slug
     }
 
     const currentIds = products.map(product => getLastNumber(product.slug))
         .sort()
         .reverse()
 
-    return `${name}-${currentIds[0] + 1}`
+    return `${slug}-${currentIds[0] + 1}`
 }
 
 export function getProductBySlug(slug: string) {

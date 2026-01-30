@@ -2,7 +2,7 @@ import Dialog from "@components/dialog"
 import ProductForm from "@components/product-form"
 import { HTMLProductForm } from "@components/products/products"
 import { useToasts } from "@components/toasts"
-import { db, getSlug, type Product, slugify } from "@data/db"
+import { db, getUniqueSlug, type Product, slugify } from "@data/db"
 import { useNavigate, useOutletContext } from "react-router"
 
 export default function EditProduct() {
@@ -23,14 +23,14 @@ export default function EditProduct() {
                     let form = e.currentTarget
                     let elements = form.elements as HTMLProductForm
                     let name = elements.name.value.trim()
-                    let newSlug = slugify(await getSlug(name))
+                    let newSlug = slugify(await getUniqueSlug(name))
                     let slug = name.toLowerCase() === product.name.toLowerCase().trim() ? product.slug : newSlug
 
                     await db.products.update(product.id, {
                         slug,
                         name,
                         amount: elements.amount.valueAsNumber,
-                        updatedAt: Date.now(),
+                        updatedAt: new Date().toISOString(),
                         unitType: elements.unitType.value as Product["unitType"],
                         productType: elements.productType.value as Product["productType"],
                     })

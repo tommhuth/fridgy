@@ -6,15 +6,25 @@ body {
     background-color: var(--background);
     color: var(--color);
     transition: background-color .45s, color .45s;
-    --background: white;
-    --color: #222;
 }
 
 .page {
-    padding-block: calc(2em + env(safe-area-inset-top, 0px)) calc(6em + env(safe-area-inset-bottom, 0px));
+    padding-block: calc(var(--header-height) + env(safe-area-inset-top, 0px)) calc(6em + env(safe-area-inset-bottom, 0px));
     box-sizing: border-box;
     min-height: 100%;
     animation: page .35s both;
+}
+
+@keyframes page {
+    from {
+        opacity: 0;
+        translate: 0 -1em 0;
+    }
+
+    to {
+        opacity: 1;
+        translate: 0 0 0;
+    }
 }
 
 #root,
@@ -43,65 +53,35 @@ fieldset {
     flex-direction: column;
 }
 
-h1 {
-    hyphens: auto;
-    overflow-wrap: break-word;
-    word-break: normal;
-}
-
 h2,
 h1 {
     font-weight: bold;
     font-size: 2em;
     line-height: 1.1;
     margin-bottom: .5em;
-
-    &:first-child {
-        margin-top: 0;
-    }
 }
 
 h1 {
     font-size: 4em;
-    margin-block: 1em .5em;
+    margin-block: 1.5em .5em;
     text-wrap: balance;
+    hyphens: auto;
+    overflow-wrap: break-word;
+    word-break: normal;
 }
 
-.items {
-    margin-block: 2em;
+.back {
+    display: inline-flex;
+    gap: .5em;
+    place-items: center;
+
+    svg {
+        width: 2em;
+    }
 }
 
 .items menu {
     display: flex;
-    margin-block: -.1em;
-}
-
-@keyframes page {
-    from {
-        opacity: 0;
-        translate: 0 1em 0;
-    }
-
-    to {
-        opacity: 1;
-        translate: 0 0 0;
-    }
-}
-
-.items>li {
-
-    &::after {
-        content: "";
-        height: 1px;
-        background-color: var(--color);
-        opacity: .25;
-        display: block;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        z-index: 3;
-        right: 0;
-    }
 }
 
 @media (pointer: coarse) {
@@ -127,10 +107,8 @@ label {
     gap: .5em;
 }
 
-dialog::backdrop {
-    pointer-events: none;
-    cursor: pointer;
-    background-color: rgba(black, .4);
+::backdrop {
+    display: none;
 }
 
 dialog {

@@ -1,5 +1,6 @@
+import Header from "@components/header"
 import { HTMLProductForm } from "@components/products/products"
-import { db, getAllProductTypes, getSlug, Product, ProductType } from "@data/db"
+import { db, getAllProductTypes, getUniqueSlug, Product, ProductType, slugify } from "@data/db"
 import { useLiveQuery } from "dexie-react-hooks"
 import { Link, useLoaderData } from "react-router"
 
@@ -177,125 +178,136 @@ const products: Omit<Product, "id" | "slug" | "createdAt" | "updatedAt">[] = [
     },
 ]
 
-export default function Settings(props) {
+export default function Settings() {
     const data = useLoaderData<ProductType[]>();
     const productTypes = useLiveQuery(async () => {
         return getAllProductTypes()
     }, []);
 
     return (
-        <div className="container page">
-            <p
-                style={{
-                    position: "relative",
-                    paddingBottom: "1em",
-                    marginBottom: "1.5em",
-                    borderBottom: "1px dashed gray",
-                    display: "flex",
-                    placeContent: "space-between"
-                }}
-            >
-                <Link to="/">&larr; Products</Link>
-            </p>
+        <div className="page">
+            <Header>
+                <Link to="/" className="back">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path
+                            d="M1 12H24M1 12L8 6M1 12L8 18"
+                            stroke="currentColor"
+                            strokeWidth="1"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+                    <span className="visually-hidden">Back to the fridge</span>
+                </Link>
+            </Header>
 
-            <h1>Settings</h1>
+            <div className="container">
+                <h1>Settings</h1>
 
-            <form
-                onSubmit={async (e) => {
-                    e.preventDefault()
-                    let form = e.currentTarget
-                    let elements = form.elements as HTMLProductForm
-                    let name = elements.name.value.trim()
+                <form
+                    onSubmit={async (e) => {
+                        e.preventDefault()
+                        let form = e.currentTarget
+                        let elements = form.elements as HTMLProductForm
+                        let name = elements.name.value.trim()
 
-                    await db.productTypes.add({
-                        name
-                    })
-                    form.reset()
-                }}
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1em"
-                }}
-            >
-                <fieldset style={{ padding: "1em 1em .25em" }}>
-                    <legend>Product types</legend>
+                        await db.productTypes.add({
+                            name
+                        })
+                        form.reset()
+                    }}
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "1em"
+                    }}
+                >
+                    <fieldset style={{ padding: "1em 1em .25em" }}>
+                        <legend>Product types</legend>
 
-                    <div
-                        style={{ display: "flex", gap: "1em" }}
-                    >
-                        <label>
-                            <span className="visually-hidden">New</span> <input type="text" name="name" required />
-                        </label>
+                        <div
+                            style={{ display: "flex", gap: "1em" }}
+                        >
+                            <label>
+                                <span className="visually-hidden">New</span> <input type="text" name="name" required />
+                            </label>
 
-                        <button type="submit">
-                            Add
-                        </button>
-                    </div>
+                            <button type="submit">
+                                Add
+                            </button>
+                        </div>
 
-                    <ul>
-                        {(productTypes || data).map(i => {
-                            return (
-                                <li
-                                    style={{
-                                        paddingBlock: ".75em",
-                                        borderTop: "1px solid lightgray",
-                                        display: "flex",
-                                        justifyContent: "space-between"
-                                    }}
-                                    key={i.id}
-                                >
-                                    <strong>{i.name}</strong>
-                                    <button
-                                        onClick={() => {
-                                            db.productTypes.delete(i.id)
+                        <ul>
+                            {(productTypes || data).map(i => {
+                                return (
+                                    <li
+                                        style={{
+                                            paddingBlock: ".75em",
+                                            borderTop: "1px solid lightgray",
+                                            display: "flex",
+                                            justifyContent: "space-between"
                                         }}
-                                        style={{ border: "none", textDecoration: "underline", padding: 0 }}
-                                        type="button"
+                                        key={i.id}
                                     >
-                                        Delete
-                                    </button>
-                                </li>
-                            )
-                        })}
-                    </ul>
-                </fieldset>
+                                        <strong>{i.name}</strong>
+                                        <button
+                                            onClick={() => {
+                                                db.productTypes.delete(i.id)
+                                            }}
+                                            style={{ border: "none", textDecoration: "underline", padding: 0 }}
+                                            type="button"
+                                        >
+                                            Delete
+                                        </button>
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                    </fieldset>
 
-                <button
-                    type="button"
-                    onClick={async () => {
-                        if (!confirm("Populate the fridge?")) {
-                            return
-                        }
+                    <button
+                        type="button"
+                        onClick={async () => {
+                            if (!confirm("Populate the fridge?")) {
+                                return
+                            }
 
-                        for (let name of types) {
-                            db.productTypes.add({ name })
-                        }
+                            for (let name of types) {
+                                db.productTypes.add({ name })
+                            }
 
-                        for (let product of products) {
-                            db.products.add({
-                                slug: await getSlug(product.name),
-                                createdAt: new Date().toISOString(),
-                                updatedAt: null,
-                                ...product
-                            })
-                        }
-                    }}
-                >
-                    Generate data
-                </button>
-                <button
-                    type="button"
-                    onClick={() => {
-                        if (confirm("Delete everything?")) {
-                            db.productTypes.clear()
-                            db.products.clear()
-                        }
-                    }}
-                >
-                    Clear data
-                </button>
-            </form>
+                            for (let product of products) {
+                                db.products.add({
+                                    slug: await getUniqueSlug(slugify(product.name)),
+                                    createdAt: new Date().toISOString(),
+                                    updatedAt: null,
+                                    ...product
+                                })
+                            }
+                        }}
+                    >
+                        Generate data
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => {
+                            if (confirm("Delete everything?")) {
+                                db.productTypes.clear()
+                                db.products.clear()
+                            }
+                        }}
+                    >
+                        Clear data
+                    </button>
+                </form>
+
+                <h2 style={{ marginBlock: "1em .5em" }}>Credits</h2>
+                <ul>
+                    <li>
+                        “Arrow Left” icon by Dazzle UI from <a href="https://www.svgrepo.com/svg/533593/arrow-left">SVG Repo</a>.
+                    </li>
+                </ul>
+            </div>
         </div>
     )
 }

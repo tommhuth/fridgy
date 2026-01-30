@@ -5,6 +5,7 @@ import { Link, useLoaderData } from "react-router";
 import { AnimatePresence, Variants } from "framer-motion";
 import { AnimatedOutlet } from "@data/utils";
 import Item from "./item";
+import Header from "@components/header";
 
 export interface HTMLProductForm extends HTMLFormControlsCollection {
     name: HTMLInputElement
@@ -65,36 +66,31 @@ export default function Products() {
             <div
                 className="page"
             >
-                <nav
-                    className="container"
-                    style={{
-                        paddingBottom: "1em",
-                        marginBottom: "1.5em",
-                        borderBottom: "1px solid black",
-                    }}
-                >
-                    <ul
-                        style={{
-                            display: "flex",
-                            gap: "1em"
-                        }}
-                    >
-                        <li>
-                            <Link
-                                to={"/add"}
-                            >
-                                Add product
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to={"/settings"}
-                            >
-                                Settings
-                            </Link>
-                        </li>
-                    </ul>
-                </nav>
+                <Header>
+                    <nav>
+                        <ul
+                            style={{
+                                display: "flex",
+                                gap: "1em"
+                            }}
+                        >
+                            <li>
+                                <Link
+                                    to={"/add"}
+                                >
+                                    Add product
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to={"/settings"}
+                                >
+                                    Settings
+                                </Link>
+                            </li>
+                        </ul>
+                    </nav>
+                </Header>
 
                 <div
                     style={{
@@ -109,7 +105,6 @@ export default function Products() {
                         style={{
                             fontSize: !items.length ? "clamp(4.5em, 14vw, 6.5em)" : undefined,
                             lineHeight: !items.length ? 1.1 : undefined,
-                            marginTop: "1em"
                         }}
                     >
                         What's in that fridge
@@ -209,7 +204,8 @@ export default function Products() {
                 <ul
                     className="items"
                     style={{
-                        display: !products?.length ? "none" : undefined
+                        display: !products?.length ? "none" : undefined,
+                        marginBlock: "2em"
                     }}
                 >
                     <AnimatePresence initial={false}>

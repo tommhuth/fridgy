@@ -18,10 +18,26 @@ export default function Item({ id, slug, name, amount, unitType }: Product) {
             variants={variants}
             initial="initial"
             animate="enter"
-            style={{ position: "relative" }}
+            style={{
+                position: "relative"
+            }}
             exit="exit"
         >
-            <div className="container">
+            <div
+                style={{
+                    position: "absolute",
+                    height: 1,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: "currentColor",
+                    opacity: .15,
+                    pointerEvents: "none"
+                }}
+            />
+            <div
+                className="container"
+            >
                 <HorizontalAction
                     onRight={async () => {
                         await db.products.delete(id)
@@ -36,7 +52,7 @@ export default function Item({ id, slug, name, amount, unitType }: Product) {
                                 placeContent: "center",
                                 placeItems: "center",
                                 display: "flex",
-                                background: "blue",
+                                background: "#ffe600",
                                 lineHeight: 1,
                                 height: "100%",
                                 fontSize: "2em",
@@ -53,7 +69,7 @@ export default function Item({ id, slug, name, amount, unitType }: Product) {
                                 placeContent: "center",
                                 placeItems: "center",
                                 display: "flex",
-                                background: "red",
+                                background: "#ff00a6",
                                 height: "100%",
                                 lineHeight: 1,
                                 fontSize: "2em",
@@ -108,7 +124,8 @@ export default function Item({ id, slug, name, amount, unitType }: Product) {
                         style={{
                             flex: "none",
                             gap: ".5em",
-                            placeItems: "center"
+                            placeItems: "center",
+                            marginBlock: "-.1em"
                         }}
                     >
                         <li>

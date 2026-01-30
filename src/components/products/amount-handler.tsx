@@ -1,3 +1,4 @@
+import Amount, { renderUnit } from "@components/product/amount"
 import { db } from "@data/db"
 import { useState, useRef, useEffect } from "react"
 
@@ -89,9 +90,10 @@ export default function AmountHandler({ amount, unitType, onActive, productId })
                 </div>
                 <div style={{ display: "flex", gap: ".35em" }}>
                     <div>
-                        {unitType === "unit" ? "x" : null}
-                        {amount.toLocaleString("en")}
-                        {unitType === "unit" ? null : unitType}
+                        <Amount
+                            amount={amount}
+                            unitType={unitType}
+                        />
                     </div>
                     <output
                         style={{
@@ -102,7 +104,7 @@ export default function AmountHandler({ amount, unitType, onActive, productId })
                         {value < 0 ? <>&minus;</> : <>+</>}
                         {" "}
                         {Math.abs(Math.max(value, -amount))}
-                        {unitType === "unit" ? "x" : unitType}
+                        {renderUnit(unitType)}
                     </output>
                 </div>
                 <div
