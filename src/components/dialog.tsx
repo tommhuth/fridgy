@@ -47,7 +47,7 @@ export default function Dialog({
                     position: "fixed",
                     inset: 0,
                     background: "rgba(0, 0, 0, .4)",
-                    zIndex: 100
+                    zIndex: 10_000
                 }}
             />
             <motion.dialog

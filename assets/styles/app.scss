@@ -114,7 +114,6 @@ label {
 dialog {
     --bottom: calc(4em + env(safe-area-inset-bottom));
     inset: auto;
-    z-index: 10_000;
     bottom: calc(var(--bottom) * -1);
     left: 50%;
     translate: -50% 0%;
