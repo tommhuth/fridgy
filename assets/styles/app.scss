@@ -3,7 +3,7 @@
 @use "typography.scss";
 
 #holy-progress>div {
-    top: calc(var(--header-height) - 1px) !important;
+    top: calc(var(--header-height) + env(safe-area-inset-top) - 1px) !important;
     height: 3px !important;
 }
 
@@ -14,7 +14,7 @@ body {
 }
 
 .page {
-    padding-block: calc(var(--header-height) + env(safe-area-inset-top, 0px)) calc(6em + env(safe-area-inset-bottom, 0px));
+    padding-block: calc(var(--header-height) + env(safe-area-inset-top)) calc(6em + env(safe-area-inset-bottom));
     box-sizing: border-box;
     min-height: 100%;
     animation: page .35s both;
