@@ -14,7 +14,7 @@ function Layout() {
     return (
         <ToastProvider>
             <Outlet />
-            <HolyLoader />
+            <HolyLoader color="#000" />
         </ToastProvider>
     )
 }
