@@ -6,7 +6,6 @@ import { AnimatePresence, Variants } from "framer-motion";
 import { AnimatedOutlet } from "@data/utils";
 import Item from "./item";
 import Header from "@components/header";
-import { startHolyLoader } from "holy-loader";
 
 export interface HTMLProductForm extends HTMLFormControlsCollection {
     name: HTMLInputElement
@@ -17,10 +16,7 @@ export interface HTMLProductForm extends HTMLFormControlsCollection {
 }
 
 function sort(a: Product, b: Product) {
-    const aTime = Math.max(a.updatedAt, a.createdAt)
-    const bTime = Math.max(b.updatedAt, b.createdAt)
-
-    return bTime - aTime
+    return (b.updatedAt || b.createdAt).localeCompare(a.updatedAt || a.createdAt)
 }
 
 export const variants: Variants = {
@@ -61,8 +57,6 @@ export default function Products() {
         return getAllProductTypes()
     }, []);
     const items = products || data
-
-    startHolyLoader()
 
     return (
         <>
